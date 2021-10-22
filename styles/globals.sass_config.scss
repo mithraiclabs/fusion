@@ -1,0 +1,79 @@
+@use "sass:math";
+
+// Color
+
+$cyan: #8BEAFF;
+$devBlue: #368CC6;
+$linkBlue: $cyan;
+$glowBlue: #0347F6;
+$grey: #3c3b46;
+$pink: #cf3f7c;
+$white: rgb(220, 220, 220);
+
+// Layout
+
+$contentPaddingMobile: 32px;
+$contentPadding: 55px;
+
+$screenHeight1: 250px;
+$screenHeight2: 350px;
+$screenHeight3: 400px;
+$screenHeight4: 600px;
+$screenHeight5: 800px;
+$screenHeight6: 1200px;
+$screenHeight7: 1700px;
+
+$screenWidth1: 320px;
+$screenWidth2: 480px;
+$screenWidth3: 600px;
+$screenWidth4: 768px;
+$screenWidth5: 900px;
+$screenWidth6: 1024px;
+$screenWidth7: 1200px;
+$screenWidth8: 1440px;
+$screenWidth9: 1600px;
+$screenWidth10: 1800px;
+$screenWidth11: 2200px;
+$screenWidth12: 2800px;
+$screenWidth13: 3000px;
+$screenWidth14: 3500px;
+$screenWidth15: 3840px;
+$screenWidth16: 5120px;
+$screenWidth17: 6144px;
+$screenWidth18: 6720px;
+$screenWidth19: 8192px;
+
+$desktopWidth: $screenWidth5;
+$desktop2kWidth: $screenWidth8;
+$desktop3kWidth: $screenWidth12;
+$desktop4kWidth: $screenWidth15;
+$desktop5kWidth: $screenWidth16;
+$desktop6kWidth: $screenWidth17;
+$desktop7kWidth: $screenWidth18;
+$desktop8kWidth: $screenWidth19;
+
+$tabletWidth: $screenWidth3;
+
+// Typography
+
+$fontFamilyBody: 'Manrope', sans-serif;
+$fontSizeBody: 16px;
+$fontWeightBody: 300;
+
+$fontFamilyHeading: 'Goldman', serif;
+$fontWeightHeading: 400;
+$letterSpacingHeading: 1.5px; 
+
+$fontSizeSup: 11px;
+$letterSpacingSup: 1.5px; 
+
+$fontSizeH1: 32px;
+$lineHeightH1: $fontSizeH1;
+
+$fontSizeH2: $fontSizeH1 - 5;
+$lineHeightH2: $fontSizeH2;
+
+$fontSizeH3: $fontSizeH1 - 10;
+$lineHeightH3: $fontSizeH3;
+
+$textShadowHeading: 0 0 42px $glowBlue;

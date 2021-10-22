@@ -1,0 +1,27 @@
+@import './globals.sass_config.scss';
+
+.index-intro {
+  display: flex;
+  position: relative;
+  // * {
+  //   border: 1px dotted yellow;
+  // }
+}
+
+.index-intro section {
+  flex: 1;
+  sup {
+    margin-bottom: 8px;
+  }
+  h1 {
+    margin-bottom: 8px;
+  }
+  div:first-of-type {
+    margin-bottom: 18px;
+  }
+}
+
+.index-intro figure {
+  display: flex;
+  width: 300px;
+}
