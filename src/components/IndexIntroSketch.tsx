@@ -1,8 +1,20 @@
 import React from 'react';
+import {
+  ConnectWalletButton
+} from '@gokiprotocol/walletkit';
+import {
+  useConnectedWallet, useSolana
+} from '@saberhq/use-solana';
 import styles from '../styles/IndexIntroSketch.module.scss';
 import PsyChart from './PsyChart';
 
 const IndexIntro = () => {
+  const wallet = useConnectedWallet();
+  console.log('wallet', wallet?.connected);
+  // First Explorations
+  const {
+    disconnect
+  } = useSolana();
   const data = {
     labels: [
       "Lorem",
@@ -35,7 +47,17 @@ const IndexIntro = () => {
           manage their token distribution, valuations, investments, and token rewards.
         </div>
         <div className='psy-button-group'>
-          <button>Connect Wallet</button>
+          {
+            wallet?.connected ? (
+              <div className='psy-button-group'>
+                <button onClick={() => {
+                  disconnect();
+                }}>Disconnect Wallet</button>
+              </div>
+            ) : (
+              <ConnectWalletButton />
+            )
+          }
           <button>Read our docs</button>
         </div>
       </section>

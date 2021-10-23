@@ -5,31 +5,40 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import {
+  WalletKitProvider,
+  ConnectWalletButton
+} from '@gokiprotocol/walletkit';
 import reportWebVitals from './reportWebVitals';
 import './styles/globals.scss';
 import styles from './styles/app.module.scss';
+import HeaderNav from './components/HeaderNav';
 import Home from './pages/Home';
-const ConnectWallet = () => (<>Connect Wallet</>);
+const ConnectWallet = () => (<>Connect Wallet <ConnectWalletButton /></>);
 const DisconnectWallet = () => (<>Disconnect Wallet</>);
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className={styles.app}>
-      <header>
-        Header
-      </header>
-      <Router>
-        <main className={styles.main}>
-          <section className={styles.section}>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path={["/connect","/login","/signin"]} component={ConnectWallet} />
-              <Route exact path={["/disconnect","/logout","/signout"]} component={DisconnectWallet} />
-            </Switch>
-          </section>
-        </main>
-      </Router>
-    </div>
+    <WalletKitProvider
+      defaultNetwork='devnet'
+      app={{
+        name: 'PsyOptions Management'
+      }}>
+      <div className={styles.app}>
+        <HeaderNav />
+        <Router>
+          <main className={styles.main}>
+            <section className={styles.section}>
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route exact path={['/connect','/login','/signin']} component={ConnectWallet} />
+                <Route exact path={['/disconnect','/logout','/signout']} component={DisconnectWallet} />
+              </Switch>
+            </section>
+          </main>
+        </Router>
+      </div>
+    </WalletKitProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

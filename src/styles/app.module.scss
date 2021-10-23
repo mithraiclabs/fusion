@@ -1,15 +1,36 @@
 @import './globals.sass_config.scss';
 
+// Temporary // 1st iterations
+
 .app {
   text-align: center;
+}
+
+.header {
+  border-bottom: 1px dotted $pink;
+  ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    font-size: 12px;
+    list-style: none;
+    text-align: left;
+  }
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  height: 88px;
+  justify-content: center;
 }
 
 .main {
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 88px);
   justify-content: center;
-  min-height: 100vh;
   @media screen and (min-width: $desktopWidth) {
     // margin: 0 auto;
     display: flex;
@@ -20,7 +41,6 @@
 .section {
   width: 100vw;
 
-  // Temporary
   @media screen and (min-width: $desktopWidth) {
     width: 60vw
   }
