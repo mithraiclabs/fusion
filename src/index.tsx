@@ -8,7 +8,6 @@ import {
 import reportWebVitals from './reportWebVitals';
 import './styles/globals.scss';
 import styles from './styles/app.module.scss';
-
 import Home from './pages/Home';
 const ConnectWallet = () => (<>Connect Wallet</>);
 const DisconnectWallet = () => (<>Disconnect Wallet</>);
