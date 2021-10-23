@@ -30,10 +30,10 @@ const IndexIntro = () => {
     <div className={styles["index-intro"]}>
       <section>
         <sup>Why PsyOptions Management?</sup>
-        <h1>Equity. Simplified</h1>
+        <h1>Token value. Simplified</h1>
         <div>
           PsyOptions Management helps teams and communities and investors 
-          manage their token distribution, valuations, investments, and equity plans.
+          manage their token distribution, valuations, investments, and token rewards.
         </div>
         <div className={stylesGlobal["psy-button-group"]}>
           <button>Connect Wallet</button>
