@@ -36,7 +36,7 @@ const Header = () => {
           <>
             <div className='psy-button-group'>
               <button onClick={() => {
-                disconnect();
+                void disconnect();
               }}>Disconnect Wallet</button>
             </div>
             <ul>
