@@ -1,0 +1,45 @@
+@import './globals.sass_config.scss';
+
+* {
+  // border: 1px dotted yellow;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: black;
+  color: rgb(220, 220, 220);
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.psy-button-group {
+  button {
+    background: none;
+    border: 2px solid $linkBlue;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 1px $cyan;
+    color: $linkBlue;
+    cursor: pointer;
+    display: block;
+    font-size: $fontSizeBody;
+    margin: 8px;
+    padding: 8px 14px;
+    text-align: center;
+    text-decoration: none;
+    &:hover{
+      color: white;
+    }
+    @media screen and (min-width: $desktopWidth) {
+      display: inline-block;
+      padding: 12px 28px;
+    }
+  }
+}

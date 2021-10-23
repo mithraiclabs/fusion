@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '../styles/IndexIntroSketch.module.scss';
-import stylesGlobal from '../styles/globals.module.scss';
 import PsyChart from './PsyChart';
 
 const IndexIntro = () => {
@@ -35,7 +34,7 @@ const IndexIntro = () => {
           PsyOptions Management helps teams and communities and investors 
           manage their token distribution, valuations, investments, and token rewards.
         </div>
-        <div className={stylesGlobal["psy-button-group"]}>
+        <div className='psy-button-group'>
           <button>Connect Wallet</button>
           <button>Read our docs</button>
         </div>

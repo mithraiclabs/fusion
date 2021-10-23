@@ -1,8 +1,3 @@
-# craco-review
-
-Test driving Craco (create-react-app + configuration hooks)
-
-```
 const { when, whenDev, whenProd, whenTest, ESLINT_MODES, POSTCSS_MODES } = require("@craco/craco");
 
 module.exports = {
@@ -85,4 +80,3 @@ module.exports = {
         }
     ]
 };
-```

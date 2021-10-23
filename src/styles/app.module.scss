@@ -1,0 +1,64 @@
+@import './globals.sass_config.scss';
+
+.app {
+  text-align: center;
+}
+
+.main {
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  min-height: 100vh;
+  @media screen and (min-width: $desktopWidth) {
+    // margin: 0 auto;
+    display: flex;
+    width: 100vw;
+  }
+}
+
+.section {
+  width: 100vw;
+
+  // Temporary
+  @media screen and (min-width: $desktopWidth) {
+    width: 60vw
+  }
+  @media screen and (min-width: $desktop2kWidth) {
+    width: 50vw
+  }
+  @media screen and (min-width: $desktop3kWidth) {
+    width: 40vw
+  }
+  @media screen and (min-width: $desktop4kWidth) {
+    width: 30vw
+  }
+  @media screen and (min-width: $desktop5kWidth) {
+    width: 20vw
+  }
+  @media screen and (min-width: $desktop6kWidth) {
+    width: 10vw
+  }
+  @media screen and (min-width: $desktop7kWidth) {
+    width: 8vw
+  }
+  @media screen and (min-width: $desktop8kWidth) {
+    width: 5vw
+  }
+}
+
+.section {
+  sup {
+    display: block;
+    font-size: $fontSizeSup;
+    letter-spacing: $letterSpacingSup;
+  }
+  h1 {
+    font-family: $fontFamilyHeading, sans-serif;
+    font-size: $fontSizeH1;
+    font-weight: $fontWeightHeading;
+    letter-spacing: $letterSpacingHeading;
+    line-height: $lineHeightH1;
+    text-shadow: 0 0 42px $glowBlue;
+  }
+}
