@@ -34,6 +34,10 @@ const IndexIntroGuest = () => {
       }
     ]
   };
+  const options = {
+    maintainAspectRatio: false,
+    responsive: true
+  };
   return (
     <div className={styles["index-intro-guest"]}>
       <section>
@@ -43,23 +47,25 @@ const IndexIntroGuest = () => {
           PsyOptions Management helps teams and communities and investors 
           manage their token distribution, valuations, investments, and token rewards.
         </div>
-        <div className='psy-button-group'>
-          {
-            wallet?.connected ? (
-              <div className='psy-button-group'>
-                <button onClick={() => {
-                  disconnect();
-                }}>Disconnect Wallet</button>
-              </div>
-            ) : (
-              <ConnectWalletButton />
-            )
-          }
-          <button>Read our docs</button>
-        </div>
+        <nav>
+          <div className='psy-button-group'>
+            {
+              wallet?.connected ? (
+                <div className='psy-button-group'>
+                  <button onClick={() => {
+                    disconnect();
+                  }}>Disconnect Wallet</button>
+                </div>
+              ) : (
+                <ConnectWalletButton />
+              )
+            }
+            <button>Read our docs</button>
+          </div>
+        </nav>
       </section>
       <figure>
-        <PsyChart data={data} />
+        <PsyChart data={data} options={options} />
       </figure>
     </div>
   )

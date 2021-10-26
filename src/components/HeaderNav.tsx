@@ -10,6 +10,7 @@ import {
   LAMPORTS_PER_SOL
 } from '@solana/web3.js';
 import styles from '../styles/app.module.scss';
+import styles_header from '../styles/Header.module.scss';
 
 const Header = () => {
   const {
@@ -29,8 +30,7 @@ const Header = () => {
     void refetchSOL();
   }, [refetchSOL]);
   return (
-    <nav className={styles.header}>
-      <p>Temporary user-experience for early-stage product development</p>
+    <nav className={styles_header.header}>
       <>
         {wallet?.connected ? (
           <>
@@ -51,8 +51,10 @@ const Header = () => {
             <ConnectWalletButton />
           </div>
         )}
+      <p>Temporary user-experience for early-stage product development. Designs will change</p>
       </>
     </nav>
   )
 };
+
 export default Header;

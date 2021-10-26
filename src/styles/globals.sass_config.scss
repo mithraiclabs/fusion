@@ -11,10 +11,42 @@ $pink: #cf3f7c;
 $white: rgb(220, 220, 220);
 $yellow: #e8c021;
 
-// Layout (temporary values)
+// Typography (temporary values)
 
-$contentPaddingMobile: 32px;
-$contentPadding: 55px;
+$fontFamilyBody: 'Manrope', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+$fontSizeBody: 16px;
+$fontWeightBody: 300;
+$lineHeightBody: $fontSizeBody * 1.1;
+
+$fontFamilyHeading: 'Goldman', serif;
+$fontWeightHeading: 400;
+$letterSpacingHeading: 1.5px;
+
+$fontSizeSup: 11px;
+$letterSpacingSup: 1.5px;
+
+$fontSizeH1: 32px;
+$lineHeightH1: $fontSizeH1;
+
+$fontSizeH2: $fontSizeH1 - 5;
+$lineHeightH2: $fontSizeH2;
+
+$fontSizeH3: $fontSizeH1 - 10;
+$lineHeightH3: $fontSizeH3;
+
+$fontSizeH4: $fontSizeH1 - 15;
+$lineHeightH4: $fontSizeH4;
+
+$fontSizeH5: $fontSizeH1 - 20;
+$lineHeightH5: $fontSizeH5;
+
+$fontSizeH6: $fontSizeH1 - 25;
+$lineHeightH6: $fontSizeH5;
+
+$textShadowHeading: 0 0 42px $glowBlue;
+
+
+// Layout (temporary values)
 
 $screenHeight1: 250px;
 $screenHeight2: 350px;
@@ -44,7 +76,7 @@ $screenWidth17: 6144px;
 $screenWidth18: 6720px;
 $screenWidth19: 8192px;
 
-$desktopWidth: $screenWidth5;
+$desktopWidth: $screenWidth6;
 $desktop2kWidth: $screenWidth8;
 $desktop3kWidth: $screenWidth12;
 $desktop4kWidth: $screenWidth15;
@@ -55,35 +87,10 @@ $desktop8kWidth: $screenWidth19;
 
 $tabletWidth: $screenWidth3;
 
-// Typography (temporary values)
+$headerHeightDesktop: 108px;
+$headerHeightMobile: 108px;
 
-$fontFamilyBody: 'Manrope', sans-serif;
-$fontSizeBody: 16px;
-$fontWeightBody: 300;
-
-$fontFamilyHeading: 'Goldman', serif;
-$fontWeightHeading: 400;
-$letterSpacingHeading: 1.5px; 
-
-$fontSizeSup: 11px;
-$letterSpacingSup: 1.5px; 
-
-$fontSizeH1: 32px;
-$lineHeightH1: $fontSizeH1;
-
-$fontSizeH2: $fontSizeH1 - 5;
-$lineHeightH2: $fontSizeH2;
-
-$fontSizeH3: $fontSizeH1 - 10;
-$lineHeightH3: $fontSizeH3;
-
-$fontSizeH4: $fontSizeH1 - 15;
-$lineHeightH4: $fontSizeH4;
-
-$fontSizeH5: $fontSizeH1 - 20;
-$lineHeightH5: $fontSizeH5;
-
-$fontSizeH6: $fontSizeH1 - 25;
-$lineHeightH6: $fontSizeH5;
-
-$textShadowHeading: 0 0 42px $glowBlue;
+$sectionPaddingMobile: 32px;
+$sectionPadding: 55px;
+$textBlockMargin: $fontSizeBody;
+$textBlockMarginMobile: $fontSizeBody * 0.8;

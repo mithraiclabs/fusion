@@ -2,15 +2,17 @@ import { Pie } from "react-chartjs-2";
 
 type PsyChartProps = {
   data: any;
+  options: any;
 }
 
 const PsyChart: React.FC<PsyChartProps> = ({
-  data
+  data,
+  options
 }) => {
   return (
-    <div>
-      <Pie data={data} />
-    </div>
+    <>
+      <Pie data={data} options={options} />
+    </>
   );
 };
 

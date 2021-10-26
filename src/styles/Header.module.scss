@@ -1,0 +1,54 @@
+@import './globals.sass_config.scss';
+// @use "sass:math";
+
+.header {
+  background: black;
+  border-bottom: 1px dotted $pink;
+  padding-top: $textBlockMarginMobile;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999999;
+  @media screen and (min-width: $desktopWidth) {
+    padding-top: unset;
+  }
+
+  ul {
+    li {
+      font-size: 12px;
+      list-style: none;
+      text-align: left;
+    }
+    @media screen and (min-width: $tabletWidth) {
+      margin-left: 20px;
+    }
+  }
+  p {
+    background: $pink;
+    border-radius: 2px;
+    color: black;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: $textBlockMarginMobile;
+    padding: 7px 18px;
+    width:100%;
+    @media screen and (min-width: $desktopWidth) {
+      margin-right: $sectionPadding;
+      margin-top: unset;
+      width: unset;
+    }
+    // @media screen and (min-width: $desktopWidth) {
+    //   margin-left: 25px;
+    //   width: 250px;
+    // }
+  }
+}
+
+.header {
+  align-items: center;
+  justify-content: center;
+  @media screen and (min-width: $desktopWidth) {
+    display: flex;
+    height: $headerHeightDesktop;
+  }
+}

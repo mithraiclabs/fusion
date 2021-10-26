@@ -1,24 +1,59 @@
 @import './globals.sass_config.scss';
 
 .index-intro-guest {
-  display: flex;
+  @media screen and (min-width: $desktopWidth) {
+    display: flex;
+  }
   position: relative;
 }
 
 .index-intro-guest section {
-  flex: 1;
+  margin-top: $textBlockMarginMobile;
+  @media screen and (min-width: $desktopWidth) {
+    margin-top: unset;
+    flex: 1;
+  }
   sup {
     margin-bottom: 8px;
+    @media screen and (min-width: $desktopWidth) {
+      margin-top: $sectionPaddingMobile;
+    }
   }
   h1 {
-    margin-bottom: 8px;
+    margin-bottom: $textBlockMargin;
+    @media screen and (min-width: $desktopWidth) {
+      margin-bottom: $textBlockMargin;
+    }
   }
   div:first-of-type {
-    margin-bottom: 18px;
+    margin-bottom: $textBlockMargin * 2;
+  }
+}
+
+.index-intro-guest section nav {
+  display: flex;
+  width: 100%;
+  button {
+    margin: 0 auto;
+  }
+  button:first-of-type {
+    margin-bottom: $textBlockMarginMobile;
+    @media screen and (min-width: $desktopWidth) {
+      margin-right: $textBlockMarginMobile;
+      margin-bottom: unset;
+    }
   }
 }
 
 .index-intro-guest figure {
-  display: flex;
+  height:350px;
+  margin: 0 auto;
+  margin-top: $textBlockMarginMobile * 2;
+  position: relative;
   width: 300px;
+  @media screen and (min-width: $desktopWidth) {
+    height: 350px;
+    margin: unset;
+    width: 325px;
+  }
 }

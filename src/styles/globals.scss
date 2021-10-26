@@ -1,7 +1,7 @@
 @import './globals.sass_config.scss';
 
 * {
-  // border: 1px dotted yellow;
+  // border: 1px dotted $yellow; // dev tool
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -11,8 +11,9 @@ html,
 body {
   background-color: black;
   color: rgb(220, 220, 220);
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: $fontFamilyBody;
+  font-size: $fontSizeBody;
+  line-height: $lineHeightBody;
 }
 
 a {
@@ -21,6 +22,11 @@ a {
 }
 
 .psy-button-group {
+  display: inline-block;
+  margin: 0 auto;
+  @media screen and (min-width: $desktopWidth) {
+    display: flex;
+  }
   button, a {
     background: none;
     border: 2px solid $linkBlue;
@@ -30,21 +36,29 @@ a {
     cursor: pointer;
     display: block;
     font-size: $fontSizeBody;
-    margin: 8px;
-    padding: 8px 14px;
+    line-height: $fontSizeBody;
+    margin: 0 auto;
+    padding: 10px 14px;
     text-align: center;
     text-decoration: none;
     &:hover{
       color: white;
     }
     @media screen and (min-width: $desktopWidth) {
-      display: inline-block;
-      padding: 12px 28px;
+      padding: 10px 28px;
     }
+  }
+  .css-1r28a09 {
+    display: flex;
+    // line-height: 10px !important;
+    // padding: 12px 28px;
   }
 }
 
 section {
+  font-family: $fontFamilyBody;
+  font-size: $fontSizeBody;
+  line-height: $lineHeightBody * 1.7;
   sup {
     display: block;
     font-size: $fontSizeSup;
