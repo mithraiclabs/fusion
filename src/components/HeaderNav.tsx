@@ -12,7 +12,6 @@ import {
 import styles from '../styles/app.module.scss';
 
 const Header = () => {
-  // First Explorations
   const {
     walletProviderInfo,
     disconnect,
@@ -31,6 +30,7 @@ const Header = () => {
   }, [refetchSOL]);
   return (
     <nav className={styles.header}>
+      <p>Temporary user-experience for early-stage product development</p>
       <>
         {wallet?.connected ? (
           <>

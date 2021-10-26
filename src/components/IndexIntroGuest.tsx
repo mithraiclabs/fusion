@@ -5,13 +5,11 @@ import {
 import {
   useConnectedWallet, useSolana
 } from '@saberhq/use-solana';
-import styles from '../styles/IndexIntroSketch.module.scss';
+import styles from '../styles/IndexIntroGuest.module.scss';
 import PsyChart from './PsyChart';
 
-const IndexIntro = () => {
+const IndexIntroGuest = () => {
   const wallet = useConnectedWallet();
-  console.log('wallet', wallet?.connected);
-  // First Explorations
   const {
     disconnect
   } = useSolana();
@@ -23,7 +21,6 @@ const IndexIntro = () => {
      ],
     datasets: [
       {
-        "label": "Hey Yo Eh",
         "data": [21, 19, 2],
         backgroundColor: [
           '#8BEAFF',
@@ -38,7 +35,7 @@ const IndexIntro = () => {
     ]
   };
   return (
-    <div className={styles["index-intro"]}>
+    <div className={styles["index-intro-guest"]}>
       <section>
         <sup>Why PsyOptions Management?</sup>
         <h1>Token value. Simplified</h1>
@@ -68,4 +65,4 @@ const IndexIntro = () => {
   )
 };
 
-export default IndexIntro;
+export default IndexIntroGuest;

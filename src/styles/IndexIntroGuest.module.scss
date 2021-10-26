@@ -1,14 +1,11 @@
 @import './globals.sass_config.scss';
 
-.index-intro {
+.index-intro-guest {
   display: flex;
   position: relative;
-  // * {
-  //   border: 1px dotted yellow;
-  // }
 }
 
-.index-intro section {
+.index-intro-guest section {
   flex: 1;
   sup {
     margin-bottom: 8px;
@@ -21,7 +18,7 @@
   }
 }
 
-.index-intro figure {
+.index-intro-guest figure {
   display: flex;
   width: 300px;
 }

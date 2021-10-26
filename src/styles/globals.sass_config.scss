@@ -9,8 +9,9 @@ $glowBlue: #0347F6;
 $grey: #3c3b46;
 $pink: #cf3f7c;
 $white: rgb(220, 220, 220);
+$yellow: #e8c021;
 
-// Layout
+// Layout (temporary values)
 
 $contentPaddingMobile: 32px;
 $contentPadding: 55px;
@@ -54,7 +55,7 @@ $desktop8kWidth: $screenWidth19;
 
 $tabletWidth: $screenWidth3;
 
-// Typography
+// Typography (temporary values)
 
 $fontFamilyBody: 'Manrope', sans-serif;
 $fontSizeBody: 16px;
@@ -75,5 +76,14 @@ $lineHeightH2: $fontSizeH2;
 
 $fontSizeH3: $fontSizeH1 - 10;
 $lineHeightH3: $fontSizeH3;
+
+$fontSizeH4: $fontSizeH1 - 15;
+$lineHeightH4: $fontSizeH4;
+
+$fontSizeH5: $fontSizeH1 - 20;
+$lineHeightH5: $fontSizeH5;
+
+$fontSizeH6: $fontSizeH1 - 25;
+$lineHeightH6: $fontSizeH5;
 
 $textShadowHeading: 0 0 42px $glowBlue;

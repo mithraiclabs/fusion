@@ -16,6 +16,8 @@ import HeaderNav from './components/HeaderNav';
 import Home from './pages/Home';
 const ConnectWallet = () => (<>Connect Wallet <ConnectWalletButton /></>);
 const DisconnectWallet = () => (<>Disconnect Wallet</>);
+const Contributor = () => (<>Contributor</>);
+const Treasury = () => (<>Treasury</>);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -30,6 +32,8 @@ ReactDOM.render(
           <main className={styles.main}>
             <section className={styles.section}>
               <Switch>
+                <Route exact path='/contributor' component={Contributor} />
+                <Route exact path='/treasury' component={Treasury} />
                 <Route exact path='/' component={Home} />
                 <Route exact path={['/connect','/login','/signin']} component={ConnectWallet} />
                 <Route exact path={['/disconnect','/logout','/signout']} component={DisconnectWallet} />

@@ -1,0 +1,19 @@
+@import './globals.sass_config.scss';
+
+.index-intro-user {
+  display: flex;
+  position: relative;
+}
+
+.index-intro-user section {
+  flex: 1;
+  h2, ul {
+    margin-bottom: 8px;
+  }
+  li {
+    font-size: 14px;
+    margin-left: 20px;
+    margin-bottom: 6px;
+    text-align: left;
+  }
+}

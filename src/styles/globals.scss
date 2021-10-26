@@ -21,7 +21,7 @@ a {
 }
 
 .psy-button-group {
-  button {
+  button, a {
     background: none;
     border: 2px solid $linkBlue;
     border-radius: 4px;
@@ -41,5 +41,43 @@ a {
       display: inline-block;
       padding: 12px 28px;
     }
+  }
+}
+
+section {
+  sup {
+    display: block;
+    font-size: $fontSizeSup;
+    letter-spacing: $letterSpacingSup;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $fontFamilyHeading, sans-serif;
+    font-weight: $fontWeightHeading;
+    letter-spacing: $letterSpacingHeading;
+    text-shadow: 0 0 42px $glowBlue;
+  }
+  h1 {
+    font-size: $fontSizeH1;
+    line-height: $lineHeightH1;
+  }
+  h2 {
+    font-size: $fontSizeH2;
+    line-height: $lineHeightH2;
+  }
+  h3 {
+    font-size: $fontSizeH3;
+    line-height: $lineHeightH3;
+  }
+  h4 {
+    font-size: $fontSizeH4;
+    line-height: $lineHeightH4;
+  }
+  h5 {
+    font-size: $fontSizeH5;
+    line-height: $lineHeightH5;
+  }
+  h6 {
+    font-size: $fontSizeH6;
+    line-height: $lineHeightH6;
   }
 }
