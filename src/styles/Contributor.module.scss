@@ -1,0 +1,54 @@
+@import './globals.scss';
+
+.contributor {
+  // * {
+  //   border: 1px solid yellow;
+  // }
+  position: relative;
+  a {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  a:hover {
+    background: $cyan;
+    border-color: $white;
+    color: #000;
+  }
+}
+
+.contributor {
+  section > div {
+    &:first-of-type {
+      margin-bottom: $textBlockMarginMobile;
+    }
+  }
+  @media screen and (min-width: $desktopWidth) {
+    section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      & > div {
+        height: 100%;
+        &:first-of-type {
+          margin-bottom: unset;
+          // temporary
+          margin-right:  $textBlockMarginMobile * 5;
+        }
+      }
+      & > div > div {
+        margin-bottom: $textBlockMarginMobile * 2;
+      }
+    }
+    li {
+      text-align: left;
+      span {
+        padding: 6px 8px;
+      }
+    }
+  }
+}
+
+// .contributor div:last-of-type {
+//   background: yellow;
+//   display: flex;
+// }

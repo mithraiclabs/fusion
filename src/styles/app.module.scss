@@ -20,7 +20,8 @@
   background-size: 100%;
   background-image: url(https://psyoptions.io/static/bg-f2f98c2b370108883b00728862e8e73a.jpg);
   display: flex;
-  height: calc(100vh - 138px);
+  // variable issue, second value only works hardcoded
+  height: calc(100vh - 108px);
   flex-direction: column;
   justify-content: center;
   padding: $sectionPaddingMobile;
