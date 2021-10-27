@@ -1,4 +1,4 @@
-@import './globals.sass_config.scss';
+@import './globals.scss';
 
 .app {
   text-align: center;
@@ -7,6 +7,7 @@
 .main {
   display: flex;
   justify-content: center;
+  margin-top: $headerHeightMobile;
   width: 100%;
   @media screen and (min-width: $desktopWidth) {
     display: flex;
@@ -15,16 +16,19 @@
 }
 
 .section {
+  align-items: center;
+  background-size: 100%;
+  background-image: url(https://psyoptions.io/static/bg-f2f98c2b370108883b00728862e8e73a.jpg);
+  display: flex;
+  height: calc(100vh - 138px);
+  flex-direction: column;
+  justify-content: center;
   padding: $sectionPaddingMobile;
   padding-top: $headerHeightMobile + 15px;
   width: 100%;
   z-index: 1;
   @media screen and (min-width: $desktopWidth) {
-    align-items: center;
-    display: flex;
-    height: calc(100vh - 138px);
-    flex-direction: column;
-    justify-content: center;
+    align-items: unset;
     margin: 0 auto;
     padding-top: initial;
   }
@@ -51,5 +55,17 @@
   }
   @media screen and (min-width: $desktop8kWidth) {
     width: 5%;
+  }
+}
+
+// experimental
+.nav-breadcrumbs {
+  position: fixed;
+  top: 135px;
+  margin-bottom: 25px;
+  text-align: left;
+  a:not(:last-child):after {
+    content: "/";
+    padding: 0 $textBlockMarginMobile;
   }
 }

@@ -8,7 +8,7 @@ const IndexIntroUser = () => {
       <section>
         <div className='psy-button-group'>
           <Link to="/treasury">
-            <h2>Treasury Account</h2>
+            <h2>Treasury</h2>
             <ul>
               <li>Founder</li>
               <li>Community leader</li>
@@ -17,7 +17,7 @@ const IndexIntroUser = () => {
             </ul>
           </Link>
           <Link to="/contributor">
-            <h2>Contributor Account</h2>
+            <h2>Contributor</h2>
             <ul>
               <li>Community member</li>
               <li>Employee</li>

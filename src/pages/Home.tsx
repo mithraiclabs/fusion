@@ -9,11 +9,11 @@ import styles from '../styles/Home.module.scss';
 const Home = () => {
   const wallet = useConnectedWallet();
   return (
-    <div className={styles.home}>
+    <section className={styles.home}>
       {
         wallet?.connected ? <IndexIntroUser /> : <IndexIntroGuest /> 
       }
-    </div>
+    </section>
   )
 }
 

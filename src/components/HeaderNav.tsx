@@ -39,10 +39,10 @@ const Header = () => {
               }}>Disconnect Wallet</button>
             </div>
             <ul>
-              <li><strong>Wallet:</strong> {wallet?.publicKey?.toString()}</li>
-              <li><strong>Provider:</strong> {walletProviderInfo?.name}</li>
-              <li><strong>Network:</strong> {network}</li>
-              <li><strong>Balance:</strong> {typeof balance === 'number' ? `${(balance / LAMPORTS_PER_SOL).toLocaleString()} SOL` : '--'}</li>
+              <li><strong>Wallet</strong> {wallet?.publicKey?.toString()}</li>
+              <li><strong>Provider</strong> {walletProviderInfo?.name}</li>
+              <li><strong>Network</strong> {network}</li>
+              <li><strong>Balance</strong> {typeof balance === 'number' ? `${(balance / LAMPORTS_PER_SOL).toLocaleString()} SOL` : '--'}</li>
             </ul>
           </>
         ) : (
