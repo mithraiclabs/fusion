@@ -16,6 +16,47 @@ body {
   line-height: $lineHeightBody;
 }
 
+section {
+  font-family: $fontFamilyBody;
+  font-size: $fontSizeBody;
+  line-height: $lineHeightBody * 1.7;
+  sup {
+    display: block;
+    font-size: $fontSizeSup;
+    letter-spacing: $letterSpacingSup;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $fontFamilyHeading, sans-serif;
+    font-weight: $fontWeightHeading;
+    letter-spacing: $letterSpacingHeading;
+    text-shadow: 0 0 42px $glowBlue;
+  }
+  h1 {
+    font-size: $fontSizeH1;
+    line-height: $lineHeightH1;
+  }
+  h2 {
+    font-size: $fontSizeH2;
+    line-height: $lineHeightH2;
+  }
+  h3 {
+    font-size: $fontSizeH3;
+    line-height: $lineHeightH3;
+  }
+  h4 {
+    font-size: $fontSizeH4;
+    line-height: $lineHeightH4;
+  }
+  h5 {
+    font-size: $fontSizeH5;
+    line-height: $lineHeightH5;
+  }
+  h6 {
+    font-size: $fontSizeH6;
+    line-height: $lineHeightH6;
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -55,43 +96,29 @@ a {
   }
 }
 
-section {
-  font-family: $fontFamilyBody;
-  font-size: $fontSizeBody;
-  line-height: $lineHeightBody * 1.7;
-  sup {
-    display: block;
-    font-size: $fontSizeSup;
-    letter-spacing: $letterSpacingSup;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: $fontFamilyHeading, sans-serif;
-    font-weight: $fontWeightHeading;
-    letter-spacing: $letterSpacingHeading;
-    text-shadow: 0 0 42px $glowBlue;
-  }
-  h1 {
-    font-size: $fontSizeH1;
-    line-height: $lineHeightH1;
-  }
-  h2 {
-    font-size: $fontSizeH2;
-    line-height: $lineHeightH2;
-  }
-  h3 {
-    font-size: $fontSizeH3;
-    line-height: $lineHeightH3;
-  }
-  h4 {
-    font-size: $fontSizeH4;
-    line-height: $lineHeightH4;
-  }
-  h5 {
-    font-size: $fontSizeH5;
-    line-height: $lineHeightH5;
-  }
-  h6 {
-    font-size: $fontSizeH6;
-    line-height: $lineHeightH6;
+[data-reach-dialog-overlay] {
+  z-index: 999999;
+  .goki-walletkit-modal-wrapper {
+    background: black;
+    border: 2px solid cyan;
+    span, p, h2, div {
+      color: white;
+    }
+    // div:nth-of-type(2) div svg path:first-of-type {
+    //   stroke: white;
+    //   stroke-width: 1px;
+    // }
+    h2 ~ div svg {
+      fill: white;
+    }
+    svg + div {
+      background: black;
+    }
+    button {
+      border: 1px solid $cyan;
+    }
+    a {
+      color: $cyan;
+    }
   }
 }

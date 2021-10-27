@@ -9,7 +9,6 @@ import {
 import {
   LAMPORTS_PER_SOL
 } from '@solana/web3.js';
-import styles from '../styles/app.module.scss';
 import styles_header from '../styles/Header.module.scss';
 
 const Header = () => {
