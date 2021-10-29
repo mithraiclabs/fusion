@@ -1,8 +1,9 @@
 
 import styles_forms from '../styles/Forms.module.scss';
-import styles_treasury from '../styles/Treasury.module.scss';
-const TreasuryFormNew = () => (
+import styles_contributor from '../styles/Contributor.module.scss';
+const ContributorFormNew = () => (
   <form className={styles_forms.form}>
+    <p>This form is a placeholder, not the correct form</p>
     <h1>New Token Grant</h1>
     <p>Forms and fields, work in progress 🌱 &gt; 🌳</p>
     <fieldset>
@@ -41,7 +42,7 @@ const TreasuryFormNew = () => (
         <input id='numberOfPeriods' type='text' />
       </div>
     </fieldset>
-    <fieldset className={styles_treasury.experiment}>
+    <fieldset className={styles_contributor.experiment}>
       <div className='input-group'>
         <label htmlFor='recipient'>Recipient(s)</label>
         <input id='recipient' type='text' />
@@ -59,4 +60,4 @@ const TreasuryFormNew = () => (
     </div>
   </form>
 );
-export default TreasuryFormNew;
+export default ContributorFormNew;

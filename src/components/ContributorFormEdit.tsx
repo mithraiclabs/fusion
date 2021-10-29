@@ -3,11 +3,12 @@ import styles_forms from '../styles/Forms.module.scss';
 type TFEProps = {
   publicKey: any;
 };
-const TreasuryFormEdit: React.FC<TFEProps> = ({
+const ContributorFormEdit: React.FC<TFEProps> = ({
   publicKey
 }) => {
   return (
     <form className={styles_forms.form}>
+    <p>This form is a placeholder, not the correct form</p>
       <h1>Edit Token Grant</h1>
       <p>{publicKey}</p>
       <p>Forms and fields, work in progress 🌱 &gt; 🌳</p>
@@ -67,4 +68,4 @@ const TreasuryFormEdit: React.FC<TFEProps> = ({
   )
 }
 
-export default TreasuryFormEdit;
+export default ContributorFormEdit;

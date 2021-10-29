@@ -19,19 +19,20 @@
   align-items: center;
   background-size: 100%;
   background-image: url(https://psyoptions.io/static/bg-f2f98c2b370108883b00728862e8e73a.jpg);
-  display: flex;
-  // variable issue, second value only works hardcoded
-  height: calc(100vh - 108px);
+  // consider making optional
+  // // display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: $sectionPaddingMobile;
   padding-top: $headerHeightMobile + 15px;
   width: 100%;
   z-index: 1;
   @media screen and (min-width: $desktopWidth) {
     align-items: unset;
     margin: 0 auto;
-    padding-top: initial;
+    // consider making optional
+    // // variable issue, second value only works hardcoded
+    // // height: calc(100vh - 128px);
+    padding-top: $headerHeightDesktop + 15px;
   }
   @media screen and (min-width: $desktopWidth) {
     width: 80%;

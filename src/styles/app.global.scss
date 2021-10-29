@@ -99,6 +99,11 @@ a {
   }
 }
 
+.demo-borderless {
+  background: none !important;
+  border: none !important;
+}
+
 [data-reach-dialog-overlay] {
   z-index: 999999;
   .goki-walletkit-modal-wrapper {

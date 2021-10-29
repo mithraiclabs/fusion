@@ -7,15 +7,6 @@ const IndexIntroUser = () => {
     <div className={styles["index-intro-user"]}>
       <section>
         <div className='psy-button-group'>
-          <Link to="/treasury">
-            <h2>Treasury</h2>
-            <ul>
-              <li>Founder</li>
-              <li>Community leader</li>
-              <li>Org manager</li>
-              <li>Content creator</li>
-            </ul>
-          </Link>
           <Link to="/contributor">
             <h2>Contributor</h2>
             <ul>
@@ -23,6 +14,15 @@ const IndexIntroUser = () => {
               <li>Employee</li>
               <li>Team member</li>
               <li>Investor</li>
+            </ul>
+          </Link>
+          <Link to="/treasury">
+            <h2>Treasury</h2>
+            <ul>
+              <li>Founder</li>
+              <li>Community leader</li>
+              <li>Org manager</li>
+              <li>Content creator</li>
             </ul>
           </Link>
         </div>

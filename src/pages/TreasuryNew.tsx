@@ -19,13 +19,12 @@ const TreasuryNew = () => {
           <span>Treasury</span>
         </Link>
         <Link to="/treasury/new">
-          <span>New</span>
+          <span>New Grant</span>
         </Link>
        </nav>
       {
         wallet?.connected ?
           <>
-            <h1>New Treasury</h1>
             <TreasuryFormNew />
           </>
         : <>Let's connect your wallet</> 

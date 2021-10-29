@@ -14,6 +14,8 @@ import './styles/app.global.scss';
 import styles from './styles/app.module.scss';
 import HeaderNav from './components/HeaderNav';
 import Contributor from './pages/Contributor';
+import ContributorNew from './pages/ContributorNew';
+import ContributorEdit from './pages/ContributorEdit';
 import Home from './pages/Home';
 import Treasury from './pages/Treasury';
 import TreasuryNew from './pages/TreasuryNew';
@@ -37,8 +39,10 @@ ReactDOM.render(
             <section className={styles.section}>
               <Switch>
                 <Route exact path='/contributor' component={Contributor} />
+                <Route exact path='/contributor/edit/:publicKey' component={ContributorEdit} />
+                <Route exact path='/contributor/new' component={ContributorNew} />
                 <Route exact path='/treasury' component={Treasury} />
-                <Route exact path='/treasury/edit' component={TreasuryEdit} />
+                <Route exact path='/treasury/edit/:publicKey' component={TreasuryEdit} />
                 <Route exact path='/treasury/new' component={TreasuryNew} />
                 <Route exact path='/' component={Home} />
                 <Route exact path={['/connect','/login','/signin']} component={ConnectWallet} />

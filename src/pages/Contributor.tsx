@@ -4,35 +4,46 @@ import {
 } from '@saberhq/use-solana';
 import { Link } from 'react-router-dom';
 import styles_app from '../styles/app.module.scss';
+import styles_grid from '../styles/Grid.module.scss';
 
 // import NewOrEdit from '../components/NewOrEdit';
 import styles from '../styles/Contributor.module.scss';
 
 const NewOrEdit = () => (
-  <section className={styles['treasury']}>
+  <section className={styles.contributor}>
+    <p>The contributor example shows grid style (where treasury example shows list)</p>
     <div>
       <div className='psy-button-group'>
-        <Link to="/contributor">
-          <h2>New</h2>
+        <Link to="/contributor/new">
+          <h2>Unlock</h2>
         </Link>
       </div>
-      <ul>
-        <li><Link to="/contributor"><span>Lorem</span></Link></li>
-        <li><Link to="/contributor"><span>Ipsum</span></Link></li>
-      </ul>
+      <div className={styles_grid.grid}>
+        <div className={styles_grid['grid-item']}>
+          PsyOptions
+        </div>
+        <div className={styles_grid['grid-item']}>
+          Crypto Punks
+        </div>
+      </div>
     </div>
     <div>
       <div className='psy-button-group'>
-        <Link to="/contributor">
-          <h2>Edit</h2>
+        <Link to="/contributor/edit/8aVM1bTQ2cWcL7m9bXrWs6eBjdb16yxABgD6paZ6p23X">
+          <h2>Exercise</h2>
         </Link>
       </div>
-      <ul>
-        <li><Link to="/contributor"><span>Dww1F52LaLe3...2LaaTs</span></Link></li>
-        <li><Link to="/contributor"><span>ftW3L5aTaLet...fmMdfqr</span></Link></li>
-        <li><Link to="/contributor"><span>4Fww82543aLeL...h2M82</span></Link></li>
-        <li><Link to="/contributor"><span>Lwwk55eLaLe3...m4Mdfqr</span></Link></li>
-      </ul>
+      <div className={styles_grid.grid}>
+        <div className={styles_grid['grid-item']}>
+          Carrot Coin
+        </div>
+        <div className={styles_grid['grid-item']}>
+          Friktion
+        </div>
+        <div className={styles_grid['grid-item']}>
+          Tap Finance
+        </div>
+      </div>
     </div>
   </section>
 );

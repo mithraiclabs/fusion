@@ -2,37 +2,37 @@
 import {
   useConnectedWallet
 } from '@saberhq/use-solana';
-import TreasuryFormEdit from '../components/TreasuryFormEdit';
-import styles from '../styles/Treasury.module.scss';
+import ContributorFormEdit from '../components/ContributorFormEdit';
+import styles from '../styles/Contributor.module.scss';
 import styles_app from '../styles/app.module.scss';
 import { Link } from 'react-router-dom';
 
-type TEProps = {
+type CEProps = {
   match: any;
 };
 
-const TreasuryEdit: React.FC<TEProps> = ({
+const ContributorEdit: React.FC<CEProps> = ({
   match
 }) => {
   const publicKey = match.params.publicKey;
   const wallet = useConnectedWallet();
   return (
-    <section className={styles.treasury}>
+    <section className={styles.contributor}>
       <nav className={styles_app['nav-breadcrumbs']}>
         <Link to="/">
           <span>Home</span>
         </Link>
-        <Link to="/treasury">
-          <span>Treasury</span>
+        <Link to="/contributor">
+          <span>Contributor</span>
         </Link>
-        <Link to="/treasury/edit">
+        <Link to="/contributor/edit">
           <span>Edit</span>
         </Link>
        </nav>
       {
         wallet?.connected ?
           <>
-            <TreasuryFormEdit publicKey={publicKey} />
+            <ContributorFormEdit publicKey={publicKey} />
           </>
         : <>Let's connect your wallet</> 
       }
@@ -40,4 +40,4 @@ const TreasuryEdit: React.FC<TEProps> = ({
   )
 }
 
-export default TreasuryEdit;
+export default ContributorEdit;

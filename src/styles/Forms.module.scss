@@ -1,0 +1,49 @@
+@import './globals.scss';
+
+.form {
+  background: rgba($grey-darkest, 0.7);
+  margin-bottom: $textBlockMarginMobile;
+  padding: 25px 28px;
+  position: relative;
+  width: 100%;
+  @media screen and (min-width: $desktopWidth) {
+    padding: 75px 28px;
+    padding-left: 0;
+  }
+
+  h1 {
+    margin-bottom: $textBlockMarginMobile;
+  }
+  p {
+    margin-bottom: $textBlockMarginMobile * 3;
+  }
+}
+
+.form fieldset {
+  border: none;
+  margin-bottom: $textBlockMarginMobile * 3;
+
+  div {
+    margin-bottom: $textBlockMarginMobile * 2.5;
+  }
+
+  label {
+    display: block;
+    font-size: 22px;
+    margin-right: $textBlockMarginMobile;
+    @media screen and (min-width: $desktopWidth) {
+      display: inline-block;
+      text-align: right;
+      width: 220px;
+    }
+  }
+
+  input {
+    background: black;
+    border: 1px solid $cyan;
+    color: white;
+    font-size: 22px;
+    outline: 0;
+    padding: 12px 17px;
+  }
+}

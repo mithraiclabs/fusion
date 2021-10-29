@@ -16,6 +16,17 @@
 }
 
 .contributor {
+  // temporary design tools
+  section > p:first-of-type,
+  form > p:first-of-type {
+    // background: $green;
+    border: 1px solid $green;
+    border-radius: 2px;
+    color: $green;
+    // font-weight: 700;
+    margin-bottom: $textBlockMarginMobile * 3;
+    padding: 7px 18px;
+  }
   section > div {
     &:first-of-type {
       margin-bottom: $textBlockMarginMobile;
@@ -24,9 +35,10 @@
   @media screen and (min-width: $desktopWidth) {
     section {
       display: flex;
-      align-items: center;
+      // align-items: center;
       justify-content: center;
-      height: 200px;
+      // height: 200px;
+      flex-wrap: wrap;
       & > div {
         height: 100%;
         &:first-of-type {
@@ -45,6 +57,51 @@
         padding: 6px 8px;
       }
     }
+  }
+  form {
+    fieldset:last-of-type {
+      // * {
+      //   border: 1px solid $yellow;
+      // }
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      label, input {
+        display: block;
+        width: 400px;
+      }
+      label {
+        margin: 0;
+        margin-bottom: $textBlockMarginMobile;
+        text-align: center;
+      }
+      input {
+      }
+    }
+  }
+}
+
+.experiment {
+  & div:nth-of-type(2) {
+    text-align: left;
+    flex-basis: 400px;
+    & div {
+      margin-bottom: 0 !important;
+      display: inline-block;
+    }
+  }
+}
+
+
+// temporary design tool
+// experimental
+.contributor {
+  & > div:first-of-type div > div {
+    border: 1px solid $green !important;
+  }
+  & div div > div {
+    margin-bottom: $textBlockMarginMobile;
   }
 }
 
