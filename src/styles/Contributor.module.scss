@@ -82,7 +82,8 @@
   }
 }
 
-
+// temporary design tools
+// experimental
 .experiment {
   & > div input {
     margin-right: $textBlockMarginMobile;
@@ -104,5 +105,13 @@
   label, input {
     display: block;
     width: 400px;
+  }
+}
+.contributor {
+  & > div:first-of-type div > div {
+    border: 1px solid $green !important;
+  }
+  & div div > div {
+    margin-bottom: $textBlockMarginMobile;
   }
 }
