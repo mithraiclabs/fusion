@@ -35,29 +35,29 @@
     padding-top: $headerHeightDesktop + 15px;
   }
   @media screen and (min-width: $desktopWidth) {
-    width: 80%;
+    width: 700px;
   }
-  @media screen and (min-width: $desktop2kWidth) {
-    width: 70%;
-  }
-  @media screen and (min-width: $desktop3kWidth) {
-    width: 50%;
-  }
-  @media screen and (min-width: $desktop4kWidth) {
-    width: 30%;
-  }
-  @media screen and (min-width: $desktop5kWidth) {
-    width: 20%;
-  }
-  @media screen and (min-width: $desktop6kWidth) {
-    width: 10%;
-  }
-  @media screen and (min-width: $desktop7kWidth) {
-    width: 8%;
-  }
-  @media screen and (min-width: $desktop8kWidth) {
-    width: 5%;
-  }
+  // @media screen and (min-width: $desktop2kWidth) {
+  //   width: 70%;
+  // }
+  // @media screen and (min-width: $desktop3kWidth) {
+  //   width: 50%;
+  // }
+  // @media screen and (min-width: $desktop4kWidth) {
+  //   width: 30%;
+  // }
+  // @media screen and (min-width: $desktop5kWidth) {
+  //   width: 20%;
+  // }
+  // @media screen and (min-width: $desktop6kWidth) {
+  //   width: 10%;
+  // }
+  // @media screen and (min-width: $desktop7kWidth) {
+  //   width: 8%;
+  // }
+  // @media screen and (min-width: $desktop8kWidth) {
+  //   width: 5%;
+  // }
 }
 
 // experimental
