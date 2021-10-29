@@ -16,7 +16,9 @@
 }
 
 .treasury {
-  section > p:first-of-type {
+  // temporary design tools
+  section > p:first-of-type,
+  form > p:first-of-type {
     // background: $green;
     border: 1px solid $green;
     border-radius: 2px;
@@ -65,10 +67,6 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      label, input {
-        display: block;
-        width: 400px;
-      }
       label {
         margin: 0;
         margin-bottom: $textBlockMarginMobile;
@@ -80,18 +78,28 @@
   }
 }
 
+// temporary design tool
+// experimental
 .experiment {
-  & div:nth-of-type(2) {
-    text-align: left;
-    flex-basis: 400px;
-    & div {
-      margin-bottom: 0 !important;
-      display: inline-block;
-    }
+  & > div input {
+    margin-right: $textBlockMarginMobile;
+  }
+  & > div button {
+    background: $green;
+    border: 2px solid $green;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 2px rgba($green, 0.5);
+    color: white;
+    font-size: 35px;
+    line-height: 37px;
+    display: inline-block;
+    padding: 0px 10px;
+    vertical-align: middle;
   }
 }
-
-// .treasury div:last-of-type {
-//   background: yellow;
-//   display: flex;
-// }
+.experiment-two {
+  label, input {
+    display: block;
+    width: 400px;
+  }
+}

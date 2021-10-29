@@ -46,11 +46,7 @@ const ContributorFormNew = () => (
       <div className='input-group'>
         <label htmlFor='recipient'>Recipient(s)</label>
         <input id='recipient' type='text' />
-      </div>
-      <div >
-        <div className='psy-button-group'>
-          <button>+</button>
-        </div>
+        <button>+</button>
       </div>
     </fieldset>
     <div className='psy-button-group'>

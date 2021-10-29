@@ -1,5 +1,6 @@
 
 import styles_forms from '../styles/Forms.module.scss';
+import styles_treasury from '../styles/Treasury.module.scss';
 type TFEProps = {
   publicKey: any;
 };
@@ -47,7 +48,7 @@ const TreasuryFormEdit: React.FC<TFEProps> = ({
           <input id='numberOfPeriods' className='demo-borderless' type='text' value='12' />
         </div>
       </fieldset>
-      <fieldset>
+      <fieldset className={styles_treasury['experiment-two']}>
         <div className='input-group'>
           <label htmlFor='recipient'>Recipients</label>
           <input id='recipient' type='text' value='EGoNCktkgDh2GwgNJQSvEUAthcHyw2Jty177sP1Vu53S' />

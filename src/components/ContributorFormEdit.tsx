@@ -1,5 +1,6 @@
 
 import styles_forms from '../styles/Forms.module.scss';
+import styles_contributor from '../styles/Contributor.module.scss';
 type TFEProps = {
   publicKey: any;
 };
@@ -8,7 +9,7 @@ const ContributorFormEdit: React.FC<TFEProps> = ({
 }) => {
   return (
     <form className={styles_forms.form}>
-    <p>This form is a placeholder, not the correct form</p>
+      <p>This form is a placeholder, not the correct form</p>
       <h1>Edit Token Grant</h1>
       <p>{publicKey}</p>
       <p>Forms and fields, work in progress 🌱 &gt; 🌳</p>
@@ -48,7 +49,7 @@ const ContributorFormEdit: React.FC<TFEProps> = ({
           <input id='numberOfPeriods' className='demo-borderless' type='text' value='12' />
         </div>
       </fieldset>
-      <fieldset>
+      <fieldset className={styles_contributor['experiment-two']}>
         <div className='input-group'>
           <label htmlFor='recipient'>Recipients</label>
           <input id='recipient' type='text' value='EGoNCktkgDh2GwgNJQSvEUAthcHyw2Jty177sP1Vu53S' />
