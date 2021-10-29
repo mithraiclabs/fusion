@@ -48,11 +48,14 @@ const TreasuryFormNew = () => (
         <button>+</button>
       </div>
     </fieldset>
-    <div className='psy-button-group'>
-      <button>
-        Submit
-      </button>
-    </div>
+      <div className='psy-button-group'>
+        <button>
+          Save Draft
+        </button>
+        <button>
+          Mint
+        </button>
+      </div>
   </form>
 );
 export default TreasuryFormNew;
