@@ -51,7 +51,10 @@ const ContributorFormNew = () => (
     </fieldset>
     <div className='psy-button-group'>
       <button>
-        Submit
+        Save Draft
+      </button>
+      <button>
+        Mint
       </button>
     </div>
   </form>
