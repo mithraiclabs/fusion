@@ -19,6 +19,7 @@
 .env.production.local
 gitignore*
 ignore*
+.secret*
 
 npm-debug.log*
 yarn-debug.log*
