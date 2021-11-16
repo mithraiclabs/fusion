@@ -1,0 +1,72 @@
+{
+  "notes": "Early iteration, models will change",
+  "title": "Token XYZ",
+  "subtitle": "Token Grant Details",
+  "sectionOne": {
+    "title": "Token Grant Holder",
+    "data": [
+      {
+        "label": "Name",
+        "content": "Elon Musk"
+      },
+      {
+        "label": "Email",
+        "content": "elon@tesla.com"
+      },
+      {
+        "label": "Grant Reason",
+        "content": "Great contributor"
+      },
+      {
+        "label": "Status",
+        "content": "Outstanding"
+      },
+      {
+        "label": "Vesting",
+        "content": "After the cliff, the remainder of the tokens will vest monthly on the same day as the start date for the remaining 36 months."
+      }
+    ]
+  },
+  "sectionTwo": {
+    "title": "Quantities",
+    "data": [
+      {
+        "label": "Original Quantity",
+        "content": "xxxx options"
+      },
+      {
+        "label": "Exercised Quantity",
+        "content": "xxxx options"
+      },
+      {
+        "label": "Remaining quantity",
+        "content": "xxxx options"
+      },
+      {
+        "label": "Exercise price",
+        "content": "xxxx (symbol)"
+      }
+    ]
+  },
+  "sectionThree": {
+    "title": "Issuer",
+    "data": [
+      {
+        "label": "Issued By",
+        "content": "Tommy Johnson"
+      },
+      {
+        "label": "Issued From",
+        "content": "2021 contributor grants"
+      },
+      {
+        "label": "Grant Date",
+        "content": "xxxx options"
+      },
+      {
+        "label": "Approval Date",
+        "content": "December 21, 2021"
+      }
+    ]
+  }
+}
