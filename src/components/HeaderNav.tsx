@@ -50,7 +50,6 @@ const Header = () => {
             <ConnectWalletButton />
           </div>
         )}
-      <p>Temporary user-experience for early-stage product development. Designs will change</p>
       </>
     </nav>
   );
