@@ -9,6 +9,7 @@ import styles from '../styles/IndexIntroUser.module.scss';
 import { Program, Provider } from '@project-serum/anchor';
 import { PublicKey } from '@solana/web3.js';
 import { getAllWalletOptions } from '../lib/getAllWalletOptions';
+import projectList from '../content/projectList.json';
 
 
 const IndexIntroUser = () => {
@@ -26,7 +27,7 @@ const IndexIntroUser = () => {
       const anchorProvider = new Provider(provider.connection, wallet, {});
       const program = new Program(PsyAmericanIdl, new PublicKey('R2y9ip6mxmWUj4pt54jP2hz2dgvMozy9VTSwMWE7evs'), anchorProvider);
       ;(async () => {
-        const options = await getAllWalletOptions(program);
+        const options = await getAllWalletOptions(program, projectList);
       })();
     }
   }, [provider.connection, wallet])
