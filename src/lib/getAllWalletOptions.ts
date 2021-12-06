@@ -6,8 +6,9 @@ import {
   AccountInfo,
   AccountLayout,
   TOKEN_PROGRAM_ID,
+  u64,
 } from "@solana/spl-token";
-import { Project, ProjectOptions } from "../types";
+import { Project, ProjectOptions, TokenAccount } from "../types";
 import { PublicKey } from "@solana/web3.js";
 
 export const getAllWalletOptions = async (
@@ -21,10 +22,22 @@ export const getAllWalletOptions = async (
     program.provider.wallet.publicKey,
     { programId: TOKEN_PROGRAM_ID }
   );
-  const tokenAccounts: Record<string, AccountInfo> = {};
-  resp.value.forEach(({ account }) => {
-    const tokenAccount = AccountLayout.decode(account.data) as AccountInfo;
-    // TODO: The types here are incorrect. See if there is a better way to decode the token account
+  const tokenAccounts: Record<string, TokenAccount> = {};
+  resp.value.forEach(({ account, pubkey }) => {
+    const decoded = AccountLayout.decode(account.data);
+    // Not sure if there is a better way to decode this info
+    console.log('** decoded', decoded)
+    const tokenAccount: TokenAccount = {
+      address: pubkey,
+      mint: new PublicKey(decoded.mint),
+      owner: new PublicKey(decoded.owner),
+      amount: new u64(decoded.amount),
+      delegate: new PublicKey(decoded.delegate),
+      isInitialized: decoded.state === 1,
+      isNative: decoded.isNativeOption === 1,
+      delegatedAmount: new u64(decoded.delegatedAmount),
+      closeAuthority: new PublicKey(decoded.closeAuthority)
+    };
     tokenAccounts[new PublicKey(tokenAccount.mint).toString()] = tokenAccount;
   });
 
