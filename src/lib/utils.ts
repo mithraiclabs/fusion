@@ -3,13 +3,14 @@ import {
   getAllOptionAccounts,
 } from "@mithraic-labs/psy-american";
 import {
-  AccountInfo,
   AccountLayout,
+  MintInfo,
+  MintLayout,
   TOKEN_PROGRAM_ID,
   u64,
 } from "@solana/spl-token";
 import { Project, ProjectOptions, TokenAccount } from "../types";
-import { PublicKey } from "@solana/web3.js";
+import { Connection, PublicKey } from "@solana/web3.js";
 
 export const getAllWalletOptions = async (
   program: Program,
@@ -26,7 +27,6 @@ export const getAllWalletOptions = async (
   resp.value.forEach(({ account, pubkey }) => {
     const decoded = AccountLayout.decode(account.data);
     // Not sure if there is a better way to decode this info
-    console.log('** decoded', decoded)
     const tokenAccount: TokenAccount = {
       address: pubkey,
       mint: new PublicKey(decoded.mint),
@@ -68,6 +68,53 @@ export const getAllWalletOptions = async (
       };
     }
   });
-  console.log('*** matches', matches)
   return matches;
+};
+
+
+export const loadMintInfo = async (
+  connection: Connection,
+  projectOptions: ProjectOptions[]
+) => {
+  // Extract all the unique mints from the projects and options
+  const mintAddresses: Record<string, PublicKey> = {};
+  projectOptions.forEach(({project, options}) => {
+    if (!mintAddresses[project.mintAddress]) {
+      mintAddresses[project.mintAddress] = new PublicKey(project.mintAddress);
+    }
+    options.forEach(({optionMarket}) => {
+      if (!mintAddresses[optionMarket.underlyingAssetMint.toString()]) {
+        mintAddresses[optionMarket.underlyingAssetMint.toString()] = optionMarket.underlyingAssetMint;
+      } 
+      if (!mintAddresses[optionMarket.quoteAssetMint.toString()]) {
+        mintAddresses[optionMarket.quoteAssetMint.toString()] = optionMarket.quoteAssetMint;
+      }
+    })
+  })
+  
+  const mintInfos: Record<string, MintInfo> = {};
+  const mintAddressArr = Object.keys(mintAddresses);
+  const resp = await connection.getMultipleAccountsInfo(Object.values(mintAddresses));
+  resp.forEach((info, index) => {
+    if (!info)
+      return;
+    const mintInfo = MintLayout.decode(info.data);
+    if (mintInfo.mintAuthorityOption === 0) {
+      mintInfo.mintAuthority = null;
+    } else {
+      mintInfo.mintAuthority = new PublicKey(mintInfo.mintAuthority);
+    }
+
+    mintInfo.supply = u64.fromBuffer(mintInfo.supply);
+    mintInfo.isInitialized = mintInfo.isInitialized !== 0;
+
+    if (mintInfo.freezeAuthorityOption === 0) {
+      mintInfo.freezeAuthority = null;
+    } else {
+      mintInfo.freezeAuthority = new PublicKey(mintInfo.freezeAuthority);
+    }
+    mintInfos[mintAddressArr[index]] = mintInfo;
+  });
+
+  return mintInfos;
 };

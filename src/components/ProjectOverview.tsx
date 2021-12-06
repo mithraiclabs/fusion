@@ -7,7 +7,6 @@ const ProjectOverview: React.FC<{
   project: Project;
   optionAccounts: OptionAccounts[];
 }> = ({ project, optionAccounts }) => {
-  console.log('*** optionAccounts', optionAccounts);
   return (
     <Card variant="outlined">
       <CardHeader title={project.name} />
