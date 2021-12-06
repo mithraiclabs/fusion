@@ -1,3 +1,5 @@
+import { OptionMarketWithKey } from '@mithraic-labs/psy-american';
+import { AccountInfo } from '@solana/spl-token';
 import { PublicKey } from '@solana/web3.js';
 
 export type Account = {
@@ -18,9 +20,20 @@ export type Project = {
   name: string;
   description: string;
   mintAddress: string;
+  symbol: string;
   logo: string;
   serumSpotMarket?: string;
   website: string;
   twitter: string;
   discord: string;
 }
+
+export type OptionAccounts = {
+  optionMarket: OptionMarketWithKey;
+  tokenAccount: AccountInfo;
+}
+
+export type ProjectOptions = {
+  project: Project;
+  options: OptionAccounts[];
+};

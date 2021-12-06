@@ -1,6 +1,5 @@
 
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import {
   useConnectedWallet, useSolana
 } from '@saberhq/use-solana';
@@ -10,6 +9,9 @@ import { Program, Provider } from '@project-serum/anchor';
 import { PublicKey } from '@solana/web3.js';
 import { getAllWalletOptions } from '../lib/getAllWalletOptions';
 import projectList from '../content/projectList.json';
+import { CircularProgress } from '@material-ui/core';
+import { Project, ProjectOptions } from '../types';
+import ProjectOverview from './ProjectOverview';
 
 
 const IndexIntroUser = () => {
@@ -20,14 +22,20 @@ const IndexIntroUser = () => {
     provider,
     network
   } = useSolana();
-  // TODO put the Program into a higher order component
+  const [loadingProjects, setLoadingProjects] = useState(true);
+  const [projectOptions, setProjectOptions] = useState<Record<string,ProjectOptions>>({});
   useEffect(() => {
-    // TODO: on wallet connect get all the options the user holds https://github.com/mithraiclabs/psyoptions-management/issues/3
+    setLoadingProjects(true);
     if (wallet && wallet.connected) {
+      // TODO put the Program into a higher order component
       const anchorProvider = new Provider(provider.connection, wallet, {});
       const program = new Program(PsyAmericanIdl, new PublicKey('R2y9ip6mxmWUj4pt54jP2hz2dgvMozy9VTSwMWE7evs'), anchorProvider);
       ;(async () => {
-        const options = await getAllWalletOptions(program, projectList);
+        // on wallet connect get all the options the user holds https://github.com/mithraiclabs/psyoptions-management/issues/3
+        const temp = await getAllWalletOptions(program, projectList);
+        setProjectOptions(temp);
+        setLoadingProjects(false);
+
       })();
     }
   }, [provider.connection, wallet])
@@ -35,24 +43,10 @@ const IndexIntroUser = () => {
     <div className={styles["index-intro-user"]}>
       <section>
         <div className='psy-button-group'>
-          <Link to="/contributor">
-            <h2>Contributor</h2>
-            <ul>
-              <li>Community member</li>
-              <li>Employee</li>
-              <li>Team member</li>
-              <li>Investor</li>
-            </ul>
-          </Link>
-          <Link to="/treasury">
-            <h2>Treasury</h2>
-            <ul>
-              <li>Founder</li>
-              <li>Community leader</li>
-              <li>Org manager</li>
-              <li>Content creator</li>
-            </ul>
-          </Link>
+          {
+            loadingProjects ? 
+            <CircularProgress/> : Object.keys(projectOptions).map(key => <ProjectOverview key={key} project={projectOptions[key].project} optionAccounts={projectOptions[key].options}/>)
+          }
         </div>
       </section>
     </div>
