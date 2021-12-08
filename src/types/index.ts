@@ -1,5 +1,5 @@
 import { OptionMarketWithKey } from '@mithraic-labs/psy-american';
-import { AccountInfo, u64 } from '@solana/spl-token';
+import { AccountInfo, MintInfo, u64 } from '@solana/spl-token';
 import { PublicKey } from '@solana/web3.js';
 
 export type Account = {
@@ -49,3 +49,7 @@ export type ProjectOptions = {
   project: Project;
   options: OptionAccounts[];
 };
+
+export type MintInfoWithKey = {
+  pubkey: PublicKey;
+} & MintInfo;

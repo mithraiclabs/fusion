@@ -1,12 +1,17 @@
 import React from "react";
 import { Card, CardContent, CardHeader } from "@material-ui/core";
-import { OptionAccounts, Project } from "../types";
+import { MintInfoWithKey, OptionAccounts, Project } from "../types";
 import OptionOverview from "./OptionOverview";
 
 const ProjectOverview: React.FC<{
   project: Project;
   optionAccounts: OptionAccounts[];
-}> = ({ project, optionAccounts }) => {
+  mintInfos: Record<string, MintInfoWithKey>;
+}> = ({
+  project,
+  optionAccounts,
+  mintInfos
+}) => {
   return (
     <Card variant="outlined">
       <CardHeader title={project.name} />
@@ -17,6 +22,7 @@ const ProjectOverview: React.FC<{
             key={index.toString()}
             project={project}
             optionAccounts={x}
+            mintInfos={mintInfos}
           />
         ))}
       </CardContent>
