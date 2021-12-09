@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useConnectedWallet, useSolana } from "@saberhq/use-solana";
 import { PsyAmericanIdl } from "@mithraic-labs/psy-american";
-import styles from "../styles/IndexIntroUser.module.scss";
+import styles from "../styles/PortfolioOverview.module.scss";
 import { Program, Provider } from "@project-serum/anchor";
 import { PublicKey } from "@solana/web3.js";
 import { getAllWalletOptions, loadMintInfo } from "../lib/utils";
@@ -10,7 +10,7 @@ import { CircularProgress } from "@material-ui/core";
 import { MintInfoWithKey, ProjectOptions } from "../types";
 import ProjectOverview from "./ProjectOverview";
 
-const IndexIntroUser = () => {
+const PortfolioOverview = () => {
   const wallet = useConnectedWallet();
   const { provider } = useSolana();
   const [loadingProjects, setLoadingProjects] = useState(true);
@@ -74,4 +74,4 @@ const IndexIntroUser = () => {
   );
 };
 
-export default IndexIntroUser;
+export default PortfolioOverview;
