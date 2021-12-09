@@ -22,8 +22,6 @@ import TreasuryNew from './pages/TreasuryNew';
 import TreasuryEdit from './pages/TreasuryEdit';
 const ConnectWallet = () => (<>Connect Wallet <ConnectWalletButton /></>);
 const DisconnectWallet = () => (<>Disconnect Wallet</>);
-// const Contributor = () => (<>Contributor</>);
-// const Treasury = () => (<>Treasury</>);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -31,7 +29,8 @@ ReactDOM.render(
       defaultNetwork='devnet'
       app={{
         name: 'PsyOptions Management'
-      }}>
+      }}
+      >
       <div className={styles.app}>
         <HeaderNav />
         <Router>
