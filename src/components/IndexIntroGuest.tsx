@@ -42,9 +42,9 @@ const IndexIntroGuest = () => {
     <div className={styles["index-intro-guest"]}>
       <section>
         <sup>Why PsyOptions Management?</sup>
-        <h1>Token value. Simplified</h1>
+        <h1>Token value. Simplified.</h1>
         <div>
-          PsyOptions Management helps teams and communities and investors 
+          PsyOptions Management helps teams, communities, and investors 
           manage their token distribution, valuations, investments, and token rewards.
         </div>
         <nav>

@@ -3,7 +3,7 @@
 
 .header {
   background: black;
-  border-bottom: 1px dotted $green;
+  //border-bottom: 1px dotted #8BEAFF;
   padding-top: $textBlockMarginMobile;
   position: fixed;
   top: 0;
@@ -61,8 +61,8 @@
   }
   p {
     // background: $grey-darkest;
-    border: 1px solid $yellow;
-    border-radius: 2px;
+    //border: 1px solid #8BEAFF;
+    //border-radius: 2px;
     color: $yellow;
     font-size: 12px;
     font-weight: 700;
