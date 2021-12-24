@@ -12,6 +12,7 @@ const Home = () => {
     <section className={styles.home}>
       {
         wallet?.connected ? <PortfolioOverview /> : <IndexIntroGuest /> 
+        //<PortfolioOverview/>
       }
     </section>
   )

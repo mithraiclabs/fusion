@@ -9,8 +9,11 @@ import projectList from "../content/projectList.json";
 import { CircularProgress } from "@material-ui/core";
 import { MintInfoWithKey, ProjectOptions } from "../types";
 import ProjectOverview from "./ProjectOverview";
+//import { Console } from "console";
+
 
 const PortfolioOverview = () => {
+  
   const wallet = useConnectedWallet();
   const { provider } = useSolana();
   const [loadingProjects, setLoadingProjects] = useState(true);
@@ -21,6 +24,13 @@ const PortfolioOverview = () => {
   const [mintInfos, setMintInfos] = useState<Record<string, MintInfoWithKey>>(
     {}
   );
+ 
+
+  /* DOCUMENTATION ON EFFECT HOOKS:
+   *
+   * https://reactjs.org/docs/hooks-effect.html
+   * 
+   */
   useEffect(() => {
     setLoadingProjects(true);
     if (wallet && wallet.connected) {
@@ -31,8 +41,11 @@ const PortfolioOverview = () => {
         new PublicKey("R2y9ip6mxmWUj4pt54jP2hz2dgvMozy9VTSwMWE7evs"),
         anchorProvider
       );
+      
       (async () => {
-        // on wallet connect get all the options the user holds https://github.com/mithraiclabs/psyoptions-management/issues/3
+        
+        // on wallet connect get all the options the user holds 
+        // https://github.com/mithraiclabs/psyoptions-management/issues/3
         const temp = await getAllWalletOptions(program, projectList);
         setProjectOptions(temp);
         setLoadingProjects(false);
@@ -47,16 +60,21 @@ const PortfolioOverview = () => {
         provider.connection,
         Object.values(projectOptions)
       );
+      window.alert("clare:: arrived at seven");
       setMintInfos(mints);
       setLoadingMints(false);
+      window.alert("clare:: arrived at eight. loading projects:" + loadingProjects + " loading mints: " +loadingMints + "keys" + Object.keys(mintInfos).length);
     })();
   }, [provider.connection, projectOptions]);
-
+  //, loadingMints, loadingProjects, mintInfos
+  //window.alert("clare:: arrived at nine");
+  
   return (
     <div className={styles["index-intro-user"]}>
       <section>
         <div className="psy-button-group">
-          {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
+          
+          { loadingProjects || Object.keys(mintInfos).length <= 0 ? (
             <CircularProgress />
           ) : (
             Object.keys(projectOptions).map((key) => (
