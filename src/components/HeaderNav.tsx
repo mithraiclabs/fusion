@@ -28,16 +28,22 @@ const Header = () => {
   useEffect(() => {
     void refetchSOL();
   }, [refetchSOL]);
+
+  /*
+
+                       <div className='psy-button-group'>
+              <button onClick={() => {
+                void disconnect();
+              }}>Disconnect Wallet</button>
+            </div> 
+
+  */
   return (
     <nav className={styles_header.header}>
       <>
         {wallet?.connected ? (
           <>
-            <div className='psy-button-group'>
-              <button onClick={() => {
-                void disconnect();
-              }}>Disconnect Wallet</button>
-            </div>
+
             <ul>
               <li><strong>Wallet</strong> {wallet?.publicKey?.toString()}</li>
               <li><strong>Provider</strong> {walletProviderInfo?.name}</li>
