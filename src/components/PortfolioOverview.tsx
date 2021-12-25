@@ -60,14 +60,13 @@ const PortfolioOverview = () => {
         provider.connection,
         Object.values(projectOptions)
       );
-      window.alert("clare:: arrived at seven");
+      
       setMintInfos(mints);
       setLoadingMints(false);
-      window.alert("clare:: arrived at eight. loading projects:" + loadingProjects + " loading mints: " +loadingMints + "keys" + Object.keys(mintInfos).length);
+      
     })();
   }, [provider.connection, projectOptions]);
   //, loadingMints, loadingProjects, mintInfos
-  //window.alert("clare:: arrived at nine");
   
   return (
     <div className={styles["index-intro-user"]}>
@@ -75,15 +74,21 @@ const PortfolioOverview = () => {
         <div className="psy-button-group">
           
           { loadingProjects || Object.keys(mintInfos).length <= 0 ? (
-            <CircularProgress />
+            //<CircularProgress />
+            <button/>
           ) : (
             Object.keys(projectOptions).map((key) => (
-              <ProjectOverview
+              <button/>
+
+              /*
+                ProjectOverview
                 key={key}
                 project={projectOptions[key].project}
                 optionAccounts={projectOptions[key].options}
                 mintInfos={mintInfos}
-              />
+
+
+              */
             ))
           )}
         </div>
