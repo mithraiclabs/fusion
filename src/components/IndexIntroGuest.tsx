@@ -7,6 +7,8 @@ import {
 } from '@saberhq/use-solana';
 import styles from '../styles/IndexIntroGuest.module.scss';
 import PsyChart from './PsyChart';
+import OverviewCard from './OverviewCard';
+//import { Card } from '@material-ui/core';
 
 const IndexIntroGuest = () => {
   const wallet = useConnectedWallet();
@@ -61,6 +63,7 @@ const IndexIntroGuest = () => {
               )
             }
             <button>Read our docs</button>
+            
           </div>
         </nav>
       </section>

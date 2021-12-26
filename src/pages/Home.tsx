@@ -18,7 +18,7 @@ const Home = () => {
     <section className={styles.home}>
       {
         //wallet?.connected ? <PortfolioOverview /> : <IndexIntroGuest /> 
-        wallet?.connected ? <ContributorNew /> : <IndexIntroGuest />
+        wallet?.connected ? <Contributor /> : <IndexIntroGuest />
         //<PortfolioOverview/>
       }
     </section>

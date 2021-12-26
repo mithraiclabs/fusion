@@ -1,12 +1,12 @@
 @import './globals.scss';
+
 // @use "sass:math";
 
 .header {
-  
   background: black;
   //border-bottom: 1px dotted #8BEAFF;
   padding-top: $textBlockMarginMobile;
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   z-index: 888888;
@@ -14,19 +14,37 @@
     padding-top: unset;
   }
 
+  //psy-button-group
   div:first-of-type {
-    justify-content: left;
+   
+    //justify-content: right;
+    
     margin-left: $textBlockMarginMobile;
-    flex: 1;
+    //flex: 1;
     width: 220px;
   }
 
-  ul {
+  //list of wallet details, only shows when wallet is connected
+
+  walletButton{
     
+    //background-image: url('./public/walletIcon.png') no-repeat scroll 0 0 transparent;
+    height: 50px;
+    width: 50px;
+  }
+  ul {
+   
     @media screen and (min-width: $tabletWidth) {
+      justify-items: left;
+      padding: 20px;
       // margin-left: -20px;
     }
     li {
+      //position: absolute;
+      //left: -139px;
+      //padding: 4px 28px 0 30px;
+      //top: 6px;
+
       font-size: 12px;
       list-style: none;
       margin-bottom: 2px;
@@ -49,6 +67,7 @@
         }
       }
       &:not(:first-of-type) {
+        width: 225px;
         border: 1px solid #ffffff;
         border-radius: 5px;
         color: lighten($grey, 20%);
@@ -65,6 +84,11 @@
         width: 60px;
       }
     }
+  }
+
+  psy-button-group{
+    align-self: right;
+    //justify-self: ;
   }
   p {
     //background: $grey-darkest;
@@ -88,12 +112,10 @@
   }
 }
 
+// entire header
 .header {
-  align-items: left;
-  padding-left: 20px;
-  padding-top: 20px;
-  position: absolute;
-  justify-content: left;
+  align-items: center;
+  justify-content: center;
   @media screen and (min-width: $desktopWidth) {
     display: flex;
     height: $headerHeightDesktop;

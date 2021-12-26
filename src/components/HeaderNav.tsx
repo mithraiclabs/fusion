@@ -11,6 +11,7 @@ import {
 } from '@solana/web3.js';
 import styles_header from '../styles/Header.module.scss';
 
+
 const Header = () => {
   const {
     walletProviderInfo,
@@ -29,6 +30,12 @@ const Header = () => {
     void refetchSOL();
   }, [refetchSOL]);
 
+  const [popupVisible, setPopupVisible] = useState<boolean>(false)
+
+  function togglePopup() {
+    setPopupVisible(!popupVisible)
+  }
+
   /*
 
                        <div className='psy-button-group'>
@@ -43,13 +50,17 @@ const Header = () => {
       <>
         {wallet?.connected ? (
           <>
-
             <ul>
               <li><strong>Wallet</strong> {wallet?.publicKey?.toString()}</li>
               <li><strong>Provider</strong> {walletProviderInfo?.name}</li>
               <li><strong>Network</strong> {network}</li>
               <li><strong>Balance</strong> {typeof balance === 'number' ? `${(balance / LAMPORTS_PER_SOL).toLocaleString()} SOL` : '--'}</li>
             </ul>
+            <div className='psy-button-group'>
+              <button id='disconnectButton' onClick={() => {
+                disconnect();
+              }}>Disconnect Wallet</button>
+            </div>
           </>
         ) : (
           <div className='psy-button-group'>
