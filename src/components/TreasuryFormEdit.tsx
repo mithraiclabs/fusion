@@ -1,6 +1,7 @@
 
 import styles_forms from '../styles/Forms.module.scss';
 import styles_treasury from '../styles/Treasury.module.scss';
+import SliderCheckbox from './SliderCheckbox';
 type TFEProps = {
   publicKey: any;
 };
@@ -25,6 +26,7 @@ const TreasuryFormEdit: React.FC<TFEProps> = ({
       <fieldset>
         <div className='input-group'>
           <label htmlFor='amount'>Issue Options?</label>
+          
           <input id='amount' type='text' value='true' />
         </div>
         <div className='input-group'>

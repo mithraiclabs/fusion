@@ -7,7 +7,8 @@ import {
 } from '@saberhq/use-solana';
 import styles from '../styles/IndexIntroGuest.module.scss';
 import PsyChart from './PsyChart';
-import OverviewCard from './OverviewCard';
+//import OptionOverview from './OptionOverview';
+//import OverviewCard from './OverviewCard';
 //import { Card } from '@material-ui/core';
 
 const IndexIntroGuest = () => {
@@ -63,12 +64,13 @@ const IndexIntroGuest = () => {
               )
             }
             <button>Read our docs</button>
-            
           </div>
         </nav>
       </section>
+      
       <figure>
         <PsyChart data={data} options={options} />
+        
       </figure>
     </div>
   )
