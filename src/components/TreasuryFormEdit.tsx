@@ -26,7 +26,7 @@ const TreasuryFormEdit: React.FC<TFEProps> = ({
       <fieldset>
         <div className='input-group'>
           <label htmlFor='amount'>Issue Options?</label>
-          
+          <SliderCheckbox/>
           <input id='amount' type='text' value='true' />
         </div>
         <div className='input-group'>
