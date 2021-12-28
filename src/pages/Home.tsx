@@ -14,8 +14,8 @@ const Home = () => {
   return (
     <section className={styles.home}>
       {
-        //wallet?.connected ? <PortfolioOverview /> : <IndexIntroGuest /> 
-        wallet?.connected ? <Contributor /> : <IndexIntroGuest />
+        wallet?.connected ? <PortfolioOverview /> : <IndexIntroGuest /> 
+        //wallet?.connected ? <Contributor /> : <IndexIntroGuest />
         
       }
     </section>

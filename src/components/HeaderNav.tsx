@@ -37,20 +37,34 @@ const Header = () => {
   }
 
   /*
-
-                       <div className='psy-button-group'>
-              <button onClick={() => {
-                void disconnect();
-              }}>Disconnect Wallet</button>
-            </div> 
-
+    <div className='psy-button-group'>
+    <button onClick={() => {
+     void disconnect();
+    }}>Disconnect Wallet</button>
+    </div> 
   */
   return (
+
     <nav className={styles_header.header}>
+      <div className="box"></div>
+        {/*style="background: linear-gradient(90deg, rgb(221, 62, 118) -0.83%, rgb(29, 77, 201) 100%);"*/}
+        <div className="MuiBox-root-1 jss346">
+
+          <div className="button-container"></div>
+            <button className="logo-button" > PsyOptions Logo</button>
+            
+            <button className="markets-button" > Markets</button>
+            
+            <button className="portfolio-button" > Portfolio</button>
+            
+            <button className="wallet-button" > Wallet</button>
+            
+            <button className="docs-button" > Docs</button>
+          </div>
       <>
         {wallet?.connected ? (
           <>
-            <ul>
+            <ul className="wallet-info">
               <li><strong>Wallet</strong> {wallet?.publicKey?.toString()}</li>
               <li><strong>Provider</strong> {walletProviderInfo?.name}</li>
               <li><strong>Network</strong> {network}</li>
@@ -65,6 +79,7 @@ const Header = () => {
         ) : (
           <div className='psy-button-group'>
             <ConnectWalletButton />
+
           </div>
         )}
       </>

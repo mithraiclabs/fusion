@@ -2,79 +2,135 @@
 
 // @use "sass:math";
 
+.divider{
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  background-color: #8BEAFF;
+}
+
+//should change the types of buttons to MUI buttons
+button{
+  background-color: transparent;
+  transition-duration: .4s;
+  color: rgba(139, 234, 255, 0.9);
+  padding: 6px 16px;
+  font-size: 14px;
+  min-width: 64px;
+  box-sizing: border-box;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: Manrope, sans-serif;
+  font-weight: 700;
+  line-height: 1.75;
+  border-radius: 4px;
+  text-transform: none;
+  border-width: 0px;
+}
+
+button:hover{
+  color:#ffffff;
+}
+
 .header {
-  background: black;
+  align-items: center;
+  
+  justify-content: left;
+  @media screen and (min-width: $desktopWidth) {
+    display: flex;
+    height: $headerHeightDesktop;
+  }
+  background: linear-gradient(90deg, rgb(221, 62, 118) -0.83%, rgb(29, 77, 201) 100%);
   //border-bottom: 1px dotted #8BEAFF;
   padding-top: $textBlockMarginMobile;
   position: absolute;
   top: 0;
+  height: 60px;
   width: 100%;
   z-index: 888888;
   @media screen and (min-width: $desktopWidth) {
     padding-top: unset;
   }
-
+}
   //psy-button-group
-  div:first-of-type {
-   
-    //justify-content: right;
-    
-    margin-left: $textBlockMarginMobile;
-    //flex: 1;
-    width: 220px;
+  //div:first-of-type {
+  //justify-content: right;
+  //  margin-left: $textBlockMarginMobile;
+  //flex: 1;
+  //  width: 220px;
+  //}
+  
+
+
+  
+p {
+  //background: $grey-darkest;
+  border: 1px solid #8BEAFF;
+  border-radius: 2px;
+  //color: $yellow;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: $textBlockMarginMobile;
+  padding: 7px 18px;
+  width:100%;
+  @media screen and (min-width: $desktopWidth) {
+    margin-right: $sectionPadding;
+    margin-top: unset;
+    width: unset;
+  }
+    // @media screen and (min-width: $desktopWidth) {
+    //   margin-left: 25px;
+    //   width: 250px;
+    // }
   }
 
-  //list of wallet details, only shows when wallet is connected
 
-  walletButton{
-    
-    //background-image: url('./public/walletIcon.png') no-repeat scroll 0 0 transparent;
-    height: 50px;
-    width: 50px;
-  }
+// entire header
   ul {
-   
     @media screen and (min-width: $tabletWidth) {
       justify-items: left;
       padding: 20px;
-      // margin-left: -20px;
-    }
-    li {
-      //position: absolute;
-      //left: -139px;
-      //padding: 4px 28px 0 30px;
-      //top: 6px;
-
-      font-size: 12px;
-      list-style: none;
-      margin-bottom: 2px;
-      text-align: left;
-      &:first-of-type {
-        border: 1px solid #ffffff;
-        border-radius: 5px;
-        font-weight: 700;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 225px;
-        white-space: nowrap;
-        strong {
-          background: $cyan;
-          color: #000;
+      li {
+        //position: absolute;
+        //left: -139px;
+        //padding: 4px 28px 0 30px;
+        //top: 6px;
+  
+        font-size: 12px;
+        list-style: none;
+        margin-bottom: 2px;
+        text-align: left;
+        &:first-of-type {
+          border: 1px solid $cyan;
+          border-radius: 5px;
+          font-weight: 700;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 225px;
+          white-space: nowrap;
+          strong {
+            background: $cyan;
+            color: #000;
+          }
+          &:hover {
+            margin-right: $textBlockMarginMobile;
+            width: unset;
+          }
         }
-        &:hover {
-          margin-right: $textBlockMarginMobile;
-          width: unset;
-        }
-      }
       &:not(:first-of-type) {
-        width: 225px;
-        border: 1px solid #ffffff;
-        border-radius: 5px;
-        color: lighten($grey, 20%);
-        font-weight: 700;
+          width: 225px;
+          border: 1px solid #000;
+          border-radius: 5px;
+          color: lighten($grey-lighter, 20%);
+          font-weight: 700;
         strong {
-          background: $grey-light;
-          color: #000;
+          background: #000;
+          color:$grey-lighter;
         }
       }
       strong {
@@ -84,40 +140,5 @@
         width: 60px;
       }
     }
-  }
-
-  psy-button-group{
-    align-self: right;
-    //justify-self: ;
-  }
-  p {
-    //background: $grey-darkest;
-    border: 1px solid #8BEAFF;
-    border-radius: 2px;
-    //color: $yellow;
-    font-size: 12px;
-    font-weight: 700;
-    margin-top: $textBlockMarginMobile;
-    padding: 7px 18px;
-    width:100%;
-    @media screen and (min-width: $desktopWidth) {
-      margin-right: $sectionPadding;
-      margin-top: unset;
-      width: unset;
-    }
-    // @media screen and (min-width: $desktopWidth) {
-    //   margin-left: 25px;
-    //   width: 250px;
-    // }
-  }
-}
-
-// entire header
-.header {
-  align-items: center;
-  justify-content: center;
-  @media screen and (min-width: $desktopWidth) {
-    display: flex;
-    height: $headerHeightDesktop;
   }
 }
