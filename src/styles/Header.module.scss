@@ -1,6 +1,9 @@
 @import './globals.scss';
 
+//@import '.public/PsyOpsLogo.svg';
 // @use "sass:math";
+
+//https://pretagteam.com/question/how-can-i-hide-a-component-in-react-depending-on-the-screen-size
 
 .divider{
   width:5px;
@@ -33,14 +36,20 @@ button{
   border-width: 0px;
 }
 
+.logo-button{
+  //background-image: url("./PsyOpsLogo.svg");
+}
+
 button:hover{
   color:#ffffff;
 }
 
 .header {
   align-items: center;
-  
+  display: flex;
+  //flex-direction: row-reverse;
   justify-content: left;
+  size: absolute;
   @media screen and (min-width: $desktopWidth) {
     display: flex;
     height: $headerHeightDesktop;
@@ -50,27 +59,30 @@ button:hover{
   padding-top: $textBlockMarginMobile;
   position: absolute;
   top: 0;
-  height: 60px;
+  //height: 60px;
   width: 100%;
   z-index: 888888;
   @media screen and (min-width: $desktopWidth) {
     padding-top: unset;
   }
 }
-  //psy-button-group
+
+.psy-button-group{
+  //justify-content: right;
+}
   //div:first-of-type {
   //justify-content: right;
   //  margin-left: $textBlockMarginMobile;
   //flex: 1;
   //  width: 220px;
-  //}
+  
   
 
 
   
 p {
   //background: $grey-darkest;
-  border: 1px solid #8BEAFF;
+  /*border: 1px solid #8BEAFF;
   border-radius: 2px;
   //color: $yellow;
   font-size: 12px;
@@ -80,9 +92,9 @@ p {
   width:100%;
   @media screen and (min-width: $desktopWidth) {
     margin-right: $sectionPadding;
-    margin-top: unset;
+    //margin-top: unset;
     width: unset;
-  }
+  }*/
     // @media screen and (min-width: $desktopWidth) {
     //   margin-left: 25px;
     //   width: 250px;
@@ -92,7 +104,7 @@ p {
 
 // entire header
   ul {
-    @media screen and (min-width: $tabletWidth) {
+    //@media screen and (min-width: $tabletWidth) {
       justify-items: left;
       padding: 20px;
       li {
@@ -118,7 +130,7 @@ p {
             color: #000;
           }
           &:hover {
-            margin-right: $textBlockMarginMobile;
+            //margin-right: $textBlockMarginMobile;
             width: unset;
           }
         }
@@ -141,4 +153,4 @@ p {
       }
     }
   }
-}
+//}

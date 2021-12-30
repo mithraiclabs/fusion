@@ -2,27 +2,27 @@
 
 .index-intro-guest {
   @media screen and (min-width: $desktopWidth) {
-    display: flex;
+    //display: flex;
   }
-  position: absolute;
+  //position: absolute;
 }
 
 .index-intro-guest section {
-  margin-top: $textBlockMarginMobile;
+  //margin-top: $textBlockMarginMobile;
   @media screen and (min-width: $desktopWidth) {
-    margin-top: unset;
+    //margin-top: unset;
     flex: 1;
   }
   sup {
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
     @media screen and (min-width: $desktopWidth) {
-      margin-top: $sectionPaddingMobile;
+      //margin-top: $sectionPaddingMobile;
     }
   }
   h1 {
-    margin-bottom: $textBlockMargin;
+    //margin-bottom: $textBlockMargin;
     @media screen and (min-width: $desktopWidth) {
-      margin-bottom: $textBlockMargin;
+      //margin-bottom: $textBlockMargin;
     }
   }
   div:first-of-type {
@@ -34,7 +34,7 @@
   display: flex;
   width: 100%;
   button {
-    margin: 0 auto;
+    //margin: 0 auto;
   }
   button:first-of-type {
     margin-bottom: $textBlockMarginMobile;
@@ -45,6 +45,7 @@
   }
 }
 
+//pie chart
 .index-intro-guest figure {
   height:350px;
   margin: 0 auto;
@@ -52,8 +53,8 @@
   position: relative;
   width: 300px;
   @media screen and (min-width: $desktopWidth) {
-    height: 350px;
-    margin: unset;
-    width: 325px;
+    //height: 350px;
+    //margin: unset;
+    //width: 325px;
   }
 }
