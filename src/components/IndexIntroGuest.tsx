@@ -44,9 +44,9 @@ const IndexIntroGuest = () => {
   return (
     <div className={styles["index-intro-guest"]}>
       <section>
-        <sup>Why PsyOptions Management?</sup>
+        <sup className='title'> Why PsyOptions Management?</sup>
         <h1>Token value. Simplified.</h1>
-        <div>
+        <div className='description'>
           PsyOptions Management helps teams, communities, and investors 
           manage their token distribution, valuations, investments, and token rewards.
         </div>
@@ -63,7 +63,7 @@ const IndexIntroGuest = () => {
                 <ConnectWalletButton />
               )
             }
-            <button>Read our docs</button>
+            <button className=''>Read our docs</button>
           </div>
         </nav>
       </section>

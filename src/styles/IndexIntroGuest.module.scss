@@ -4,7 +4,7 @@
   @media screen and (min-width: $desktopWidth) {
     display: flex;
   }
-  position: absolute;
+  position: relative;
 }
 
 .index-intro-guest section {
@@ -14,6 +14,7 @@
     flex: 1;
   }
   sup {
+    margin: 8px;
     margin-bottom: 8px;
     @media screen and (min-width: $desktopWidth) {
       margin-top: $sectionPaddingMobile;
@@ -26,6 +27,7 @@
     }
   }
   div:first-of-type {
+    margin: $textBlockMargin;
     margin-bottom: $textBlockMargin * 2;
   }
 }
@@ -45,7 +47,6 @@
   }
 }
 
-//pie chart
 .index-intro-guest figure {
   height:350px;
   margin: 0 auto;

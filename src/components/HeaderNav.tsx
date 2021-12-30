@@ -29,7 +29,7 @@ const Header = () => {
     void refetchSOL();
   }, [refetchSOL]);
 
-  const [openModal, setOpenModal] = useState(false)
+  //const [openModal, setOpenModal] = useState(false)
   const [popupVisible, setPopupVisible] = useState<boolean>(false)
 
 
@@ -59,7 +59,6 @@ const Header = () => {
       <div className="box"></div>
         {/*style="background: linear-gradient(90deg, rgb(221, 62, 118) -0.83%, rgb(29, 77, 201) 100%);"*/}
         <div className="MuiBox-root-1 jss346">
-
           <div className="button-container"></div>
             <button className="logo-button" onClick={() => {
                 window.open("https://trade.psyoptions.io/#/");
@@ -71,7 +70,7 @@ const Header = () => {
                 //do something
               }}> Portfolio</button>
             <button className="wallet-button" onClick={() => {
-                setOpenModal(true);
+                //setOpenModal(true);
               }}> Wallet</button>
             <button className="docs-button" onClick={() => {
                 window.open("https://docs.psyoptions.io/");

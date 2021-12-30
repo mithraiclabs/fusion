@@ -20,6 +20,7 @@ import Home from './pages/Home';
 import Treasury from './pages/Treasury';
 import TreasuryNew from './pages/TreasuryNew';
 import TreasuryEdit from './pages/TreasuryEdit';
+
 const ConnectWallet = () => (<>Connect Wallet <ConnectWalletButton /></>);
 const DisconnectWallet = () => (<>Disconnect Wallet</>);
 
