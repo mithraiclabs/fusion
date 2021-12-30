@@ -18,21 +18,16 @@ const OptionOverview: React.FC<{
   mintInfos: Record<string, MintInfoWithKey>;
 }> = ({ optionAccounts, project, mintInfos }) => {
   return (
-    //
-        <Card >
-        <CardContent style={{backgroundColor: "rgb(30, 30, 30)", color : "rgb(160, 232, 252)"}}>
-          {displayHeader(
-            project,
-            optionAccounts.optionMarket, 
-            mintInfos[optionAccounts.optionMarket.underlyingAssetMint.toString()],
-            mintInfos[optionAccounts.optionMarket.quoteAssetMint.toString()]
-          )}
-          
-        </CardContent>
-      </Card>
-   
-    
-    
+    <Card >
+      <CardContent style={{backgroundColor: "rgb(30, 30, 30)", color : "rgb(160, 232, 252)"}}>
+        {displayHeader(
+          project,
+          optionAccounts.optionMarket, 
+          mintInfos[optionAccounts.optionMarket.underlyingAssetMint.toString()],
+          mintInfos[optionAccounts.optionMarket.quoteAssetMint.toString()]
+        )}
+      </CardContent>
+    </Card> 
   );
 };
 

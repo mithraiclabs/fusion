@@ -21,7 +21,7 @@ const IndexIntroGuest = () => {
       "Lorem",
       "Ipsum",
       "Dolor"
-     ],
+    ],
     datasets: [
       {
         "data": [21, 19, 2],
@@ -29,7 +29,7 @@ const IndexIntroGuest = () => {
           '#8BEAFF',
           '#cf3f7c',
           '#fff'
-        ] ,
+        ],
         borderColor: [
           'white'
         ],
@@ -47,10 +47,10 @@ const IndexIntroGuest = () => {
         <sup className='title'> Why PsyOptions Management?</sup>
         <h1>Token value. Simplified.</h1>
         <div className='description'>
-          PsyOptions Management helps teams, communities, and investors 
+          PsyOptions Management helps teams, communities, and investors
           manage their token distribution, valuations, investments, and token rewards.
         </div>
-        <nav>
+        <nav className='grid-container'>
           <div className='psy-button-group'>
             {
               wallet?.connected ? (
@@ -63,14 +63,12 @@ const IndexIntroGuest = () => {
                 <ConnectWalletButton />
               )
             }
-            <button className=''>Read our docs</button>
+            <button className='docs-button'>Read our docs</button>
           </div>
         </nav>
       </section>
-      
       <figure>
         <PsyChart data={data} options={options} />
-        
       </figure>
     </div>
   )

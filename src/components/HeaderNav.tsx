@@ -93,12 +93,8 @@ const Header = () => {
           </>
         ) : (
           <ul className="wallet-info">
-            <li>  <div className='psy-button-group'>
-            <ConnectWalletButton />
-
-          </div> </li>
+            <li><div className='psy-button-group'> <ConnectWalletButton /></div></li>
           </ul>
-
         )}
       </>
       
