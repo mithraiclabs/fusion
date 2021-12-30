@@ -59,7 +59,6 @@ const PortfolioOverview = () => {
           {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
             <CircularProgress />
           ) : (
-            //aria-busy(false);
             Object.keys(projectOptions).map((key) => (
               <ProjectOverview
                 key={key}
@@ -69,7 +68,6 @@ const PortfolioOverview = () => {
               />
             ))
           )}
-          
         </div>
       </section>
     </div>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import styles_app from '../styles/app.module.scss';
 import styles_grid from '../styles/Grid.module.scss';
 
+// //https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container
 // import NewOrEdit from '../components/NewOrEdit';
 import styles from '../styles/Contributor.module.scss';
 

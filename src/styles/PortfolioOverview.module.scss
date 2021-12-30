@@ -1,17 +1,17 @@
 @import './globals.scss';
 
 .index-intro-user {
-  //display: flex;
-  //position: relative;
+  display: flex;
+  position: relative;
 }
 
 .index-intro-user section {
-  //flex: 1;
+  flex: 1;
   h2 {
     color: white;
   }
   h2, ul {
-    //margin-bottom: 8px;
+    margin-bottom: 8px;
   }
   li {
     font-size: 14px;
@@ -25,7 +25,7 @@
       box-shadow: 8px 8px 0 $green;
     }
     &:first-of-type {
-      //margin-bottom: $textBlockMargin;
+      margin-bottom: $textBlockMargin;
     }
   }
 }

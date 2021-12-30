@@ -16,8 +16,6 @@ const TreasuryFormNew = () => (
       </div>
     </fieldset>
     <fieldset>
-
-      
       <div className='input-group'>
         <label htmlFor='amount'>Issue Options?</label>
         <input id='amount' type='text' value='true' />
