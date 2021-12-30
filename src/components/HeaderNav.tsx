@@ -11,8 +11,6 @@ import {
 } from '@solana/web3.js';
 import styles_header from '../styles/Header.module.scss';
 
-
-
 const Header = () => {
   const {
     walletProviderInfo,
@@ -31,7 +29,7 @@ const Header = () => {
     void refetchSOL();
   }, [refetchSOL]);
 
-  
+  const [openModal, setOpenModal] = useState(false)
   const [popupVisible, setPopupVisible] = useState<boolean>(false)
 
 
@@ -73,7 +71,7 @@ const Header = () => {
                 //do something
               }}> Portfolio</button>
             <button className="wallet-button" onClick={() => {
-                togglePopup();
+                setOpenModal(true);
               }}> Wallet</button>
             <button className="docs-button" onClick={() => {
                 window.open("https://docs.psyoptions.io/");
@@ -101,6 +99,7 @@ const Header = () => {
           </div>
         )}
       </>
+      
     </nav>
   );
 };
