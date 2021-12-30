@@ -66,11 +66,13 @@ a {
 
 .psy-button-group {
   //display: inline-block;
+  justify-content: center;
   margin: 0 auto;
   @media screen and (min-width: $desktopWidth) {
     display: flex;
   }
   button, a {
+    justify-content: center;
     height: 43px;
     width: 215px;
     align-content: center;
@@ -92,6 +94,7 @@ a {
     }
     @media screen and (min-width: $desktopWidth) {
       padding: 10px 28px;
+      
     }
   }
   // temporary 

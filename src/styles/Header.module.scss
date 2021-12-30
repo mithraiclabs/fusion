@@ -11,18 +11,38 @@
   display:inline-block;
 }
 
+@media(width: 600 px) {
+  .button-container {
+     display: none;
+  }
+}
+
 .button-container{
+  display: -webkit-flex;
+  display: -ms-flex;
   align-content: center;
   display: flex;
   flex-direction: row;
   //justify-content: flex-end;
   background-color: #8BEAFF;
   padding: 8px 16px;
-  justify-content: space-between;
-
+  //justify-content: space-between;
 }
 
-//TO-DO: should change the types of buttons to MUI buttons
+.button-container li {
+  display: inline-block;
+  list-style: none;
+}
+
+.button-container li:not(:last-of-type) {
+margin: 0 5px;
+}
+
+.button-container li:last-of-type {
+  justify-content: right;
+  margin-left: auto;
+}
+//TO-DO: should change the types of buttons tso MUI buttons
 button{
   background-color: transparent;
   transition-duration: .4s;
@@ -45,7 +65,7 @@ button{
 }
 
 button:hover{
-  transition: .4s;
+  transition: .8s;
   color:#ffffff;
 }
 
@@ -71,14 +91,6 @@ button:hover{
 
 }
 
-.psy-button-group{
-  //justify-content: right;
-}
-  //div:first-of-type {
-  //justify-content: right;
-  //  margin-left: $textBlockMarginMobile;
-  //flex: 1;
-  //  width: 220px;
   
   
 
