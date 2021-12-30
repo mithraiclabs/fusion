@@ -12,13 +12,17 @@
 }
 
 .button-container{
+  align-content: center;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
+  flex-direction: row;
+  //justify-content: flex-end;
   background-color: #8BEAFF;
+  padding: 8px 16px;
+  justify-content: space-between;
+
 }
 
-//should change the types of buttons to MUI buttons
+//TO-DO: should change the types of buttons to MUI buttons
 button{
   background-color: transparent;
   transition-duration: .4s;
@@ -47,24 +51,23 @@ button:hover{
 .header {
   align-items: center;
   display: flex;
-  //flex-direction: row-reverse;
   justify-content: left;
   size: absolute;
   @media screen and (min-width: $desktopWidth) {
     display: flex;
-    height: $headerHeightDesktop;
+    //height: $headerHeightDesktop;
+    //padding-top: unset;
   }
+
   background: linear-gradient(90deg, rgb(221, 62, 118) -0.83%, rgb(29, 77, 201) 100%);
   //border-bottom: 1px dotted #8BEAFF;
-  padding-top: $textBlockMarginMobile;
-  position: absolute;
+  //padding-top: $textBlockMarginMobile;
   top: 0;
-  //height: 60px;
+  height:53px;
   width: 100%;
   z-index: 888888;
-  @media screen and (min-width: $desktopWidth) {
-    padding-top: unset;
-  }
+  padding: 8px;
+
 }
 
 .psy-button-group{
