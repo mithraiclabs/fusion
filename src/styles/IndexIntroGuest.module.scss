@@ -32,13 +32,22 @@
   }
 }
 
+nav{
+  justify-content: center;
+}
+.grid-container{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
 .index-intro-guest section nav {
   display: flex;
   width: 100%;
   button {
     margin: 0 auto;
   }
-  button:first-of-type {
+  button{
     margin-bottom: $textBlockMarginMobile;
     @media screen and (min-width: $desktopWidth) {
       margin-right: $textBlockMarginMobile;
@@ -47,12 +56,14 @@
   }
 }
 
+
 .index-intro-guest figure {
   height:350px;
   margin: 0 auto;
   margin-top: $textBlockMarginMobile * 2;
   position: relative;
   width: 300px;
+  padding: 8px;
   @media screen and (min-width: $desktopWidth) {
     height: 350px;
     margin: unset;

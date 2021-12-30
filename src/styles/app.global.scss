@@ -3,7 +3,7 @@
 // (Temporary values)
 
 * {
-  // border: 1px dotted yellow; // dev tool
+  border: 1px dotted rgb(87, 87, 87); // dev tool
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -65,12 +65,15 @@ a {
 }
 
 .psy-button-group {
-  display: inline-block;
+  //display: inline-block;
   margin: 0 auto;
   @media screen and (min-width: $desktopWidth) {
     display: flex;
   }
   button, a {
+    height: 43px;
+    width: 215px;
+    align-content: center;
     background: rgba(0, 0, 0, 0.5);
     border: 2px solid $linkBlue;
     border-radius: 4px;
