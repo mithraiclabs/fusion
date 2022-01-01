@@ -2,7 +2,7 @@ import { Box, Card, CardContent} from "@material-ui/core";
 import React from "react";
 import { displayHeader } from "../lib/optionMarketUtils";
 import { MintInfoWithKey, OptionAccounts, Project } from "../types";
-import styles from "./styles/OptionOverview.module.scss";
+import styles from "../styles/OptionOverview.module.scss";
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -18,7 +18,9 @@ const OptionOverview: React.FC<{
   mintInfos: Record<string, MintInfoWithKey>;
 }> = ({ optionAccounts, project, mintInfos }) => {
   return (
-    <Card >
+    //variant="outlined"
+    <div className = {styles["option-card"]}>
+    <Card variant="outlined">
       <CardContent style={{backgroundColor: "rgb(30, 30, 30)", color : "rgb(160, 232, 252)"}}>
         {displayHeader(
           project,
@@ -28,6 +30,9 @@ const OptionOverview: React.FC<{
         )}
       </CardContent>
     </Card> 
+
+    </div>
+
   );
 };
 

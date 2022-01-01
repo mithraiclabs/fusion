@@ -1,13 +1,18 @@
 @import './globals.scss';
 
-.options-detail-card{
+.options-card{
     background-color: $cyan;
 }
 
 Card{
+    //variant : outlined;
     background-color: $cyan;
+    box-shadow: 120px 0px 40px 20px $cyan;
 }
 
 CardContent{
     background-color: $cyan;
+    //backgroundColor: "rgb(30, 30, 30)";
+    color : "rgb(160, 232, 252)";
+    outline-color: blue;
 }

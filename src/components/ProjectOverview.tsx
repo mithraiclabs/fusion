@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader } from "@material-ui/core";
 import { MintInfoWithKey, OptionAccounts, Project } from "../types";
 import OptionOverview from "./OptionOverview";
+import styles from "../styles/OptionOverview.module.scss";
 
 const ProjectOverview: React.FC<{
   project: Project;
