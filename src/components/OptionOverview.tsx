@@ -21,7 +21,7 @@ const OptionOverview: React.FC<{
     //variant="outlined"
     <div className = {styles["option-card"]}>
     <Card variant="outlined">
-      <CardContent style={{backgroundColor: "rgb(30, 30, 30)", color : "rgb(160, 232, 252)"}}>
+      <CardContent >
         {displayHeader(
           project,
           optionAccounts.optionMarket, 

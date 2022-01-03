@@ -11,6 +11,8 @@ import {
 } from '@solana/web3.js';
 import styles_header from '../styles/Header.module.scss';
 
+
+const drawerWidth = 240;
 const Header = () => {
   const {
     walletProviderInfo,
