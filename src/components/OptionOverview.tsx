@@ -20,7 +20,7 @@ const OptionOverview: React.FC<{
   return (
     //variant="outlined"
     <div className = {styles["option-card"]}>
-    <Card variant="outlined">
+    <Card className = {styles.card} variant="outlined">
       <CardContent >
         {displayHeader(
           project,

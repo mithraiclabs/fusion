@@ -1,65 +1,94 @@
 @import "./globals.scss";
 
-.wallet {
+.wallet-container {
+  background: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
+  border-radius: 10px;
+  border-color: #FFFFFF;
+  padding: 10px;
+  //align-content: center;
+  //justify-items: left;
+  
+  h1{
+    color: rgb(30, 30, 30);
+    //position: relative;
+    text-shadow: 0 0 10px $cyan;
+    background-color: rgb(30, 30, 30);
+    font-size: small;
+    border-radius: 10px;
+    //width: 220px;
+  }
+  
 }
+
 ul {
   //@media screen and (min-width: $tabletWidth) {
   justify-items: left;
+  padding: 5px;
 
   li {
     background-color: $cyan;
     color: #FFFFFF;
-    //display:inline;
-    white-space:pre-wrap;
-    line-height : 24px;
     font-size: 18px;
-    font-family:arial, sans-serif;
-    padding: 5px;
-    padding-left:0px;
-    box-shadow: -16px 0 0 $cyan;
-    //pads sides, moves away from border
-
+    padding: 8px;
     font-size: 12px;
-    list-style: none;
-    margin-bottom: 2px;
-    text-align: left;
-    &:first-of-type {
-        
-      border-radius: 5px;
+    //list-style: none;
+    margin-bottom: 5px;
+    text-align: center;
+    &:first-of-type { 
+      border-radius: 10px;
       font-weight: 700;
       overflow: scroll;
       text-overflow: ellipsis;
       width: 225px;
       white-space: nowrap;
       strong {
+        width: 120px;
         background: $cyan;
-        color: #000;
+        color: #FFFFFF;
+        background-color: rgb(30,30,30);
+        border-radius: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
       }
       &:hover {
         //margin-right: $textBlockMarginMobile;
-        width: unset;
+        //width: unset;
       }
     }
     &:not(:first-of-type) {
-      width: 225px;
-      //border: 1px solid rgb(255, 255, 255);
-      border-radius: 5px;
-      color: lighten($grey-lighter, 20%);
+      border-radius: 10px;
       font-weight: 700;
+      overflow: scroll;
+      text-overflow: ellipsis;
+      width: 225px;
+      white-space: nowrap;
       strong {
-        background: rgb(30, 30, 30);
-        color: $grey-lighter;
+        //align-content: space-between;
+        width: 120px;
+        background: $cyan;
+        color: #FFFFFF;
+        background-color: rgb(30,30,30);
+        border-radius: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
       }
     }
     strong {
+      //justify-content: left;
+      //width: 120px;
       display: inline-block;
-      margin-right: 3px;
+      border-radius: 10px;
+      
+      //padding-left: 5px;
+      //padding-right: px;
+      //margin-right: 3px;
       //padding: 0 5px;
       //width: 60px;
     }
     &:last-of-type {
-        align-items: center;
-      justify-content: center;
+      background-color:rgb(30,30,30);
+      
+      //justify-content: center;
     }
   }
 }

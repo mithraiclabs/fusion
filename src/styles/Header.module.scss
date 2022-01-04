@@ -1,13 +1,9 @@
 @import './globals.scss';
 
-//@import '.public/PsyOpsLogo.svg';
-// @use "sass:math";
-
 //https://pretagteam.com/question/how-can-i-hide-a-component-in-react-depending-on-the-screen-size
 img {
   width: 30px;
   height: 30px;
-  //@include: url('../components/PsyOpsLogo.svg');
  }
 
 .divider{

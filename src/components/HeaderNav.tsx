@@ -75,7 +75,6 @@ const Header = () => {
           </ul>
         )}
       </>
-      
     </nav>
   );
 };

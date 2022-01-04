@@ -43,10 +43,12 @@ const Wallet = () => {
 
   return (
     <nav className={styles.wallet}><>
-        {wallet?.connected ? (
+      <div className={styles["wallet-container"]}>
+      {wallet?.connected ? (
           <>
-            <ul className="wallet-info">
-              <li><strong>Wallet</strong> {wallet?.publicKey?.toString()}</li>
+          <h1>WALLET INFO</h1>
+            <ul className={styles["wallet-info"]}>
+              <li><strong>Wallet Address</strong> {wallet?.publicKey?.toString()}</li>
               <li><strong>Provider</strong> {walletProviderInfo?.name}</li>
               <li><strong>Network  </strong> {network}</li>
               <li><strong>Balance  </strong> {typeof balance === 'number' ? `${(balance / LAMPORTS_PER_SOL).toLocaleString()} SOL` : '--'}</li>
@@ -61,6 +63,8 @@ const Wallet = () => {
             <li><div className='psy-button-group'> <ConnectWalletButton /></div></li>
           </ul>
         )}
+      </div>
+        
       </>
       
     </nav>

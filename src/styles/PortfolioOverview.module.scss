@@ -3,29 +3,29 @@
 .index-intro-user {
   display: flex;
   position: relative;
+  padding: 30px;
 }
 
 .index-intro-user section {
-  flex: 1;
-  h2 {
-    color: white;
-  }
+  padding: 30px;
+  //flex: 1;
+
   h2, ul {
-    margin-bottom: 8px;
+    //margin-bottom: 8px;
   }
   li {
-    font-size: 14px;
-    margin-left: 20px;
-    margin-bottom: 6px;
-    text-align: left;
+    //font-size: 14px;
+    //margin-left: 20px;
+    //margin-bottom: 6px;
+    //text-align: left;
   }
   a {
-    box-shadow: 8px 8px 0 $cyan;
+    //box-shadow: 8px 8px 0 $cyan;
     &:hover {
-      box-shadow: 8px 8px 0 $green;
+      //box-shadow: 8px 8px 0 $green;
     }
     &:first-of-type {
-      margin-bottom: $textBlockMargin;
+      //margin-bottom: $textBlockMargin;
     }
   }
 }
