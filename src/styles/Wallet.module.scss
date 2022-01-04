@@ -1,65 +1,65 @@
-@import './globals.scss';
+@import "./globals.scss";
 
-.wallet{
-
+.wallet {
 }
 ul {
- 
-    //@media screen and (min-width: $tabletWidth) {
-      justify-items: left;
-      //align-items: center;
-      //padding: 20px;
-      li {
-        //position: absolute;
-        //left: -139px;
-        //padding: 4px 28px 0 30px;
-        //top: 6px;
-        //padding: 5px;
-        padding-right: 5px;
-        padding-left: 5px;
-        font-size: 12px;
-        list-style: none;
-        margin-bottom: 2px;
-        text-align: left;
-        &:first-of-type {
+  //@media screen and (min-width: $tabletWidth) {
+  justify-items: left;
 
-          border-radius: 5px;
-          font-weight: 700;
-          overflow: scroll;
-          text-overflow: ellipsis;
-          width: 225px;
-          white-space: nowrap;
-          strong {
-            background: $cyan;
-            color: #000;
-            
-          }
-          &:hover {
-            //margin-right: $textBlockMarginMobile;
-            width: unset;
-          }
-        }
-      &:not(:first-of-type) {
+  li {
+    background-color: $cyan;
+    color: #FFFFFF;
+    //display:inline;
+    white-space:pre-wrap;
+    line-height : 24px;
+    font-size: 18px;
+    font-family:arial, sans-serif;
+    padding: 5px;
+    padding-left:0px;
+    box-shadow: -16px 0 0 $cyan;
+    //pads sides, moves away from border
 
-          width: 225px;
-          border: 1px solid rgb(255, 255, 255);
-          border-radius: 5px;
-          color: lighten($grey-lighter, 20%);
-          font-weight: 700;
-        strong {
-            background-size: 225px;
-          background: rgb(30,30,30);
-          color:$grey-lighter;
-        }
-      }
+    font-size: 12px;
+    list-style: none;
+    margin-bottom: 2px;
+    text-align: left;
+    &:first-of-type {
+        
+      border-radius: 5px;
+      font-weight: 700;
+      overflow: scroll;
+      text-overflow: ellipsis;
+      width: 225px;
+      white-space: nowrap;
       strong {
-        display: inline-block;
-        margin-right: 3px;
-        //padding: 0 5px;
-        //width: 60px;
+        background: $cyan;
+        color: #000;
       }
-      &:last-of-type{
-          justify-content: center;
+      &:hover {
+        //margin-right: $textBlockMarginMobile;
+        width: unset;
       }
     }
+    &:not(:first-of-type) {
+      width: 225px;
+      //border: 1px solid rgb(255, 255, 255);
+      border-radius: 5px;
+      color: lighten($grey-lighter, 20%);
+      font-weight: 700;
+      strong {
+        background: rgb(30, 30, 30);
+        color: $grey-lighter;
+      }
+    }
+    strong {
+      display: inline-block;
+      margin-right: 3px;
+      //padding: 0 5px;
+      //width: 60px;
+    }
+    &:last-of-type {
+        align-items: center;
+      justify-content: center;
+    }
   }
+}
