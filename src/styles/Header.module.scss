@@ -4,6 +4,11 @@
 // @use "sass:math";
 
 //https://pretagteam.com/question/how-can-i-hide-a-component-in-react-depending-on-the-screen-size
+img {
+  width: 30px;
+  height: 30px;
+  //@include: url('../components/PsyOpsLogo.svg');
+ }
 
 .divider{
   width:5px;
@@ -18,29 +23,30 @@
 }
 
 .button-container{
-  display: -webkit-flex;
-  display: -ms-flex;
-  align-content: center;
-  display: flex;
-  flex-direction: row;
+  ///display: -webkit-flex;
+  //display: -ms-flex;
+  //align-content: top;
+  //display: flex;
+  //flex-direction: row;
   //justify-content: flex-end;
-  background-color: #8BEAFF;
-  padding: 8px 16px;
+  //background-color: #8BEAFF;
+  padding-bottom: 20px ;
   //justify-content: space-between;
 }
 
 .button-container li {
-  display: inline-block;
-  list-style: none;
+  //display: inline-block;
+  //list-style: none;
 }
 
 .button-container li:not(:last-of-type) {
-margin: 0 5px;
+  margin: 0 5px;
 }
 
 .button-container li:last-of-type {
   justify-content: right;
   margin-left: auto;
+  
 }
 //TO-DO: should change the types of buttons tso MUI buttons
 button{
@@ -60,20 +66,28 @@ button{
   border-width: 0px;
 }
 
-.logo-button{
-  //background-image: url("./PsyOpsLogo.svg");
-}
-
 button:hover{
   transition: .8s;
   color:#ffffff;
 }
 
 .header {
+  div:first-of-type{
+    .button-container{
+      :first{
+        position: relative;
+      }
+    }
+  }
   align-items: center;
   display: flex;
   justify-content: left;
   size: absolute;
+
+  :last-of-type{
+     //align-items: bottom;
+  }
+
   @media screen and (min-width: $desktopWidth) {
     display: flex;
     //height: $headerHeightDesktop;
@@ -89,6 +103,8 @@ button:hover{
   z-index: 888888;
   padding: 8px;
 
+
+ 
 }
 
   
@@ -119,54 +135,5 @@ p {
 
 
 // entire header
-  ul {
-    //@media screen and (min-width: $tabletWidth) {
-      justify-items: left;
-      padding: 20px;
-      li {
-        //position: absolute;
-        //left: -139px;
-        //padding: 4px 28px 0 30px;
-        //top: 6px;
-  
-        font-size: 12px;
-        list-style: none;
-        margin-bottom: 2px;
-        text-align: left;
-        &:first-of-type {
-          border: 1px solid $cyan;
-          border-radius: 5px;
-          font-weight: 700;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          width: 225px;
-          white-space: nowrap;
-          strong {
-            background: $cyan;
-            color: #000;
-          }
-          &:hover {
-            //margin-right: $textBlockMarginMobile;
-            width: unset;
-          }
-        }
-      &:not(:first-of-type) {
-          width: 225px;
-          border: 1px solid #000;
-          border-radius: 5px;
-          color: lighten($grey-lighter, 20%);
-          font-weight: 700;
-        strong {
-          background: #000;
-          color:$grey-lighter;
-        }
-      }
-      strong {
-        display: inline-block;
-        margin-right: 3px;
-        padding: 0 5px;
-        width: 60px;
-      }
-    }
-  }
+
 //}

@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+
+import React, { useCallback, useEffect, useState } from 'react';
+import {ConnectWalletButton} from '@gokiprotocol/walletkit';
 import { useConnectedWallet, useSolana } from "@saberhq/use-solana";
 import { PsyAmericanIdl } from "@mithraic-labs/psy-american";
 import styles from "../styles/PortfolioOverview.module.scss";
-import { Program, Provider } from "@project-serum/anchor";
+import { Program, Provider} from "@project-serum/anchor";
 import { PublicKey } from "@solana/web3.js";
 import { getAllWalletOptions, loadMintInfo } from "../lib/utils";
 import projectList from "../content/projectList.json";
 import { CircularProgress } from "@material-ui/core";
 import { MintInfoWithKey, ProjectOptions } from "../types";
 import ProjectOverview from "./ProjectOverview";
+import Wallet from "./Wallet";
+
 
 const PortfolioOverview = () => {
   const wallet = useConnectedWallet();
@@ -54,6 +58,10 @@ const PortfolioOverview = () => {
 
   return (
     <div className={styles["index-intro-user"]}>
+      <section>
+          <Wallet/>
+
+      </section>
       <section>
         <div className="psy-button-group">
           {loadingProjects || Object.keys(mintInfos).length <= 0 ? (

@@ -10,9 +10,9 @@ import {
   LAMPORTS_PER_SOL
 } from '@solana/web3.js';
 import styles_header from '../styles/Header.module.scss';
+import LogoImg from './psyoptions-logo-light.png';
 
-
-const drawerWidth = 240;
+//const drawerWidth = 240;
 const Header = () => {
   const {
     walletProviderInfo,
@@ -40,22 +40,6 @@ const Header = () => {
     setPopupVisible(!popupVisible)
   }
 
-  /*
-    <div className='psy-button-group'>
-    <button onClick={() => {
-     void disconnect();
-    }}>Disconnect Wallet</button>
-    </div> 
-  */
-
-  /*
-    style={{  
-              backgroundImage: "url('./PsyOpsLogo')",
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat'
-            }}
-  */
   return (
     <nav className={styles_header.header}>
       <div className="box"></div>
@@ -64,7 +48,9 @@ const Header = () => {
           <div className="button-container"></div>
             <button className="logo-button" onClick={() => {
                 window.open("https://trade.psyoptions.io/#/");
-              }}> PsyOptions Logo</button>
+              }}> 
+              <img className = "PsyOpLogo" alt = 'PsyOptions Home' src={LogoImg} />
+              </button>
             <button className="markets-button" onClick={() => {
                 //do something
               }}> Markets</button>
@@ -81,21 +67,11 @@ const Header = () => {
       <>
         {wallet?.connected ? (
           <>
-            <ul className="wallet-info">
-              <li><strong>Wallet</strong> {wallet?.publicKey?.toString()}</li>
-              <li><strong>Provider</strong> {walletProviderInfo?.name}</li>
-              <li><strong>Network</strong> {network}</li>
-              <li><strong>Balance</strong> {typeof balance === 'number' ? `${(balance / LAMPORTS_PER_SOL).toLocaleString()} SOL` : '--'}</li>
-              <li>
-                    <button id='disconnect-button' onClick={() => {
-                      disconnect();
-                    }}>Disconnect Wallet</button>
-              </li>
-            </ul>
+
           </>
         ) : (
           <ul className="wallet-info">
-            <li><div className='psy-button-group'> <ConnectWalletButton /></div></li>
+            
           </ul>
         )}
       </>
@@ -104,4 +80,6 @@ const Header = () => {
   );
 };
 
+
+//<li><div className='psy-button-group'> <ConnectWalletButton /></div></li>
 export default Header;
