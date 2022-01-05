@@ -1,10 +1,10 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
-import {ConnectWalletButton} from '@gokiprotocol/walletkit';
+import { ConnectWalletButton } from '@gokiprotocol/walletkit';
 import { useConnectedWallet, useSolana } from "@saberhq/use-solana";
 import { PsyAmericanIdl } from "@mithraic-labs/psy-american";
 import styles from "../styles/PortfolioOverview.module.scss";
-import { Program, Provider} from "@project-serum/anchor";
+import { Program, Provider } from "@project-serum/anchor";
 import { PublicKey } from "@solana/web3.js";
 import { getAllWalletOptions, loadMintInfo } from "../lib/utils";
 import projectList from "../content/projectList.json";
@@ -56,29 +56,32 @@ const PortfolioOverview = () => {
     })();
   }, [provider.connection, projectOptions]);
 
+  // <div className="item2">Menu</div>
+  // <div className="item5">Footer</div>
   return (
-    <div className={styles["index-intro-user"]}>
-      <section>
-          <Wallet/>
-
-      </section>
-      <section>
-        <div className="psy-button-group">
-          {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
-            <CircularProgress />
-          ) : (
-            Object.keys(projectOptions).map((key) => (
-              <ProjectOverview
-                key={key}
-                project={projectOptions[key].project}
-                optionAccounts={projectOptions[key].options}
-                mintInfos={mintInfos}
-              />
-            ))
-          )}
+      <div className={styles["grid-container"]}>
+        <div className="item2">Menu</div>
+        <div className="item3">
+          <div className="psy-button-group">
+            {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
+              <CircularProgress />
+            ) : (
+              Object.keys(projectOptions).map((key) => (
+                <ProjectOverview
+                  key={key}
+                  project={projectOptions[key].project}
+                  optionAccounts={projectOptions[key].options}
+                  mintInfos={mintInfos} />
+              ))
+            )}
+          </div>
         </div>
-      </section>
-    </div>
+        <div className="item4">
+          <Wallet />
+        </div>
+        <div className="item5"></div>
+      </div>
+    
   );
 };
 

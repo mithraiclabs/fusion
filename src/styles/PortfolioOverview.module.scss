@@ -1,31 +1,25 @@
-@import './globals.scss';
+@import "./globals.scss";
 
-.index-intro-user {
-  display: flex;
-  position: relative;
-  padding: 30px;
+
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 {grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main right right'
+    'menu footer footer footer footer footer';
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
 }
 
-.index-intro-user section {
-  padding: 30px;
-  //flex: 1;
-
-  h2, ul {
-    //margin-bottom: 8px;
-  }
-  li {
-    //font-size: 14px;
-    //margin-left: 20px;
-    //margin-bottom: 6px;
-    //text-align: left;
-  }
-  a {
-    //box-shadow: 8px 8px 0 $cyan;
-    &:hover {
-      //box-shadow: 8px 8px 0 $green;
-    }
-    &:first-of-type {
-      //margin-bottom: $textBlockMargin;
-    }
-  }
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
 }

@@ -62,7 +62,8 @@ ul {
       text-overflow: ellipsis;
       width: 225px;
       white-space: nowrap;
-      .descriptor {
+      color: rgb(30,30,30);
+      strong {
         //align-content: space-between;
         text-align: left;
         width: 120px;
@@ -74,7 +75,7 @@ ul {
         padding-right: 10px;
       }
     }
-    .descriptor {
+    strong {
       //justify-content: left;
       //width: 120px;
       display: inline-block;
