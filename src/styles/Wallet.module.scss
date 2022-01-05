@@ -9,13 +9,11 @@
   //justify-items: left;
   
   h1{
-    color: rgb(30, 30, 30);
-    //position: relative;
+    color: $cyan;
     text-shadow: 0 0 10px $cyan;
     background-color: rgb(30, 30, 30);
     font-size: small;
     border-radius: 10px;
-    //width: 220px;
   }
   
 }
@@ -26,7 +24,7 @@ ul {
   padding: 5px;
 
   li {
-    background-color: $cyan;
+    background-color: rgb(30, 30, 30);
     color: #FFFFFF;
     font-size: 18px;
     padding: 8px;
@@ -41,11 +39,11 @@ ul {
       text-overflow: ellipsis;
       width: 225px;
       white-space: nowrap;
-      strong {
+      strong { // Wallet Address Strong
         width: 120px;
-        background: $cyan;
-        color: #FFFFFF;
-        background-color: rgb(30,30,30);
+        //background: $cyan;
+        color: rgb(30, 30, 30);
+        background-color: #FFFFFF;
         border-radius: 10px;
         padding-left: 10px;
         padding-right: 10px;
@@ -56,14 +54,17 @@ ul {
       }
     }
     &:not(:first-of-type) {
+      //Provider, Network, Balance container styles
+      background-color: #FFFFFF;
       border-radius: 10px;
       font-weight: 700;
       overflow: scroll;
       text-overflow: ellipsis;
       width: 225px;
       white-space: nowrap;
-      strong {
+      .descriptor {
         //align-content: space-between;
+        text-align: left;
         width: 120px;
         background: $cyan;
         color: #FFFFFF;
@@ -73,7 +74,7 @@ ul {
         padding-right: 10px;
       }
     }
-    strong {
+    .descriptor {
       //justify-content: left;
       //width: 120px;
       display: inline-block;
