@@ -8,6 +8,9 @@ Card{
     //variant : outlined;
     background-color: $cyan;
     box-shadow: 120px 0px 40px 20px $cyan;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 100px);
 }
 
 CardContent{
@@ -16,3 +19,4 @@ CardContent{
     color : "rgb(160, 232, 252)";
     outline-color: blue;
 }
+

@@ -11,6 +11,7 @@ const Home = () => {
   return (
     <section className={styles.home}>
       {
+        //<IndexIntroGuest/>
         wallet?.connected ? <PortfolioOverview /> : <IndexIntroGuest /> 
       }
     </section>

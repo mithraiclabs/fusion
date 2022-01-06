@@ -10,11 +10,13 @@ img {
   width:5px;
   height:auto;
   display:inline-block;
+  align-items: center;
 }
 
 @media(width: 600 px) {
   .button-container {
      display: none;
+     align-items: center;
   }
 }
 
@@ -26,7 +28,9 @@ img {
   //flex-direction: row;
   //justify-content: flex-end;
   //background-color: #8BEAFF;
+  padding-right: 6px;
   padding-bottom: 20px ;
+  align-items: center;
   //justify-content: space-between;
 }
 
@@ -36,7 +40,7 @@ img {
 }
 
 .button-container li:not(:last-of-type) {
-  margin: 0 5px;
+  //margin: 0 5px;
 }
 
 .button-container li:last-of-type {
@@ -49,7 +53,7 @@ button{
   background-color: transparent;
   transition-duration: .4s;
   color: rgba(139, 234, 255, 0.9);
-  padding: 6px 16px;
+  padding: 6px ;
   font-size: 14px;
   min-width: 64px;
   box-sizing: border-box;
@@ -57,11 +61,17 @@ button{
   font-family: Manrope, sans-serif;
   font-weight: 700;
   line-height: 1.75;
-  border-radius: 4px;
+  border-radius: 15px;
   text-transform: none;
   border-width: 0px;
+  justify-content: center;
+  align-items: center;
 }
 
+button.logo-button{
+  width: 53.5px;
+  height: 53.5px;
+}
 button:hover{
   transition: .8s;
   color:#ffffff;
@@ -75,6 +85,7 @@ button:hover{
       }
     }
   }
+  //align-content: center;
   align-items: center;
   display: flex;
   justify-content: left;
@@ -101,8 +112,6 @@ button:hover{
   z-index: 888888;
   padding: 8px;
 
-
- 
 }
 
   

@@ -48,10 +48,10 @@ const Wallet = () => {
           <>
           <h1>WALLET INFO</h1>
             <ul className={styles["wallet-info"]}>
-              <li><strong>Wallet Address</strong> {wallet?.publicKey?.toString()}</li>
-              <li><strong>Provider</strong> {walletProviderInfo?.name}</li>
-              <li><strong>Network  </strong> {network}</li>
-              <li><strong>Balance  </strong> {typeof balance === 'number' ? `${(balance / LAMPORTS_PER_SOL).toLocaleString()} SOL` : '--'}</li>
+              <li><strong className = "inner-row-one">Wallet Address</strong> <div className = "inner-column-two">{wallet?.publicKey?.toString()}</div></li>
+              <li><strong className = "inner-row-one">Provider</strong> <div className = "inner-column-two">{walletProviderInfo?.name}</div></li>
+              <li><strong className = "inner-row-one">Network  </strong> <div className = "inner-column-two">{network}</div></li>
+              <li><strong className = "inner-row-one">Balance  </strong> <div className = "inner-column-two">{typeof balance === 'number' ? `${(balance / LAMPORTS_PER_SOL).toLocaleString()} SOL` : '--'}</div></li>
               <li> <button id='disconnect-button' onClick={() => {
                       disconnect();
                     }}>Disconnect Wallet</button>

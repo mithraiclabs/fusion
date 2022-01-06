@@ -67,11 +67,15 @@ const IndexIntroGuest = () => {
           </div>
         </nav>
       </section>
-      <figure>
-        <PsyChart data={data} options={options} />
-      </figure>
     </div>
   )
 };
+
+/*
+     <figure>
+        <PsyChart data={data} options={options} />
+      </figure>
+
+*/
 
 export default IndexIntroGuest;

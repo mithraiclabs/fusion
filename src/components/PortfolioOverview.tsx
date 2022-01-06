@@ -1,6 +1,5 @@
-
-import React, { useCallback, useEffect, useState } from 'react';
-import { ConnectWalletButton } from '@gokiprotocol/walletkit';
+import React, { useCallback, useEffect, useState } from "react";
+import { ConnectWalletButton } from "@gokiprotocol/walletkit";
 import { useConnectedWallet, useSolana } from "@saberhq/use-solana";
 import { PsyAmericanIdl } from "@mithraic-labs/psy-american";
 import styles from "../styles/PortfolioOverview.module.scss";
@@ -12,7 +11,6 @@ import { CircularProgress } from "@material-ui/core";
 import { MintInfoWithKey, ProjectOptions } from "../types";
 import ProjectOverview from "./ProjectOverview";
 import Wallet from "./Wallet";
-
 
 const PortfolioOverview = () => {
   const wallet = useConnectedWallet();
@@ -59,29 +57,32 @@ const PortfolioOverview = () => {
   // <div className="item2">Menu</div>
   // <div className="item5">Footer</div>
   return (
-      <div className={styles["grid-container"]}>
-        <div className="item2">Menu</div>
-        <div className="item3">
-          <div className="psy-button-group">
-            {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
+    <div className={styles["container"]}>
+      <div className="row">
+        <div className="column right">
+          {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
+            <div>
               <CircularProgress />
-            ) : (
-              Object.keys(projectOptions).map((key) => (
+            </div>
+          ) : (
+            Object.keys(projectOptions).map((key) => (
+              <div >
                 <ProjectOverview
                   key={key}
                   project={projectOptions[key].project}
                   optionAccounts={projectOptions[key].options}
-                  mintInfos={mintInfos} />
-              ))
-            )}
-          </div>
+                  mintInfos={mintInfos}
+                />
+              </div>
+
+            ))
+          )}
         </div>
-        <div className="item4">
-          <Wallet />
-        </div>
-        <div className="item5"></div>
       </div>
-    
+      <div className="column left">
+        <Wallet />
+      </div>
+    </div>
   );
 };
 

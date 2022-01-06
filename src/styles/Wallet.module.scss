@@ -1,12 +1,13 @@
 @import "./globals.scss";
 
 .wallet-container {
+  justify-content: center;
   background: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
   border-radius: 10px;
   border-color: #FFFFFF;
   padding: 10px;
-  //align-content: center;
-  //justify-items: left;
+  width: 255px;
+  //justify-self:  center;
   
   h1{
     color: $cyan;
@@ -15,7 +16,10 @@
     font-size: small;
     border-radius: 10px;
   }
-  
+}
+
+text{
+  width: 10px;
 }
 
 ul {
@@ -31,7 +35,7 @@ ul {
     font-size: 12px;
     //list-style: none;
     margin-bottom: 5px;
-    text-align: center;
+    //text-align: center;
     &:first-of-type { 
       border-radius: 10px;
       font-weight: 700;
@@ -89,7 +93,6 @@ ul {
     }
     &:last-of-type {
       background-color:rgb(30,30,30);
-      
       //justify-content: center;
     }
   }
