@@ -1,76 +1,77 @@
 @import "./globals.scss";
 
 .wallet-container {
+  max-width: 325px;
   justify-content: center;
   background: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
   border-radius: 10px;
   border-color: #FFFFFF;
   padding: 10px;
-  width: 255px;
-  //justify-self:  center;
+  min-width: 255px;
+  text-overflow: ellipsis;
+  overflow: hidden;
   
   h1{
+    text-overflow: ellipsis;
     color: $cyan;
-    text-shadow: 0 0 10px $cyan;
+    text-shadow: 0 
+    0 10px $cyan;
     background-color: rgb(30, 30, 30);
     font-size: small;
     border-radius: 10px;
   }
 }
 
-text{
-  width: 10px;
-}
-
 ul {
   //@media screen and (min-width: $tabletWidth) {
   justify-items: left;
   padding: 5px;
+  text-overflow: ellipsis;
+  
 
   li {
     background-color: rgb(30, 30, 30);
     color: #FFFFFF;
-    font-size: 18px;
     padding: 8px;
     font-size: 12px;
-    //list-style: none;
+    list-style: none;
     margin-bottom: 5px;
-    //text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     &:first-of-type { 
       border-radius: 10px;
       font-weight: 700;
-      overflow: scroll;
       text-overflow: ellipsis;
       width: 225px;
       white-space: nowrap;
       strong { // Wallet Address Strong
-        width: 120px;
-        //background: $cyan;
+        min-width: 120px;
+        max-width: 150px;
         color: rgb(30, 30, 30);
-        background-color: #FFFFFF;
+        background-color: $cyan;
         border-radius: 10px;
         padding-left: 10px;
         padding-right: 10px;
+
       }
       &:hover {
         //margin-right: $textBlockMarginMobile;
         //width: unset;
       }
     }
-    &:not(:first-of-type) {
-      //Provider, Network, Balance container styles
+    &:not(:first-of-type) { //Provider, Network, Balance container styles
       background-color: #FFFFFF;
       border-radius: 10px;
       font-weight: 700;
-      overflow: scroll;
       text-overflow: ellipsis;
       width: 225px;
       white-space: nowrap;
       color: rgb(30,30,30);
       strong {
         //align-content: space-between;
-        text-align: left;
-        width: 120px;
+        text-align: center;
+        width: 200px;
         background: $cyan;
         color: #FFFFFF;
         background-color: rgb(30,30,30);
@@ -80,16 +81,8 @@ ul {
       }
     }
     strong {
-      //justify-content: left;
-      //width: 120px;
       display: inline-block;
       border-radius: 10px;
-      
-      //padding-left: 5px;
-      //padding-right: px;
-      //margin-right: 3px;
-      //padding: 0 5px;
-      //width: 60px;
     }
     &:last-of-type {
       background-color:rgb(30,30,30);

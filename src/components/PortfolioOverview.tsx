@@ -54,32 +54,27 @@ const PortfolioOverview = () => {
     })();
   }, [provider.connection, projectOptions]);
 
-  // <div className="item2">Menu</div>
-  // <div className="item5">Footer</div>
   return (
-    <div className={styles["container"]}>
-      <div className="row">
-        <div className="column right">
-          {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
+    <div className={styles["Parent"]}>
+      <div className={styles["child2"]}>
+        {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
+          <div>
+            <CircularProgress />
+          </div>
+        ) : (
+          Object.keys(projectOptions).map((key) => (
             <div>
-              <CircularProgress />
+              <ProjectOverview
+                key={key}
+                project={projectOptions[key].project}
+                optionAccounts={projectOptions[key].options}
+                mintInfos={mintInfos}
+              />
             </div>
-          ) : (
-            Object.keys(projectOptions).map((key) => (
-              <div >
-                <ProjectOverview
-                  key={key}
-                  project={projectOptions[key].project}
-                  optionAccounts={projectOptions[key].options}
-                  mintInfos={mintInfos}
-                />
-              </div>
-
-            ))
-          )}
-        </div>
+          ))
+        )}
       </div>
-      <div className="column left">
+      <div className={styles["child1"]}>
         <Wallet />
       </div>
     </div>

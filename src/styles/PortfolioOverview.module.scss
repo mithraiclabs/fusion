@@ -1,30 +1,45 @@
 @import "./globals.scss";
 
-.container{
-  //display:grid;
+
   
   /* Create two unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
+.Parent {
+  display: flex;
+  flex-direction: row;
+  
+  box-sizing: border-box;
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+
+  }
+
+.child1 {
+  //padding: 20px;
+  margin: 10px;
+  //width: 50%;
+  //height: 100vh;
+  //background-color: green;
+  //justify-content: center;
+
 }
 
-.left {
-  justify-content: center;
-  width: 75%;
+.child2 {
+  //flex-direction: row;
+  //display: inline;
+  //justify-items: center;
+  //align-items: center;
+ // width: 50%;
+  margin: 10px;
+  //padding: 20px;
+  //height: 100vh;
+  //background-color: white;
 }
 
-.right {
-  justify-content: center;
-  width: 25%;
+
 }
+
 
 /* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-}
+
+
 

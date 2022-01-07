@@ -6,48 +6,25 @@ img {
   height: 30px;
  }
 
-.divider{
-  width:5px;
-  height:auto;
-  display:inline-block;
-  align-items: center;
-}
 
-@media(width: 600 px) {
-  .button-container {
-     display: none;
-     align-items: center;
-  }
-}
+
+
 
 .button-container{
-  ///display: -webkit-flex;
+  //-webkit-box-align: center;
+  //display: -webkit-flex;
   //display: -ms-flex;
   //align-content: top;
-  //display: flex;
+ 
   //flex-direction: row;
   //justify-content: flex-end;
   //background-color: #8BEAFF;
-  padding-right: 6px;
-  padding-bottom: 20px ;
-  align-items: center;
+  //padding-right: 10px;
+  //padding-bottom: 20px ;
+  //align-items: center;
   //justify-content: space-between;
 }
 
-.button-container li {
-  //display: inline-block;
-  //list-style: none;
-}
-
-.button-container li:not(:last-of-type) {
-  //margin: 0 5px;
-}
-
-.button-container li:last-of-type {
-  justify-content: right;
-  margin-left: auto;
-  
-}
 //TO-DO: should change the types of buttons tso MUI buttons
 button{
   background-color: transparent;
@@ -57,6 +34,7 @@ button{
   font-size: 14px;
   min-width: 64px;
   box-sizing: border-box;
+  padding: 15px;
   //transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   font-family: Manrope, sans-serif;
   font-weight: 700;
@@ -65,7 +43,8 @@ button{
   text-transform: none;
   border-width: 0px;
   justify-content: center;
-  align-items: center;
+  
+  //align-items: center;
 }
 
 button.logo-button{
@@ -78,69 +57,38 @@ button:hover{
 }
 
 .header {
-  div:first-of-type{
-    .button-container{
-      :first{
-        position: relative;
-      }
+  @media screen and (max-width: 420px) {
+    .box{
+      display: none;
     }
   }
+
   //align-content: center;
-  align-items: center;
+  //align-items: center;
   display: flex;
   justify-content: left;
-  size: absolute;
   position: sticky;
-  top: 0;
-
-  :last-of-type{
-     //align-items: bottom;
+  .button-container{
+    align-items: center;
   }
+  //top: 0;
 
   @media screen and (min-width: $desktopWidth) {
-    display: flex;
+    //display: flex;
     //height: $headerHeightDesktop;
-    //padding-top: unset;
+    padding-top: unset;
   }
 
   background: linear-gradient(90deg, rgb(221, 62, 118) -0.83%, rgb(29, 77, 201) 100%);
   //border-bottom: 1px dotted #8BEAFF;
   //padding-top: $textBlockMarginMobile;
   top: 0;
-  height:53px;
+  height:64px;
   width: 100%;
-  z-index: 888888;
-  padding: 8px;
+  //z-index: 888888;
+  //padding: 8px;
 
 }
 
   
   
-
-
-  
-p {
-  //background: $grey-darkest;
-  /*border: 1px solid #8BEAFF;
-  border-radius: 2px;
-  //color: $yellow;
-  font-size: 12px;
-  font-weight: 700;
-  margin-top: $textBlockMarginMobile;
-  padding: 7px 18px;
-  width:100%;
-  @media screen and (min-width: $desktopWidth) {
-    margin-right: $sectionPadding;
-    //margin-top: unset;
-    width: unset;
-  }*/
-    // @media screen and (min-width: $desktopWidth) {
-    //   margin-left: 25px;
-    //   width: 250px;
-    // }
-  }
-
-
-// entire header
-
-//}

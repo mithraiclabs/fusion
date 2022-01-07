@@ -4,14 +4,15 @@
 
 * {
   border: 1px dotted rgb(87, 87, 87); // dev tool
-  box-sizing: border-box;
+  //box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
 }
 
 html,
 body {
-  background-color: black;
+  //background-color: black;
   color: rgb(220, 220, 220);
   font-family: $fontFamilyBody;
   font-size: $fontSizeBody;

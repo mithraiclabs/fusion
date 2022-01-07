@@ -44,7 +44,7 @@ const Header = () => {
     <nav className={styles_header.header}>
       <div className="box"></div>
         {/*style="background: linear-gradient(90deg, rgb(221, 62, 118) -0.83%, rgb(29, 77, 201) 100%);"*/}
-        <div className="MuiBox-root-1 jss346">
+        
           <div className="button-container"></div>
             <button className="logo-button" onClick={() => {
                 window.open("https://trade.psyoptions.io/#/");
@@ -63,14 +63,14 @@ const Header = () => {
             <button className="docs-button" onClick={() => {
                 window.open("https://docs.psyoptions.io/");
               }}> Docs</button>
-          </div>
+          
       <>
         {wallet?.connected ? (
           <>
 
           </>
         ) : (
-          <ul className="wallet-info">
+          <ul >
             
           </ul>
         )}

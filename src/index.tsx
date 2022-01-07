@@ -25,8 +25,8 @@ const ConnectWallet = () => (<>Connect Wallet <ConnectWalletButton /></>);
 const DisconnectWallet = () => (<>Disconnect Wallet</>);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <WalletKitProvider
+  <React.StrictMode >
+    <WalletKitProvider 
       defaultNetwork='devnet'
       app={{
         name: 'PsyOptions Management'
