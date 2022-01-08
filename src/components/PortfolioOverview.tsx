@@ -55,29 +55,35 @@ const PortfolioOverview = () => {
   }, [provider.connection, projectOptions]);
 
   return (
-    <div className={styles["Parent"]}>
-      <div className={styles["child2"]}>
-        {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
-          <div>
-            <CircularProgress />
-          </div>
-        ) : (
-          Object.keys(projectOptions).map((key) => (
+    <div className="top">
+      <h3>PORTFOLIO OVERVIEW</h3>
+      <div className={styles["Parent"]}>
+        <div className={styles["child2"]}>
+          {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
             <div>
-              <ProjectOverview
-                key={key}
-                project={projectOptions[key].project}
-                optionAccounts={projectOptions[key].options}
-                mintInfos={mintInfos}
-              />
+              <CircularProgress />
             </div>
-          ))
-        )}
-      </div>
-      <div className={styles["child1"]}>
-        <Wallet />
+          ) : (
+            Object.keys(projectOptions).map((key) => (
+              <div>
+                <ProjectOverview
+                  key={key}
+                  project={projectOptions[key].project}
+                  optionAccounts={projectOptions[key].options}
+                  mintInfos={mintInfos}
+                />
+              </div>
+            ))
+          )}
+        </div>
+        <div className={styles["child1"]}>
+          <Wallet />
+        </div>
       </div>
     </div>
+
+
+
   );
 };
 

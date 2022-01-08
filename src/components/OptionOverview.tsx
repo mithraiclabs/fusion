@@ -19,7 +19,7 @@ const OptionOverview: React.FC<{
 }> = ({ optionAccounts, project, mintInfos }) => {
   return (
     //variant="outlined"
-    <div className = {styles["option-card"]}>
+   
     <Card className = {styles.card} variant="outlined">
       <CardContent >
         {displayHeader(
@@ -31,7 +31,6 @@ const OptionOverview: React.FC<{
       </CardContent>
     </Card> 
 
-    </div>
 
   );
 };

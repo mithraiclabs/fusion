@@ -6,10 +6,6 @@ img {
   height: 30px;
  }
 
-
-
-
-
 .button-container{
   //-webkit-box-align: center;
   //display: -webkit-flex;
@@ -60,33 +56,26 @@ button:hover{
   @media screen and (max-width: 420px) {
     .box{
       display: none;
+      position: sticky;
     }
   }
 
-  //align-content: center;
-  //align-items: center;
   display: flex;
   justify-content: left;
-  position: sticky;
+  //position: sticky;
   .button-container{
     align-items: center;
   }
-  //top: 0;
 
   @media screen and (min-width: $desktopWidth) {
-    //display: flex;
-    //height: $headerHeightDesktop;
     padding-top: unset;
   }
 
   background: linear-gradient(90deg, rgb(221, 62, 118) -0.83%, rgb(29, 77, 201) 100%);
-  //border-bottom: 1px dotted #8BEAFF;
-  //padding-top: $textBlockMarginMobile;
+
   top: 0;
   height:64px;
   width: 100%;
-  //z-index: 888888;
-  //padding: 8px;
 
 }
 
