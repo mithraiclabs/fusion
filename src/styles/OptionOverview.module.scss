@@ -2,7 +2,7 @@
 
 .project-card {
   //background-color: green;
-  border-radius: 20px;
+  border-radius: 10px;
   border-color: white;
   background-color: rgb(30,30,30);
   border-width: 3px;
@@ -10,18 +10,18 @@
   
 }
 
-.header{
-    font: $fontFamilyBody;
-}
+
+  h4{
+    margin: 10px;
+  }
+    //font: $fontFamilyBody;
+    
+
 
 .card {
-  //background-color: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
-  //border-color: yellow;
-  //border-color: linear-gradient(90deg, #dd3e76 -0.83%, #1d4dc9 100%);
   border-width: 3px;
   margin-bottom: 20px;
- 
-  background-color: 'linear-gradient(to right bottom, #430089, #82ffa1)';
+  //background-color: 'linear-gradient(to right bottom, #430089, #82ffa1)';
   //align-items: center;
   //margin: 20px;
 
@@ -37,5 +37,19 @@
     //backgroundColor: "rgb(30, 30, 30)";
     color: "rgb(160, 232, 252)";
     outline-color: blue;
+  }
+
+  .MuiCardContent{
+    //outline-color: blue;
+    //border-color: aquamarine;
+  }
+
+  
+
+  p{
+    color: #ffffff;
+    padding: 10px;
+    margin: 10px;
+    background-color: black;
   }
 }

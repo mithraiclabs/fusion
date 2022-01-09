@@ -5,30 +5,24 @@ import { MintInfoWithKey, OptionAccounts, Project } from "../types";
 import styles from "../styles/OptionOverview.module.scss";
 
 /*
-
-
         {displayHeader(
           project,
           optionAccounts.optionMarket,
           mintInfos[optionAccounts.optionMarket.underlyingAssetMint.toString()],
           mintInfos[optionAccounts.optionMarket.quoteAssetMint.toString()]
         )}
-
-
-
 */
-
 
 const OptionOverview: React.FC<{
   project: Project;
-
   optionAccounts: OptionAccounts;
   mintInfos: Record<string, MintInfoWithKey>;
 }> = ({ optionAccounts, project, mintInfos }) => {
   return (
     <Card className={styles["card"]} variant="outlined">
       <CardContent className="card-content">
-        <p>Underlying Amount: {displayUnderlyingAmt(
+        <p>
+          Contract Size: {displayUnderlyingAmt(
           optionAccounts.optionMarket,
           mintInfos[optionAccounts.optionMarket.underlyingAssetMint.toString()]
         )}
@@ -40,14 +34,14 @@ const OptionOverview: React.FC<{
 
         <p>
           Strike Price: {displayStrikePrice(optionAccounts.optionMarket,
-          mintInfos[optionAccounts.optionMarket.underlyingAssetMint.toString()],
-          mintInfos[optionAccounts.optionMarket.quoteAssetMint.toString()])}
+            mintInfos[optionAccounts.optionMarket.underlyingAssetMint.toString()],
+            mintInfos[optionAccounts.optionMarket.quoteAssetMint.toString()])}
         </p>
 
         <p>
           Underlying Mint: {displayQuoteToken(mintInfos[optionAccounts.optionMarket.underlyingAssetMint.toString()])}
-          </p>
-        
+        </p>
+
         <p>
           Quote Mint: {displayQuoteToken(mintInfos[optionAccounts.optionMarket.quoteAssetMint.toString()])}
         </p>

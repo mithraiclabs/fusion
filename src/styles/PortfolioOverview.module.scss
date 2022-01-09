@@ -4,14 +4,14 @@
 h3{
   background-color: #ffffff;
   color: rgb(30,30,30);
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 10px;
   padding-left: 15px;
   text-align: left;
   margin-bottom: 20px;
-  //max-width: ;
+  max-width: 327px;
   letter-spacing: 8px;
-  font-weight: 500px;
+  
   @media screen and (max-width: 800px){
     text-align: center;
   }
@@ -19,10 +19,10 @@ h3{
 
 /* Create two unequal columns that floats next to each other */
 .Parent {
-  background-color: rgb(30,30,30);
+  //background-color: rgb(30,30,30);
   //border-width: 5px;
   //border-color: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
-  border-radius: 15px;
+  border-radius: 10px;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;

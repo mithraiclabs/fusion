@@ -15,7 +15,8 @@ const ProjectOverview: React.FC<{
 }) => {
   return (
     <Card className ={styles["project-card"]} variant="outlined">
-      <CardHeader className = {styles["header"]} title={project.name}  style={{color : "rgb(0,0,0)", fontFamily: "Goldman, serif"}}/>
+      <CardHeader className = {styles["header"]}/>
+      <h4>OPEN POSITIONS</h4>
       <CardContent  style={{}}>
         Options Held:
         {optionAccounts.map((x, index) => (
