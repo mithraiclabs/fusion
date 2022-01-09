@@ -2,19 +2,33 @@
 
 
 h3{
+  background-color: rgb(30,30,30);
+  border-radius: 15px;
+  padding: 10px;
   text-align: left;
-  margin: 20px;
-  letter-spacing: 5px;
+  margin-bottom: 20px;
+  //max-width: ;
+  letter-spacing: 8px;
   font-weight: 500px;
+  @media screen and (max-width: 800px){
+    text-align: center;
+  }
 }
 
 /* Create two unequal columns that floats next to each other */
 .Parent {
+  background-color: rgb(30,30,30);
+  //border-width: 5px;
+  //border-color: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
+  border-radius: 15px;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
   @media screen and (max-width: 800px) {
     flex-direction: column;
+    .child1{
+      display: none;
+    }
   }
 
   .child1 {
@@ -22,6 +36,7 @@ h3{
   }
 
   .child2 {
+    
     margin: 20px;
   }
 }

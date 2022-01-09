@@ -14,7 +14,7 @@ const ProjectOverview: React.FC<{
   mintInfos
 }) => {
   return (
-    <Card className ={styles["card"]} variant="outlined">
+    <Card className ={styles["project-card"]} variant="outlined">
       <CardHeader className = {styles["header"]} title={project.name}  style={{color : "rgb(0,0,0)", fontFamily: "Goldman, serif"}}/>
       <CardContent  style={{}}>
         Options Held:

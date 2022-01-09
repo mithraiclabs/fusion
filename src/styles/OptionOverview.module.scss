@@ -1,20 +1,36 @@
-@import './globals.scss';
+@import "./globals.scss";
 
-
-
-.Card{
-    //variant : outlined;
-    background-color: $cyan;
-    box-shadow: 120px 0px 40px 20px $cyan;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 100px);
+.project-card {
+  background-color: green;
+  border-radius: 15px;
+  border-color: blue;
+  border-width: 5px;
 }
 
-.CardContent{
+.header{
+    font: $fontFamilyBody;
+}
+
+.card {
+    background-color: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
+  //border-color: yellow;
+  border-color: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
+  margin-bottom: 20px;
+  //border-color: yellow;
+  //align-items: center;
+  //margin: 20px;
+
+  //variant : outlined;
+  //background-color: $cyan;
+  //box-shadow: 120px 0px 40px 20px $cyan;
+  //display: grid;
+  //grid-template-columns: repeat(2, 1fr);
+  //grid-template-rows: repeat(2, 1fr);
+  
+  .card-content { // doesnt work
     background-color: $cyan;
     //backgroundColor: "rgb(30, 30, 30)";
-    color : "rgb(160, 232, 252)";
+    color: "rgb(160, 232, 252)";
     outline-color: blue;
+  }
 }
-
