@@ -2,7 +2,7 @@
 
 .popup-content {
   margin: auto;
-  background: rgb(255, 255, 255);
+  background: $cyan;
   width: 50%;
   padding: 5px;
 }
@@ -21,10 +21,7 @@
   background: transparent;
 }
 
-img{
-  width: 30px;
-  height: 30px;
-}
+
 
 .wallet-container {
   

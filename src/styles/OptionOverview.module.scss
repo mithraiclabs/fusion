@@ -1,16 +1,20 @@
 @import "./globals.scss";
 
+li{
+  list-style: none;
+}
+
 .project-card {
   //background-color: green;
   border-radius: 15px;
   border-color: green;
   background-color: rgb(30, 30, 30);
   border-width: 3px;
-  color: white;
+  color: rgb(16,16,22);
 }
 
 h4 {
-  margin: 10px;
+  //margin: 10px;
 }
 
 .card {
@@ -18,7 +22,8 @@ h4 {
   margin-bottom: 20px;
   background-color: rgb(52,52,61);
   box-shadow: 0px 0px 10px 3px  rgb(201,76, 119);
-  //display: grid;
+  //display: flex;
+  //flex-direction: row;
   //grid-template-columns: repeat(2, 1fr);
   //grid-template-rows: repeat(2, 1fr);
 
@@ -30,6 +35,6 @@ h4 {
     color: #ffffff;
     padding: 10px;
     margin: 10px;
-    background-color: black;
+    background-color: rgb(52,52,61);
   }
 }
