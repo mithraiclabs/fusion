@@ -21,7 +21,13 @@
   background: transparent;
 }
 
+img{
+  width: 30px;
+  height: 30px;
+}
+
 .wallet-container {
+  
   max-width: 325px;
   justify-content: center;
   background: linear-gradient(
@@ -42,7 +48,7 @@
     text-shadow: 0 0 10px $cyan;
     background-color: rgb(30, 30, 30);
     font-size: small;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 0;
   }
 }
@@ -50,11 +56,11 @@
 ul {
   //@media screen and (min-width: $tabletWidth) {
   justify-items: left;
+  align-items: center;
   padding: 5px;
+  
 
-  li {
-    justify-content: center;
-    align-items: center;
+  li { 
     background-color: rgb(30, 30, 30);
     color: #ffffff;
     padding: 8px;
@@ -63,42 +69,47 @@ ul {
     margin-bottom: 5px;
 
     :last-child {// eye button
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0;
+      display: block; //needed
+      margin-left: auto; //needed
+      margin-right: auto; //needed
+      padding: 0; //needed
+      
+      &:hover {
+        .EyeIcon {
+          //doesn't work
+          opacity: 0.5;
+        }
+      }
     }
 
     &:first-of-type { // wallet address and eye container
-      display: flex;
-      border-radius: 10px;
-      //font-weight: 700;
-
+      display: flex; //shoves the strong and eye on the same line
+      border-radius: 5px;
       justify-content: center;
       strong {
         // Wallet Address Strong
-        min-width: 120px;
+        min-width: 100px;
         max-width: 150px;
         color: rgb(30, 30, 30);
         background-color: $cyan;
-        border-radius: 10px;
+        border-radius: 5px;
         padding-left: 10px;
         padding-right: 10px;
       }
-      &:hover {
-        //margin-right: $textBlockMarginMobile;
-        //width: unset;
-      }
+
     }
     &:not(:first-of-type) {
+      display: flex;
+      flex-direction: row;
       //Provider, Network, Balance container styles
-      background-color: #ffffff;
-      border-radius: 10px;
+      background-color: rgb(52,52,61);
+      border-color: black;
+      border-style: solid;
+      border-radius: 5px;
+      border-width: 2px;
+      //border-color: $cyan;
       font-weight: 700;
-      text-overflow: ellipsis;
-
-      white-space: nowrap;
-      color: rgb(30, 30, 30);
+      color:#ffffff;
 
       //text-align: right;
       strong {
@@ -108,10 +119,9 @@ ul {
         background: $cyan;
         color: #ffffff;
         background-color: rgb(30, 30, 30);
-        border-radius: 10px;
+        border-radius: 5px;
         padding-left: 10px;
         padding-right: 10px;
-        //display: inline-block;
       }
     }
     strong {
@@ -123,6 +133,8 @@ ul {
       background-color: transparent;
       padding: 0;
       margin: 0;
+      border-radius: 15px;
+      border-width: 0px;
       button {
         width: 100%;
         //margin:5px;
@@ -133,7 +145,7 @@ ul {
 
         &:hover {
           background-color: rgb(0, 0, 0);
-          box-shadow: 0px 0px 10px 10px rgb(160, 232, 252);
+          box-shadow: 0px 0px 3px 3px #ffffff;
           transition: 0.4s;
         }
       }

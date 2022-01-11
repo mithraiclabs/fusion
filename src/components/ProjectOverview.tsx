@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     "& .MuiPaper-root": {
       borderRadius: "10px",
+      
       boxShadow: "0px 0px 10px 2px rgba(160,232,252);",
       borderColor: "rgb(160,232,252)",
       backgroundColor: "rgb(30, 30, 30)",
