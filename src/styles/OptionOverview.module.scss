@@ -2,51 +2,31 @@
 
 .project-card {
   //background-color: green;
-  border-radius: 10px;
-  border-color: white;
-  background-color: rgb(30,30,30);
+  border-radius: 15px;
+  border-color: green;
+  background-color: rgb(30, 30, 30);
   border-width: 3px;
   color: white;
-  
 }
 
-
-  h4{
-    margin: 10px;
-  }
-    //font: $fontFamilyBody;
-    
-
+h4 {
+  margin: 10px;
+}
 
 .card {
   border-width: 3px;
   margin-bottom: 20px;
-  //background-color: 'linear-gradient(to right bottom, #430089, #82ffa1)';
-  //align-items: center;
-  //margin: 20px;
-
-  //variant : outlined;
-  //background-color: $cyan;
-  //box-shadow: 120px 0px 40px 20px $cyan;
+  background-color: rgb(52,52,61);
+  box-shadow: 0px 0px 10px 3px  rgb(201,76, 119);
   //display: grid;
   //grid-template-columns: repeat(2, 1fr);
   //grid-template-rows: repeat(2, 1fr);
-  
-  .card-content { // doesnt work
+
+  .card-content {  // doesnt work
     background-color: $cyan;
-    //backgroundColor: "rgb(30, 30, 30)";
-    color: "rgb(160, 232, 252)";
-    outline-color: blue;
   }
 
-  .MuiCardContent{
-    //outline-color: blue;
-    //border-color: aquamarine;
-  }
-
-  
-
-  p{
+  p {
     color: #ffffff;
     padding: 10px;
     margin: 10px;

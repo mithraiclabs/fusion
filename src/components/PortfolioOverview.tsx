@@ -56,16 +56,20 @@ const PortfolioOverview = () => {
 
   return (
     <div className="top">
-      <h3>PORTFOLIO OVERVIEW</h3>
+      
       <div className={styles["Parent"]}>
+      
         <div className={styles["child2"]}>
+          <h3>PORTFOLIO OVERVIEW</h3>
           {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
             <div>
+              
               <CircularProgress />
             </div>
           ) : (
             Object.keys(projectOptions).map((key) => (
               <div>
+                
                 <ProjectOverview
                   key={key}
                   project={projectOptions[key].project}

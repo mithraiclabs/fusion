@@ -3,6 +3,21 @@ import { Card, CardContent, CardHeader } from "@material-ui/core";
 import { MintInfoWithKey, OptionAccounts, Project } from "../types";
 import OptionOverview from "./OptionOverview";
 import styles from "../styles/OptionOverview.module.scss";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    "& .MuiPaper-root": {
+      borderRadius: "10px",
+      boxShadow: "0px 0px 10px 2px rgba(160,232,252);",
+      borderColor: "rgb(160,232,252)",
+      backgroundColor: "rgb(30, 30, 30)",
+      borderWidth: "2px",
+      color: "white"
+    }
+  }
+}));
+
 
 const ProjectOverview: React.FC<{
   project: Project;
@@ -13,12 +28,13 @@ const ProjectOverview: React.FC<{
   optionAccounts,
   mintInfos
 }) => {
+  const classes = useStyles();
   return (
-    <Card className ={styles["project-card"]} variant="outlined">
+    <Card className ={classes.root} variant="outlined">
       <CardHeader className = {styles["header"]}/>
       <h4>OPEN POSITIONS</h4>
       <CardContent  style={{}}>
-        Options Held:
+        
         {optionAccounts.map((x, index) => (
           <OptionOverview
             key={index.toString()}

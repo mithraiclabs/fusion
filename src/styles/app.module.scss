@@ -39,7 +39,7 @@
   z-index: 1;
   @media screen and (min-width: $desktopWidth) {
     align-items: unset;
-    margin: 0 auto;
+    //margin: 0 auto;
     height: 100%;
     // consider making optional
     // // variable issue, second value only works hardcoded

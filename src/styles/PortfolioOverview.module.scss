@@ -1,5 +1,9 @@
 @import "./globals.scss";
 
+div{
+  //padding: 10px;
+  //margin: 10px;
+}
 
 h3{
   background-color: #ffffff;
@@ -22,10 +26,16 @@ h3{
   //background-color: rgb(30,30,30);
   //border-width: 5px;
   //border-color: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
+  
   border-radius: 10px;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
+
+  .MuiPaper-root{
+    border-radius: 15px;
+  }
+  
   @media screen and (max-width: 800px) {
     flex-direction: column;
     .child1{
@@ -34,11 +44,10 @@ h3{
   }
 
   .child1 {
-    margin: 20px;
+    margin: 10px;
   }
 
   .child2 {
-    
-    margin: 20px;
+    margin: 10px;
   }
 }

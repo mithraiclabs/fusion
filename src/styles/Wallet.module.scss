@@ -1,21 +1,82 @@
 @import "./globals.scss";
 
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+
 .wallet-container {
   max-width: 325px;
   justify-content: center;
-  background: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
+  background: linear-gradient(
+    180deg,
+    rgb(160, 232, 252) -0.83%,
+    rgb(145, 233, 164) 100%
+  );
   border-radius: 10px;
-  border-color: #FFFFFF;
+  border-color: #ffffff;
   padding: 10px;
   min-width: 255px;
   text-overflow: ellipsis;
   overflow: hidden;
-  
-  h1{
+
+  h1 {
     text-overflow: ellipsis;
     color: $cyan;
-    text-shadow: 0 
-    0 10px $cyan;
+    text-shadow: 0 0 10px $cyan;
     background-color: rgb(30, 30, 30);
     font-size: small;
     border-radius: 10px;
@@ -27,11 +88,12 @@ ul {
   justify-items: left;
   padding: 5px;
   text-overflow: ellipsis;
-  
+  width: 245px;
 
   li {
+    width: 225px;
     background-color: rgb(30, 30, 30);
-    color: #FFFFFF;
+    color: #ffffff;
     padding: 8px;
     font-size: 12px;
     list-style: none;
@@ -39,13 +101,14 @@ ul {
     overflow: hidden;
     text-overflow: ellipsis;
 
-    &:first-of-type { 
+    &:first-of-type {
       border-radius: 10px;
       font-weight: 700;
       text-overflow: ellipsis;
       width: 225px;
       white-space: nowrap;
-      strong { // Wallet Address Strong
+      strong {
+        // Wallet Address Strong
         min-width: 120px;
         max-width: 150px;
         color: rgb(30, 30, 30);
@@ -53,31 +116,34 @@ ul {
         border-radius: 10px;
         padding-left: 10px;
         padding-right: 10px;
-
       }
       &:hover {
         //margin-right: $textBlockMarginMobile;
         //width: unset;
       }
     }
-    &:not(:first-of-type) { //Provider, Network, Balance container styles
-      background-color: #FFFFFF;
+    &:not(:first-of-type) {
+      //Provider, Network, Balance container styles
+      background-color: #ffffff;
       border-radius: 10px;
       font-weight: 700;
       text-overflow: ellipsis;
-      width: 225px;
+      
       white-space: nowrap;
-      color: rgb(30,30,30);
+      color: rgb(30, 30, 30);
+
+      //text-align: right;
       strong {
         //align-content: space-between;
         text-align: center;
-        width: 200px;
+        width: 100px;
         background: $cyan;
-        color: #FFFFFF;
-        background-color: rgb(30,30,30);
+        color: #ffffff;
+        background-color: rgb(30, 30, 30);
         border-radius: 10px;
         padding-left: 10px;
         padding-right: 10px;
+        //display: inline-block;
       }
     }
     strong {
@@ -85,7 +151,25 @@ ul {
       border-radius: 10px;
     }
     &:last-of-type {
-      background-color:rgb(30,30,30);
+      //align-items: center;
+      background-color: transparent;
+      padding:0;
+      margin: 0;
+      button {
+        width: 245px;
+        margin:5px;
+        border-radius: 10px;
+        //box-sizing: border-box;
+        background-color: rgb(30, 30, 30);
+
+        &:hover {
+
+          background-color: rgb(0, 0, 0);
+          box-shadow: 0px 0px 10px 10px rgb(160,232,252);
+          transition: 0.4s;
+        }
+      }
+
       //justify-content: center;
     }
   }

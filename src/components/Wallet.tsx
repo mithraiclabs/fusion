@@ -10,7 +10,8 @@ import {
   LAMPORTS_PER_SOL
 } from '@solana/web3.js';
 import styles from '../styles/Wallet.module.scss';
-import LogoImg from './psyoptions-logo-light.png';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 //const drawerWidth = 240;
 const Wallet = () => {
@@ -40,21 +41,27 @@ const Wallet = () => {
     setPopupVisible(!popupVisible)
   }
 
-
+  //{wallet?.publicKey?.toString()}
   return (
     <nav className={styles.wallet}><>
       <div className={styles["wallet-container"]}>
-      {wallet?.connected ? (
+        {wallet?.connected ? (
           <>
-          <h1>WALLET INFO</h1>
+            <h1>WALLET INFO</h1>
             <ul className={styles["wallet-info"]}>
-              <li><strong className = "inner-row-one">Wallet Address</strong> <div className = "inner-column-two">{wallet?.publicKey?.toString()}</div></li>
-              <li><strong className = "inner-row-one">Provider</strong> <div className = "inner-column-two">{walletProviderInfo?.name}</div></li>
-              <li><strong className = "inner-row-one">Network  </strong> <div className = "inner-column-two">{network}</div></li>
-              <li><strong className = "inner-row-one">Balance  </strong> <div className = "inner-column-two">{typeof balance === 'number' ? `${(balance / LAMPORTS_PER_SOL).toLocaleString()} SOL` : '--'}</div></li>
+              <li><strong className="inner-row-one">Wallet Address</strong> <div className="inner-column-two">
+                <Popup trigger={<button> Trigger</button>} position="right center">
+                  <div>Popup content here !!</div>
+                </Popup>
+
+
+              </div></li>
+              <li><strong className="inner-row-one">Provider</strong> <div className="inner-column-two">{walletProviderInfo?.name}</div></li>
+              <li><strong className="inner-row-one">Network  </strong> <div className="inner-column-two">{network}</div></li>
+              <li><strong className="inner-row-one">Balance  </strong> <div className="inner-column-two">{typeof balance === 'number' ? `${(balance / LAMPORTS_PER_SOL).toLocaleString()} SOL` : '--'}</div></li>
               <li> <button id='disconnect-button' onClick={() => {
-                      disconnect();
-                    }}>Disconnect Wallet</button>
+                disconnect();
+              }}>Disconnect Wallet</button>
               </li>
             </ul>
           </>
@@ -64,9 +71,9 @@ const Wallet = () => {
           </ul>
         )}
       </div>
-        
-      </>
-      
+
+    </>
+
     </nav>
   );
 };
