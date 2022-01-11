@@ -50,7 +50,8 @@ const OptionOverview: React.FC<{
   return (
     
     <Card className={styles["card"]}>
-      <CardContent className="card-content">
+      
+      <CardContent style={{backgroundColor: "rgb(30, 30, 30)"}}>
         <li>
           <p>
             Contract Size:{" "}

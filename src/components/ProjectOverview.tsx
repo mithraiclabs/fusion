@@ -38,9 +38,8 @@ const ProjectOverview: React.FC<{
   return (
     <Card className ={classes.root} variant="outlined">
       <CardHeader className = {styles["header"]}/>
-      <h4>OPEN POSITIONS</h4>
-      <CardContent  style={{}}>
-        
+     
+      <CardContent  style={{backgroundColor: "rgb(30, 30, 30)", borderWidth: "0px"}}>
         {optionAccounts.map((x, index) => (
           <OptionOverview
             key={index.toString()}
@@ -53,5 +52,6 @@ const ProjectOverview: React.FC<{
     </Card>
   );
 };
+
 
 export default ProjectOverview;

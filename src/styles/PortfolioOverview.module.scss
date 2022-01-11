@@ -1,5 +1,9 @@
 @import "./globals.scss";
 
+.blah{
+  border-color: brown;
+}
+
 
 h3{
   padding-top: 5px;
@@ -16,10 +20,10 @@ h3{
   border-width: 2px;
   border-color: rgb(175,230,238);
 
-
   @media screen and (max-width: 800px){
     text-align: center;
   }
+
 }
 
 /* Create two unequal columns that floats next to each other */
@@ -28,15 +32,13 @@ h3{
   //border-width: 5px;
   //border-color: linear-gradient(180deg, rgb(160, 232, 252) -0.83%, rgb(145, 233, 164) 100%);
   
+  border-color: blueviolet;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
+  border-width: 0px;
 
-  .MuiPaper-root{
-    border-radius: 15px;
-  }
-  
   @media screen and (max-width: 800px) {
     flex-direction: column;
     .child1{
