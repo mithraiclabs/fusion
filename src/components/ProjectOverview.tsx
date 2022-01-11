@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
       borderColor: "rgb(160,232,252)",
       backgroundColor: "rgb(30, 30, 30)",
       borderWidth: "2px",
-      //color: "rgb(22,22,16)",
+
       //display: "flex",
       //flexDirection: "grid",
       width: "500px",
