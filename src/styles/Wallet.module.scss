@@ -1,62 +1,25 @@
 @import "./globals.scss";
 
-
-.popup {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.popup-content {
+  margin: auto;
+  background: rgb(255, 255, 255);
+  width: 50%;
+  padding: 5px;
+}
+.popup-arrow {
+  color: rgb(30, 30, 30);
+}
+[role="tooltip"].popup-content {
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
 }
 
-/* The actual popup */
-.popup .popuptext {
-  visibility: hidden;
-  width: 160px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
 }
-
-/* Popup arrow */
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+[data-popup="tooltip"].popup-overlay {
+  background: transparent;
 }
-
-/* Toggle this class - hide and show the popup */
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
-}
-
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-  from {opacity: 0;} 
-  to {opacity: 1;}
-}
-
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
-}
-
 
 .wallet-container {
   max-width: 325px;
@@ -66,7 +29,7 @@
     rgb(160, 232, 252) -0.83%,
     rgb(145, 233, 164) 100%
   );
-  border-radius: 10px;
+  border-radius: 5px;
   border-color: #ffffff;
   padding: 10px;
   min-width: 255px;
@@ -80,6 +43,7 @@
     background-color: rgb(30, 30, 30);
     font-size: small;
     border-radius: 10px;
+    padding: 0;
   }
 }
 
@@ -87,26 +51,30 @@ ul {
   //@media screen and (min-width: $tabletWidth) {
   justify-items: left;
   padding: 5px;
-  text-overflow: ellipsis;
-  width: 245px;
 
   li {
-    width: 225px;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(30, 30, 30);
     color: #ffffff;
     padding: 8px;
     font-size: 12px;
     list-style: none;
     margin-bottom: 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
 
-    &:first-of-type {
+    :last-child {// eye button
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0;
+    }
+
+    &:first-of-type { // wallet address and eye container
+      display: flex;
       border-radius: 10px;
-      font-weight: 700;
-      text-overflow: ellipsis;
-      width: 225px;
-      white-space: nowrap;
+      //font-weight: 700;
+
+      justify-content: center;
       strong {
         // Wallet Address Strong
         min-width: 120px;
@@ -128,7 +96,7 @@ ul {
       border-radius: 10px;
       font-weight: 700;
       text-overflow: ellipsis;
-      
+
       white-space: nowrap;
       color: rgb(30, 30, 30);
 
@@ -153,19 +121,19 @@ ul {
     &:last-of-type {
       //align-items: center;
       background-color: transparent;
-      padding:0;
+      padding: 0;
       margin: 0;
       button {
-        width: 245px;
-        margin:5px;
+        width: 100%;
+        //margin:5px;
+        padding: 5px;
         border-radius: 10px;
-        //box-sizing: border-box;
+        box-sizing: border-box;
         background-color: rgb(30, 30, 30);
 
         &:hover {
-
           background-color: rgb(0, 0, 0);
-          box-shadow: 0px 0px 10px 10px rgb(160,232,252);
+          box-shadow: 0px 0px 10px 10px rgb(160, 232, 252);
           transition: 0.4s;
         }
       }

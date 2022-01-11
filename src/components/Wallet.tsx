@@ -12,6 +12,7 @@ import {
 import styles from '../styles/Wallet.module.scss';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import EyeImg from './eye-button.png';
 
 //const drawerWidth = 240;
 const Wallet = () => {
@@ -50,8 +51,8 @@ const Wallet = () => {
             <h1>WALLET INFO</h1>
             <ul className={styles["wallet-info"]}>
               <li><strong className="inner-row-one">Wallet Address</strong> <div className="inner-column-two">
-                <Popup trigger={<button> Trigger</button>} position="right center">
-                  <div>Popup content here !!</div>
+                <Popup trigger={<button>  <img className = "EyeIcon" alt = 'View Address' src={EyeImg} /></button>} position="right center">
+                  <div className="popup">{wallet?.publicKey?.toString()}</div>
                 </Popup>
 
 

@@ -13,7 +13,12 @@ const useStyles = makeStyles(theme => ({
       borderColor: "rgb(160,232,252)",
       backgroundColor: "rgb(30, 30, 30)",
       borderWidth: "2px",
-      color: "white"
+      color: "white",
+      flexDirection: "row",
+      width: "500px",
+      maxWidth: "800px",
+      minWidth: "300px"
+     //https://stackoverflow.com/questions/55059681/material-ui-responsive-based-on-element-size
     }
   }
 }));
