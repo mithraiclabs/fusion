@@ -5,6 +5,7 @@ import {
 import PortfolioOverview from '../components/PortfolioOverview';
 import IndexIntroGuest from '../components/IndexIntroGuest';
 import styles from '../styles/Home.module.scss';
+import Contributor from './Contributor';
 
 const Home = () => {
   const wallet = useConnectedWallet();

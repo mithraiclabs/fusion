@@ -11,6 +11,7 @@ import { CircularProgress } from "@material-ui/core";
 import { MintInfoWithKey, ProjectOptions } from "../types";
 import ProjectOverview from "./ProjectOverview";
 import Wallet from "./Wallet";
+import { DateSelector } from"./DatePicker.module";
 
 const PortfolioOverview = () => {
   const wallet = useConnectedWallet();
@@ -61,6 +62,8 @@ const PortfolioOverview = () => {
       
         <div className={styles["child2"]}>
           <h3>PORTFOLIO OVERVIEW</h3>
+          
+          
           {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
             <div>
               
@@ -68,7 +71,7 @@ const PortfolioOverview = () => {
             </div>
           ) : (
             Object.keys(projectOptions).map((key) => (
-              <div className = "blah">
+              <div>
                 
                 <ProjectOverview
                   key={key}
@@ -82,6 +85,7 @@ const PortfolioOverview = () => {
         </div>
         <div className={styles["child1"]}>
           <Wallet />
+          <DateSelector/>
         </div>
       </div>
     </div>
