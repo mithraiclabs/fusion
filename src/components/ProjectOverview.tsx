@@ -14,12 +14,20 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: "rgb(30, 30, 30)",
       borderWidth: "2px",
 
-      //display: "flex",
-      //flexDirection: "grid",
       width: "500px",
       maxWidth: "800px",
       minWidth: "300px"
-     //https://stackoverflow.com/questions/55059681/material-ui-responsive-based-on-element-size
+      //https://stackoverflow.com/questions/55059681/material-ui-responsive-based-on-element-size
+    },
+    "& .MuiCard-root": {
+      backgroundColor: "rgb(30, 30, 30)",
+      borderColor: "rgb(160,100,100)",
+      borderWidth: "200px",
+    },
+    "& .MuiCard-outlined": {
+      backgroundColor: "rgb(30, 30, 30)",
+      borderColor: "rgb(160,100,100)",
+      borderWidth: "200px",
     }
   }
 }));
@@ -34,24 +42,23 @@ const ProjectOverview: React.FC<{
   optionAccounts,
   mintInfos
 }) => {
-  const classes = useStyles();
-  return (
-    <Card className ={classes.root} variant="outlined">
-      <CardHeader className = {styles["header"]}/>
-     
-      <CardContent  style={{backgroundColor: "rgb(30, 30, 30)", borderWidth: "0px"}}>
-        {optionAccounts.map((x, index) => (
-          <OptionOverview
-            key={index.toString()}
-            project={project}
-            optionAccounts={x}
-            mintInfos={mintInfos}
-          />
-        ))}
-      </CardContent>
-    </Card>
-  );
-};
+    const classes = useStyles();
+    return (
+      <Card className={styles.card}>
+        <CardHeader className={styles.header} />
+        <CardContent className={styles.cardContent}>
+          {optionAccounts.map((x, index) => (
+            <OptionOverview
+              key={index.toString()}
+              project={project}
+              optionAccounts={x}
+              mintInfos={mintInfos}
+            />
+          ))}
+        </CardContent>
+      </Card>
+    );
+  };
 
 
 export default ProjectOverview;

@@ -20,8 +20,7 @@ import { makeStyles } from "@material-ui/core";
         )}
 */
 
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiPaper-root": {
       borderRadius: "10px",
@@ -34,12 +33,11 @@ const useStyles = makeStyles(theme => ({
       //flexDirection: "grid",
       width: "500px",
       maxWidth: "800px",
-      minWidth: "300px"
-     //https://stackoverflow.com/questions/55059681/material-ui-responsive-based-on-element-size
-    }
-  }
+      minWidth: "300px",
+      //https://stackoverflow.com/questions/55059681/material-ui-responsive-based-on-element-size
+    },
+  },
 }));
-
 
 const OptionOverview: React.FC<{
   project: Project;
@@ -48,10 +46,8 @@ const OptionOverview: React.FC<{
 }> = ({ optionAccounts, project, mintInfos }) => {
   const classes = useStyles();
   return (
-    
-    <Card className={styles["card"]}>
-      
-      <CardContent style={{backgroundColor: "rgb(30, 30, 30)"}}>
+    <Card className={styles.outerCardContent}>
+      <CardContent className={styles.cardContent}>
         <li>
           <p>
             Contract Size:{" "}
