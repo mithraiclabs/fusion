@@ -44,8 +44,8 @@ const ProjectOverview: React.FC<{
 }) => {
     const classes = useStyles();
     return (
-      <Card className={styles.card}>
-        <CardHeader className={styles.header} />
+      <Card className={styles.card} style={{backgroundColor: "rgb(16, 16, 22)", boxShadow: " 0px 0px 10px 3px rgb(201,76, 119)"}}>
+        <CardHeader className={styles.header}/>
         <CardContent className={styles.cardContent}>
           {optionAccounts.map((x, index) => (
             <OptionOverview
@@ -53,7 +53,7 @@ const ProjectOverview: React.FC<{
               project={project}
               optionAccounts={x}
               mintInfos={mintInfos}
-            />
+             />
           ))}
         </CardContent>
       </Card>

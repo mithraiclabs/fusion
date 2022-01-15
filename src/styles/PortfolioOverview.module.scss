@@ -13,12 +13,13 @@ h3{
   border-radius: 5px;
   margin-right: 20px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   width: 100%;
   letter-spacing: 8px;
   border-style: solid;
   border-width: 2px;
-  border-color: rgb(175,230,238);
+  border-color: rgb(199,76,120);
+  box-shadow: 0px 0px 10px 3px  rgb(201,76, 119);
 
   @media screen and (max-width: 800px){
     text-align: center;
@@ -38,6 +39,7 @@ h3{
   flex-direction: row;
   box-sizing: border-box;
   border-width: 0px;
+  
 
   @media screen and (max-width: 800px) {
     flex-direction: column;
@@ -48,11 +50,13 @@ h3{
 
   .child1 { // wallet panel
     margin: 10px; 
+    padding-left: 10px;
     //display: none;
     //width: 0%;
   }
 
   .child2 { 
     margin: 10px;
+    padding-right: 10px;
   }
 }

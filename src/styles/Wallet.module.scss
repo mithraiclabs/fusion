@@ -24,21 +24,23 @@
 
 
 .wallet-container {
-  
+  background:linear-gradient(180deg,rgb(221, 62, 118) -0.83%, rgb(29, 77, 201) 100% );
   max-width: 325px;
   justify-content: center;
-  background: linear-gradient(
+/*   background: linear-gradient(
     180deg,
     rgb(160, 232, 252) -0.83%,
     rgb(145, 233, 164) 100%
-  );
+  ); */
+  border-width: 2px;
   border-radius: 5px;
-  border-color: #ffffff;
+  border-color: rgb(201,76, 119);
+  border-style: solid;
   padding: 10px;
   min-width: 255px;
   text-overflow: ellipsis;
   overflow: hidden;
-
+  box-shadow: 0px 0px 10px 3px  rgb(201,76, 119);
   h1 {
     text-overflow: ellipsis;
     color: $cyan;
@@ -139,10 +141,11 @@ ul {
         border-radius: 10px;
         box-sizing: border-box;
         background-color: rgb(30, 30, 30);
+        //padding: 10px;
 
         &:hover {
           background-color: rgb(0, 0, 0);
-          box-shadow: 0px 0px 3px 3px #ffffff;
+          box-shadow: 0px 0px 3px 3px rgb(201,76, 119);
           transition: 0.4s;
         }
       }
