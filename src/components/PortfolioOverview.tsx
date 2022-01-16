@@ -11,7 +11,8 @@ import { CircularProgress } from "@material-ui/core";
 import { MintInfoWithKey, ProjectOptions } from "../types";
 import ProjectOverview from "./ProjectOverview";
 import Wallet from "./Wallet";
-import { DateSelector } from"./DatePicker.module";
+import { DateSelector } from "./DatePicker.module";
+import ProjectDetail from "./ProjectDetail";
 
 const PortfolioOverview = () => {
   const wallet = useConnectedWallet();
@@ -24,6 +25,11 @@ const PortfolioOverview = () => {
   const [mintInfos, setMintInfos] = useState<Record<string, MintInfoWithKey>>(
     {}
   );
+
+  class currentProj{
+    static projectSelected: boolean = false;
+  }
+  
   useEffect(() => {
     setLoadingProjects(true);
     if (wallet && wallet.connected) {
@@ -55,24 +61,21 @@ const PortfolioOverview = () => {
     })();
   }, [provider.connection, projectOptions]);
 
+  currentProj.projectSelected ? <PortfolioOverview /> : <ProjectDetail />;
+
   return (
     <div className="top">
-      
       <div className={styles["Parent"]}>
-      
         <div className={styles["child2"]}>
           <h3>PORTFOLIO OVERVIEW</h3>
-          
-          
+
           {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
             <div>
-              
               <CircularProgress />
             </div>
           ) : (
             Object.keys(projectOptions).map((key) => (
-              <div>
-                
+              <div >
                 <ProjectOverview
                   key={key}
                   project={projectOptions[key].project}
@@ -83,15 +86,12 @@ const PortfolioOverview = () => {
             ))
           )}
         </div>
-        <div className={styles["child1"]}>
+        <div className={styles["walletContainer"]}>
           <Wallet />
-          <DateSelector/>
+          <DateSelector />
         </div>
       </div>
     </div>
-
-
-
   );
 };
 

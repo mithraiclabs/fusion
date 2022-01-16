@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
       borderColor: "rgb(160,232,252)",
       backgroundColor: "rgb(30, 30, 30)",
       borderWidth: "2px",
-
       width: "500px",
       maxWidth: "800px",
       minWidth: "300px"
@@ -42,10 +41,11 @@ const ProjectOverview: React.FC<{
   optionAccounts,
   mintInfos
 }) => {
-    const classes = useStyles();
+    //const classes = useStyles();
     return (
       <Card className={styles.card} style={{backgroundColor: "rgb(16, 16, 22)", boxShadow: " 0px 0px 10px 3px rgb(201,76, 119)"}}>
-        <CardHeader className={styles.header}/>
+        <CardHeader className={styles.header} />
+     
         <CardContent className={styles.cardContent}>
           {optionAccounts.map((x, index) => (
             <OptionOverview

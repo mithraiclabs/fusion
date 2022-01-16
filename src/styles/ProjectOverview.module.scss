@@ -16,7 +16,6 @@ li{
   
 }
 
-
 .card {
   border-width: 3px;
   margin-bottom: 20px;
@@ -24,7 +23,7 @@ li{
   box-shadow: 0px 0px 10px 3px  rgb(201,76, 119);
   :hover{
     transition: .3s;
-    box-shadow: none;
+    box-shadow: 0px 0px 10px 3px white;
   }
   //display: flex;
   //flex-direction: row;
@@ -35,9 +34,9 @@ li{
     margin-bottom: 20px;
     background-color: rgb(34,34,41);
     :hover{
-      transition: .3s;
-      box-shadow: 0px 0px 10px 3px white;
+      box-shadow: none;
     }
+
   }
 
   p {

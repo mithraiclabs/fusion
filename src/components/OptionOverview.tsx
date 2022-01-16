@@ -44,9 +44,13 @@ const OptionOverview: React.FC<{
   optionAccounts: OptionAccounts;
   mintInfos: Record<string, MintInfoWithKey>;
 }> = ({ optionAccounts, project, mintInfos }) => {
-  const classes = useStyles();
+  //const classes = useStyles();
   return (
-    <Card className={styles.outerCardContent}>
+    <Card className={styles.outerCardContent}  onClick={() => {
+      
+      window.open("https://trade.psyoptions.io/#/");
+    }}>
+      
       <CardContent className={styles.cardContent}>
         <li>
           <p>
@@ -60,33 +64,6 @@ const OptionOverview: React.FC<{
           </p>
 
           <p>Project Symbol: {displayProjectSymbol(project)}</p>
-
-          <p>
-            Strike Price:{" "}
-            {displayStrikePrice(
-              optionAccounts.optionMarket,
-              mintInfos[
-                optionAccounts.optionMarket.underlyingAssetMint.toString()
-              ],
-              mintInfos[optionAccounts.optionMarket.quoteAssetMint.toString()]
-            )}
-          </p>
-
-          <p>
-            Underlying Mint:{" "}
-            {displayQuoteToken(
-              mintInfos[
-                optionAccounts.optionMarket.underlyingAssetMint.toString()
-              ]
-            )}
-          </p>
-
-          <p>
-            Quote Mint:{" "}
-            {displayQuoteToken(
-              mintInfos[optionAccounts.optionMarket.quoteAssetMint.toString()]
-            )}
-          </p>
 
           <p>Expiration: {displayExpiration(optionAccounts.optionMarket)}</p>
         </li>
