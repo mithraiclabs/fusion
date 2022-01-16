@@ -51,10 +51,11 @@ const OptionOverview: React.FC<{
       window.open("https://trade.psyoptions.io/#/");
     }}>
       
-      <CardContent className={styles.cardContent}>
+      <CardContent className={styles.cardContent} style={{display: "flex",
+    flexDirection: "row"}}>
         <li>
           <p>
-            Contract Size:{" "}
+          <strong>Contract Size: </strong>{" "}
             {displayUnderlyingAmt(
               optionAccounts.optionMarket,
               mintInfos[
@@ -63,9 +64,9 @@ const OptionOverview: React.FC<{
             )}
           </p>
 
-          <p>Project Symbol: {displayProjectSymbol(project)}</p>
+          <p><strong>Project Symbol: </strong>  {displayProjectSymbol(project)}</p>
 
-          <p>Expiration: {displayExpiration(optionAccounts.optionMarket)}</p>
+          <p><strong>Expiration: </strong> {displayExpiration(optionAccounts.optionMarket)}</p>
         </li>
       </CardContent>
     </Card>

@@ -1,49 +1,70 @@
 @import "./globals.scss";
 
-li{
+li {
   list-style: none;
+  display: flex;
+  flex-direction: row;
+  //width: 100%;
 }
 
-.header{ // Card Content Header
+.header {
+  // Card Content Header
   background-color: transparent;
   border-width: 0px;
-  //padding: 0px;
+  padding: 0px;
   box-shadow: none;
-  
-  :hover{
+
+  :hover {
     box-shadow: none;
   }
-  
 }
-
 
 .card {
   border-width: 3px;
   margin-bottom: 20px;
-  background-color: rgb(16,16,22);
-  box-shadow: 0px 0px 10px 3px  rgb(201,76, 119);
-  :hover{
-    transition: .3s;
-    box-shadow: none;
-  }
-  //display: flex;
-  //flex-direction: row;
-  //grid-template-columns: repeat(2, 1fr);
-  //grid-template-rows: repeat(2, 1fr);
+  background-color: rgb(16, 16, 22);
+  box-shadow: 0px 0px 10px 3px rgb(201, 76, 119);
 
-  .outerCardContent {  // doesnt work
+  .outerCardContent {
     margin-bottom: 20px;
-    background-color: rgb(34,34,41);
-    :hover{
-      transition: .3s;
-      box-shadow: 0px 0px 10px 3px white;
+    background-color: rgb(34, 34, 41);
+    display: flex;
+    justify-content: center;
+    
+    :hover {
+      transition: 0.3s;
+      box-shadow: 0px 0px 10px 3px rgb(201, 76, 119);
+      p {
+        box-shadow: none;
+      }
+      strong {
+        box-shadow: none;
+      }
     }
   }
 
+  h4 {
+    padding: 0px;
+    color: gainsboro;
+    justify-content: left;
+  }
+
   p {
+    display: flex;
+    flex-direction: column;
+
+    strong {
+      color: rgb(201, 76, 119);
+    }
     color: #ffffff;
     padding: 10px;
     margin: 10px;
-    background-color: rgb(52,52,61);
+    background-color: rgb(52, 52, 61);
+    :hover {
+      box-shadow: 0px 0px 0px 0px transparent;
+    }
+  }
+  :hover {
+    box-shadow: 0px 0px 0px 0px transparent;
   }
 }

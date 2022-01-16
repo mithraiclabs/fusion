@@ -51,7 +51,7 @@ const Wallet = () => {
             <h1>WALLET INFO</h1>
             <ul className={styles["wallet-info"]}>
               <li><strong className="inner-row-one">Wallet Address</strong> <div className="inner-column-two">
-                <Popup trigger={<button>  <img className="EyeIcon" alt='View Address' src={EyeImg} /></button>} position="bottom right">
+                <Popup className = {styles.Popup} trigger={<button>  <img className="EyeIcon" alt='View Address' src={EyeImg} /></button>} position="bottom right">
                   <div className={styles["popup"]}>{wallet?.publicKey?.toString()}</div>
                 </Popup>
               </div></li>

@@ -26,10 +26,10 @@ const PortfolioOverview = () => {
     {}
   );
 
-  class currentProj{
+  class currentProj {
     static projectSelected: boolean = false;
   }
-  
+
   useEffect(() => {
     setLoadingProjects(true);
     if (wallet && wallet.connected) {
@@ -75,7 +75,7 @@ const PortfolioOverview = () => {
             </div>
           ) : (
             Object.keys(projectOptions).map((key) => (
-              <div >
+              <div>
                 <ProjectOverview
                   key={key}
                   project={projectOptions[key].project}

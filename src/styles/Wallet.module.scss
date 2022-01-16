@@ -10,7 +10,7 @@
   color: rgb(30, 30, 30);
 }
 [role="tooltip"].popup-content {
-  width: 200px;
+  width: 30px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
 }
 
@@ -21,6 +21,10 @@
   background: transparent;
 }
 
+.Popup{
+  width: auto;
+  background-color: transparent;
+}
 
 
 .wallet-container {
