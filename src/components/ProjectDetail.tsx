@@ -18,10 +18,33 @@ import Wallet from "./Wallet";
 //import Paper from '@mui/material/Paper';
 // or
 import { Paper } from '@mui/material';
+import {
+  displayExpiration,
+  displayHeader,
+  displayProjectSymbol,
+  displayQuoteToken,
+  displayStrikePrice,
+  displayUnderlyingAmt,
+} from "../lib/optionMarketUtils";
 
+
+  const ProjectDetail: React.FC<{
+    acctNumber: number;
+    project: Project;
+    optionAccounts: OptionAccounts[];
+    mintInfos: Record<string, MintInfoWithKey>;
+  }> = ({
+    acctNumber,
+    project,
+    optionAccounts,
+    mintInfos
+  }) => {
+  //{wallet?.publicKey?.toString()}
+  
+  
 function createData(
   underlyingAmt: string,
-  projectSymbol: string,
+  projectSymbol: any,
   strikePrice: string,
   quoteToken: string,
   expiration: string
@@ -29,20 +52,21 @@ function createData(
   return { underlyingAmt, projectSymbol, strikePrice, quoteToken, expiration };
 }
 
-const rows = [
-  createData('Frozen yoghurt', '159', '6.0', '24', '4.0')
-];
 
-  const ProjectDetail: React.FC<{
-    project: Project;
-    optionAccounts: OptionAccounts[];
-    mintInfos: Record<string, MintInfoWithKey>;
-  }> = ({
-    project,
-    optionAccounts,
-    mintInfos
-  }) => {
-  //{wallet?.publicKey?.toString()}
+
+const rows = [
+  createData(
+    displayUnderlyingAmt(optionAccounts[acctNumber].optionMarket, mintInfos[optionAccounts[acctNumber].optionMarket.underlyingAssetMint.toString()]), 
+    displayProjectSymbol(project), 
+    '6.0', 
+    '24', 
+    displayExpiration(optionAccounts[acctNumber].optionMarket)
+    )
+];
+  
+  
+  
+  
   return (
     <nav className="top">
       <div className="graph"></div>

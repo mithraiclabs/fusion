@@ -84,8 +84,8 @@ const PortfolioOverview = () => {
                   key={key}
                   project={projectOptions[key].project}
                   optionAccounts={projectOptions[key].options}
-                  mintInfos={mintInfos}
-                />
+                  mintInfos={mintInfos} 
+                  acctNumber={0}                />
               </div>
             ))
           )}
