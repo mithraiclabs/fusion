@@ -11,6 +11,7 @@ import {
 import { MintInfoWithKey, OptionAccounts, Project } from "../types";
 import styles from "../styles/OptionOverview.module.scss";
 import { makeStyles } from "@material-ui/core";
+import graph from "./graph.png";
 /*
         {displayHeader(
           project,
@@ -46,30 +47,43 @@ const OptionOverview: React.FC<{
 }> = ({ optionAccounts, project, mintInfos }) => {
   //const classes = useStyles();
   return (
-    <Card className={styles.outerCardContent}  onClick={() => {
-      
-      window.open("https://trade.psyoptions.io/#/");
-    }}>
-      
-      <CardContent className={styles.cardContent} style={{display: "flex",
-    flexDirection: "row"}}>
-        <li>
-          <p>
-          <strong>Contract Size: </strong>{" "}
-            {displayUnderlyingAmt(
-              optionAccounts.optionMarket,
-              mintInfos[
-                optionAccounts.optionMarket.underlyingAssetMint.toString()
-              ]
-            )}
-          </p>
+    <div className="Parent">
+      <Card
+        className={styles.outerCardContent}
+        onClick={() => {
+          window.open("https://trade.psyoptions.io/#/");
+        }}
+      >
+        <CardContent
+          className={styles.cardContent}
+          style={{ display: "flex", flexDirection: "row" }}
+        >
+          <li>
+            <p>
+              <strong>Contract Size: </strong>{" "}
+              {displayUnderlyingAmt(
+                optionAccounts.optionMarket,
+                mintInfos[
+                  optionAccounts.optionMarket.underlyingAssetMint.toString()
+                ]
+              )}
+            </p>
 
-          <p><strong>Project Symbol: </strong>  {displayProjectSymbol(project)}</p>
+            <p>
+              <strong>Project Symbol: </strong> {displayProjectSymbol(project)}
+            </p>
 
-          <p><strong>Expiration: </strong> {displayExpiration(optionAccounts.optionMarket)}</p>
-        </li>
-      </CardContent>
-    </Card>
+            <p>
+              <strong>Expiration: </strong>{" "}
+              {displayExpiration(optionAccounts.optionMarket)}
+            </p>
+          </li>
+         
+            <img src={graph} alt="graph" width="250" height="250"></img>
+      
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

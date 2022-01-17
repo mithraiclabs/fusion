@@ -2,8 +2,8 @@
 
 li {
   list-style: none;
-  display: flex;
-  flex-direction: row;
+  //display: flex;
+  //flex-direction: column;
   //width: 100%;
 }
 
@@ -28,7 +28,7 @@ li {
   .outerCardContent {
     margin-bottom: 20px;
     background-color: rgb(34, 34, 41);
-    display: flex;
+    //display: flex;
     justify-content: center;
     
     :hover {
