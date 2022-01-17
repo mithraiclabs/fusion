@@ -49,7 +49,7 @@ const Header = () => {
             <button className="logo-button" onClick={() => {
                 window.open("https://trade.psyoptions.io/#/");
               }}> 
-              <img className = "PsyOpLogo" alt = 'PsyOptions Home' src={LogoImg} />
+              <img className = "PsyOpLogo" alt = 'PsyOptions Home' src={LogoImg} width="30" height="30"/>
               </button>
             <button className="markets-button" onClick={() => {
                 //do something

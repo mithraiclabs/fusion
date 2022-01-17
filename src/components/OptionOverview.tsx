@@ -47,13 +47,8 @@ const OptionOverview: React.FC<{
 }> = ({ optionAccounts, project, mintInfos }) => {
   //const classes = useStyles();
   return (
-    <div className="Parent">
-      <Card
-        className={styles.outerCardContent}
-        onClick={() => {
-          window.open("https://trade.psyoptions.io/#/");
-        }}
-      >
+    
+      <Card className={styles.outerCardContent} onClick={() => {window.open("https://trade.psyoptions.io/#/");}}>
         <CardContent
           className={styles.cardContent}
           style={{ display: "flex", flexDirection: "row" }}
@@ -78,12 +73,18 @@ const OptionOverview: React.FC<{
               {displayExpiration(optionAccounts.optionMarket)}
             </p>
           </li>
-         
-            <img src={graph} alt="graph" width="250" height="250"></img>
-      
+
+          <img
+            className="graph"
+            src={graph}
+            alt="graph"
+            width="250"
+            height="250"
+            style={{margin: "15px"}}
+          ></img>
         </CardContent>
       </Card>
-    </div>
+    
   );
 };
 

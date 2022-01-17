@@ -46,7 +46,7 @@ const ProjectOverview: React.FC<{
       
       <Card className={styles.card} style={{backgroundColor: "rgb(16, 16, 22)", boxShadow: " 0px 0px 10px 3px rgb(201,76, 119)"}}>
         <CardHeader className={styles.header} />
-        <h4>BOUGHT OPTIONS</h4>
+        
         <CardContent className={styles.cardContent}>
           {optionAccounts.map((x, index) => (
             <OptionOverview

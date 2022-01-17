@@ -58,8 +58,8 @@ const rows = [
   createData(
     displayUnderlyingAmt(optionAccounts[acctNumber].optionMarket, mintInfos[optionAccounts[acctNumber].optionMarket.underlyingAssetMint.toString()]), 
     displayProjectSymbol(project), 
-    '6.0', 
-    '24', 
+    displayStrikePrice(optionAccounts[acctNumber].optionMarket, mintInfos[optionAccounts[acctNumber].optionMarket.underlyingAssetMint.toString()], mintInfos[optionAccounts[acctNumber].optionMarket.quoteAssetMint.toString()]),
+    displayQuoteToken(mintInfos[optionAccounts[acctNumber].optionMarket.quoteAssetMint.toString()]), 
     displayExpiration(optionAccounts[acctNumber].optionMarket)
     )
 ];

@@ -2,6 +2,7 @@
 
 li {
   list-style: none;
+  justify-content: center;
   //display: flex;
   //flex-direction: column;
   //width: 100%;
@@ -19,19 +20,27 @@ li {
   }
 }
 
+
+
+
 .card {
   border-width: 3px;
   margin-bottom: 20px;
   background-color: rgb(16, 16, 22);
+  border-color: rgb(201, 76, 119);
+  border-style: solid;
+  border-radius: 2px;
   box-shadow: 0px 0px 10px 3px rgb(201, 76, 119);
+  
 
   .outerCardContent {
+
     margin-bottom: 20px;
     background-color: rgb(34, 34, 41);
     //display: flex;
     justify-content: center;
     
-    :hover {
+    &:hover {
       transition: 0.3s;
       box-shadow: 0px 0px 10px 3px rgb(201, 76, 119);
       p {
