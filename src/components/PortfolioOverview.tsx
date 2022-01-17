@@ -61,14 +61,11 @@ const PortfolioOverview = () => {
     })();
   }, [provider.connection, projectOptions]);
 
-  currentProj.projectSelected ? <PortfolioOverview /> : <ProjectDetail />;
-
   return (
     <div className="top">
       <div className={styles["Parent"]}>
         <div className={styles["child2"]}>
           <h3>PORTFOLIO OVERVIEW</h3>
-
           {loadingProjects || Object.keys(mintInfos).length <= 0 ? (
             <div>
               <CircularProgress />
@@ -77,6 +74,13 @@ const PortfolioOverview = () => {
             Object.keys(projectOptions).map((key) => (
               <div>
                 <ProjectOverview
+                  key={key}
+                  project={projectOptions[key].project}
+                  optionAccounts={projectOptions[key].options}
+                  mintInfos={mintInfos}
+                />
+
+                <ProjectDetail
                   key={key}
                   project={projectOptions[key].project}
                   optionAccounts={projectOptions[key].options}
