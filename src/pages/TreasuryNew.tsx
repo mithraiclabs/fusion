@@ -7,12 +7,22 @@ import styles from '../styles/Treasury.module.scss';
 import styles_app from '../styles/app.module.scss';
 import { Link } from 'react-router-dom';
 
+//{styles_app['nav-breadcrumbs']}
+
+/**
+ *       <nav className={styles_app['nav-breadcrumbs']}>
+
+       </nav>
+ * 
+ * 
+ * 
+ */
 const TreasuryNew = () => {
   const wallet = useConnectedWallet();
   return (
     <section className={styles.treasury}>
-      <nav className={styles_app['nav-breadcrumbs']}>
-        <Link to="/">
+      <div>
+      <Link to="/">
           <span>Home</span>
         </Link>
         <Link to="/treasury">
@@ -21,7 +31,9 @@ const TreasuryNew = () => {
         <Link to="/treasury/new">
           <span>New Grant</span>
         </Link>
-       </nav>
+
+      </div>
+
       {
         wallet?.connected ?
           <>

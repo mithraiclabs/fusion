@@ -1,9 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import * as React from "react";
-import { ConnectWalletButton } from "@gokiprotocol/walletkit";
-import { useConnectedWallet, useSolana } from "@saberhq/use-solana";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
-import styles from "../styles/Wallet.module.scss";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import EyeImg from "./eye-button.png";

@@ -1,6 +1,9 @@
 
+import { Switch } from '@material-ui/core';
 import styles_forms from '../styles/Forms.module.scss';
 import styles_treasury from '../styles/Treasury.module.scss';
+import { DateSelector } from './DatePicker.module';
+import SliderCheckBox from './SliderCheckbox';
 const TreasuryFormNew = () => (
   <form className={styles_forms.form}>
     <h1>New Token Grant</h1>
@@ -8,7 +11,8 @@ const TreasuryFormNew = () => (
     <fieldset>
       <div className='input-group'>
         <label htmlFor='mintToken'>Mint Token</label>
-        <input id='mintToken' type='text' />
+        <Switch/>
+        
       </div>
       <div className='input-group'>
         <label htmlFor='amount'>Amount</label>
@@ -18,7 +22,7 @@ const TreasuryFormNew = () => (
     <fieldset>
       <div className='input-group'>
         <label htmlFor='amount'>Issue Options?</label>
-        <input id='amount' type='text' value='true' />
+        <Switch/>
       </div>
       <div className='input-group'>
         <label htmlFor='duration'>Duration</label>
@@ -30,7 +34,7 @@ const TreasuryFormNew = () => (
       </div>
       <div className='input-group'>
         <label htmlFor='vestPeriod'>Vest Period</label>
-        <input id='vestPeriod' type='text' />
+        <DateSelector/>
       </div>
       <div className='input-group'>
         <label htmlFor='amountPerPeriod'>Amount per Period</label>
