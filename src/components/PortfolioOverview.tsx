@@ -80,19 +80,13 @@ const PortfolioOverview = () => {
                   mintInfos={mintInfos}
                 />
 
-                <ProjectDetail
-                  key={key}
-                  project={projectOptions[key].project}
-                  optionAccounts={projectOptions[key].options}
-                  mintInfos={mintInfos} 
-                  acctNumber={0}                />
+
               </div>
             ))
           )}
         </div>
         <div className={styles["walletContainer"]}>
           <Wallet />
-          <DateSelector />
         </div>
       </div>
     </div>

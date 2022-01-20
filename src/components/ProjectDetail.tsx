@@ -24,11 +24,11 @@ import {
 } from "../lib/optionMarketUtils";
 
 const ProjectDetail: React.FC<{
-  acctNumber: number;
-  project: Project;
-  optionAccounts: OptionAccounts[];
-  mintInfos: Record<string, MintInfoWithKey>;
-}> = ({ acctNumber, project, optionAccounts, mintInfos }) => {
+  //acctNumber: number;
+  projectDetail: Project;
+  optionAccountsDetail: OptionAccounts;
+  mintInfosDetail: Record<string, MintInfoWithKey>;
+}> = ({ projectDetail, optionAccountsDetail, mintInfosDetail }) => {
   //{wallet?.publicKey?.toString()}
 
   function createData(
@@ -50,27 +50,27 @@ const ProjectDetail: React.FC<{
   const rows = [
     createData(
       displayUnderlyingAmt(
-        optionAccounts[acctNumber].optionMarket,
-        mintInfos[
-          optionAccounts[acctNumber].optionMarket.underlyingAssetMint.toString()
+        optionAccountsDetail.optionMarket,
+        mintInfosDetail[
+          optionAccountsDetail.optionMarket.underlyingAssetMint.toString()
         ]
       ),
-      displayProjectSymbol(project),
+      displayProjectSymbol(projectDetail),
       displayStrikePrice(
-        optionAccounts[acctNumber].optionMarket,
-        mintInfos[
-          optionAccounts[acctNumber].optionMarket.underlyingAssetMint.toString()
+        optionAccountsDetail.optionMarket,
+        mintInfosDetail[
+          optionAccountsDetail.optionMarket.underlyingAssetMint.toString()
         ],
-        mintInfos[
-          optionAccounts[acctNumber].optionMarket.quoteAssetMint.toString()
+        mintInfosDetail[
+          optionAccountsDetail.optionMarket.quoteAssetMint.toString()
         ]
       ),
       displayQuoteToken(
-        mintInfos[
-          optionAccounts[acctNumber].optionMarket.quoteAssetMint.toString()
+        mintInfosDetail[
+          optionAccountsDetail.optionMarket.quoteAssetMint.toString()
         ]
       ),
-      displayExpiration(optionAccounts[acctNumber].optionMarket)
+      displayExpiration(optionAccountsDetail.optionMarket)
     ),
   ];
 

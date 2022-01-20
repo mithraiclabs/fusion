@@ -12,6 +12,8 @@ import { MintInfoWithKey, OptionAccounts, Project } from "../types";
 import styles from "../styles/OptionOverview.module.scss";
 import { makeStyles } from "@material-ui/core";
 import graph from "./graph.png";
+import { useHistory } from "react-router-dom";
+import ProjectDetail from "./ProjectDetail";
 /*
         {displayHeader(
           project,
@@ -40,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//window.open(`/Contributor`);
+
 const OptionOverview: React.FC<{
   project: Project;
   optionAccounts: OptionAccounts;
@@ -50,9 +54,15 @@ const OptionOverview: React.FC<{
     <Card
       className={styles.outerCardContent}
       onClick={() => {
-        window.open("https://trade.psyoptions.io/#/");
+        window.open(`/Contributor`);
       }}
     >
+      <ProjectDetail
+        projectDetail={project}
+        optionAccountsDetail={optionAccounts}
+        mintInfosDetail={mintInfos}
+      />
+
       <CardContent
         className={styles.cardContent}
         style={{ display: "flex", flexDirection: "row" }}
