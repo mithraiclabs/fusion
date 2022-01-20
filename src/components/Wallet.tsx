@@ -12,7 +12,7 @@ import {
 import styles from '../styles/Wallet.module.scss';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import EyeImg from './eye-button.png';
+import EyeImg from './Images/eye-button.png';
 
 const Wallet = () => {
   const {

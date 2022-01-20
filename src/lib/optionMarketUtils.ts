@@ -15,11 +15,10 @@ import { bnToFloat, formatStrike } from "./utils";
  * @returns
  */
 
-
- // Underlying Amount
+// Underlying Amount
 export const displayUnderlyingAmt = (
   optionMarket: OptionMarket,
-  underlyingMint: MintInfoWithKey,
+  underlyingMint: MintInfoWithKey
 ): string => {
   const underlyingToken = Tokens.devnet[underlyingMint.pubkey.toString()];
   const underlyingAmount = bnToFloat(
@@ -31,9 +30,7 @@ export const displayUnderlyingAmt = (
 };
 
 // Project Symbol
-export const displayProjectSymbol = (
-  project: Project,
-): string => {
+export const displayProjectSymbol = (project: Project): string => {
   const projectSymbol = project.symbol;
   return projectSymbol;
 };
@@ -56,18 +53,16 @@ export const displayStrikePrice = (
 };
 
 // Quote Taken
-export const displayQuoteToken = (
-  quoteMint: MintInfoWithKey
-): string => {
+export const displayQuoteToken = (quoteMint: MintInfoWithKey): string => {
   const quoteToken = Tokens.devnet[quoteMint.pubkey.toString()];
   return `${quoteToken.symbol}`;
 };
 
 //Expiration
-export const displayExpiration = (
-  optionMarket: OptionMarket,
-): string => {
-  const expirationDate = new Date(optionMarket.expirationUnixTimestamp.toNumber() * 1000);
+export const displayExpiration = (optionMarket: OptionMarket): string => {
+  const expirationDate = new Date(
+    optionMarket.expirationUnixTimestamp.toNumber() * 1000
+  );
   return `${expirationDate.getFullYear()}-${expirationDate.getMonth()}-${expirationDate.getDay()}`;
 };
 
@@ -97,7 +92,9 @@ export const displayHeader = (
     2
   );
 
-  return `Underlying Amount: ${underlyingAmount} Project Symbol: ${project.symbol} Strike Price: ${strikeDisplay} Quote Token: ${
+  return `Underlying Amount: ${underlyingAmount} Project Symbol: ${
+    project.symbol
+  } Strike Price: ${strikeDisplay} Quote Token: ${
     quoteToken.symbol
   } Expiration: ${expirationDate.getFullYear()}-${expirationDate.getMonth()}-${expirationDate.getDay()}`;
 };

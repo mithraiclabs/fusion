@@ -10,7 +10,7 @@ import {
   LAMPORTS_PER_SOL
 } from '@solana/web3.js';
 import styles_header from '../styles/Header.module.scss';
-import LogoImg from './psyoptions-logo-light.png';
+import LogoImg from './Images/psyoptions-logo-light.png';
 
 //const drawerWidth = 240;
 const Header = () => {

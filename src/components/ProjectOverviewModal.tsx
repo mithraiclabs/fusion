@@ -1,10 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import styles from "../styles/ProjectOverviewModal.module.scss";
-import graph from "./graph.png";
+import graph from "./Images/graph.png";
 import ProjectDetail from "./ProjectDetail";
 import { MintInfoWithKey, OptionAccounts, Project } from "../types";
 
@@ -16,18 +15,17 @@ const style = {
   width: 700,
   height: 600,
   bgcolor: "rgb(16,16,22)",
-  border: "2px solid #ffffff",
+  border: "1px solid #ffffff",
   boxShadow: 24,
   p: 4,
+  borderRadius: "10px"
 };
 
 const ProjectOverviewModal: React.FC<{
-  //acctNumber: number;
   projectVal: Project;
   optionAccVal: OptionAccounts;
   mintInfoVal: Record<string, MintInfoWithKey>;
 }> = ({ projectVal, optionAccVal, mintInfoVal }) => {
-  //export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

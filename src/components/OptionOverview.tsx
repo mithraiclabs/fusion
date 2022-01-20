@@ -11,7 +11,7 @@ import {
 import { MintInfoWithKey, OptionAccounts, Project } from "../types";
 import styles from "../styles/OptionOverview.module.scss";
 import { makeStyles } from "@material-ui/core";
-import graph from "./graph.png";
+import graph from "./Images/graph.png";
 import { useHistory } from "react-router-dom";
 import ProjectDetail from "./ProjectDetail";
 import ProjectOverviewModal from "./ProjectOverviewModal";
