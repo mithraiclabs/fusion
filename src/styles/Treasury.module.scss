@@ -18,6 +18,7 @@
 td{
   justify-content: left;
   justify-items: left;
+  //border: 1px solid $pink;
 }
 
 
@@ -26,7 +27,7 @@ th{
   padding:10px;
   margin-bottom: 10px;
   margin-right: 30px;
-  border: 1px solid $cyan;
+  border: 3px solid $pink;
   border-radius: 5px;
   justify-content: center;
   align-content: center;
@@ -48,8 +49,7 @@ input {
   }
 }
 table{
-  
-
+  color: white;
 }
 .top{
   //display: flex;
@@ -63,9 +63,11 @@ tr{
   //background-color: white;
   border: 3px;
   border-radius: 2px;
-  border-color: green;
+  border-color: $pink;
+  background-color: white;
+  color: white; 
   border-style: solid;
-  color: $cyan;
+  color: transparent;
 }
 
 .treasury {

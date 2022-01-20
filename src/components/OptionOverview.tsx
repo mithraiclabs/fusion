@@ -45,8 +45,6 @@ const OptionOverview: React.FC<{
 
   return (
     <Card className={styles.outerCardContent}>
-      
-
       <CardContent
         className={styles.cardContent}
         style={{ display: "flex", flexDirection: "row" }}
@@ -81,7 +79,10 @@ const OptionOverview: React.FC<{
           style={{ margin: "15px" }}
         ></img>
       </CardContent>
-      <ProjectOverviewModal />
+      <ProjectOverviewModal         
+        projectVal={project}
+        optionAccVal={optionAccounts}
+        mintInfoVal={mintInfos}/>
     </Card>
   );
 };

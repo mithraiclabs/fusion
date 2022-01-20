@@ -14,7 +14,6 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import EyeImg from './eye-button.png';
 
-//const drawerWidth = 240;
 const Wallet = () => {
   const {
     walletProviderInfo,
@@ -33,16 +32,6 @@ const Wallet = () => {
     void refetchSOL();
   }, [refetchSOL]);
 
-  //const [openModal, setOpenModal] = useState(false)
-  const [popupVisible, setPopupVisible] = useState<boolean>(false)
-
-
-  //https://www.youtube.com/watch?v=IF6k0uZuypA
-  function togglePopup() {
-    setPopupVisible(!popupVisible)
-  }
-
-  //{wallet?.publicKey?.toString()}
   return (
     <nav className={styles.wallet}><>
       <div className={styles["wallet-container"]}>

@@ -79,8 +79,8 @@ const ProjectDetail: React.FC<{
       <div className="graph"></div>
       <div className="details">
         <div className="optionsDetails">
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableContainer style={{color: "white"}} component={Paper}>
+            <Table  sx={{ minWidth: 650, color: "white"}} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell>Underlying Amount</TableCell>
@@ -109,9 +109,7 @@ const ProjectDetail: React.FC<{
             </Table>
           </TableContainer>
         </div>
-        <div className="wallet">
-          <Wallet />
-        </div>
+
       </div>
     </nav>
   );

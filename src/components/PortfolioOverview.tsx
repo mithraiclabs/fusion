@@ -26,9 +26,7 @@ const PortfolioOverview = () => {
     {}
   );
 
-  class currentProj {
-    static projectSelected: boolean = false;
-  }
+ 
 
   useEffect(() => {
     setLoadingProjects(true);
@@ -79,8 +77,6 @@ const PortfolioOverview = () => {
                   optionAccounts={projectOptions[key].options}
                   mintInfos={mintInfos}
                 />
-
-
               </div>
             ))
           )}

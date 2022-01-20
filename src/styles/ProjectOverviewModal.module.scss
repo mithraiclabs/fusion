@@ -8,9 +8,34 @@
     font-family: $fontFamilyBody;
     font-weight: 700;
 }
+    
+    .graphFlex{
+    width: 55%;    
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    //box-sizing: border-box;
+    border-width: 0px;
+    }
 
+    .exerciseFlex { 
+      display: flex;
+      flex-direction: column;
+      width: 45%;
+
+      //margin: 10px;
+      //padding-right: 10px;
+    }
+
+  
 .header{
     font-family: $fontFamilyBody;
     font-weight: 700;
     color: white;
+
+
+
+  
+
 }
+  
