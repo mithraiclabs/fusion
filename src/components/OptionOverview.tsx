@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core";
 import graph from "./graph.png";
 import { useHistory } from "react-router-dom";
 import ProjectDetail from "./ProjectDetail";
+import ProjectOverviewModal from "./ProjectOverviewModal";
 /*
         {displayHeader(
           project,
@@ -23,25 +24,6 @@ import ProjectDetail from "./ProjectDetail";
         )}
 */
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& .MuiPaper-root": {
-      borderRadius: "10px",
-      boxShadow: "0px 0px 10px 2px rgba(160,232,252);",
-      borderColor: "rgb(160,232,252)",
-      backgroundColor: "rgb(30, 30, 30)",
-      borderWidth: "2px",
-      //color: "rgb(22,22,16)",
-      //display: "flex",
-      //flexDirection: "grid",
-      width: "500px",
-      maxWidth: "800px",
-      minWidth: "300px",
-      //https://stackoverflow.com/questions/55059681/material-ui-responsive-based-on-element-size
-    },
-  },
-}));
-
 //window.open(`/Contributor`);
 
 const OptionOverview: React.FC<{
@@ -50,18 +32,20 @@ const OptionOverview: React.FC<{
   mintInfos: Record<string, MintInfoWithKey>;
 }> = ({ optionAccounts, project, mintInfos }) => {
   //const classes = useStyles();
-  return (
-    <Card
-      className={styles.outerCardContent}
-      onClick={() => {
-        window.open(`/Contributor`);
-      }}
-    >
-      <ProjectDetail
+
+  /**
+   * 
+   *  <ProjectDetail
         projectDetail={project}
         optionAccountsDetail={optionAccounts}
         mintInfosDetail={mintInfos}
       />
+
+   */
+
+  return (
+    <Card className={styles.outerCardContent}>
+      
 
       <CardContent
         className={styles.cardContent}
@@ -97,6 +81,7 @@ const OptionOverview: React.FC<{
           style={{ margin: "15px" }}
         ></img>
       </CardContent>
+      <ProjectOverviewModal />
     </Card>
   );
 };
