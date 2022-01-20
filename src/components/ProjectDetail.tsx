@@ -13,7 +13,7 @@ import { MintInfoWithKey, OptionAccounts, Project } from "../types";
 import Wallet from "./Wallet";
 //import Paper from '@mui/material/Paper';
 // or
-import { Paper } from '@mui/material';
+import { Paper } from "@mui/material";
 import {
   displayExpiration,
   displayHeader,
@@ -23,46 +23,57 @@ import {
   displayUnderlyingAmt,
 } from "../lib/optionMarketUtils";
 
-
-  const ProjectDetail: React.FC<{
-    acctNumber: number;
-    project: Project;
-    optionAccounts: OptionAccounts[];
-    mintInfos: Record<string, MintInfoWithKey>;
-  }> = ({
-    acctNumber,
-    project,
-    optionAccounts,
-    mintInfos
-  }) => {
+const ProjectDetail: React.FC<{
+  acctNumber: number;
+  project: Project;
+  optionAccounts: OptionAccounts[];
+  mintInfos: Record<string, MintInfoWithKey>;
+}> = ({ acctNumber, project, optionAccounts, mintInfos }) => {
   //{wallet?.publicKey?.toString()}
-  
-  
-function createData(
-  underlyingAmt: string,
-  projectSymbol: any,
-  strikePrice: string,
-  quoteToken: string,
-  expiration: string
-) {
-  return { underlyingAmt, projectSymbol, strikePrice, quoteToken, expiration };
-}
 
+  function createData(
+    underlyingAmt: string,
+    projectSymbol: any,
+    strikePrice: string,
+    quoteToken: string,
+    expiration: string
+  ) {
+    return {
+      underlyingAmt,
+      projectSymbol,
+      strikePrice,
+      quoteToken,
+      expiration,
+    };
+  }
 
+  const rows = [
+    createData(
+      displayUnderlyingAmt(
+        optionAccounts[acctNumber].optionMarket,
+        mintInfos[
+          optionAccounts[acctNumber].optionMarket.underlyingAssetMint.toString()
+        ]
+      ),
+      displayProjectSymbol(project),
+      displayStrikePrice(
+        optionAccounts[acctNumber].optionMarket,
+        mintInfos[
+          optionAccounts[acctNumber].optionMarket.underlyingAssetMint.toString()
+        ],
+        mintInfos[
+          optionAccounts[acctNumber].optionMarket.quoteAssetMint.toString()
+        ]
+      ),
+      displayQuoteToken(
+        mintInfos[
+          optionAccounts[acctNumber].optionMarket.quoteAssetMint.toString()
+        ]
+      ),
+      displayExpiration(optionAccounts[acctNumber].optionMarket)
+    ),
+  ];
 
-const rows = [
-  createData(
-    displayUnderlyingAmt(optionAccounts[acctNumber].optionMarket, mintInfos[optionAccounts[acctNumber].optionMarket.underlyingAssetMint.toString()]), 
-    displayProjectSymbol(project), 
-    displayStrikePrice(optionAccounts[acctNumber].optionMarket, mintInfos[optionAccounts[acctNumber].optionMarket.underlyingAssetMint.toString()], mintInfos[optionAccounts[acctNumber].optionMarket.quoteAssetMint.toString()]),
-    displayQuoteToken(mintInfos[optionAccounts[acctNumber].optionMarket.quoteAssetMint.toString()]), 
-    displayExpiration(optionAccounts[acctNumber].optionMarket)
-    )
-];
-  
-  
-  
-  
   return (
     <nav className="top">
       <div className="graph"></div>
@@ -85,7 +96,6 @@ const rows = [
                     key={row.projectSymbol}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-
                     <TableCell align="right">{row.underlyingAmt}</TableCell>
                     <TableCell align="right">{row.projectSymbol}</TableCell>
                     <TableCell align="right">{row.strikePrice}</TableCell>

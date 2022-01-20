@@ -47,44 +47,47 @@ const OptionOverview: React.FC<{
 }> = ({ optionAccounts, project, mintInfos }) => {
   //const classes = useStyles();
   return (
-    
-      <Card className={styles.outerCardContent} onClick={() => {window.open("https://trade.psyoptions.io/#/");}}>
-        <CardContent
-          className={styles.cardContent}
-          style={{ display: "flex", flexDirection: "row" }}
-        >
-          <li>
-            <p>
-              <strong>Contract Size: </strong>{" "}
-              {displayUnderlyingAmt(
-                optionAccounts.optionMarket,
-                mintInfos[
-                  optionAccounts.optionMarket.underlyingAssetMint.toString()
-                ]
-              )}
-            </p>
+    <Card
+      className={styles.outerCardContent}
+      onClick={() => {
+        window.open("https://trade.psyoptions.io/#/");
+      }}
+    >
+      <CardContent
+        className={styles.cardContent}
+        style={{ display: "flex", flexDirection: "row" }}
+      >
+        <li>
+          <p>
+            <strong>Contract Size: </strong>{" "}
+            {displayUnderlyingAmt(
+              optionAccounts.optionMarket,
+              mintInfos[
+                optionAccounts.optionMarket.underlyingAssetMint.toString()
+              ]
+            )}
+          </p>
 
-            <p>
-              <strong>Project Symbol: </strong> {displayProjectSymbol(project)}
-            </p>
+          <p>
+            <strong>Project Symbol: </strong> {displayProjectSymbol(project)}
+          </p>
 
-            <p>
-              <strong>Expiration: </strong>{" "}
-              {displayExpiration(optionAccounts.optionMarket)}
-            </p>
-          </li>
+          <p>
+            <strong>Expiration: </strong>{" "}
+            {displayExpiration(optionAccounts.optionMarket)}
+          </p>
+        </li>
 
-          <img
-            className="graph"
-            src={graph}
-            alt="graph"
-            width="250"
-            height="250"
-            style={{margin: "15px"}}
-          ></img>
-        </CardContent>
-      </Card>
-    
+        <img
+          className="graph"
+          src={graph}
+          alt="graph"
+          width="250"
+          height="250"
+          style={{ margin: "15px" }}
+        ></img>
+      </CardContent>
+    </Card>
   );
 };
 
