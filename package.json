@@ -46,7 +46,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "PORT=1414 craco --openssl-legacy-provider start",
+    "start": "PORT=1414 craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
