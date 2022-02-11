@@ -20,6 +20,7 @@ import Home from './pages/Home';
 import Treasury from './pages/Treasury';
 import TreasuryNew from './pages/TreasuryNew';
 import TreasuryEdit from './pages/TreasuryEdit';
+import Portfolio from './pages/Portfolio';
 
 const ConnectWallet = () => (<>Connect Wallet <ConnectWalletButton /></>);
 const DisconnectWallet = () => (<>Disconnect Wallet</>);
@@ -41,6 +42,7 @@ ReactDOM.render(
                 <Route exact path='/contributor' component={Contributor} />
                 <Route exact path='/contributor/edit/:publicKey' component={ContributorEdit} />
                 <Route exact path='/contributor/new' component={ContributorNew} />
+                <Route exact path='/portfolio' component={Portfolio} />
                 <Route exact path='/treasury' component={Treasury} />
                 <Route exact path='/treasury/edit/:publicKey' component={TreasuryEdit} />
                 <Route exact path='/treasury/new' component={TreasuryNew} />

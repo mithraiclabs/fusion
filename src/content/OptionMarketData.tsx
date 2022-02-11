@@ -1,7 +1,7 @@
 import * as anchor from "@project-serum/anchor";
-import { OrderParams } from "@project-serum/serum/lib/market";
 import { PublicKey } from "@solana/web3.js";
-const optionMarketData =  
+import { OptionMarketWithKey } from "@mithraic-labs/psy-american";
+const optionMarketData: OptionMarketWithKey[] =  
     [{
         optionMint: new PublicKey(1),
         writerTokenMint:new  PublicKey(1),
@@ -15,7 +15,8 @@ const optionMarketData =
         quoteAmountPerContract: new  anchor.BN(1),
         expirationUnixTimestamp: new  anchor.BN(1),
         expired: true,
-        bumpSeed: 1
+        bumpSeed: 1,
+        key: new PublicKey(1),
     }, 
     {
         optionMint: new PublicKey(2),
@@ -30,7 +31,8 @@ const optionMarketData =
         quoteAmountPerContract: new  anchor.BN(2),
         expirationUnixTimestamp: new  anchor.BN(2),
         expired: true,
-        bumpSeed: 2
+        bumpSeed: 2,
+        key: new PublicKey(2),
     },
     {
         optionMint: new PublicKey(4),
@@ -45,7 +47,8 @@ const optionMarketData =
         quoteAmountPerContract: new  anchor.BN(4),
         expirationUnixTimestamp: new  anchor.BN(4),
         expired: true,
-        bumpSeed: 4
+        bumpSeed: 4,
+        key: new PublicKey(4),
     },
     {
         optionMint: new PublicKey(5),
@@ -60,7 +63,8 @@ const optionMarketData =
         quoteAmountPerContract: new  anchor.BN(5),
         expirationUnixTimestamp: new  anchor.BN(5),
         expired: true,
-        bumpSeed: 5
+        bumpSeed: 5,
+        key: new PublicKey(5),
     },
     {
         optionMint: new PublicKey(6),
@@ -75,7 +79,8 @@ const optionMarketData =
         quoteAmountPerContract: new  anchor.BN(6),
         expirationUnixTimestamp: new  anchor.BN(6),
         expired: true,
-        bumpSeed: 6
+        bumpSeed: 6,
+        key: new PublicKey(6),
     },
     {
         optionMint: new PublicKey(7),
@@ -90,7 +95,8 @@ const optionMarketData =
         quoteAmountPerContract: new  anchor.BN(7),
         expirationUnixTimestamp: new  anchor.BN(7),
         expired: true,
-        bumpSeed: 7
+        bumpSeed: 7,
+        key: new PublicKey(7),
     },
     {
         optionMint: new PublicKey(8),
@@ -105,7 +111,8 @@ const optionMarketData =
         quoteAmountPerContract: new  anchor.BN(8),
         expirationUnixTimestamp: new  anchor.BN(8),
         expired: true,
-        bumpSeed: 8
+        bumpSeed: 8,
+        key: new PublicKey(1),
     },
     {
         optionMint: new PublicKey(9),
@@ -120,7 +127,8 @@ const optionMarketData =
         quoteAmountPerContract: new  anchor.BN(9),
         expirationUnixTimestamp: new  anchor.BN(9),
         expired: true,
-        bumpSeed: 9
+        bumpSeed: 9,
+        key: new PublicKey(9),
     },
     {
         optionMint: new PublicKey(3),
@@ -135,8 +143,10 @@ const optionMarketData =
         quoteAmountPerContract: new  anchor.BN(3),
         expirationUnixTimestamp: new  anchor.BN(3),
         expired: true,
-        bumpSeed: 3
+        bumpSeed: 3,
+        key: new PublicKey(3),
     },
 ]
     
     
+export default optionMarketData;
