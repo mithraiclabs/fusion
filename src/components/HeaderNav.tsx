@@ -1,6 +1,10 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import {
+  BrowserRouter as Router,
+  Link
+} from "react-router-dom";
+import {
   ConnectWalletButton
 } from '@gokiprotocol/walletkit';
 import {
@@ -41,12 +45,9 @@ const Header = () => {
   }
 
   return (
-    <nav className={styles_header.header}>
-      <div className="box"></div>
-        {/*style="background: linear-gradient(90deg, rgb(221, 62, 118) -0.83%, rgb(29, 77, 201) 100%);"*/}
-        
-          <div className="button-container"></div>
-            <button className="logo-button" onClick={() => {
+    <Router >
+        <div className={styles_header.header}>
+        <button className="logo-button" onClick={() => {
                 window.open("https://trade.psyoptions.io/#/");
               }}> 
               <img className = "PsyOpLogo" alt = 'PsyOptions Home' src={LogoImg} width="30" height="30"/>
@@ -54,15 +55,15 @@ const Header = () => {
             <button className="markets-button" onClick={() => {
                 //do something
               }}> Markets</button>
-            <button className="portfolio-button" onClick={() => {
-                //do something
-              }}> Portfolio</button>
+            <Link className="portfolio-button" to='/portfolio'> Portfolio</Link>
             <button className="wallet-button" onClick={() => {
                 //setOpenModal(true);
               }}> Wallet</button>
             <button className="docs-button" onClick={() => {
                 window.open("https://docs.psyoptions.io/");
               }}> Docs</button>
+        </div>
+            
           
       <>
         {wallet?.connected ? (
@@ -75,7 +76,7 @@ const Header = () => {
           </ul>
         )}
       </>
-    </nav>
+    </Router>
   );
 };
 

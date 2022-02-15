@@ -6,15 +6,16 @@ import {
   import styles_app from '../styles/app.module.scss';
   import React from 'react';
   import PortfolioRow from '../components/PortfolioRow';
+  import PortfolioHeader from '../components/PortfolioHeader';
   import optionAccountsData from '../content/OptionAccountsData';
   
-  // import NewOrEdit from '../components/NewOrEdit';
-  import styles from '../styles/Treasury.module.scss';
+  import '../styles/Portfolio.scss';
   
   const Portfolio = () => {
     const wallet = useConnectedWallet();
     return (
-      <div className={styles.treasury}>
+      <div className='portfolio-wrapper'>
+        {<PortfolioHeader/>}
         {optionAccountsData.map((option) => {
             return <PortfolioRow optionAccount={option}></PortfolioRow>
         })}

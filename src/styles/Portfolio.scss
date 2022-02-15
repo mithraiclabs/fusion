@@ -1,0 +1,83 @@
+@import './globals.scss';
+@import './colors.scss';
+
+.portfolio-row-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    border: 1px solid $psyoptions-pink;
+    border-top: none;
+    padding: 0px 10px;
+
+    div {
+        margin: 8px 4px;
+    }
+
+    &:last-child {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+}
+
+.portfolio-header {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    border: 1px solid $psyoptions-pink;
+    padding: 0px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    .header-section {
+        margin: 8px 4px;
+    }
+}
+
+.portfolio-wrapper {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px 10% 0px;
+}
+
+.address {
+    width: 20%;
+}
+
+.expired {
+    width: 5%;
+}
+
+.expiration {
+    width: 10%;
+}
+
+.price {
+    width: 10%;
+}
+
+.amount {
+    width: 20%;
+}
+
+.delegator {
+    width: 20%;
+}
+
+.exercise {
+    width: 10%;
+    .exercise-button {
+        box-sizing: content-box;
+        width: 6%;
+        color: $psyoptions-purple;
+        height: 30px;
+        &:hover {
+            color: red;
+            cursor: pointer;
+        }
+        padding: 2px 16px;
+        border-radius: 5px;
+        background-color: $psyoptions-pink;
+    }
+}

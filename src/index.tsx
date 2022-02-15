@@ -42,11 +42,11 @@ ReactDOM.render(
                 <Route exact path='/contributor' component={Contributor} />
                 <Route exact path='/contributor/edit/:publicKey' component={ContributorEdit} />
                 <Route exact path='/contributor/new' component={ContributorNew} />
-                <Route exact path='/portfolio' component={Portfolio} />
+                <Route path='/portfolio' component={Portfolio} />
                 <Route exact path='/treasury' component={Treasury} />
                 <Route exact path='/treasury/edit/:publicKey' component={TreasuryEdit} />
                 <Route exact path='/treasury/new' component={TreasuryNew} />
-                <Route exact path='/' component={Home} />
+                <Route path='/' component={Home} />
                 <Route exact path={['/connect','/login','/signin']} component={ConnectWallet} />
                 <Route exact path={['/disconnect','/logout','/signout']} component={DisconnectWallet} />
               </Switch>
