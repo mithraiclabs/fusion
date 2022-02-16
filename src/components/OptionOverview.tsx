@@ -52,12 +52,12 @@ const OptionOverview: React.FC<{
         <li>
           <p>
             <strong>Contract Size: </strong>{" "}
-            {displayUnderlyingAmt(
+            {/* {displayUnderlyingAmt(
               optionAccounts.optionMarket,
               mintInfos[
                 optionAccounts.optionMarket.underlyingAssetMint.toString()
               ]
-            )}
+            )} */}
           </p>
 
           <p>
