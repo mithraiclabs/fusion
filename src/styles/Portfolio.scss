@@ -80,3 +80,62 @@
         background-color: $psyoptions-pink;
     }
 }
+
+.exercise-modal {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    background-color: grey;
+    border-radius: 10px;
+    border: 2px solid $psyoptions-pink;
+    box-shadow: 24;
+    color: white;
+
+    .modal-body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .modal-header {
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 24px;
+    }
+
+    .modal-row {
+        display: flex;
+        flex-direction: row;
+        margin: 20px 15px 0px;
+        justify-content: space-between;
+
+        .exercise-input {
+            border: none;
+            font-size: 16px;
+            padding: 2px 6px 2px 0px;
+            text-align: right;
+        }
+    }
+
+    .buttons-wrapper {
+        margin-top: auto;
+        width: 100%;
+
+        button {
+            width: 50%;
+            border-top: 1px solid $psyoptions-pink;
+            border-radius: 0px;
+            &:first-child {
+                border-right: 1px solid $psyoptions-pink;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -146,7 +146,11 @@ export function formatStrikeAsStringFromOptionAccount(optionAccount: OptionAccou
   return formatStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract,6, 9);
 }
 
-export const formatStrike = (underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number) => {
+export function calculateStrikeFromOptionAccount(optionAccount: OptionAccounts): BN {
+  return calculateStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, 6, 9);
+}
+
+export function calculateStrike(underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number): BN {
   const netDecimals = underlyingDecimals - quoteDecimals;
   let strike: BN;
   if (netDecimals > 0) {
@@ -154,6 +158,11 @@ export const formatStrike = (underlyingAmount: BN, quoteAmount: BN, quoteDecimal
   } else {
     strike = quoteAmount.div(new BN(10).pow(new BN(Math.abs(netDecimals)))).div(underlyingAmount);
   }
+  return strike;
+}
+
+export const formatStrike = (underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number) => {
+  let strike = (calculateStrike(underlyingAmount, quoteAmount, quoteDecimals, underlyingDecimals));
   const places = parseInt((strike.toString().length / 3).toString());
   let strikeDisplay: string;
   switch (places) {

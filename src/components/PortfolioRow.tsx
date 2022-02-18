@@ -8,8 +8,9 @@ import { OptionAccounts } from "../types";
 import tokenData from "../content/TokenAccountData";
 import { formatStrikeAsStringFromOptionAccount } from "../lib/utils";
 
-const PortfolioRow: React.FC<{ optionAccount: OptionAccounts }> = ({
+const PortfolioRow: React.FC<{ optionAccount: OptionAccounts, exerciseButtonCallback: () => void }> = ({
   optionAccount,
+  exerciseButtonCallback
 }) => {
   return (
     <div
@@ -19,9 +20,7 @@ const PortfolioRow: React.FC<{ optionAccount: OptionAccounts }> = ({
       <div className={classNames("exercise", "row-section")}>
         <button
           className="exercise-button"
-          onClick={() => {
-            console.log("exercise: ", optionAccount.tokenAccount.address);
-          }}
+          onClick={exerciseButtonCallback}
         >
           Exercise
         </button>

@@ -8,17 +8,22 @@ import {
   import PortfolioRow from '../components/PortfolioRow';
   import PortfolioHeader from '../components/PortfolioHeader';
   import optionAccountsData from '../content/OptionAccountsData';
+  import projectList from '../content/projectList';
+  import ExerciseModal from '../components/ExerciseModal';
+  import { useState } from 'react';
   
   import '../styles/Portfolio.scss';
   
   const Portfolio = () => {
-    const wallet = useConnectedWallet();
+    // const wallet = useConnectedWallet();
+    const [openModal, setOpenModal] = useState(false);
     return (
       <div className='portfolio-wrapper'>
         {<PortfolioHeader/>}
         {optionAccountsData.map((option) => {
-            return <PortfolioRow optionAccount={option}></PortfolioRow>
+            return <PortfolioRow optionAccount={option} exerciseButtonCallback={() => {setOpenModal(true)}}></PortfolioRow>
         })}
+        <ExerciseModal open={openModal} onClose={() => {setOpenModal(false)}} project={projectList[0]} optionsAccount={optionAccountsData[0]}></ExerciseModal>
       </div>
     )
   }
