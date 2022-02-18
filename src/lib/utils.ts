@@ -143,8 +143,7 @@ export const bnToFloat = (
 };
 
 export function formatStrikeAsStringFromOptionAccount(optionAccount: OptionAccounts): String {
-  return "$12.49"
-  // return formatStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, optionAccount.optionMarket.)
+  return formatStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract,6, 9);
 }
 
 export const formatStrike = (underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number) => {
