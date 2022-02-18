@@ -3,13 +3,14 @@
 
 .portfolio-row-wrapper {
     display: flex;
+    box-sizing: border-box;
     width: 100%;
     flex-direction: row;
     border: 1px solid $psyoptions-pink;
     border-top: none;
-    padding: 0px 10px;
+    padding: 0px 20px;
 
-    div {
+    .row-section {
         margin: 8px 4px;
     }
 
@@ -22,9 +23,10 @@
 .portfolio-header {
     display: flex;
     width: 100%;
+    box-sizing: border-box;
     flex-direction: row;
     border: 1px solid $psyoptions-pink;
-    padding: 0px 10px;
+    padding: 0px 20px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 
@@ -41,32 +43,29 @@
     margin: 16px 10% 0px;
 }
 
-.address {
-    width: 20%;
-}
-
-.expired {
-    width: 5%;
-}
-
 .expiration {
-    width: 10%;
+    width: 20%;
+    text-align: left;
 }
 
 .price {
-    width: 10%;
+    width: 15%;
+    text-align: right;
 }
 
 .amount {
     width: 20%;
+    text-align: right;
 }
 
-.delegator {
-    width: 20%;
+.mint {
+    width: 25%;
+    text-align: right;
 }
 
 .exercise {
-    width: 10%;
+    width: 20%;
+    text-align: left;
     .exercise-button {
         box-sizing: content-box;
         width: 6%;

@@ -12,6 +12,7 @@ import {
   Project,
   ProjectOptions,
   TokenAccount,
+  OptionAccounts
 } from "../types";
 import { Connection, PublicKey } from "@solana/web3.js";
 
@@ -140,6 +141,11 @@ export const bnToFloat = (
     Math.pow(10, decimalsToKeep)
   );
 };
+
+export function formatStrikeAsStringFromOptionAccount(optionAccount: OptionAccounts): String {
+  return "$12.49"
+  // return formatStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, optionAccount.optionMarket.)
+}
 
 export const formatStrike = (underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number) => {
   const netDecimals = underlyingDecimals - quoteDecimals;

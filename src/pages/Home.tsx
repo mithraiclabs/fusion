@@ -9,12 +9,14 @@ import Contributor from './Contributor';
 import ProjectDetail from '../components/ProjectDetail';
 
 const Home = () => {
-  const wallet = useConnectedWallet();
+  // const wallet = useConnectedWallet();
   return (
     <section className={styles.home}>
       {
         //<IndexIntroGuest/>
-        wallet?.connected ? <PortfolioOverview/> : <IndexIntroGuest /> 
+        // wallet?.connected ? 
+        <PortfolioOverview/> 
+        // : <IndexIntroGuest /> 
       }
     </section>
   )

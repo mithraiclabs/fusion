@@ -86,15 +86,10 @@ const PortfolioOverview = () => {
               </div>
             ))
           )} */}
-          {projectOptionsData.map((projectOption, index) => (
-              <div>
+          {projectList.map((project) => (
                 <ProjectOverview
-                  key={projectOption.project.name}
-                  project={projectOption.project}
-                  optionAccounts={projectOption.options}
-                  mintInfos={mintInfoRecord}
+                  project={project}
                 />
-              </div>
             ))}
         </div>
         <div className={styles["walletContainer"]}>

@@ -1,0 +1,92 @@
+@import "./globals.scss";
+@import "./colors.scss";
+
+.project-card {
+  border: 1px solid $psyoptions-pink;
+  border-radius: 10px;
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.card-left {
+  display: flex;
+  width: 65%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-name {
+  color: $psyoptions-purple;
+  font-size: 36px;
+}
+
+.logo-wrapper {
+  max-width: 200px;
+  max-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .project-logo {
+    width: auto;
+    height: auto;
+    display: block;
+    max-width: 200px;
+    max-height: 50px;
+  }
+}
+
+.card-right {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  justify-content: space-between;
+
+  .right-text {
+    text-align: right;
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+}
+
+.card-description {
+  font-size: 14px;
+  color: gray;
+  text-align: left;
+}
+
+.card-socials {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-left: auto;
+
+  a {
+    padding: 0px 10px;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.internet-icon {
+  svg {
+    fill: $psyoptions-pink;
+  }
+}
