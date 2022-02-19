@@ -11,6 +11,7 @@ import {
   import projectList from '../content/projectList';
   import ExerciseModal from '../components/ExerciseModal';
   import { useState } from 'react';
+  import PortfolioSnippet from '../components/PortfolioSnippet';
   
   import '../styles/Portfolio.scss';
   
@@ -19,6 +20,7 @@ import {
     const [openModal, setOpenModal] = useState(false);
     return (
       <div className='portfolio-wrapper'>
+        {<PortfolioSnippet project={projectList[0]}/>}
         {<PortfolioHeader/>}
         {optionAccountsData.map((option) => {
             return <PortfolioRow optionAccount={option} exerciseButtonCallback={() => {setOpenModal(true)}}></PortfolioRow>
