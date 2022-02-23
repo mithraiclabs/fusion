@@ -23,6 +23,8 @@ export type Project = {
   symbol: string;
   logo: string;
   serumSpotMarket?: string;
+  serumMarketAddress?: string;
+  serumProgramId?: string;
   website: string;
   twitter: string;
   discord: string;
