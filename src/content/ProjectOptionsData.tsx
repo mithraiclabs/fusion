@@ -11,7 +11,7 @@ const projectOptionsData: ProjectOptions[] = [
     },
     {
         project: projectList[1],
-        options: optionAccountsData.slice(4, -1)
+        options: optionAccountsData.slice(4)
     }
 ];
 

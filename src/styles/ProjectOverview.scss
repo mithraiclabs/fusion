@@ -28,7 +28,18 @@
 
 .project-name {
   color: $psyoptions-purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 36px;
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  height: 40px;
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
 }
 
 .logo-wrapper {

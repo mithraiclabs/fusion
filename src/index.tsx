@@ -34,15 +34,15 @@ ReactDOM.render(
       }}
       >
       <div className={styles.app}>
-        <HeaderNav />
         <Router>
+        <HeaderNav />
           <main className={styles.main}>
             <section className={styles.section}>
               <Switch>
                 <Route exact path='/contributor' component={Contributor} />
                 <Route exact path='/contributor/edit/:publicKey' component={ContributorEdit} />
                 <Route exact path='/contributor/new' component={ContributorNew} />
-                <Route path='/portfolio' component={Portfolio} />
+                <Route path='/portfolio/:key' component={Portfolio} />
                 <Route exact path='/treasury' component={Treasury} />
                 <Route exact path='/treasury/edit/:publicKey' component={TreasuryEdit} />
                 <Route exact path='/treasury/new' component={TreasuryNew} />

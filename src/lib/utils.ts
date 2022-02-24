@@ -147,7 +147,7 @@ export function formatStrikeAsStringFromOptionAccount(optionAccount: OptionAccou
 }
 
 export function calculateStrikeFromOptionAccount(optionAccount: OptionAccounts): BN {
-  return calculateStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, 6, 9);
+  return calculateStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, 6, 5);
 }
 
 export function calculateStrike(underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number): BN {

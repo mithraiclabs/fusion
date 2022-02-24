@@ -2,7 +2,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
-  Link
+  RouteComponentProps,
+  withRouter
 } from "react-router-dom";
 import {
   ConnectWalletButton
@@ -17,7 +18,7 @@ import styles_header from '../styles/Header.module.scss';
 import LogoImg from './Images/psyoptions-logo-light.png';
 
 //const drawerWidth = 240;
-const Header = () => {
+const Header: React.FC<RouteComponentProps> = ({history}) => {
   const {
     walletProviderInfo,
     disconnect,
@@ -52,10 +53,13 @@ const Header = () => {
               }}> 
               <img className = "PsyOpLogo" alt = 'PsyOptions Home' src={LogoImg} width="30" height="30"/>
               </button>
+
+            <button className="markets-button" onClick={() => {
+                history.push('/')
+              }}>Home</button>
             <button className="markets-button" onClick={() => {
                 //do something
               }}> Markets</button>
-            <Link className="portfolio-button" to='/portfolio'> Portfolio</Link>
             <button className="wallet-button" onClick={() => {
                 //setOpenModal(true);
               }}> Wallet</button>
@@ -82,4 +86,4 @@ const Header = () => {
 
 
 //<li><div className='psy-button-group'> <ConnectWalletButton /></div></li>
-export default Header;
+export default withRouter(Header);
