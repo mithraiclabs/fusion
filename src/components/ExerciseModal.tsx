@@ -40,7 +40,7 @@ const ExerciseModal: React.FC<{
         <div className="modal-row">
           <div>Gains from Exercising:</div>
           <div>
-            { !disableExerice
+            { !disableExerice && calculateStrikeFromOptionAccount(optionsAccount).toString() !== '0'
               ? new BN(parseFloat(exerciseAmount) * 10.75)
                   .div(calculateStrikeFromOptionAccount(optionsAccount))
                   .toString()
