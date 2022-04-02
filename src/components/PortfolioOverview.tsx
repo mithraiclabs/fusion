@@ -2,6 +2,7 @@ import styles from "../styles/PortfolioOverview.module.scss";
 import projectList from "../content/projectList";
 import ProjectOverview from "./ProjectOverview";
 import Wallet from "./Wallet";
+import { ConnectWalletButton } from "./ConnectWalletButton";
 
 const PortfolioOverview = () => {
   // const [projectOptions, setProjectOptions] = useState<
@@ -76,7 +77,7 @@ const PortfolioOverview = () => {
             ))}
         </div>
         <div className={styles["walletContainer"]}>
-          TODO: Add Wallet component
+          <ConnectWalletButton />
         </div>
       </div>
     </div>
