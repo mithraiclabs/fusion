@@ -1,8 +1,8 @@
 import optionMarketData from './OptionMarketData';
 import tokenAccountData from './TokenAccountData';
-import {OptionAccounts} from '../types';
+import {OptionAccount} from '../types';
 
-const optionAccountsData: OptionAccounts[] = [];
+const optionAccountsData: OptionAccount[] = [];
 
 for (let i = 0; i < 9; i += 1) {
     optionAccountsData.push({

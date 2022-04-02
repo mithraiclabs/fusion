@@ -2,7 +2,6 @@ import { BN, Program } from "@project-serum/anchor";
 import { getAllOptionAccounts } from "@mithraic-labs/psy-american";
 import {
   AccountLayout,
-  MintInfo,
   MintLayout,
   TOKEN_PROGRAM_ID,
   u64,
@@ -12,7 +11,7 @@ import {
   Project,
   ProjectOptions,
   TokenAccount,
-  OptionAccounts
+  OptionAccount
 } from "../types";
 import { Connection, PublicKey } from "@solana/web3.js";
 
@@ -142,11 +141,11 @@ export const bnToFloat = (
   );
 };
 
-export function formatStrikeAsStringFromOptionAccount(optionAccount: OptionAccounts): String {
+export function formatStrikeAsStringFromOptionAccount(optionAccount: OptionAccount): String {
   return formatStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract,6, 9);
 }
 
-export function calculateStrikeFromOptionAccount(optionAccount: OptionAccounts): BN {
+export function calculateStrikeFromOptionAccount(optionAccount: OptionAccount): BN {
   console.log('oa', optionAccount)
   console.log('strike', calculateStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, 6, 5).toString());
   return calculateStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, 6, 5);

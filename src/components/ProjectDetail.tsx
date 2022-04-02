@@ -6,7 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { MintInfoWithKey, OptionAccounts, Project } from "../types";
+import { MintInfoWithKey, OptionAccount, Project } from "../types";
 
 import { Paper } from "@mui/material";
 import {
@@ -19,7 +19,7 @@ import {
 
 const ProjectDetail: React.FC<{
   projectDetail: Project;
-  optionAccountsDetail: OptionAccounts;
+  optionAccountsDetail: OptionAccount;
   mintInfosDetail: Record<string, MintInfoWithKey>;
 }> = ({ projectDetail, optionAccountsDetail, mintInfosDetail }) => {
   function createData(

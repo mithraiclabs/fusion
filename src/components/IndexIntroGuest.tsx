@@ -1,8 +1,5 @@
 import React from 'react';
 import {
-  ConnectWalletButton
-} from '@gokiprotocol/walletkit';
-import {
   useConnectedWallet, useSolana
 } from '@saberhq/use-solana';
 import styles from '../styles/IndexIntroGuest.module.scss';
@@ -59,7 +56,7 @@ const IndexIntroGuest = () => {
                   }}>Disconnect Wallet</button>
                 </div>
               ) : (
-                <ConnectWalletButton />
+                "Todo: add connect wallet"
               )
             }
             <button className='docs-button'>Read our docs</button>

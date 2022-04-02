@@ -14,12 +14,12 @@ import { useParams } from "react-router-dom";
 import { Project } from "../types";
 
 import "../styles/Portfolio.scss";
-import { OptionAccounts } from "../types";
+import { OptionAccount } from "../types";
 
 const Portfolio: React.FC = () => {
   // const wallet = useConnectedWallet();
   const [openModal, setOpenModal] = useState(false);
-  const [currentOption, setCurrentOption] = useState<OptionAccounts>(null);
+  const [currentOption, setCurrentOption] = useState<OptionAccount|null>(null);
   const projectKey = useRouteMatch<{[key: string]: string}>('/portfolio/:key').params.key;
   const project = projectList.find((proj) => proj.key === projectKey);
   const optionsList = projectOptionsData.find((pOption) => pOption.project.key === projectKey).options;

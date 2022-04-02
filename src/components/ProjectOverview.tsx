@@ -1,7 +1,5 @@
 import React from "react";
-import { Card, CardContent, CardHeader } from "@material-ui/core";
-import { MintInfoWithKey, OptionAccounts, Project } from "../types";
-import OptionOverview from "./OptionOverview";
+import { Project } from "../types";
 import "../styles/ProjectOverview.scss";
 import { DiscordIcon } from "./Images/icons/discord-icon";
 import { TwitterIcon } from "./Images/icons/twitter-3-logo-svg-vector";

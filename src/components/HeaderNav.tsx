@@ -6,9 +6,6 @@ import {
   withRouter
 } from "react-router-dom";
 import {
-  ConnectWalletButton
-} from '@gokiprotocol/walletkit';
-import {
   useConnectedWallet, useSolana
 } from '@saberhq/use-solana';
 import {

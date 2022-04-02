@@ -50,7 +50,7 @@ const HoldingHeader: React.FC<{
     (async () => {
       const market = await Market.load(
         connection,
-        new PublicKey(project.serumMarketAddress),
+        new PublicKey(project.serumUsdMarket),
         {},
         new PublicKey(project.serumProgramId),
       );

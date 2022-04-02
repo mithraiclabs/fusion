@@ -5,28 +5,17 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import {
-  WalletKitProvider,
-  ConnectWalletButton
-} from '@gokiprotocol/walletkit';
 import reportWebVitals from './reportWebVitals';
 import './styles/app.global.scss';
 import styles from './styles/app.module.scss';
 import HeaderNav from './components/HeaderNav';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
-
-const ConnectWallet = () => (<>Connect Wallet <ConnectWalletButton /></>);
-const DisconnectWallet = () => (<>Disconnect Wallet</>);
+import { PsyWalletProvider } from './components/WalletProvider';
 
 ReactDOM.render(
   <React.StrictMode >
-    <WalletKitProvider 
-      defaultNetwork='devnet'
-      app={{
-        name: 'PsyOptions Management'
-      }}
-      >
+    <PsyWalletProvider>
       <div className={styles.app}>
         <Router>
         <HeaderNav />
@@ -35,14 +24,12 @@ ReactDOM.render(
               <Switch>
                 <Route path='/portfolio/:key' component={Portfolio} />
                 <Route path='/' component={Home} />
-                <Route exact path={['/connect','/login','/signin']} component={ConnectWallet} />
-                <Route exact path={['/disconnect','/logout','/signout']} component={DisconnectWallet} />
               </Switch>
             </section>
           </main>
         </Router>
       </div>
-    </WalletKitProvider>
+    </PsyWalletProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

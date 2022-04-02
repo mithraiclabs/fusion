@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { ConnectWalletButton } from "@gokiprotocol/walletkit";
 import { useConnectedWallet, useSolana } from "@saberhq/use-solana";
 import { PsyAmericanIdl } from "@mithraic-labs/psy-american";
 import styles from "../styles/PortfolioOverview.module.scss";

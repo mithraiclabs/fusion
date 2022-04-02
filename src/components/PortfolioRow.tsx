@@ -4,13 +4,13 @@ import "../styles/Portfolio.scss";
 import React from "react";
 import classNames from "classnames";
 
-import { OptionAccounts } from "../types";
+import { OptionAccount } from "../types";
 import tokenData from "../content/TokenAccountData";
 import { calculateStrikeFromOptionAccount } from "../lib/utils";
 import { LockIcon } from "./Images/icons/lock-icon";
 
 const PortfolioRow: React.FC<{
-  optionAccount: OptionAccounts;
+  optionAccount: OptionAccount;
   exerciseButtonCallback: () => void;
 }> = ({ optionAccount, exerciseButtonCallback }) => {
   return (

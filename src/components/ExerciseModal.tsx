@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MintInfoWithKey, OptionAccounts, Project } from "../types";
+import { MintInfoWithKey, OptionAccount, Project } from "../types";
 import OptionOverview from "./OptionOverview";
 import "../styles/ProjectOverview.scss";
 import classNames from "classnames";
@@ -10,7 +10,7 @@ import { BN } from "@project-serum/anchor";
 
 const ExerciseModal: React.FC<{
   project: Project;
-  optionsAccount: OptionAccounts;
+  optionsAccount: OptionAccount;
   open: boolean;
   onClose: () => void;
 }> = ({ project, open, onClose, optionsAccount }) => {

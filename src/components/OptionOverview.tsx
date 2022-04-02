@@ -8,7 +8,7 @@ import {
   displayStrikePrice,
   displayUnderlyingAmt,
 } from "../lib/optionMarketUtils";
-import { MintInfoWithKey, OptionAccounts, Project } from "../types";
+import { MintInfoWithKey, OptionAccount, Project } from "../types";
 import styles from "../styles/OptionOverview.module.scss";
 import { makeStyles } from "@material-ui/core";
 import graph from "./Images/graph.png";
@@ -28,7 +28,7 @@ import ProjectOverviewModal from "./ProjectOverviewModal";
 
 const OptionOverview: React.FC<{
   project: Project;
-  optionAccounts: OptionAccounts;
+  optionAccounts: OptionAccount;
   mintInfos: Record<string, MintInfoWithKey>;
 }> = ({ optionAccounts, project, mintInfos }) => {
   //const classes = useStyles();

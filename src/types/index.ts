@@ -22,9 +22,8 @@ export type Project = {
   mintAddress: string;
   symbol: string;
   logo: string;
-  serumSpotMarket?: string;
-  serumMarketAddress?: string;
-  serumProgramId?: string;
+  serumUsdMarket: string;
+  serumProgramId: string;
   website: string;
   twitter: string;
   discord: string;
@@ -42,14 +41,14 @@ export type TokenAccount = {
   closeAuthority: PublicKey;
 }
 
-export type OptionAccounts = {
+export type OptionAccount = {
   optionMarket: OptionMarketWithKey;
   tokenAccount: TokenAccount;
 }
 
 export type ProjectOptions = {
   project: Project;
-  options: OptionAccounts[];
+  options: OptionAccount[];
 };
 
 export type MintInfoWithKey = {

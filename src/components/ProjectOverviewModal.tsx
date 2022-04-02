@@ -5,7 +5,7 @@ import Modal from "@mui/material/Modal";
 import styles from "../styles/ProjectOverviewModal.module.scss";
 import graph from "./Images/graph.png";
 import ProjectDetail from "./ProjectDetail";
-import { MintInfoWithKey, OptionAccounts, Project } from "../types";
+import { MintInfoWithKey, OptionAccount, Project } from "../types";
 
 const style = {
   position: "absolute" as "absolute",
@@ -23,7 +23,7 @@ const style = {
 
 const ProjectOverviewModal: React.FC<{
   projectVal: Project;
-  optionAccVal: OptionAccounts;
+  optionAccVal: OptionAccount;
   mintInfoVal: Record<string, MintInfoWithKey>;
 }> = ({ projectVal, optionAccVal, mintInfoVal }) => {
   const [open, setOpen] = React.useState(false);

@@ -1,9 +1,6 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-  ConnectWalletButton
-} from '@gokiprotocol/walletkit';
-import {
   useConnectedWallet, useSolana
 } from '@saberhq/use-solana';
 import {
@@ -55,7 +52,7 @@ const Wallet = () => {
           </>
         ) : (
           <ul className="wallet-info">
-            <li><div className='psy-button-group'> <ConnectWalletButton /></div></li>
+            <li><div className='psy-button-group'>TODO: Add connect button</div></li>
           </ul>
         )}
       </div>
