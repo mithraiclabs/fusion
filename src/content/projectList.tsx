@@ -2,18 +2,6 @@ import { Project } from "../types"
 
 const projectList: Project[] = [
   {
-    key: "mangomarkets",
-    name: "Mango Markets",
-    description: "Trade spot margined and perpetual futures markets, permissionless and all on-chain. Mango wants to merge the liquidity and usability of CeFi with the permissionless innovation of DeFi. All our work is open source for anyone to use and contribute.",
-    logo: "https://mango.markets/img/logo_mango.svg",
-    mintAddress: "C6kYXcaRUMqeBF5fhg165RWU7AnpT9z92fvKNoMqjmz6",
-    symbol: "MNGO",
-    serumSpotMarket: "3d4rzwpy9iGdCZvgxcu7B1YocYffVLsQXPXkBZKt2zLc",
-    website: "https://mango.markets/",
-    twitter: "https://twitter.com/mangomarkets",
-    discord: "https://discord.com/invite/2uwjsBc5yw"
-  }, 
-  {
     key: "psyoptions",
     name: "PsyOptions",
     description: "Completely trustless American style options",
