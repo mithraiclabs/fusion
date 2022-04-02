@@ -1,25 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useConnectedWallet, useSolana } from "@saberhq/use-solana";
-import { PsyAmericanIdl } from "@mithraic-labs/psy-american";
 import styles from "../styles/PortfolioOverview.module.scss";
-import { Program, Provider } from "@project-serum/anchor";
-import { PublicKey } from "@solana/web3.js";
-import { getAllWalletOptions, loadMintInfo } from "../lib/utils";
 import projectList from "../content/projectList";
-import { CircularProgress } from "@material-ui/core";
-import { MintInfoWithKey, ProjectOptions } from "../types";
 import ProjectOverview from "./ProjectOverview";
 import Wallet from "./Wallet";
-import { DateSelector } from "./DatePicker.module";
-import ProjectDetail from "./ProjectDetail";
-import projectOptionsData from "../content/ProjectOptionsData";
-import mintInfosList, {mintInfoRecord} from "../content/MintInfos";
 
 const PortfolioOverview = () => {
-  const wallet = useConnectedWallet();
-  const { provider } = useSolana();
-  const [loadingProjects, setLoadingProjects] = useState(true);
-  const [loadingMints, setLoadingMints] = useState(true);
   // const [projectOptions, setProjectOptions] = useState<
   //   Record<string, ProjectOptions>
   // >({});
@@ -92,7 +76,7 @@ const PortfolioOverview = () => {
             ))}
         </div>
         <div className={styles["walletContainer"]}>
-          <Wallet />
+          TODO: Add Wallet component
         </div>
       </div>
     </div>

@@ -5,14 +5,15 @@ import { DiscordIcon } from "./Images/icons/discord-icon";
 import { TwitterIcon } from "./Images/icons/twitter-3-logo-svg-vector";
 import { InternetIcon } from "./Images/icons/internet-icon";
 import classNames from "classnames";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ProjectOverview: React.FC<{
   project: Project;
-} & RouteComponentProps> = ({ project, history }) => {
+}> = ({ project }) => {
+  let navigate = useNavigate();
   return (
     <div className="project-card">
-      <button onClick={() => {history.push(`/portfolio/${project.key}`)}} className="project-name">
+      <button onClick={() => {navigate(`/portfolio/${project.key}`)}} className="project-name">
         {project.name}
       </button>
       <div className="card-content">
@@ -48,4 +49,4 @@ const ProjectOverview: React.FC<{
   );
 };
 
-export default withRouter(ProjectOverview);
+export default ProjectOverview;

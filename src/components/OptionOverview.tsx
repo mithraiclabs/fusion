@@ -2,18 +2,11 @@ import { Box, Card, CardContent } from "@material-ui/core";
 import React from "react";
 import {
   displayExpiration,
-  displayHeader,
   displayProjectSymbol,
-  displayQuoteToken,
-  displayStrikePrice,
-  displayUnderlyingAmt,
 } from "../lib/optionMarketUtils";
 import { MintInfoWithKey, OptionAccount, Project } from "../types";
 import styles from "../styles/OptionOverview.module.scss";
-import { makeStyles } from "@material-ui/core";
 import graph from "./Images/graph.png";
-import { useHistory } from "react-router-dom";
-import ProjectDetail from "./ProjectDetail";
 import ProjectOverviewModal from "./ProjectOverviewModal";
 /*
         {displayHeader(

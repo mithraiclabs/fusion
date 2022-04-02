@@ -1,35 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import './styles/app.global.scss';
 import styles from './styles/app.module.scss';
-import HeaderNav from './components/HeaderNav';
-import Home from './pages/Home';
-import Portfolio from './pages/Portfolio';
 import { PsyWalletProvider } from './components/WalletProvider';
+import { Routes } from './Routes';
+import { RecoilRoot } from "recoil";
 
 ReactDOM.render(
   <React.StrictMode >
+    <RecoilRoot>
     <PsyWalletProvider>
       <div className={styles.app}>
-        <Router>
-        <HeaderNav />
-          <main className={styles.main}>
-            <section className={styles.section}>
-              <Switch>
-                <Route path='/portfolio/:key' component={Portfolio} />
-                <Route path='/' component={Home} />
-              </Switch>
-            </section>
-          </main>
-        </Router>
+        <Routes />
       </div>
     </PsyWalletProvider>
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 );
