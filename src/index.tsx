@@ -13,13 +13,7 @@ import reportWebVitals from './reportWebVitals';
 import './styles/app.global.scss';
 import styles from './styles/app.module.scss';
 import HeaderNav from './components/HeaderNav';
-import Contributor from './pages/Contributor';
-import ContributorNew from './pages/ContributorNew';
-import ContributorEdit from './pages/ContributorEdit';
 import Home from './pages/Home';
-import Treasury from './pages/Treasury';
-import TreasuryNew from './pages/TreasuryNew';
-import TreasuryEdit from './pages/TreasuryEdit';
 import Portfolio from './pages/Portfolio';
 
 const ConnectWallet = () => (<>Connect Wallet <ConnectWalletButton /></>);
@@ -39,13 +33,7 @@ ReactDOM.render(
           <main className={styles.main}>
             <section className={styles.section}>
               <Switch>
-                <Route exact path='/contributor' component={Contributor} />
-                <Route exact path='/contributor/edit/:publicKey' component={ContributorEdit} />
-                <Route exact path='/contributor/new' component={ContributorNew} />
                 <Route path='/portfolio/:key' component={Portfolio} />
-                <Route exact path='/treasury' component={Treasury} />
-                <Route exact path='/treasury/edit/:publicKey' component={TreasuryEdit} />
-                <Route exact path='/treasury/new' component={TreasuryNew} />
                 <Route path='/' component={Home} />
                 <Route exact path={['/connect','/login','/signin']} component={ConnectWallet} />
                 <Route exact path={['/disconnect','/logout','/signout']} component={DisconnectWallet} />
