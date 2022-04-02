@@ -1,61 +1,97 @@
+import { Switch } from "@material-ui/core";
+import styles_forms from "../styles/Forms.module.scss";
+import styles_treasury from "../styles/Treasury.module.scss";
+import { DateSelector } from "./DatePicker.module";
 
-import styles_forms from '../styles/Forms.module.scss';
-import styles_treasury from '../styles/Treasury.module.scss';
 const TreasuryFormNew = () => (
-  <form className={styles_forms.form}>
+  <div className={styles_treasury.top}>
     <h1>New Token Grant</h1>
     <p>Forms and fields, work in progress 🌱 &gt; 🌳</p>
-    <fieldset>
-      <div className='input-group'>
-        <label htmlFor='mintToken'>Mint Token</label>
-        <input id='mintToken' type='text' />
-      </div>
-      <div className='input-group'>
-        <label htmlFor='amount'>Amount</label>
-        <input id='amount' type='text' />
-      </div>
-    </fieldset>
-    <fieldset>
-      <div className='input-group'>
-        <label htmlFor='amount'>Issue Options?</label>
-        <input id='amount' type='text' value='true' />
-      </div>
-      <div className='input-group'>
-        <label htmlFor='duration'>Duration</label>
-        <input id='duration' type='text' />
-      </div>
-      <div className='input-group'>
-        <label htmlFor='initialCliff'>Initial Cliff</label>
-        <input id='initialCliff' type='text' />
-      </div>
-      <div className='input-group'>
-        <label htmlFor='vestPeriod'>Vest Period</label>
-        <input id='vestPeriod' type='text' />
-      </div>
-      <div className='input-group'>
-        <label htmlFor='amountPerPeriod'>Amount per Period</label>
-        <input id='amountPerPeriod' type='text' />
-      </div>
-      <div className='input-group'>
-        <label htmlFor='numberOfPeriods'>Number of Periods</label>
-        <input id='numberOfPeriods' type='text' />
-      </div>
-    </fieldset>
-    <fieldset className={styles_treasury.experiment}>
-      <div className='input-group'>
-        <label htmlFor='recipient'>Recipient(s)</label>
-        <input id='recipient' type='text' />
-        <button>+</button>
-      </div>
-    </fieldset>
-      <div className='psy-button-group'>
-        <button>
-          Save Draft
-        </button>
-        <button>
-          Mint
-        </button>
-      </div>
-  </form>
+
+      <table>
+        <div className="input-group">
+          <tr>
+            <th>
+              Mint Token 
+            </th>
+            <td>
+              <Switch />
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Amount 
+            </th>
+            <td>
+              <input id="amount" type="text" />
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Issue Options? 
+            </th>
+            <td>
+              <Switch />
+            </td>
+          </tr>
+          <tr>
+            <th>
+              Duration 
+            </th>
+            <td>
+              <input id="duration" type="text" />
+            </td>
+          </tr>
+          <tr>
+            <th>
+               Initial Cliff 
+            </th>
+            <td>
+              <input id="initialCliff" type="text" />
+            </td>
+          </tr>
+          <tr>
+            <th>
+               Vest Period 
+            </th>
+            <td>
+              <DateSelector />
+            </td>
+          </tr>
+          <tr>
+            <th>
+               Amount per Period 
+            </th>
+            <td>
+              <input id="amountPerPeriod" type="text" />
+            </td>
+          </tr>
+          <tr>
+            <th>
+               Number of Periods 
+            </th>
+            <td>
+              <input id="numberOfPeriods" type="text" />
+            </td>
+          </tr>
+
+          <tr>
+            <th>
+               Recipient(s) 
+            </th>
+            <td className="recipients">
+              <input id="recipient" type="text" />
+              <button className={styles_treasury.experiment}>+</button>
+            </td>
+          </tr>
+        </div>
+      </table>
+  
+
+    <div className="psy-button-group">
+      <button>Save Draft</button>
+      <button>Mint</button>
+    </div>
+  </div>
 );
 export default TreasuryFormNew;

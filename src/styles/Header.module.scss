@@ -1,91 +1,67 @@
 @import './globals.scss';
-// @use "sass:math";
+@import './colors.scss';
 
-.header {
-  background: black;
-  border-bottom: 1px dotted $green;
-  padding-top: $textBlockMarginMobile;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 888888;
-  @media screen and (min-width: $desktopWidth) {
-    padding-top: unset;
-  }
+//https://pretagteam.com/question/how-can-i-hide-a-component-in-react-depending-on-the-screen-size
 
-  div:first-of-type {
-    margin-left: $textBlockMarginMobile;
-    flex: 1;
-    width: 220px;
-  }
 
-  ul {
-    @media screen and (min-width: $tabletWidth) {
-      // margin-left: -20px;
-    }
-    li {
-      font-size: 12px;
-      list-style: none;
-      margin-bottom: 2px;
-      text-align: left;
-      &:first-of-type {
-        font-weight: 700;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 225px;
-        white-space: nowrap;
-        strong {
-          background: $green;
-          color: #000;
-        }
-        &:hover {
-          margin-right: $textBlockMarginMobile;
-          width: unset;
-        }
-      }
-      &:not(:first-of-type) {
-        color: lighten($grey, 20%);
-        font-weight: 700;
-        strong {
-          background: $grey;
-          color: #000;
-        }
-      }
-      strong {
-        display: inline-block;
-        margin-right: 3px;
-        padding: 0 5px;
-        width: 60px;
-      }
-    }
-  }
-  p {
-    // background: $grey-darkest;
-    border: 1px solid $yellow;
-    border-radius: 2px;
-    color: $yellow;
-    font-size: 12px;
-    font-weight: 700;
-    margin-top: $textBlockMarginMobile;
-    padding: 7px 18px;
-    width:100%;
-    @media screen and (min-width: $desktopWidth) {
-      margin-right: $sectionPadding;
-      margin-top: unset;
-      width: unset;
-    }
-    // @media screen and (min-width: $desktopWidth) {
-    //   margin-left: 25px;
-    //   width: 250px;
-    // }
-  }
-}
-
-.header {
-  align-items: center;
+//TO-DO: should change the types of buttons tso MUI buttons
+button{
+  background-color: transparent;
+  transition-duration: .4s;
+  color: rgba(139, 234, 255, 0.9);
+  padding: 6px ;
+  font-size: 14px;
+  min-width: 64px;
+  box-sizing: border-box;
+  padding: 15px;
+  //transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-family: Manrope, sans-serif;
+  font-weight: 700;
+  line-height: 1.75;
+  border-radius: 15px;
+  text-transform: none;
+  border-width: 0px;
   justify-content: center;
-  @media screen and (min-width: $desktopWidth) {
-    display: flex;
-    height: $headerHeightDesktop;
-  }
+  
+  //align-items: center;
 }
+
+button.logo-button{
+  width: 53.5px;
+  height: 53.5px;
+}
+button:hover{
+  transition: .8s;
+  color:#ffffff;
+}
+
+.header {
+
+  @media screen and (max-width: 420px) {
+    .box{
+      display: none;
+      //position: sticky;
+    }
+  }
+
+  display: flex;
+  justify-content: left;
+  //position: sticky;
+  .button-container{
+    align-items: center;
+  }
+
+  @media screen and (min-width: $desktopWidth) {
+    //padding-top: unset;
+  }
+
+  background: linear-gradient(90deg, $psyoptions-pink -0.83%, $psyoptions-purple 100%);
+
+  top: 0;
+  height:64px;
+  width: 100%;
+
+}
+
+  
+  

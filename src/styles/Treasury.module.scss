@@ -6,13 +6,68 @@
   // }
   position: relative;
   a {
-    background: rgba(0, 0, 0, 0.6);
+    //background: rgba(0, 0, 0, 0.6);
+    //background: transparent;
   }
   a:hover {
     background: $cyan;
     border-color: $white;
     color: #000;
   }
+}
+td{
+  justify-content: left;
+  justify-items: left;
+  //border: 1px solid $pink;
+}
+
+
+th{
+  display:flex;
+  padding:10px;
+  margin-bottom: 10px;
+  margin-right: 30px;
+  border: 3px solid $pink;
+  border-radius: 5px;
+  justify-content: center;
+  align-content: center;
+}
+
+input {
+  background: black;
+  border: 1px solid $cyan;
+  color: white;
+  font-size: 22px;
+  outline: 0;
+  padding: 12px 17px;
+}
+
+.recipients{
+  display: flex;
+  button{
+    width: 25%
+  }
+}
+table{
+  color: white;
+}
+.top{
+  //display: flex;
+  //justify-content: center; 
+}
+
+
+tr{
+  //margin: 10px;
+  //padding: 10px;
+  //background-color: white;
+  border: 3px;
+  border-radius: 2px;
+  border-color: $pink;
+  background-color: white;
+  color: white; 
+  border-style: solid;
+  color: transparent;
 }
 
 .treasury {
@@ -103,3 +158,6 @@
     width: 400px;
   }
 }
+
+
+

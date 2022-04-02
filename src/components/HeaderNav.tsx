@@ -1,6 +1,11 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import {
+  BrowserRouter as Router,
+  RouteComponentProps,
+  withRouter
+} from "react-router-dom";
+import {
   ConnectWalletButton
 } from '@gokiprotocol/walletkit';
 import {
@@ -10,8 +15,10 @@ import {
   LAMPORTS_PER_SOL
 } from '@solana/web3.js';
 import styles_header from '../styles/Header.module.scss';
+import LogoImg from './Images/psyoptions-logo-light.png';
 
-const Header = () => {
+//const drawerWidth = 240;
+const Header: React.FC<RouteComponentProps> = ({history}) => {
   const {
     walletProviderInfo,
     disconnect,
@@ -28,31 +35,55 @@ const Header = () => {
   useEffect(() => {
     void refetchSOL();
   }, [refetchSOL]);
+
+  //const [openModal, setOpenModal] = useState(false)
+  const [popupVisible, setPopupVisible] = useState<boolean>(false)
+
+
+  //https://www.youtube.com/watch?v=IF6k0uZuypA
+  function togglePopup() {
+    setPopupVisible(!popupVisible)
+  }
+
   return (
-    <nav className={styles_header.header}>
+    <Router >
+        <div className={styles_header.header}>
+        <button className="logo-button" onClick={() => {
+                window.open("https://trade.psyoptions.io/#/");
+              }}> 
+              <img className = "PsyOpLogo" alt = 'PsyOptions Home' src={LogoImg} width="30" height="30"/>
+              </button>
+
+            <button className="markets-button" onClick={() => {
+                history.push('/')
+              }}>Home</button>
+            <button className="markets-button" onClick={() => {
+                //do something
+              }}> Markets</button>
+            <button className="wallet-button" onClick={() => {
+                //setOpenModal(true);
+              }}> Wallet</button>
+            <button className="docs-button" onClick={() => {
+                window.open("https://docs.psyoptions.io/");
+              }}> Docs</button>
+        </div>
+            
+          
       <>
         {wallet?.connected ? (
           <>
-            <div className='psy-button-group'>
-              <button onClick={() => {
-                void disconnect();
-              }}>Disconnect Wallet</button>
-            </div>
-            <ul>
-              <li><strong>Wallet</strong> {wallet?.publicKey?.toString()}</li>
-              <li><strong>Provider</strong> {walletProviderInfo?.name}</li>
-              <li><strong>Network</strong> {network}</li>
-              <li><strong>Balance</strong> {typeof balance === 'number' ? `${(balance / LAMPORTS_PER_SOL).toLocaleString()} SOL` : '--'}</li>
-            </ul>
+
           </>
         ) : (
-          <div className='psy-button-group'>
-            <ConnectWalletButton />
-          </div>
+          <ul >
+            
+          </ul>
         )}
       </>
-    </nav>
+    </Router>
   );
 };
 
-export default Header;
+
+//<li><div className='psy-button-group'> <ConnectWalletButton /></div></li>
+export default withRouter(Header);

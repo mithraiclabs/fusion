@@ -1,6 +1,7 @@
-@import './globals.scss';
+@import "./globals.scss";
 
 .index-intro-guest {
+  align-content: top;
   @media screen and (min-width: $desktopWidth) {
     display: flex;
   }
@@ -14,6 +15,7 @@
     flex: 1;
   }
   sup {
+    margin: 8px;
     margin-bottom: 8px;
     @media screen and (min-width: $desktopWidth) {
       margin-top: $sectionPaddingMobile;
@@ -22,12 +24,21 @@
   h1 {
     margin-bottom: $textBlockMargin;
     @media screen and (min-width: $desktopWidth) {
-      margin-bottom: $textBlockMargin;
     }
   }
   div:first-of-type {
+    margin: $textBlockMargin;
     margin-bottom: $textBlockMargin * 2;
   }
+}
+
+nav {
+  justify-content: center;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 10px;
 }
 
 .index-intro-guest section nav {
@@ -36,7 +47,7 @@
   button {
     margin: 0 auto;
   }
-  button:first-of-type {
+  button {
     margin-bottom: $textBlockMarginMobile;
     @media screen and (min-width: $desktopWidth) {
       margin-right: $textBlockMarginMobile;
@@ -46,11 +57,12 @@
 }
 
 .index-intro-guest figure {
-  height:350px;
+  height: 350px;
   margin: 0 auto;
   margin-top: $textBlockMarginMobile * 2;
   position: relative;
   width: 300px;
+  padding: 8px;
   @media screen and (min-width: $desktopWidth) {
     height: 350px;
     margin: unset;

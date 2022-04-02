@@ -12,6 +12,7 @@ import {
   Project,
   ProjectOptions,
   TokenAccount,
+  OptionAccounts
 } from "../types";
 import { Connection, PublicKey } from "@solana/web3.js";
 
@@ -141,14 +142,31 @@ export const bnToFloat = (
   );
 };
 
-export const formatStrike = (underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number) => {
+export function formatStrikeAsStringFromOptionAccount(optionAccount: OptionAccounts): String {
+  return formatStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract,6, 9);
+}
+
+export function calculateStrikeFromOptionAccount(optionAccount: OptionAccounts): BN {
+  console.log('oa', optionAccount)
+  console.log('strike', calculateStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, 6, 5).toString());
+  return calculateStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, 6, 5);
+}
+
+export function calculateStrike(underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number): BN {
   const netDecimals = underlyingDecimals - quoteDecimals;
+  console.log('under, quote', underlyingAmount, quoteAmount);
   let strike: BN;
   if (netDecimals > 0) {
     strike = quoteAmount.mul(new BN(10).pow(new BN(netDecimals))).div(underlyingAmount);
   } else {
     strike = quoteAmount.div(new BN(10).pow(new BN(Math.abs(netDecimals)))).div(underlyingAmount);
   }
+  console.log(strike)
+  return strike;
+}
+
+export const formatStrike = (underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number) => {
+  let strike = (calculateStrike(underlyingAmount, quoteAmount, quoteDecimals, underlyingDecimals));
   const places = parseInt((strike.toString().length / 3).toString());
   let strikeDisplay: string;
   switch (places) {

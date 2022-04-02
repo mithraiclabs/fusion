@@ -14,6 +14,59 @@ import { bnToFloat, formatStrike } from "./utils";
  * @param optionMarket - The OptionMarket for the held option
  * @returns
  */
+
+// Underlying Amount
+export const displayUnderlyingAmt = (
+  optionMarket: OptionMarket,
+  underlyingMint: MintInfoWithKey
+): string => {
+  const underlyingToken = Tokens.devnet[underlyingMint.pubkey.toString()];
+  const underlyingAmount = bnToFloat(
+    optionMarket.underlyingAmountPerContract,
+    underlyingToken.decimals,
+    2
+  );
+  return `${underlyingAmount}`;
+};
+
+// Project Symbol
+export const displayProjectSymbol = (project: Project): string => {
+  const projectSymbol = project.symbol;
+  return projectSymbol;
+};
+
+// Strike Price
+export const displayStrikePrice = (
+  optionMarket: OptionMarket,
+  underlyingMint: MintInfoWithKey,
+  quoteMint: MintInfoWithKey
+): string => {
+  const quoteToken = Tokens.devnet[quoteMint.pubkey.toString()];
+  const underlyingToken = Tokens.devnet[underlyingMint.pubkey.toString()];
+  const strikeDisplay = formatStrike(
+    optionMarket.underlyingAmountPerContract,
+    optionMarket.quoteAmountPerContract,
+    quoteToken.decimals,
+    underlyingToken.decimals
+  );
+  return `${strikeDisplay}`;
+};
+
+// Quote Taken
+export const displayQuoteToken = (quoteMint: MintInfoWithKey): string => {
+  const quoteToken = Tokens.devnet[quoteMint.pubkey.toString()];
+  return `${quoteToken.symbol}`;
+};
+
+//Expiration
+export const displayExpiration = (optionMarket: OptionMarket): string => {
+  const expirationDate = new Date(
+    optionMarket.expirationUnixTimestamp.toNumber() * 1000
+  );
+  return `${expirationDate.getFullYear()}-${expirationDate.getMonth()}-${expirationDate.getDay()}`;
+};
+
+// All Values
 export const displayHeader = (
   project: Project,
   optionMarket: OptionMarket,
@@ -39,7 +92,9 @@ export const displayHeader = (
     2
   );
 
-  return `${underlyingAmount} ${project.symbol} ${strikeDisplay} ${
+  return `Underlying Amount: ${underlyingAmount} Project Symbol: ${
+    project.symbol
+  } Strike Price: ${strikeDisplay} Quote Token: ${
     quoteToken.symbol
-  } ${expirationDate.getFullYear()}-${expirationDate.getMonth()}-${expirationDate.getDay()}`;
+  } Expiration: ${expirationDate.getFullYear()}-${expirationDate.getMonth()}-${expirationDate.getDay()}`;
 };

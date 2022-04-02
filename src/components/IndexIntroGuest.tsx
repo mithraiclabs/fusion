@@ -7,6 +7,9 @@ import {
 } from '@saberhq/use-solana';
 import styles from '../styles/IndexIntroGuest.module.scss';
 import PsyChart from './PsyChart';
+//import OptionOverview from './OptionOverview';
+//import OverviewCard from './OverviewCard';
+//import { Card } from '@material-ui/core';
 
 const IndexIntroGuest = () => {
   const wallet = useConnectedWallet();
@@ -18,7 +21,7 @@ const IndexIntroGuest = () => {
       "Lorem",
       "Ipsum",
       "Dolor"
-     ],
+    ],
     datasets: [
       {
         "data": [21, 19, 2],
@@ -26,7 +29,7 @@ const IndexIntroGuest = () => {
           '#8BEAFF',
           '#cf3f7c',
           '#fff'
-        ] ,
+        ],
         borderColor: [
           'white'
         ],
@@ -41,13 +44,13 @@ const IndexIntroGuest = () => {
   return (
     <div className={styles["index-intro-guest"]}>
       <section>
-        <sup>Why PsyOptions Management?</sup>
-        <h1>Token value. Simplified</h1>
-        <div>
-          PsyOptions Management helps teams and communities and investors 
+        <sup className='title'> Why PsyOptions Management?</sup>
+        <h1>Token value. Simplified.</h1>
+        <div className='description'>
+          PsyOptions Management helps teams, communities, and investors
           manage their token distribution, valuations, investments, and token rewards.
         </div>
-        <nav>
+        <nav className='grid-container'>
           <div className='psy-button-group'>
             {
               wallet?.connected ? (
@@ -60,15 +63,19 @@ const IndexIntroGuest = () => {
                 <ConnectWalletButton />
               )
             }
-            <button>Read our docs</button>
+            <button className='docs-button'>Read our docs</button>
           </div>
         </nav>
       </section>
-      <figure>
-        <PsyChart data={data} options={options} />
-      </figure>
     </div>
   )
 };
+
+/*
+     <figure>
+        <PsyChart data={data} options={options} />
+      </figure>
+
+*/
 
 export default IndexIntroGuest;

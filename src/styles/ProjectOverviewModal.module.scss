@@ -1,0 +1,30 @@
+@import './globals.scss';
+
+.modalOpener{
+    color: rgb(199,76,120);
+    font-family: $fontFamilyBody;
+    font-weight: 700;
+}
+    
+    .graphFlex{
+    width: 55%;    
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    border-width: 0px;
+    }
+
+    .exerciseFlex { 
+      display: flex;
+      flex-direction: column;
+      width: 45%;
+      margin-top: 30px;
+    }
+
+  
+.header{
+    font-family: $fontFamilyBody;
+    font-weight: 700;
+    color: white;
+}
+  

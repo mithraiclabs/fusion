@@ -1,7 +1,7 @@
 @import './globals.scss';
 
 .form {
-  background: rgba($grey-darkest, 0.7);
+  //background: rgba($grey-darkest, 0.7);
   margin-bottom: $textBlockMarginMobile;
   padding: 25px 28px;
   position: relative;
@@ -21,10 +21,10 @@
 
 .form fieldset {
   border: none;
-  margin-bottom: $textBlockMarginMobile * 3;
+  //margin-bottom: $textBlockMarginMobile * 3;
 
   div {
-    margin-bottom: $textBlockMarginMobile * 2.5;
+    //margin-bottom: $textBlockMarginMobile * 2.5;
   }
 
   label {

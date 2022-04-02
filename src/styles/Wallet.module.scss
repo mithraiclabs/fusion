@@ -1,0 +1,160 @@
+@import "./globals.scss";
+
+.popup-content {
+  margin: auto;
+  background: $cyan;
+  width: 50%;
+  padding: 5px;
+}
+.popup-arrow {
+  color: rgb(30, 30, 30);
+}
+[role="tooltip"].popup-content {
+  width: 30px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+[data-popup="tooltip"].popup-overlay {
+  background: transparent;
+}
+
+.Popup{
+  width: auto;
+  background-color: transparent;
+}
+
+
+.wallet-container {
+  background:linear-gradient(180deg,rgb(221, 62, 118) -0.83%, rgb(29, 77, 201) 100% );
+  max-width: 325px;
+  justify-content: center;
+/*   background: linear-gradient(
+    180deg,
+    rgb(160, 232, 252) -0.83%,
+    rgb(145, 233, 164) 100%
+  ); */
+  border-width: 2px;
+  border-radius: 5px;
+  border-color: rgb(201,76, 119);
+  border-style: solid;
+  padding: 10px;
+  min-width: 255px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px 3px  rgb(201,76, 119);
+  h1 {
+    text-overflow: ellipsis;
+    color: $cyan;
+    text-shadow: 0 0 10px $cyan;
+    background-color: rgb(30, 30, 30);
+    font-size: small;
+    border-radius: 5px;
+    padding: 0;
+  }
+}
+
+ul {
+  //@media screen and (min-width: $tabletWidth) {
+  justify-items: left;
+  align-items: center;
+  padding: 5px;
+  
+
+  li { 
+    background-color: rgb(30, 30, 30);
+    color: #ffffff;
+    padding: 8px;
+    font-size: 12px;
+    list-style: none;
+    margin-bottom: 5px;
+
+    :last-child {// eye button
+      display: block; //needed
+      margin-left: auto; //needed
+      margin-right: auto; //needed
+      padding: 0; //needed
+      
+      &:hover {
+        .EyeIcon {
+          //doesn't work
+          opacity: 0.5;
+        }
+      }
+    }
+
+    &:first-of-type { // wallet address and eye container
+      display: flex; //shoves the strong and eye on the same line
+      border-radius: 5px;
+      justify-content: center;
+      strong {
+        // Wallet Address Strong
+        min-width: 100px;
+        max-width: 150px;
+        color: rgb(30, 30, 30);
+        background-color: $cyan;
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+    }
+    &:not(:first-of-type) {
+      display: flex;
+      flex-direction: row;
+      //Provider, Network, Balance container styles
+      background-color: rgb(52,52,61);
+      border-color: black;
+      border-style: solid;
+      border-radius: 5px;
+      border-width: 2px;
+      //border-color: $cyan;
+      font-weight: 700;
+      color:#ffffff;
+
+      //text-align: right;
+      strong {
+        //align-content: space-between;
+        text-align: center;
+        width: 100px;
+        background: $cyan;
+        color: #ffffff;
+        background-color: rgb(30, 30, 30);
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+    strong {
+      display: inline-block;
+      border-radius: 10px;
+    }
+    &:last-of-type {
+      //align-items: center;
+      background-color: transparent;
+      padding: 0;
+      margin: 0;
+      border-radius: 15px;
+      border-width: 0px;
+      button {
+        width: 100%;
+        //margin:5px;
+        padding: 5px;
+        border-radius: 10px;
+        box-sizing: border-box;
+        background-color: rgb(30, 30, 30);
+        //padding: 10px;
+
+        &:hover {
+          background-color: rgb(0, 0, 0);
+          box-shadow: 0px 0px 3px 3px rgb(201,76, 119);
+          transition: 0.4s;
+        }
+      }
+
+      //justify-content: center;
+    }
+  }
+}
