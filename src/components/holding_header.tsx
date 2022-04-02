@@ -1,19 +1,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Link
-} from "react-router-dom";
-import {
-  LAMPORTS_PER_SOL
-} from '@solana/web3.js';
-import styles_header from '../styles/Header.module.scss';
-import LogoImg from './Images/psyoptions-logo-light.png';
-import { useConnectedWallet } from "@saberhq/use-solana";
 import "../styles/Portfolio.scss";
-import classNames from 'classnames';
 import { Project } from '../types';
-import { Box, makeStyles } from '@material-ui/core';
 //below are the imports for the market pull
 import { Market } from '@project-serum/serum'
 import {

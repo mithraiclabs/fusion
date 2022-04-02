@@ -1,7 +1,6 @@
 import styles from "../styles/PortfolioOverview.module.scss";
 import projectList from "../content/projectList";
 import ProjectOverview from "./ProjectOverview";
-import Wallet from "./Wallet";
 import { ConnectWalletButton } from "./ConnectWalletButton";
 
 const PortfolioOverview = () => {
@@ -72,6 +71,7 @@ const PortfolioOverview = () => {
           )} */}
           {projectList.map((project) => (
                 <ProjectOverview
+                  key={project.key}
                   project={project}
                 />
             ))}

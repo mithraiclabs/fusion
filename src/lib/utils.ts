@@ -20,6 +20,7 @@ export const getAllWalletOptions = async (
   projects: Project[]
 ) => {
   // Load all the PsyOptions option markets
+  // @ts-ignore
   const optionMarkets = await getAllOptionAccounts(program);
   // Load all SPL Mint addresses of the connected wallet
   const resp = await program.provider.connection.getTokenAccountsByOwner(

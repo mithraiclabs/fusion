@@ -1,11 +1,8 @@
-import { useConnectedWallet } from "@saberhq/use-solana";
-import { Link } from "react-router-dom";
 import "../styles/Portfolio.scss";
 import React from "react";
 import classNames from "classnames";
 
 import { OptionAccount } from "../types";
-import tokenData from "../content/TokenAccountData";
 import { calculateStrikeFromOptionAccount } from "../lib/utils";
 import { LockIcon } from "./Images/icons/lock-icon";
 

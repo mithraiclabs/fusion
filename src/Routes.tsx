@@ -3,8 +3,10 @@ import { BrowserRouter, Route, Routes as Switch } from "react-router-dom";
 import styles from './styles/app.module.scss';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
+import { useHydrateState } from "./hooks/useHydrateState";
 
 export const Routes: React.VFC = () => {
+  useHydrateState();
   return (
     <BrowserRouter>
       <main className={styles.main}>
