@@ -6,7 +6,6 @@ import {
   useConnectedWallet, useSolana
 } from '@saberhq/use-solana';
 import styles from '../styles/IndexIntroGuest.module.scss';
-import PsyChart from './PsyChart';
 //import OptionOverview from './OptionOverview';
 //import OverviewCard from './OverviewCard';
 //import { Card } from '@material-ui/core';
