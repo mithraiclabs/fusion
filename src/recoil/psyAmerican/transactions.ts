@@ -40,6 +40,5 @@ export const useLoadPsyAmericanOptions = () => {
     // @ts-ignore: anchor version diff
     const options = await getAllOptionAccounts(program);
     updateState(options);
-    console.log('** options', options);
   }, [program, updateState]);
 };

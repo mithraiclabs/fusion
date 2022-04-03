@@ -1,51 +1,11 @@
 import styles from "../styles/PortfolioOverview.module.scss";
-import projectList from "../content/projectList";
 import ProjectOverview from "./ProjectOverview";
 import { ConnectWalletButton } from "./ConnectWalletButton";
+import { useRecoilValue } from "recoil";
+import { selectOwnedProjects } from "../recoil";
 
 const PortfolioOverview = () => {
-  // const [projectOptions, setProjectOptions] = useState<
-  //   Record<string, ProjectOptions>
-  // >({});
-  // const [mintInfos, setMintInfos] = useState<Record<string, MintInfoWithKey>>(
-  //   {}
-  // );
-
- 
-
-  // useEffect(() => {
-  //   setLoadingProjects(true);
-  //   if (wallet && wallet.connected) {
-  //     // TODO put the Program into a higher order component
-  //     const anchorProvider = new Provider(provider.connection, wallet, {});
-  //     const program = new Program(
-  //       PsyAmericanIdl,
-  //       new PublicKey("R2y9ip6mxmWUj4pt54jP2hz2dgvMozy9VTSwMWE7evs"),
-  //       anchorProvider
-  //     );
-  //     (async () => {
-  //       // on wallet connect get all the options the user holds https://github.com/mithraiclabs/psyoptions-management/issues/3
-  //       const temp = await getAllWalletOptions(program, projectList);
-  //       setProjectOptions(temp);
-  //       setLoadingProjects(false);
-  //     })();
-  //   }
-  // }, [provider.connection, wallet]);
-
-  // // Load the MintInfo for all non-option SPL Tokens. This is necessary to display strike prices
-  // useEffect(() => {
-  //   (async () => {
-  //     // const mints = await loadMintInfo(
-  //     //   provider.connection,
-  //     //   Object.values(projectOptions)
-  //     // );
-  //     setMintInfos(mintInfos);
-  //     setLoadingMints(false);
-  //   })();
-  // }, [provider.connection, projectOptions]);
-
-  // console.log('mi',mintInfos)
-
+  const ownedProjects = useRecoilValue(selectOwnedProjects);
   return (
     <div className="top">
       <div className={styles["Parent"]}>
@@ -69,9 +29,9 @@ const PortfolioOverview = () => {
               </div>
             ))
           )} */}
-          {projectList.map((project) => (
+          {ownedProjects.map((project) => (
                 <ProjectOverview
-                  key={project.key}
+                  key={project.mintAddress}
                   project={project}
                 />
             ))}

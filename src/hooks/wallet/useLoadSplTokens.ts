@@ -14,6 +14,8 @@ export const useLoadSplTokens = () => {
 
   useEffect(() => {
     if (!publicKey) {
+      // Clear the state when no wallet is connected
+      updateAllSplTokenAccounts([], true);
       return;
     }
 

@@ -13,7 +13,7 @@ const ProjectOverview: React.FC<{
   let navigate = useNavigate();
   return (
     <div className="project-card">
-      <button onClick={() => {navigate(`/portfolio/${project.key}`)}} className="project-name">
+      <button onClick={() => {navigate(`/portfolio/${project.mintAddress}`)}} className="project-name">
         {project.name}
       </button>
       <div className="card-content">

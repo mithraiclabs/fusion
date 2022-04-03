@@ -16,7 +16,6 @@ export type Asset = {
 };
 
 export type Project = {
-  key: string;
   name: string;
   description: string;
   mintAddress: string;

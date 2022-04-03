@@ -19,10 +19,10 @@ const Portfolio: React.FC = () => {
   );
   const projectKey = useMatch("/portfolio/:key")?.params?.key;
   if (!projectKey) return null;
-  const project = projectList.find((proj) => proj.key === projectKey);
+  const project = projectList[projectKey];
   if (!project) return null;
   const optionsList = projectOptionsData.find(
-    (pOption) => pOption.project.key === projectKey
+    (pOption) => pOption.project.mintAddress === projectKey
   )?.options;
   return (
     <div className="portfolio-wrapper">
