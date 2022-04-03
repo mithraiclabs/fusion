@@ -11,24 +11,6 @@ const PortfolioOverview = () => {
       <div className={styles["Parent"]}>
         <div className={styles["child2"]}>
           <h3>PORTFOLIO OVERVIEW</h3>
-          {/* {loadingProjects 
-          // || Object.keys(mintInfos).length <= 0 
-          ? (
-            <div>
-              <CircularProgress />
-            </div>
-          ) : (
-            projectOptionsData.map((projectOption, index) => (
-              <div>
-                <ProjectOverview
-                  key={projectOption.project.name}
-                  project={projectOption.project}
-                  optionAccounts={projectOption.options}
-                  mintInfos={mintInfoRecord}
-                />
-              </div>
-            ))
-          )} */}
           {ownedProjects.map((project) => (
                 <ProjectOverview
                   key={project.mintAddress}

@@ -6,14 +6,22 @@ import { TwitterIcon } from "./Images/icons/twitter-3-logo-svg-vector";
 import { InternetIcon } from "./Images/icons/internet-icon";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { tokenPricesMap } from "../recoil";
 
 const ProjectOverview: React.FC<{
   project: Project;
 }> = ({ project }) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const tokenPrice = useRecoilValue(tokenPricesMap(project.mintAddress));
   return (
     <div className="project-card">
-      <button onClick={() => {navigate(`/portfolio/${project.mintAddress}`)}} className="project-name">
+      <button
+        onClick={() => {
+          navigate(`/portfolio/${project.mintAddress}`);
+        }}
+        className="project-name"
+      >
         {project.name}
       </button>
       <div className="card-content">
@@ -30,16 +38,20 @@ const ProjectOverview: React.FC<{
           </div>
         </div>
         <div className="card-right">
-          <div className={classNames("project-symbol", 'right-text')}>{project.symbol}</div>
-          <div className={classNames("project-value", 'right-text')}>$10.75</div>
+          <div className={classNames("project-symbol", "right-text")}>
+            {project.symbol}
+          </div>
+          <div className={classNames("project-value", "right-text")}>
+            {tokenPrice ? `$${tokenPrice?.toFixed(2)}` : null}
+          </div>
           <div className="card-socials">
-            <a className="twitter-icon" href={project.twitter} target="_blank" >
+            <a className="twitter-icon" href={project.twitter} target="_blank">
               {TwitterIcon}
             </a>
-            <a className="discord-icon" href={project.discord} target="_blank" >
+            <a className="discord-icon" href={project.discord} target="_blank">
               {DiscordIcon}
             </a>
-            <a className="internet-icon" href={project.website} target="_blank" >
+            <a className="internet-icon" href={project.website} target="_blank">
               {InternetIcon}
             </a>
           </div>

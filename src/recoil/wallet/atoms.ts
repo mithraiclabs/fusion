@@ -1,5 +1,5 @@
 import { atom, atomFamily } from "recoil";
-import { TokenAccountWithKey, OwnedOptionKeys } from "./types";
+import { TokenAccountWithKey } from "./types";
 
 /**
  * store the info from the SPL Token Account owned by
