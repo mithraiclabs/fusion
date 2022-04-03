@@ -6,6 +6,8 @@ import { useProvider } from "./useProvider";
 export const usePsyAmericanProgram = () => {
   const provider = useProvider();
 
+  console.log('*** provider', provider);
+
   return useMemo(() => {
     return new Program(
       PsyAmericanIdl,
