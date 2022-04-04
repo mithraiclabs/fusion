@@ -4,7 +4,8 @@ import { useCallback } from "react";
 import { useRecoilTransaction_UNSTABLE, useRecoilValue } from "recoil";
 import { useProvider } from "../../hooks/useProvider";
 import { selectOwnedProjects } from "../psyAmerican";
-import { tokenPricesMap } from "./atoms";
+import { tokenPricesMap, tokenSerumBookMap } from "./atoms";
+import { SerumOrderBook } from "./types";
 
 export const useInsertTokenPrices = () =>
   useRecoilTransaction_UNSTABLE<[string[], number[]]>(
@@ -17,13 +18,26 @@ export const useInsertTokenPrices = () =>
     []
   );
 
+export const useInsertTokenSerumOrderbook = () =>
+  useRecoilTransaction_UNSTABLE<[string[], SerumOrderBook[]]>(
+    ({ set }) =>
+      (tokenMints, orderbookData) => {
+        tokenMints.forEach((mintAddress, index) => {
+          set(tokenSerumBookMap(mintAddress), orderbookData[index]);
+        });
+      },
+    []
+  );
+
 export const useLoadAllTokenPrices = () => {
   const provider = useProvider();
   const ownedProjects = useRecoilValue(selectOwnedProjects);
-  const updateState = useInsertTokenPrices();
+  const tokenMints = ownedProjects.map((x) => x.mintAddress);
+  const updatePriceState = useInsertTokenPrices();
+  const updateOrderbookState = useInsertTokenSerumOrderbook();
 
   return useCallback(async () => {
-    const prices = await Promise.all(
+    const res = await Promise.all(
       ownedProjects.map(async (project) => {
         // TODO: Add util function that takes a Project and gets price.
         //  Add support for coingecko API.
@@ -44,10 +58,26 @@ export const useLoadAllTokenPrices = () => {
         const [bidPrice] = bids.getL2(1)[0];
         const [askPrice] = asks.getL2(1)[0];
         const price = (askPrice + bidPrice) / 2;
-        return price;
+        const orderbook = {
+          bids: bids.getL2(20),
+          asks: asks.getL2(20),
+        };
+        return { price, orderbook };
       })
     );
-    const tokenMints = ownedProjects.map((x) => x.mintAddress);
-    updateState(tokenMints, prices);
-  }, [provider.connection, ownedProjects, updateState]);
+    updatePriceState(
+      tokenMints,
+      res.map((x) => x.price)
+    );
+    updateOrderbookState(
+      tokenMints,
+      res.map((x) => x.orderbook)
+    );
+  }, [
+    provider.connection,
+    ownedProjects,
+    tokenMints,
+    updatePriceState,
+    updateOrderbookState,
+  ]);
 };
