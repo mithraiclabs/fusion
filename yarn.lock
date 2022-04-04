@@ -2525,10 +2525,10 @@
     "@solana/spl-token" "^0.1.8"
     "@solana/web3.js" "^1.28.0"
 
-"@mithraic-labs/psy-token-registry@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.npmjs.org/@mithraic-labs/psy-token-registry/-/psy-token-registry-0.0.3.tgz"
-  integrity sha512-ES5j8I3NLTPpzAhhyB7RPpzFo8UidTlBjoT4FHcYZ9ZMYR2u/VzbiHdhNq1f09UUhGirEy8bvN3y9g6515ShJQ==
+"@mithraic-labs/psy-token-registry@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@mithraic-labs/psy-token-registry/-/psy-token-registry-0.0.7.tgz#a87cad15499de5fc1a8bde891afd494995400d5a"
+  integrity sha512-dqnDKb83fZsPzBKXu+dUeXH2+bELmjJ9+uG9jSBjMN9Ox6usE2QxYiU6ltSsFPcg1t8io23OiiYw+EqQfLLxlg==
 
 "@mui/base@5.0.0-alpha.64":
   version "5.0.0-alpha.64"

@@ -11,7 +11,6 @@ const PortfolioHeader: React.FC = () => {
       </div>
       <div className={classNames("price", "header-section")}>Strike Price</div>
       <div className={classNames("amount", "header-section")}>Amount Held</div>
-      <div className={classNames("mint", "header-section")}>Mint Address</div>
     </div>
   );
 };

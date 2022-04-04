@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/ProjectOverview.scss";
 import { Modal } from "@material-ui/core";
 import "../styles/Portfolio.scss";
-import { calculateStrikeFromOptionAccount } from "../lib/utils";
+import { displayStrikePrice } from "../lib/utils";
 import { BN } from "@project-serum/anchor";
 import { useRecoilValue } from "recoil";
 import { optionMarketFamily, tokenAccountsMap } from "../recoil";
@@ -38,16 +38,14 @@ const ExerciseModal: React.FC<{
         </div>
         <div className="modal-row">
           <div>Strike Price:</div>
-          <div>{calculateStrikeFromOptionAccount(optionMarket).toString()}</div>
+          <div>{displayStrikePrice(optionMarket).toString()}</div>
         </div>
         <div className="modal-row">
           <div>Gains from Exercising:</div>
           <div>
             {!disableExerice &&
-            calculateStrikeFromOptionAccount(optionMarket).toString() !== "0"
-              ? new BN(parseFloat(exerciseAmount) * 10.75)
-                  .div(calculateStrikeFromOptionAccount(optionMarket))
-                  .toString()
+            displayStrikePrice(optionMarket).toString() !== "0"
+              ? "TODO"
               : "Invalid"}
           </div>
         </div>
