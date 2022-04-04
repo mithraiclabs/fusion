@@ -18,7 +18,7 @@ const ProjectOverview: React.FC<{
     <div className="project-card">
       <button
         onClick={() => {
-          navigate(`/portfolio/${project.mintAddress}`);
+          navigate(`/project/${project.mintAddress}`);
         }}
         className="project-name"
       >

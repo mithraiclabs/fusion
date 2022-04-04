@@ -1,14 +1,8 @@
 import { BN } from "@project-serum/anchor";
-import {
-  MintLayout,
-  u64,
-} from "@solana/spl-token";
-import {
-  MintInfoWithKey,
-  ProjectOptions,
-  OptionAccount
-} from "../types";
+import { MintLayout, u64 } from "@solana/spl-token";
+import { MintInfoWithKey, ProjectOptions, OptionAccount } from "../types";
 import { Connection, PublicKey } from "@solana/web3.js";
+import { OptionMarket } from "@mithraic-labs/psy-american";
 
 export const loadMintInfo = async (
   connection: Connection,
@@ -77,31 +71,72 @@ export const bnToFloat = (
   );
 };
 
-export function formatStrikeAsStringFromOptionAccount(optionAccount: OptionAccount): String {
-  return formatStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract,6, 9);
+export function formatStrikeAsStringFromOptionAccount(
+  optionAccount: OptionAccount
+): String {
+  return formatStrike(
+    optionAccount.optionMarket.underlyingAmountPerContract,
+    optionAccount.optionMarket.quoteAmountPerContract,
+    6,
+    9
+  );
 }
 
-export function calculateStrikeFromOptionAccount(optionAccount: OptionAccount): BN {
-  console.log('oa', optionAccount)
-  console.log('strike', calculateStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, 6, 5).toString());
-  return calculateStrike(optionAccount.optionMarket.underlyingAmountPerContract, optionAccount.optionMarket.quoteAmountPerContract, 6, 5);
+export function calculateStrikeFromOptionAccount(
+  optionMarket: OptionMarket
+): BN {
+  console.log("oa", optionMarket);
+  console.log(
+    "strike",
+    calculateStrike(
+      optionMarket.underlyingAmountPerContract,
+      optionMarket.quoteAmountPerContract,
+      6,
+      5
+    ).toString()
+  );
+  return calculateStrike(
+    optionMarket.underlyingAmountPerContract,
+    optionMarket.quoteAmountPerContract,
+    6,
+    5
+  );
 }
 
-export function calculateStrike(underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number): BN {
+export function calculateStrike(
+  underlyingAmount: BN,
+  quoteAmount: BN,
+  quoteDecimals: number,
+  underlyingDecimals: number
+): BN {
   const netDecimals = underlyingDecimals - quoteDecimals;
-  console.log('under, quote', underlyingAmount, quoteAmount);
+  console.log("under, quote", underlyingAmount, quoteAmount);
   let strike: BN;
   if (netDecimals > 0) {
-    strike = quoteAmount.mul(new BN(10).pow(new BN(netDecimals))).div(underlyingAmount);
+    strike = quoteAmount
+      .mul(new BN(10).pow(new BN(netDecimals)))
+      .div(underlyingAmount);
   } else {
-    strike = quoteAmount.div(new BN(10).pow(new BN(Math.abs(netDecimals)))).div(underlyingAmount);
+    strike = quoteAmount
+      .div(new BN(10).pow(new BN(Math.abs(netDecimals))))
+      .div(underlyingAmount);
   }
-  console.log(strike)
+  console.log(strike);
   return strike;
 }
 
-export const formatStrike = (underlyingAmount: BN, quoteAmount: BN, quoteDecimals: number, underlyingDecimals: number) => {
-  let strike = (calculateStrike(underlyingAmount, quoteAmount, quoteDecimals, underlyingDecimals));
+export const formatStrike = (
+  underlyingAmount: BN,
+  quoteAmount: BN,
+  quoteDecimals: number,
+  underlyingDecimals: number
+) => {
+  let strike = calculateStrike(
+    underlyingAmount,
+    quoteAmount,
+    quoteDecimals,
+    underlyingDecimals
+  );
   const places = parseInt((strike.toString().length / 3).toString());
   let strikeDisplay: string;
   switch (places) {
@@ -121,6 +156,4 @@ export const formatStrike = (underlyingAmount: BN, quoteAmount: BN, quoteDecimal
       throw new Error("Bad strike value");
   }
   return strikeDisplay;
-}
-
-
+};

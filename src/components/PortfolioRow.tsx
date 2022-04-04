@@ -2,21 +2,26 @@ import "../styles/Portfolio.scss";
 import React from "react";
 import classNames from "classnames";
 
-import { OptionAccount } from "../types";
 import { calculateStrikeFromOptionAccount } from "../lib/utils";
 import { LockIcon } from "./Images/icons/lock-icon";
+import { useRecoilValue } from "recoil";
+import { optionMarketFamily, tokenAccountsMap } from "../recoil";
 
 const PortfolioRow: React.FC<{
-  optionAccount: OptionAccount;
+  tokenAccountKey: string;
+  optionMarketKey: string;
   exerciseButtonCallback: () => void;
-}> = ({ optionAccount, exerciseButtonCallback }) => {
+}> = ({ tokenAccountKey, optionMarketKey, exerciseButtonCallback }) => {
+  const tokenAccount = useRecoilValue(tokenAccountsMap(tokenAccountKey));
+  const optionMarket = useRecoilValue(optionMarketFamily(optionMarketKey));
+  console.log("** tokenACcount", tokenAccount, optionMarket);
+  if (!optionMarket || !tokenAccount) {
+    return null;
+  }
   return (
-    <div
-      key={optionAccount.tokenAccount.address.toString()}
-      className="portfolio-row-wrapper"
-    >
+    <div key={tokenAccount.key.toString()} className="portfolio-row-wrapper">
       <div className={classNames("exercise", "row-section")}>
-        {optionAccount.optionMarket.expired ? (
+        {optionMarket.expired ? (
           <div className="expired-exercise">
             {LockIcon}
             <div>Expired</div>
@@ -29,20 +34,20 @@ const PortfolioRow: React.FC<{
       </div>
       <div
         className={classNames("expiration", "row-section", {
-          expired: optionAccount.optionMarket.expired,
+          expired: optionMarket.expired,
         })}
       >
-        {optionAccount.optionMarket.expirationUnixTimestamp.toString()}
+        {optionMarket.expirationUnixTimestamp.toString()}
       </div>
       <div className={classNames("price", "row-section")}>
-        {calculateStrikeFromOptionAccount(optionAccount).toString()}
+        {calculateStrikeFromOptionAccount(optionMarket).toString()}
       </div>
       <div className={classNames("amount", "row-section")}>
-        {optionAccount.tokenAccount.amount.toString()}
+        {tokenAccount.amount.toString()}
       </div>
 
       <div className={classNames("mint", "row-section")}>
-        {optionAccount.optionMarket.optionMint.toString()}
+        {optionMarket.optionMint.toString()}
       </div>
     </div>
   );

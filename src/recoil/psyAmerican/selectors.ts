@@ -1,7 +1,11 @@
 import { OptionMarketWithKey } from "@mithraic-labs/psy-american";
-import { selector } from "recoil";
+import { selector, selectorFamily } from "recoil";
 import projectList from "../../content/projectList";
-import { OwnedProjectOptionKeys, tokenAccountsMap } from "../wallet";
+import {
+  OwnedProjectOptionKeys,
+  tokenAccountsMap,
+  TokenAccountWithKey,
+} from "../wallet";
 import { Project } from "../../types";
 import { optionMarketFamily, psyAmericanOptionKeys } from ".";
 
@@ -17,7 +21,7 @@ export const selectOwnedProjectOptionKeys = selector<OwnedProjectOptionKeys>({
   key: "selectOwnedProjectOptions",
   get: ({ get }) => {
     const psyAmericanOptions = get(selectAllOptionMarkets);
-    return psyAmericanOptions.reduce((agg, optionMarket) => {
+    const ownedOptions = psyAmericanOptions.reduce((agg, optionMarket) => {
       // Filter out all the one's that are  not long calls for a known project
       const project = projectList[optionMarket.underlyingAssetMint.toString()];
       if (!project) return agg;
@@ -30,18 +34,19 @@ export const selectOwnedProjectOptionKeys = selector<OwnedProjectOptionKeys>({
       if (agg[project.mintAddress] && Array.isArray(agg[project.mintAddress])) {
         agg[project.mintAddress].push({
           optionMarketKey: optionMarket.key.toString(),
-          tokenAccountKey: tokenAccount.key.toString(),
+          tokenAccountKey: tokenAccount.mint.toString(),
         });
       } else {
         agg[project.mintAddress] = [
           {
             optionMarketKey: optionMarket.key.toString(),
-            tokenAccountKey: tokenAccount.key.toString(),
+            tokenAccountKey: tokenAccount.mint.toString(),
           },
         ];
       }
       return agg;
     }, {} as OwnedProjectOptionKeys);
+    return ownedOptions;
   },
 });
 
@@ -54,4 +59,26 @@ export const selectOwnedProjects = selector<Project[]>({
     const ownedProjectOptions = get(selectOwnedProjectOptionKeys);
     return Object.keys(ownedProjectOptions).map((key) => projectList[key]);
   },
+});
+
+export const selectOwnedOptionsForProject = selectorFamily<
+  {
+    optionMarket: OptionMarketWithKey | null;
+    tokenAccount: TokenAccountWithKey | null;
+  }[],
+  string
+>({
+  key: "selectOwnedOptionsForProject",
+  get:
+    (projectKey) =>
+    ({ get }) => {
+      const ownedProjectOptionKeys = get(selectOwnedProjectOptionKeys);
+      const ownedOptionsForProject = ownedProjectOptionKeys[projectKey];
+      return ownedOptionsForProject.map((ownedKeys) => {
+        return {
+          optionMarket: get(optionMarketFamily(ownedKeys.optionMarketKey)),
+          tokenAccount: get(tokenAccountsMap(ownedKeys.tokenAccountKey)),
+        };
+      });
+    },
 });
