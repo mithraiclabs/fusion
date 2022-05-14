@@ -9,7 +9,7 @@ import PortfolioSnippet from "../components/PortfolioSnippet";
 
 import "../styles/Portfolio.scss";
 import { useRecoilValue } from "recoil";
-import { selectOwnedProjectOptionKeys } from "../recoil";
+import { selectOwnedProjectOptionKeys, tokenSerumBookMap } from "../recoil";
 
 const Project: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -21,6 +21,9 @@ const Project: React.FC = () => {
   const project = projectList[projectKey];
   const ownedProjectOptions = useRecoilValue(selectOwnedProjectOptionKeys);
   const ownedProjectOptionKeys = ownedProjectOptions[projectKey];
+
+  const orderBook = useRecoilValue(tokenSerumBookMap(project.mintAddress));
+  console.log("*** orderbook data", orderBook);
 
   return (
     <div className="portfolio-wrapper">

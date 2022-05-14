@@ -102,20 +102,12 @@
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
-  width: 400px;
-  height: 400px;
   transform: translate(-50%, -50%);
-  background-color: grey;
+  background-color: inherit;
   border-radius: 10px;
   border: 2px solid $psyoptions-pink;
   box-shadow: 24;
   color: white;
-
-  .modal-body {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
 
   .modal-header {
     width: 100%;
