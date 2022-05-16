@@ -6,6 +6,9 @@ const theme = createTheme({
     text: {
       primary: "#777777",
     },
+    background: {
+      paper: "#FBFBFB",
+    },
   },
   typography: {},
   overrides: {

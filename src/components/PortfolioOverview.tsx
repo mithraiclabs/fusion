@@ -1,4 +1,3 @@
-import styles from "../styles/PortfolioOverview.module.scss";
 import ProjectOverview from "./ProjectOverview";
 import { ConnectWalletButton } from "./ConnectWalletButton";
 import { useRecoilValue } from "recoil";
@@ -8,19 +7,12 @@ const PortfolioOverview = () => {
   const ownedProjects = useRecoilValue(selectOwnedProjects);
   return (
     <div className="top">
-      <div className={styles["Parent"]}>
-        <div className={styles["child2"]}>
-          <h3>PORTFOLIO OVERVIEW</h3>
-          {ownedProjects.map((project) => (
-                <ProjectOverview
-                  key={project.mintAddress}
-                  project={project}
-                />
-            ))}
-        </div>
-        <div className={styles["walletContainer"]}>
-          <ConnectWalletButton />
-        </div>
+      <h3>PORTFOLIO OVERVIEW</h3>
+      {ownedProjects.map((project) => (
+        <ProjectOverview key={project.mintAddress} project={project} />
+      ))}
+      <div>
+        <ConnectWalletButton />
       </div>
     </div>
   );

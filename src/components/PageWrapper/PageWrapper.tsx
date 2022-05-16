@@ -1,13 +1,13 @@
-import { Box } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 import React from "react";
 import { Navbar } from "../Navbar";
 
 const PageWrapper: React.FC<{}> = ({ children }) => {
   return (
-    <Box>
+    <Paper>
       <Navbar></Navbar>
       {children}
-    </Box>
+    </Paper>
   );
 };
 

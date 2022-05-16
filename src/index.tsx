@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import "./styles/app.global.scss";
-import styles from "./styles/app.module.scss";
 import { PsyWalletProvider } from "./components/WalletProvider";
 import { Routes } from "./Routes";
 import { RecoilRoot } from "recoil";
@@ -13,9 +12,7 @@ ReactDOM.render(
     <RecoilRoot>
       <Theme>
         <PsyWalletProvider>
-          <div className={styles.app}>
-            <Routes />
-          </div>
+          <Routes />
         </PsyWalletProvider>
       </Theme>
     </RecoilRoot>
