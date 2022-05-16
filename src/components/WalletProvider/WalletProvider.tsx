@@ -13,7 +13,7 @@ import {
   ConnectionProvider,
   WalletProvider,
 } from "@solana/wallet-adapter-react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
 import { useRecoilValue } from "recoil";
 import { networkAtom } from "../../recoil";
 
@@ -39,7 +39,7 @@ export const PsyWalletProvider: React.FC = ({ children }) => {
   return (
     <ConnectionProvider endpoint={network.url}>
       <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>{children}</WalletModalProvider>
+        <WalletDialogProvider>{children}</WalletDialogProvider>
       </WalletProvider>
     </ConnectionProvider>
   );

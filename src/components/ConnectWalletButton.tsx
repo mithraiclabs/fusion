@@ -1,8 +1,9 @@
 import React from "react";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { WalletMultiButton } from "@solana/wallet-adapter-material-ui";
+import { CSSProperties } from "@material-ui/core/styles/withStyles";
 
-require("@solana/wallet-adapter-react-ui/styles.css");
-
-export const ConnectWalletButton: React.VFC = () => {
-  return <WalletMultiButton />;
+export const ConnectWalletButton: React.VFC<{ style?: CSSProperties }> = ({
+  style,
+}) => {
+  return <WalletMultiButton style={style}>Connect Wallet</WalletMultiButton>;
 };

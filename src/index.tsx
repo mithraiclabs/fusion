@@ -1,23 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals';
-import './styles/app.global.scss';
-import styles from './styles/app.module.scss';
-import { PsyWalletProvider } from './components/WalletProvider';
-import { Routes } from './Routes';
+import React from "react";
+import ReactDOM from "react-dom";
+import reportWebVitals from "./reportWebVitals";
+import "./styles/app.global.scss";
+import styles from "./styles/app.module.scss";
+import { PsyWalletProvider } from "./components/WalletProvider";
+import { Routes } from "./Routes";
 import { RecoilRoot } from "recoil";
+import Theme from "./Theme";
 
 ReactDOM.render(
-  <React.StrictMode >
+  <React.StrictMode>
     <RecoilRoot>
-    <PsyWalletProvider>
-      <div className={styles.app}>
-        <Routes />
-      </div>
-    </PsyWalletProvider>
+      <Theme>
+        <PsyWalletProvider>
+          <div className={styles.app}>
+            <Routes />
+          </div>
+        </PsyWalletProvider>
+      </Theme>
     </RecoilRoot>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

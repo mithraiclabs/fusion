@@ -1,4 +1,4 @@
-@import './globals.scss';
+@import "./globals.scss";
 
 //html, body {min-height: 100%;}
 //body {background-size: cover;}
@@ -8,8 +8,8 @@
   //html, body {min-height: 100%;}
   //background-size: cover;
   background: transparent;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
   //height: 100vh;
   min-height: 100%;
 }
@@ -17,7 +17,7 @@
 .main {
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   //margin-top: $headerHeightMobile;
   width: 100%;
   height: 100%;
@@ -44,7 +44,6 @@
     // consider making optional
     // // variable issue, second value only works hardcoded
     // // height: calc(100vh - 128px);
-    padding-top: 10px;
   }
   @media screen and (min-width: $desktopWidth) {
     //width: 700px;

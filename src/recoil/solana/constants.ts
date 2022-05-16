@@ -4,9 +4,9 @@ import { Network } from "./types";
 export const networks: Record<string, Network> = {
   [WalletAdapterNetwork.Mainnet]: {
     key: WalletAdapterNetwork.Mainnet,
-    url: "https://psyoptions.genesysgo.net",
+    url: "https://api.mainnet-beta.solana.com",
     name: "Mainnet",
-    ws: "wss://psyoptions.genesysgo.net",
+    ws: "wss://api.mainnet-beta.solana.com",
   },
   [WalletAdapterNetwork.Devnet]: {
     key: WalletAdapterNetwork.Devnet,
