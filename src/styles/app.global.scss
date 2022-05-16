@@ -1,5 +1,5 @@
-@import './globals.scss';
-
+@import "./globals.scss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 // (Temporary values)
 
 * {
@@ -8,7 +8,6 @@
   margin: 0;
   padding: 0;
   //align-items: center;
-  
 }
 
 html,
@@ -30,7 +29,12 @@ section {
     font-size: $fontSizeSup;
     letter-spacing: $letterSpacingSup;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: $fontFamilyHeading, sans-serif;
     font-weight: $fontWeightHeading;
     letter-spacing: $letterSpacingHeading;
@@ -74,7 +78,8 @@ a {
   @media screen and (min-width: $desktopWidth) {
     display: flex;
   }
-  button, a {
+  button,
+  a {
     justify-content: center;
     height: 43px;
     width: 215px;
@@ -92,15 +97,14 @@ a {
     padding: 10px 14px;
     text-align: center;
     text-decoration: none;
-    &:hover{
+    &:hover {
       color: white;
     }
     @media screen and (min-width: $desktopWidth) {
       padding: 10px 28px;
-      
     }
   }
-  // temporary 
+  // temporary
   .css-1r28a09 {
     display: flex;
     // line-height: 10px !important;
@@ -118,7 +122,10 @@ a {
   .goki-walletkit-modal-wrapper {
     background: black;
     border: 2px solid $pink;
-    span, p, h2, div {
+    span,
+    p,
+    h2,
+    div {
       color: white;
     }
     h2 ~ div svg {

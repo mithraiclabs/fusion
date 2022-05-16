@@ -1,13 +1,28 @@
-import { Paper } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
+import { CSSProperties } from "@material-ui/core/styles/withStyles";
 import React from "react";
+import { MAX_PAGE_WIDTH } from "../../Theme";
 import { Navbar } from "../Navbar";
 
-const PageWrapper: React.FC<{}> = ({ children }) => {
+const useStyles = makeStyles((theme) => {
+  return {
+    container: {
+      backgroundColor: theme.palette.background.default,
+    },
+    innerContainer: {
+      margin: "auto",
+      maxWidth: MAX_PAGE_WIDTH,
+    },
+  };
+});
+
+const PageWrapper: React.FC = ({ children }) => {
+  const classes = useStyles();
   return (
-    <Paper>
+    <Box className={classes.container}>
       <Navbar></Navbar>
-      {children}
-    </Paper>
+      <Box className={classes.innerContainer}>{children}</Box>
+    </Box>
   );
 };
 
