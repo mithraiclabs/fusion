@@ -9,12 +9,13 @@ const theme = createTheme({
   },
   typography: {},
   overrides: {
-    MuiButton: {
-      containedPrimary: {
+    MuiButtonBase: {
+      root: {
         color: "#F2F4F6 !important",
         backgroundColor: "#3E3E3E !important",
         borderRadius: "50px !important",
-        textTransform: "none",
+        // @ts-ignore
+        textTransform: "none !important",
       },
     },
   },
