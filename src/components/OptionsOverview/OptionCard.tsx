@@ -39,10 +39,20 @@ const styles: Record<string, SxProps<Theme>> = {
     alignItems: "center",
     borderBottom: `1px solid ${BORDER_COLOR}`,
   },
+  logoNameContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  logo: { height: 60, width: 60, display: "flex", mr: 2 },
   bottom: {
     height: 150,
     px: 3,
     alignItems: "center",
+  },
+  exerciseGridItem: {
+    display: "flex",
+    justifyContent: "flex-end",
   },
   exerciseBtn: {
     height: 60,
@@ -77,10 +87,8 @@ export const OptionCard: React.VFC<{
       }}
     >
       <Box sx={styles.top}>
-        <Box
-          sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
-        >
-          <Box sx={{ height: 60, width: 60, display: "flex", mr: 2 }}>
+        <Box sx={styles.logoNameContainer}>
+          <Box sx={styles.logo}>
             <img src={project.logo} loading="lazy" />
           </Box>
           <Typography variant="h3" component="h3">
@@ -115,7 +123,7 @@ export const OptionCard: React.VFC<{
             1 {project.symbol} = ${tokenPrice?.toFixed(2)}
           </Typography>
         </Grid>
-        <Grid item md={3}>
+        <Grid item md={3} sx={styles.exerciseGridItem}>
           <Button
             variant="contained"
             sx={{
