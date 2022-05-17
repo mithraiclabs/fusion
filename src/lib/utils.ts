@@ -5,6 +5,8 @@ import { Connection, PublicKey } from "@solana/web3.js";
 import { OptionMarket } from "@mithraic-labs/psy-american";
 import { Tokens } from "@mithraic-labs/psy-token-registry";
 
+const dtf = Intl.DateTimeFormat(undefined, { timeZoneName: "short" });
+
 export const loadMintInfo = async (
   connection: Connection,
   projectOptions: ProjectOptions[]
@@ -74,7 +76,10 @@ export const bnToFloat = (
 
 export const displayExpirationDate = (optionMarket: OptionMarket) => {
   const d = new Date(optionMarket.expirationUnixTimestamp.toNumber() * 1_000);
-  return d.toLocaleDateString() + " " + d.toLocaleTimeString();
+  const timezoneAbbrev = dtf
+    .formatToParts(d)
+    .find((part) => part.type == "timeZoneName")?.value;
+  return `${d.toLocaleDateString()} ${d.toLocaleTimeString()} ${timezoneAbbrev}`;
 };
 
 export function displayStrikePrice(optionMarket: OptionMarket): string {
