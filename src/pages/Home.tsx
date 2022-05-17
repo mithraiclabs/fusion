@@ -1,59 +1,53 @@
-import { Box, Link, makeStyles, Typography } from "@material-ui/core";
-import { CSSProperties } from "@material-ui/core/styles/withStyles";
+import { Box, Link, Typography } from "@mui/material";
 import { Hr } from "../components/Hr";
 import { LinkOut } from "../components/Images/icons/LinkOut";
+import { OptionsOverview } from "../components/OptionsOverview";
 import PageWrapper from "../components/PageWrapper/PageWrapper";
 import { BORDER_COLOR } from "../Theme";
 
-const useOverviewStyles = makeStyles((theme) => {
-  return {
-    container: {
-      marginTop: 60,
-      background: "#FFFFFF",
-      borderRadius: 10,
-      border: `1px solid ${BORDER_COLOR}`,
-    },
-    top: {
-      padding: "0 50px",
-      height: 100,
-      display: "flex",
-      alignItems: "center",
-    },
-    bottom: {
-      padding: "30px 50px",
-    },
-    body: {
-      marginBottom: 22,
-    },
-  };
-});
+const overviewStyles = {
+  container: {
+    marginTop: 7.5,
+    background: "#FFFFFF",
+    borderRadius: 10,
+    border: `1px solid ${BORDER_COLOR}`,
+  },
+  top: {
+    padding: "0 50px",
+    height: 100,
+    display: "flex",
+    alignItems: "center",
+  },
+  bottom: {
+    padding: "30px 50px",
+  },
+  body: {
+    marginBottom: 2.75,
+  },
+};
 
-const useStyles = makeStyles((theme) => {
-  return {
-    header: {
-      marginTop: 50,
-    },
-  };
-});
+const styles = {
+  header: {
+    marginTop: 6.25,
+  },
+};
 
 const Home = () => {
-  const classes = useStyles();
-  const overviewClasses = useOverviewStyles();
   return (
     <PageWrapper>
-      <Typography className={classes.header} variant="h1" component="h1">
+      <Typography sx={styles.header} variant="h1" component="h1">
         Claims
       </Typography>
-      <Box className={overviewClasses.container}>
-        <Box className={overviewClasses.top}>
+      <Box sx={overviewStyles.container}>
+        <Box sx={overviewStyles.top}>
           <Typography variant="h3" component="h3">
             Overview
           </Typography>
         </Box>
         <Hr />
-        <Box className={overviewClasses.bottom}>
+        <Box sx={overviewStyles.bottom}>
           <Typography
-            className={overviewClasses.body}
+            sx={overviewStyles.body}
             variant="body1"
             component="p"
             color="textPrimary"
@@ -69,6 +63,8 @@ const Home = () => {
           </Link>
         </Box>
       </Box>
+
+      <OptionsOverview />
     </PageWrapper>
   );
 };

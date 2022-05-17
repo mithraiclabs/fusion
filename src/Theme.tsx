@@ -1,5 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 export const MAX_PAGE_WIDTH = 1400;
 const HEADER_TEXT_COLOR = "#222222";
@@ -7,6 +6,7 @@ const DEFAULT_TEXT_COLOR = "#777777";
 export const BORDER_COLOR = "#E6E6E6";
 
 const theme = createTheme({
+  spacing: 8,
   palette: {
     text: {
       primary: DEFAULT_TEXT_COLOR,
@@ -37,17 +37,6 @@ const theme = createTheme({
     body1: {
       fontSize: "1.3em",
       fontWeight: 400,
-    },
-  },
-  overrides: {
-    MuiButtonBase: {
-      root: {
-        color: "#F2F4F6 !important",
-        backgroundColor: "#3E3E3E !important",
-        borderRadius: "50px !important",
-        // @ts-ignore
-        textTransform: "none !important",
-      },
     },
   },
 });

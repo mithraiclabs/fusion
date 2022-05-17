@@ -1,23 +1,19 @@
 import React, { useMemo } from "react";
 import { WalletMultiButton } from "@solana/wallet-adapter-material-ui";
-import { CSSProperties } from "@material-ui/core/styles/withStyles";
-import { makeStyles } from "@material-ui/core";
 import { useWallet } from "@solana/wallet-adapter-react";
 
-const useStyles = makeStyles((theme) => {
-  let baseButton = {};
-  if (theme?.overrides?.MuiButtonBase?.root) {
-    baseButton = theme?.overrides?.MuiButtonBase?.root;
-  }
-  return {
-    baseButton,
-  };
-});
-
-export const ConnectWalletButton: React.VFC<{ style?: CSSProperties }> = ({
-  style,
-}) => {
-  const classes = useStyles();
+const styles: Record<string, React.CSSProperties> = {
+  baseButton: {
+    color: "#F2F4F6 !important",
+    backgroundColor: "#3E3E3E !important",
+    borderRadius: "50px !important",
+    // @ts-ignore
+    textTransform: "none !important",
+  },
+};
+export const ConnectWalletButton: React.VFC<{
+  sx?: React.CSSProperties;
+}> = ({ sx }) => {
   const { publicKey, wallet } = useWallet();
 
   const base58 = useMemo(() => publicKey?.toBase58(), [publicKey]);
@@ -27,7 +23,7 @@ export const ConnectWalletButton: React.VFC<{ style?: CSSProperties }> = ({
   }, [wallet, base58]);
 
   return (
-    <WalletMultiButton className={classes.baseButton} style={style}>
+    <WalletMultiButton sx={{ ...styles.baseButton, ...sx }}>
       {content}
     </WalletMultiButton>
   );

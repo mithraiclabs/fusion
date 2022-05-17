@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "../styles/ProjectOverview.scss";
-import { Button, CardHeader, Modal, TextField } from "@material-ui/core";
 import "../styles/Portfolio.scss";
 import { displayStrikePrice } from "../lib/utils";
-import { Card } from "@material-ui/core";
+import { Card, Button, CardHeader, Modal, TextField } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { optionMarketFamily, tokenAccountsMap } from "../recoil";
 

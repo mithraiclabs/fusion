@@ -1,27 +1,25 @@
-import { Box, makeStyles } from "@material-ui/core";
-import { CSSProperties } from "@material-ui/core/styles/withStyles";
-import React from "react";
+import { Box, useTheme } from "@mui/material";
+import React, { useMemo } from "react";
 import { MAX_PAGE_WIDTH } from "../../Theme";
 import { Navbar } from "../Navbar";
 
-const useStyles = makeStyles((theme) => {
-  return {
-    container: {
-      backgroundColor: theme.palette.background.default,
-    },
-    innerContainer: {
-      margin: "auto",
-      maxWidth: MAX_PAGE_WIDTH,
-    },
-  };
-});
-
 const PageWrapper: React.FC = ({ children }) => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const styles = useMemo(() => {
+    return {
+      container: {
+        backgroundColor: theme.palette.background.default,
+      },
+      innerContainer: {
+        margin: "auto",
+        maxWidth: MAX_PAGE_WIDTH,
+      },
+    };
+  }, [theme]);
   return (
-    <Box className={classes.container}>
+    <Box sx={styles.container}>
       <Navbar></Navbar>
-      <Box className={classes.innerContainer}>{children}</Box>
+      <Box sx={styles.innerContainer}>{children}</Box>
     </Box>
   );
 };
