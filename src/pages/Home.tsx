@@ -9,7 +9,7 @@ const overviewStyles = {
   container: {
     marginTop: 7.5,
     background: "#FFFFFF",
-    borderRadius: 10,
+    borderRadius: "10px",
     border: `1px solid ${BORDER_COLOR}`,
   },
   top: {

@@ -1,6 +1,4 @@
-import { OptionMarketWithKey } from "@mithraic-labs/psy-american";
 import { web3 } from "@project-serum/anchor";
-import { Project } from "../../types";
 
 export interface TokenAccount {
   amount: number;
@@ -23,6 +21,6 @@ export interface TokenAccountWithKey extends TokenAccount {
 export type OwnedOptionKeys = {
   optionMarketKey: string;
   tokenAccountKey: string;
-}
+};
 
-export type OwnedProjectOptionKeys = Record<string, OwnedOptionKeys[]>
+export type OwnedProjectOptionKeys = Record<string, OwnedOptionKeys[]>;

@@ -29,8 +29,8 @@ export const NavLogo: React.FC<{ height?: string; width?: string }> = ({
         fill="#3E3E3E"
       />
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M116.427 30C125.123 30 130.383 24.087 130.383 15C130.383 5.91304 125.123 0 116.427 0C107.731 0 102.427 5.91304 102.427 15C102.427 24.087 107.731 30 116.427 30ZM123.555 8.11871H109.792V21.8813H123.555V8.11871Z"
         fill="#3E3E3E"
       />

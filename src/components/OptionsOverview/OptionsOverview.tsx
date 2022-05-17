@@ -1,9 +1,9 @@
 import { useWallet } from "@solana/wallet-adapter-react";
-import { Box } from "@mui/material";
 import NoWalletConnected from "./NoWalletConnected";
+import { OptionsDisplay } from "./OptionsDisplay";
 
 export const OptionsOverview: React.VFC = () => {
-  const { wallet } = useWallet();
+  const { publicKey } = useWallet();
 
-  return wallet ? <Box>TODO: add options overview</Box> : <NoWalletConnected />;
+  return publicKey ? <OptionsDisplay /> : <NoWalletConnected />;
 };

@@ -9,6 +9,9 @@ import {
 import { Project } from "../../types";
 import { optionMarketFamily, psyAmericanOptionKeys } from ".";
 
+/**
+ * Retrieve all the OptionMarkets
+ */
 export const selectAllOptionMarkets = selector<OptionMarketWithKey[]>({
   key: "selectAllOptionMarkets",
   get: ({ get }) =>
@@ -17,6 +20,9 @@ export const selectAllOptionMarkets = selector<OptionMarketWithKey[]>({
       .filter((x) => !!x) as OptionMarketWithKey[],
 });
 
+/**
+ * Retrieve all options in the wallet that belong to a known Project.
+ */
 export const selectOwnedProjectOptionKeys = selector<OwnedProjectOptionKeys>({
   key: "selectOwnedProjectOptions",
   get: ({ get }) => {

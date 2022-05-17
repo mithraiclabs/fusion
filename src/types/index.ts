@@ -1,10 +1,10 @@
-import { OptionMarketWithKey } from '@mithraic-labs/psy-american';
-import { AccountInfo, MintInfo, u64 } from '@solana/spl-token';
-import { PublicKey } from '@solana/web3.js';
+import { OptionMarketWithKey } from "@mithraic-labs/psy-american";
+import { AccountInfo, MintInfo, u64 } from "@solana/spl-token";
+import { PublicKey } from "@solana/web3.js";
 
 export type Account = {
   publicKey: PublicKey;
-  accountName?: string
+  accountName?: string;
 };
 
 export type Asset = {
@@ -26,7 +26,9 @@ export type Project = {
   website: string;
   twitter: string;
   discord: string;
-}
+  // The project's primary color. Used for accents and buttons.
+  primaryColor?: string;
+};
 
 export type TokenAccount = {
   address: PublicKey;
@@ -38,12 +40,12 @@ export type TokenAccount = {
   isNative: boolean;
   delegatedAmount: u64;
   closeAuthority: PublicKey;
-}
+};
 
 export type OptionAccount = {
   optionMarket: OptionMarketWithKey;
   tokenAccount: TokenAccount;
-}
+};
 
 export type ProjectOptions = {
   project: Project;

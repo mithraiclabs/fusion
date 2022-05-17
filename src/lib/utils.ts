@@ -80,11 +80,12 @@ export const displayExpirationDate = (optionMarket: OptionMarket) => {
 export function displayStrikePrice(optionMarket: OptionMarket): string {
   const tokens = Tokens["mainnet"];
   const quoteToken = tokens[optionMarket.quoteAssetMint.toString()];
+  const underlyingToken = tokens[optionMarket.underlyingAssetMint.toString()];
   const strike = calculateStrike(
     optionMarket.underlyingAmountPerContract,
     optionMarket.quoteAmountPerContract,
     quoteToken.decimals,
-    tokens[optionMarket.underlyingAssetMint.toString()].decimals
+    underlyingToken.decimals
   );
   return `${strike.toFixed(2)} ${quoteToken.symbol}`;
 }
