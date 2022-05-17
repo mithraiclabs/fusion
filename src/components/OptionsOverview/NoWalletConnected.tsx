@@ -9,13 +9,27 @@ const styles = {
     alignItems: "center",
     pt: 29,
   },
+  walletButton: {
+    mb: 5,
+    height: 78,
+    width: 358,
+    fontSize: 36,
+  },
+  topText: {
+    mb: 3,
+  },
 };
 
 const NoWalletConnected: React.VFC = () => {
   return (
     <Box sx={styles.container}>
-      <ConnectWalletButton sx={{ height: 78, width: 358, fontSize: 36 }} />
-      <Typography variant="body1" component="p" color="textPrimary">
+      <ConnectWalletButton sx={styles.walletButton} />
+      <Typography
+        variant="body1"
+        component="p"
+        color="textPrimary"
+        sx={styles.topText}
+      >
         Connect your wallet to see available options to claim
       </Typography>
       <Typography variant="body1" component="p" color="textPrimary">
