@@ -1,5 +1,6 @@
 import { Box, Button, Grid, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import projectList from "../../content/projectList";
 import { displayExpirationDate, displayStrikePrice } from "../../lib/utils";
@@ -68,7 +69,11 @@ export const OptionCard: React.VFC<{
   optionMetaKey: string;
   tokenAccountKey: string;
 }> = ({ projectKey, optionMetaKey, tokenAccountKey }) => {
+  const navigate = useNavigate();
   const optionMeta = useRecoilValue(optionMarketFamily(optionMetaKey));
+  if (!optionMeta) {
+    throw new Error(`Could not find OptionMarket with key ${optionMetaKey}`);
+  }
   const tokenAccount = useRecoilValue(tokenAccountsMap(tokenAccountKey));
   const project = projectList[projectKey];
   const tokenPrice = useRecoilValue(tokenPricesMap(project.mintAddress));
@@ -131,6 +136,9 @@ export const OptionCard: React.VFC<{
               ...{
                 backgroundColor: project.primaryColor || DEFAULT_TEXT_COLOR,
               },
+            }}
+            onClick={() => {
+              navigate(`/option/${optionMeta.key.toString()}`);
             }}
           >
             Exercise
