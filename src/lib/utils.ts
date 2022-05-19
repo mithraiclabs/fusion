@@ -1,11 +1,59 @@
 import { BN } from "@project-serum/anchor";
 import { MintLayout, u64 } from "@solana/spl-token";
-import { MintInfoWithKey, ProjectOptions, OptionAccount } from "../types";
+import { MintInfoWithKey, ProjectOptions } from "../types";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { OptionMarket } from "@mithraic-labs/psy-american";
 import { Tokens } from "@mithraic-labs/psy-token-registry";
+import { TokenAccountWithKey } from "../recoil";
 
 const dtf = Intl.DateTimeFormat(undefined, { timeZoneName: "short" });
+
+export type Network = "devnet" | "testnet" | "mainnet";
+/**
+ *
+ * A human readable number for the amount of tokens that will be received if all contracts are
+ * exercised.
+ *
+ * @param optionMeta
+ * @param tokenAccount
+ * @param network
+ * @returns
+ */
+export const tokensToReceive = (
+  optionMeta: OptionMarket,
+  tokenAccount: TokenAccountWithKey,
+  network: Network = "mainnet"
+) => {
+  const u64Amount = optionMeta.underlyingAmountPerContract.muln(
+    tokenAccount.amount
+  );
+  // Factor in the underlying decimals
+  const tokens = Tokens[network];
+  const underlyingToken = tokens[optionMeta.underlyingAssetMint.toString()];
+  const amount = u64Amount.toNumber() / Math.pow(10, underlyingToken.decimals);
+  return { amount, symbol: underlyingToken.symbol };
+};
+
+/**
+ *
+ * A human readable number for the amount it will require to exercise the contracts
+ * @param optionMeta
+ * @param tokenAccount
+ * @param network
+ * @returns
+ */
+export const costToExercise = (
+  optionMeta: OptionMarket,
+  tokenAccount: TokenAccountWithKey,
+  network: Network = "mainnet"
+) => {
+  const u64Amount = optionMeta.quoteAmountPerContract.muln(tokenAccount.amount);
+  // Factor in the quote decimals
+  const tokens = Tokens[network];
+  const quoteToken = tokens[optionMeta.quoteAssetMint.toString()];
+  const amount = u64Amount.toNumber() / Math.pow(10, quoteToken.decimals);
+  return { amount, symbol: quoteToken.symbol };
+};
 
 export const loadMintInfo = async (
   connection: Connection,

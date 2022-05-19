@@ -3,11 +3,12 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { selectOwnedProjectOptionKeys } from "../../recoil";
 import { OptionCard } from "./OptionCard";
+import { OptionInfo } from "./OptionInfo";
 
 export const OptionsDisplay: React.VFC = () => {
   const ownedProjectOptions = useRecoilValue(selectOwnedProjectOptionKeys);
 
-  // TODO: Display the individual options
+  // Display the individual options
   const optionCards = Object.keys(ownedProjectOptions)
     .map((projectKey) => {
       const ownedOptionKeys = ownedProjectOptions[projectKey];
@@ -15,9 +16,13 @@ export const OptionsDisplay: React.VFC = () => {
         <OptionCard
           key={ownedOptionKey.optionMarketKey}
           projectKey={projectKey}
-          optionMetaKey={ownedOptionKey.optionMarketKey}
-          tokenAccountKey={ownedOptionKey.tokenAccountKey}
-        />
+        >
+          <OptionInfo
+            projectKey={projectKey}
+            optionMetaKey={ownedOptionKey.optionMarketKey}
+            tokenAccountKey={ownedOptionKey.tokenAccountKey}
+          />
+        </OptionCard>
       ));
     })
     .flat();

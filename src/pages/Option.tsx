@@ -1,29 +1,37 @@
+import { Link, SxProps, Theme } from "@mui/material";
 import React from "react";
-import { useMatch } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
+import { BackArrow } from "../components/Images/icons/BackArrow";
+import { OptionBreakdown } from "../components/OptionBreakdown";
 import PageWrapper from "../components/PageWrapper/PageWrapper";
-import projectList from "../content/projectList";
-import { optionMarketFamily, tokenAccountsMap } from "../recoil";
+
+const styles: Record<string, SxProps<Theme>> = {
+  backLink: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    cursor: "pointer",
+    textDecoration: "none",
+    my: 50 / 8,
+  },
+};
 
 export const Option: React.VFC = () => {
-  const optionMarketKey = useMatch("/option/:key")?.params?.key || "";
-  // Load the OptionMarket data from the option market key
-  const optionMeta = useRecoilValue(optionMarketFamily(optionMarketKey));
-  if (!optionMeta) {
-    throw new Error(`Could not find OptionMarket with key ${optionMarketKey}`);
-  }
-  const underlyingTokenMint = optionMeta.underlyingAssetMint;
-  // Load the user's token account with the data
-  const tokenAccount = useRecoilValue(
-    tokenAccountsMap(underlyingTokenMint.toString())
-  );
-  // Load the project information from the token min
-  const project = projectList[underlyingTokenMint.toString()];
+  const navigate = useNavigate();
 
-  // TODO: Add Back to airdrop component
-  // TODO: Add OptionInfoHeader component
-  // TODO: Add TokenTransferBreakdown component
-  // TODO: Add detailed option view component
-  // TODO: Add exercise form (amount input & Exercise button)
-  return <PageWrapper>{project.name}</PageWrapper>;
+  return (
+    <PageWrapper>
+      <Link
+        color="textPrimary"
+        sx={styles.backLink}
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        <BackArrow />
+        &nbsp; Back to Airdrops
+      </Link>
+      <OptionBreakdown />
+    </PageWrapper>
+  );
 };
