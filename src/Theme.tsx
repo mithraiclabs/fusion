@@ -29,6 +29,12 @@ const theme = createTheme({
       fontWeight: 600,
       letterSpacing: "-0.03em",
     },
+    h4: {
+      color: HEADER_TEXT_COLOR,
+      fontSize: "1.3em",
+      fontWeight: 600,
+      letterSpacing: "-0.03em",
+    },
     h5: {
       color: HEADER_TEXT_COLOR,
       fontSize: "1.2em",

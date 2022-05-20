@@ -1,4 +1,4 @@
-import { Divider } from "@mui/material";
+import { Divider, SxProps, Theme } from "@mui/material";
 import React from "react";
 import { BORDER_COLOR } from "../Theme";
 
@@ -13,6 +13,6 @@ const styles = {
   },
 };
 
-export const Hr: React.FC<{}> = ({ children }) => {
-  return <Divider sx={styles.root}>{children}</Divider>;
+export const Hr: React.FC<{ sx?: SxProps<Theme> }> = ({ children, sx }) => {
+  return <Divider sx={{ ...styles.root, ...sx }}>{children}</Divider>;
 };

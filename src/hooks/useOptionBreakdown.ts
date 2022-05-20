@@ -8,6 +8,8 @@ import {
 import { TokenAccountWithKey, tokenPricesMap } from "../recoil";
 import { Project } from "../types";
 
+// TODO: Add strike price in quote to here.
+
 type OptionBreakdown = {
   underlyingPrice?: number;
   underlyingSymbol: string;
@@ -15,6 +17,7 @@ type OptionBreakdown = {
   underlyingToReceive: number;
   quoteToExercise: number;
   netValue?: number;
+  underlyingValue?: number;
   expirationDate: string;
 };
 
@@ -42,9 +45,10 @@ export const useOptionBreakdown = ({
   );
 
   // TODO: This assumes the quote asset is USD stable
-  let netValue: undefined | number;
+  let netValue: undefined | number, underlyingValue: undefined | number;
   if (underlyingPrice) {
-    netValue = underlyingPrice * amountToReceive.amount - exerciseInfo.amount;
+    underlyingValue = underlyingPrice * amountToReceive.amount;
+    netValue = underlyingValue - exerciseInfo.amount;
   }
 
   return {
@@ -54,6 +58,7 @@ export const useOptionBreakdown = ({
     underlyingToReceive: amountToReceive.amount,
     quoteToExercise: exerciseInfo.amount,
     netValue,
+    underlyingValue,
     expirationDate: displayExpirationDate(optionMeta),
   };
 };

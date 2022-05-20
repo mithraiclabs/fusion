@@ -20,7 +20,7 @@ export const useProvider = () => {
       commitment: "processed",
     });
     // Wallet is not connected, return a default provider instance.
-    return new anchor.Provider(
+    return new anchor.AnchorProvider(
       connection,
       wallet ? wallet : new NodeWallet(defaultPayer),
       {

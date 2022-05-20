@@ -5,10 +5,9 @@ import { useRecoilValue } from "recoil";
 import projectList from "../../content/projectList";
 import { optionMarketFamily, tokenAccountsMap } from "../../recoil";
 import { OptionCard } from "../OptionsOverview/OptionCard";
+import { DetailedBreakdown } from "./DetailedBreakdown";
 import { SimpleInstrinsicBreakdown } from "./SimpleIntrinsicBreakdown";
 
-// TODO: Add OptionInfoHeader component
-// TODO: Add TokenTransferBreakdown component
 // TODO: Add detailed option view component
 // TODO: Add exercise form (amount input & Exercise button)
 
@@ -66,6 +65,12 @@ export const OptionBreakdown: React.VFC = () => {
       </OptionCard>
 
       <SimpleInstrinsicBreakdown
+        optionMeta={optionMeta}
+        optionTokenAccount={optionTokenAccount}
+        project={project}
+      />
+
+      <DetailedBreakdown
         optionMeta={optionMeta}
         optionTokenAccount={optionTokenAccount}
         project={project}
