@@ -1,5 +1,5 @@
 import { BN } from "@project-serum/anchor";
-import { MintLayout, u64 } from "@solana/spl-token";
+import { Mint, MintLayout } from "@solana/spl-token";
 import { MintInfoWithKey, ProjectOptions } from "../types";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { OptionMarket } from "@mithraic-labs/psy-american";
@@ -25,7 +25,7 @@ export const tokensToReceive = (
   network: Network = "mainnet"
 ) => {
   const u64Amount = optionMeta.underlyingAmountPerContract.muln(
-    tokenAccount.amount
+    Number(tokenAccount.amount)
   );
   // Factor in the underlying decimals
   const tokens = Tokens[network];
@@ -47,7 +47,9 @@ export const costToExercise = (
   tokenAccount: TokenAccountWithKey,
   network: Network = "mainnet"
 ) => {
-  const u64Amount = optionMeta.quoteAmountPerContract.muln(tokenAccount.amount);
+  const u64Amount = optionMeta.quoteAmountPerContract.muln(
+    Number(tokenAccount.amount)
+  );
   // Factor in the quote decimals
   const tokens = Tokens[network];
   const quoteToken = tokens[optionMeta.quoteAssetMint.toString()];
@@ -85,24 +87,16 @@ export const loadMintInfo = async (
   resp.forEach((info, index) => {
     if (!info) return;
     const mintInfo = MintLayout.decode(info.data);
-    if (mintInfo.mintAuthorityOption === 0) {
-      mintInfo.mintAuthority = null;
-    } else {
-      mintInfo.mintAuthority = new PublicKey(mintInfo.mintAuthority);
+    console.log('*** decoded mintInfo', mintInfo);
+    const val: Mint = {
+      address: new PublicKey(mintAddressArr[index]),
+      mintAuthority: mintInfo.mintAuthority ? mintInfo.mintAuthority : null,
+      supply: mintInfo.supply,
+      decimals: mintInfo.decimals,
+      isInitialized: mintInfo.isInitialized,
+      freezeAuthority: mintInfo.freezeAuthority
     }
-
-    mintInfo.supply = u64.fromBuffer(mintInfo.supply);
-    mintInfo.isInitialized = mintInfo.isInitialized !== 0;
-
-    if (mintInfo.freezeAuthorityOption === 0) {
-      mintInfo.freezeAuthority = null;
-    } else {
-      mintInfo.freezeAuthority = new PublicKey(mintInfo.freezeAuthority);
-    }
-    mintInfos[mintAddressArr[index]] = {
-      ...mintInfo,
-      pubkey: new PublicKey(mintAddressArr[index]),
-    };
+    return val
   });
 
   return mintInfos;

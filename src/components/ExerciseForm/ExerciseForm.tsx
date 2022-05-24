@@ -7,9 +7,11 @@ import {
   Theme,
   Typography,
 } from "@mui/material";
+import { BN } from "@project-serum/anchor";
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import projectList from "../../content/projectList";
+import { useExerciseOptions } from "../../hooks/psyAmerican/useExerciseOptions";
 import { optionMarketFamily, tokenAccountsMap } from "../../recoil";
 import { DEFAULT_TEXT_COLOR } from "../../Theme";
 
@@ -70,6 +72,8 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
   if (!optionMeta) {
     throw new Error(`Could not find OptionMarket with key ${optionMarketKey}`);
   }
+  const exerciseOptions = useExerciseOptions(optionMeta);
+
   const underlyingTokenMint = optionMeta.underlyingAssetMint;
   // Load the project information from the token min
   const project = projectList[underlyingTokenMint.toString()];
@@ -104,7 +108,7 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
         />
         <Button
           sx={styles.maxButton}
-          onClick={() => setAmountToExercise(optionTokenAccount.amount)}
+          onClick={() => setAmountToExercise(Number(optionTokenAccount.amount))}
         >
           MAX
         </Button>
@@ -113,6 +117,9 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
         sx={{
           ...styles.exerciseButton,
           ...{ backgroundColor: project.primaryColor || DEFAULT_TEXT_COLOR },
+        }}
+        onClick={() => {
+          exerciseOptions({ amount: new BN(amountToExercise) });
         }}
       >
         <Typography variant="h4" color="white">
