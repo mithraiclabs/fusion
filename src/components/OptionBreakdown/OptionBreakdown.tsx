@@ -29,6 +29,10 @@ export const OptionBreakdown: React.VFC = () => {
   const optionMarketKey = useMatch("/option/:key")?.params?.key || "";
   // Load the OptionMarket data from the option market key
   const optionMeta = useRecoilValue(optionMarketFamily(optionMarketKey));
+  // Load the user's option token account with the data
+  const optionTokenAccount = useRecoilValue(
+    tokenAccountsMap(optionMeta?.optionMint?.toString() ?? "")
+  );
   if (!optionMeta) {
     throw new Error(`Could not find OptionMarket with key ${optionMarketKey}`);
   }
@@ -38,11 +42,6 @@ export const OptionBreakdown: React.VFC = () => {
   if (!project) {
     throw new Error(`Could not find project with key ${underlyingTokenMint}`);
   }
-
-  // Load the user's option token account with the data
-  const optionTokenAccount = useRecoilValue(
-    tokenAccountsMap(optionMeta.optionMint.toString())
-  );
   if (!optionTokenAccount) {
     throw new Error(
       `Could not find tokenAccount with key ${optionMeta.optionMint.toString()}`

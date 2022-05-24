@@ -1,8 +1,4 @@
-import {
-  instructions,
-  OptionMarketWithKey,
-  parseTransactionError,
-} from "@mithraic-labs/psy-american";
+import { instructions, OptionMarketWithKey } from "@mithraic-labs/psy-american";
 import { BN, web3 } from "@project-serum/anchor";
 import {
   createAssociatedTokenAccountInstruction,
@@ -17,7 +13,9 @@ import { useProvider } from "../useProvider";
 import { usePsyAmericanProgram } from "../usePsyAmericanProgram";
 import { useSendAndConfirm } from "../wallet/useSendAndConfirm";
 
-export const useExerciseOptions = (optionMarket: OptionMarketWithKey) => {
+export const useExerciseOptions = (
+  optionMarket: OptionMarketWithKey | null
+) => {
   const program = usePsyAmericanProgram();
   const provider = useProvider();
   const { publicKey } = useWallet();
@@ -25,16 +23,19 @@ export const useExerciseOptions = (optionMarket: OptionMarketWithKey) => {
   const sendAndConfirm = useSendAndConfirm();
   // Look up the user's token account
   const walletUnderlyingTokenAccount = useRecoilValue(
-    tokenAccountsMap(optionMarket.underlyingAssetMint.toString())
+    tokenAccountsMap(optionMarket?.underlyingAssetMint?.toString() ?? "")
   );
 
   const walletOptionTokenSourceAcct = useRecoilValue(
-    tokenAccountsMap(optionMarket.optionMint.toString())
+    tokenAccountsMap(optionMarket?.optionMint?.toString() ?? "")
   );
 
   const walletQuoteTokenSourceAcct = useRecoilValue(
-    tokenAccountsMap(optionMarket.quoteAssetMint.toString())
+    tokenAccountsMap(optionMarket?.quoteAssetMint?.toString() ?? "")
   );
+  if (!optionMarket) {
+    throw new Error("optionMarket cannot be null");
+  }
 
   return useCallback(
     async ({ amount }: { amount: BN }) => {

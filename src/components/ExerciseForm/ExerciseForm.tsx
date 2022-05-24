@@ -69,26 +69,25 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
   const [amountToExercise, setAmountToExercise] = useState(0);
   // Load the OptionMarket data from the option market key
   const optionMeta = useRecoilValue(optionMarketFamily(optionMarketKey));
+  const exerciseOptions = useExerciseOptions(optionMeta);
+  // Load the user's option token account with the data
+  const optionTokenAccount = useRecoilValue(
+    tokenAccountsMap(optionMeta?.optionMint?.toString() ?? "")
+  );
   if (!optionMeta) {
     throw new Error(`Could not find OptionMarket with key ${optionMarketKey}`);
   }
-  const exerciseOptions = useExerciseOptions(optionMeta);
+  if (!optionTokenAccount) {
+    throw new Error(
+      `Could not find tokenAccount with key ${optionMeta.optionMint.toString()}`
+    );
+  }
 
   const underlyingTokenMint = optionMeta.underlyingAssetMint;
   // Load the project information from the token min
   const project = projectList[underlyingTokenMint.toString()];
   if (!project) {
     throw new Error(`Could not find project with key ${underlyingTokenMint}`);
-  }
-
-  // Load the user's option token account with the data
-  const optionTokenAccount = useRecoilValue(
-    tokenAccountsMap(optionMeta.optionMint.toString())
-  );
-  if (!optionTokenAccount) {
-    throw new Error(
-      `Could not find tokenAccount with key ${optionMeta.optionMint.toString()}`
-    );
   }
   return (
     <Box>

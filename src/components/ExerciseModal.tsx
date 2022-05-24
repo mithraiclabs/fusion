@@ -15,10 +15,11 @@ const ExerciseModal: React.FC<{
   const [exerciseAmount, setExerciseAmount] = useState(0);
   const [disableExerice, setDisableExercise] = useState(false);
   const tokenAccount = useRecoilValue(tokenAccountsMap(tokenAccountKey));
+  const optionMarket = useRecoilValue(optionMarketFamily(optionMarketKey));
+
   if (!tokenAccount) {
     throw new Error(`Error finding tokenAccount with key ${tokenAccountKey}`);
   }
-  const optionMarket = useRecoilValue(optionMarketFamily(optionMarketKey));
   if (!optionMarket) {
     throw new Error(`Error finding optionMarket with key ${optionMarketKey}`);
   }

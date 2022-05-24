@@ -38,12 +38,12 @@ export const OptionInfo: React.VFC<{
   const navigate = useNavigate();
 
   const optionMeta = useRecoilValue(optionMarketFamily(optionMetaKey));
-  if (!optionMeta) {
-    throw new Error(`Could not find OptionMarket with key ${optionMetaKey}`);
-  }
   const tokenAccount = useRecoilValue(tokenAccountsMap(tokenAccountKey));
   const project = projectList[projectKey];
   const tokenPrice = useRecoilValue(tokenPricesMap(project.mintAddress));
+  if (!optionMeta) {
+    throw new Error(`Could not find OptionMarket with key ${optionMetaKey}`);
+  }
   let expirationDate = "",
     strike = "";
   if (optionMeta) {
