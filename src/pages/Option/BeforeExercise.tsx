@@ -1,10 +1,9 @@
-import { Link, SxProps, Theme } from "@mui/material";
 import React from "react";
+import { Link, SxProps, Theme } from "@mui/material";
 import { useMatch, useNavigate } from "react-router-dom";
-import { ExerciseForm } from "../components/ExerciseForm";
-import { BackArrow } from "../components/Images/icons/BackArrow";
-import { OptionBreakdown } from "../components/OptionBreakdown";
-import PageWrapper from "../components/PageWrapper/PageWrapper";
+import { ExerciseForm } from "../../components/ExerciseForm";
+import { BackArrow } from "../../components/Images/icons/BackArrow";
+import { OptionBreakdown } from "../../components/OptionBreakdown";
 
 const styles: Record<string, SxProps<Theme>> = {
   backLink: {
@@ -17,12 +16,12 @@ const styles: Record<string, SxProps<Theme>> = {
   },
 };
 
-export const Option: React.VFC = () => {
+export const BeforeExercise: React.VFC = () => {
   const navigate = useNavigate();
   const optionMarketKey = useMatch("/option/:key")?.params?.key || "";
 
   return (
-    <PageWrapper>
+    <>
       <Link
         color="textPrimary"
         sx={styles.backLink}
@@ -35,6 +34,6 @@ export const Option: React.VFC = () => {
       </Link>
       <OptionBreakdown />
       <ExerciseForm optionMarketKey={optionMarketKey} />
-    </PageWrapper>
+    </>
   );
 };

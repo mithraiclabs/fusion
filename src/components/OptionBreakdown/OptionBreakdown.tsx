@@ -8,9 +8,6 @@ import { OptionCard } from "../OptionsOverview/OptionCard";
 import { DetailedBreakdown } from "./DetailedBreakdown";
 import { SimpleInstrinsicBreakdown } from "./SimpleIntrinsicBreakdown";
 
-// TODO: Add detailed option view component
-// TODO: Add exercise form (amount input & Exercise button)
-
 const styles: Record<string, SxProps<Theme>> = {
   optionCardBody: {
     px: 3,
