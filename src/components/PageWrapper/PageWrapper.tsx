@@ -2,6 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import React, { useMemo } from "react";
 import { MAX_PAGE_WIDTH } from "../../Theme";
 import { Navbar } from "../Navbar";
+import { SnackBarProvider } from "../../context/SnackBarContext";
 
 const PageWrapper: React.FC = ({ children }) => {
   const theme = useTheme();
@@ -18,8 +19,10 @@ const PageWrapper: React.FC = ({ children }) => {
   }, [theme]);
   return (
     <Box sx={styles.container}>
-      <Navbar></Navbar>
-      <Box sx={styles.innerContainer}>{children}</Box>
+      <SnackBarProvider>
+        <Navbar></Navbar>
+        <Box sx={styles.innerContainer}>{children}</Box>
+      </SnackBarProvider>
     </Box>
   );
 };

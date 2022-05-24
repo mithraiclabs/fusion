@@ -11,14 +11,18 @@ import {
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
+import { useShowSnackBar } from "../../context/SnackBarContext";
 import { tokenAccountsMap } from "../../recoil";
 import { useProvider } from "../useProvider";
 import { usePsyAmericanProgram } from "../usePsyAmericanProgram";
+import { useSendAndConfirm } from "../wallet/useSendAndConfirm";
 
 export const useExerciseOptions = (optionMarket: OptionMarketWithKey) => {
   const program = usePsyAmericanProgram();
   const provider = useProvider();
-  const { publicKey, sendTransaction } = useWallet();
+  const { publicKey } = useWallet();
+  const showMessage = useShowSnackBar();
+  const sendAndConfirm = useSendAndConfirm();
   // Look up the user's token account
   const walletUnderlyingTokenAccount = useRecoilValue(
     tokenAccountsMap(optionMarket.underlyingAssetMint.toString())
@@ -79,15 +83,12 @@ export const useExerciseOptions = (optionMarket: OptionMarketWithKey) => {
       tx.add(ix);
       // TODO: Proper transaction error handling
       // TODO: Add toaster notifications for status of transaction
-      try {
-        const txId = await provider.sendAndConfirm(tx, []);
-      } catch (err) {
-        const programError = parseTransactionError(err);
-        if (programError) {
-          console.error("Transaction Error: ", programError.msg);
-        } else {
-          console.error(err);
-        }
+      const txId = await sendAndConfirm(tx, []);
+      if (txId) {
+        showMessage(
+          `Successfully exercised ${amount.toString()} options`,
+          txId
+        );
       }
     },
     [
