@@ -81,8 +81,6 @@ export const useExerciseOptions = (optionMarket: OptionMarketWithKey) => {
         walletQuoteTokenAddress
       );
       tx.add(ix);
-      // TODO: Proper transaction error handling
-      // TODO: Add toaster notifications for status of transaction
       const txId = await sendAndConfirm(tx, []);
       if (txId) {
         showMessage(
