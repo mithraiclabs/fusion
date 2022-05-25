@@ -7,9 +7,9 @@ import {
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
+import { useSetExercisedOption } from "../../context/ExercisedOptionContext";
 import { useShowSnackBar } from "../../context/SnackBarContext";
 import { tokenAccountsMap } from "../../recoil";
-import { useProvider } from "../useProvider";
 import { usePsyAmericanProgram } from "../usePsyAmericanProgram";
 import { useSendAndConfirm } from "../wallet/useSendAndConfirm";
 
@@ -17,10 +17,11 @@ export const useExerciseOptions = (
   optionMarket: OptionMarketWithKey | null
 ) => {
   const program = usePsyAmericanProgram();
-  const provider = useProvider();
   const { publicKey } = useWallet();
   const showMessage = useShowSnackBar();
   const sendAndConfirm = useSendAndConfirm();
+  const setExercisedOptionParams = useSetExercisedOption();
+
   // Look up the user's token account
   const walletUnderlyingTokenAccount = useRecoilValue(
     tokenAccountsMap(optionMarket?.underlyingAssetMint?.toString() ?? "")
@@ -88,6 +89,12 @@ export const useExerciseOptions = (
           `Successfully exercised ${amount.toString()} options`,
           txId
         );
+        // Update exercised option context
+        setExercisedOptionParams({
+          show: true,
+          optionMarket,
+          amount: amount.toNumber(),
+        });
       }
     },
     [

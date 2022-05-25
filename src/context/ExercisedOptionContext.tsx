@@ -1,7 +1,11 @@
 import { OptionMarket } from "@mithraic-labs/psy-american";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useCallback, useContext, useState } from "react";
 
-type ExercisedOptionParams = { optionMarket?: OptionMarket; show: boolean };
+type ExercisedOptionParams = {
+  optionMarket?: OptionMarket;
+  amount?: number;
+  show: boolean;
+};
 
 export const ExercisedOptionContext = createContext<{
   exercisedOptionParams: ExercisedOptionParams;
@@ -40,4 +44,16 @@ export const useExercisedOption = () => {
   const exercisedOptionContext = useContext(ExercisedOptionContext);
 
   return exercisedOptionContext.exercisedOptionParams;
+};
+
+export const useResetExercisedOption = () => {
+  const setExercisedOptionParams = useSetExercisedOption();
+
+  return useCallback(
+    () =>
+      setExercisedOptionParams({
+        show: false,
+      }),
+    []
+  );
 };

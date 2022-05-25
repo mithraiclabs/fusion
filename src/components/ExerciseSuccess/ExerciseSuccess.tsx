@@ -1,6 +1,6 @@
-import { Box, CardMedia, SxProps, Theme, Typography } from "@mui/material";
-import { maxWidth } from "@mui/system";
+import { Box, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
+import { useExercisedOption } from "../../context/ExercisedOptionContext";
 import { DEFAULT_TEXT_COLOR } from "../../Theme";
 import { Project } from "../../types";
 import { Hr } from "../Hr";
@@ -29,11 +29,15 @@ const styles: Record<string, SxProps<Theme>> = {
     width: 160,
     height: 160,
   },
+  divider: {
+    my: 3,
+  },
 };
 
 export const ExerciseSuccess: React.VFC<{ project: Project }> = ({
   project,
 }) => {
+  const exercisedInfo = useExercisedOption();
   return (
     <Box
       sx={{
@@ -49,12 +53,15 @@ export const ExerciseSuccess: React.VFC<{ project: Project }> = ({
           {project.name}
         </Typography>
       </Box>
-      <Hr />
+      <Hr sx={styles.divider} />
       <Box>
         <Typography>
-          Congrats, you exercised your tokens and received
+          Congrats, you exercised your
+          <br /> tokens and received
         </Typography>
-        <Typography>6.4 SLND</Typography>
+        <Typography variant="h3" component="h3" color="textPrimary">
+          {exercisedInfo.amount?.toFixed(2)} {project.symbol}
+        </Typography>
       </Box>
     </Box>
   );

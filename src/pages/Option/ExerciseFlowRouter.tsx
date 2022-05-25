@@ -6,5 +6,5 @@ import { BeforeExercise } from "./BeforeExercise";
 export const ExerciseFlowRouter: React.VFC = () => {
   const exercisedOptionParams = useExercisedOption();
 
-  return exercisedOptionParams.show ? <BeforeExercise /> : <AfterExercise />;
+  return exercisedOptionParams.show ? <AfterExercise /> : <BeforeExercise />;
 };
