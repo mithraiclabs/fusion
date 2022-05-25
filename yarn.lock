@@ -2458,20 +2458,20 @@
   resolved "https://registry.npmjs.org/@ledgerhq/logs/-/logs-6.10.0.tgz"
   integrity sha512-lLseUPEhSFUXYTKj6q7s2O3s2vW2ebgA11vMAlKodXGf5AFw4zUoEbTz9CoFOC9jS6xY4Qr8BmRnxP/odT4Uuw==
 
-"@mithraic-labs/psy-american@0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@mithraic-labs/psy-american/-/psy-american-0.2.1.tgz#dd7fbd19b9381861b9376faa1473b798f0f02691"
-  integrity sha512-YgB88HBdmXFFUcpgpQjLjAwNZyvf0INJcg1/niyFX4rI7tdWbFI9jDuA85+WPSqH00E7z44vOfDdsSPNnelSpg==
+"@mithraic-labs/psy-american@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@mithraic-labs/psy-american/-/psy-american-0.2.2.tgz#2560d2e27a090b656a3fb1235b9b420fb75c970f"
+  integrity sha512-MmgLH3Mx4/TXXKLTWApRLchHaUteO31YC8jbtA6/GLqvSpIkLwfcmlzN7Ncca7UgWWCmDYgI3J15hRubqkTjmw==
   dependencies:
     "@project-serum/anchor" "^0.24.2"
     "@project-serum/serum" "^0.13.60"
     "@solana/spl-token" "^0.1.8"
     "@solana/web3.js" "^1.28.0"
 
-"@mithraic-labs/psy-token-registry@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@mithraic-labs/psy-token-registry/-/psy-token-registry-0.0.7.tgz#a87cad15499de5fc1a8bde891afd494995400d5a"
-  integrity sha512-dqnDKb83fZsPzBKXu+dUeXH2+bELmjJ9+uG9jSBjMN9Ox6usE2QxYiU6ltSsFPcg1t8io23OiiYw+EqQfLLxlg==
+"@mithraic-labs/psy-token-registry@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@mithraic-labs/psy-token-registry/-/psy-token-registry-0.0.9.tgz#9b7bf939d722d0d5c608700bb97a3d07ec1044e9"
+  integrity sha512-nDphKos0PhSsLr2OjbVnwWL8TW50SaY884SBaWh9tVO2vtbex7e+FMxBjW65q/yyLeEq3JucWDZGcmFDiaZLpQ==
 
 "@mui/base@5.0.0-alpha.80":
   version "5.0.0-alpha.80"
