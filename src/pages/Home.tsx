@@ -41,7 +41,7 @@ const Home = () => {
         </Typography>
         <Box sx={overviewStyles.container}>
           <Box sx={overviewStyles.top}>
-            <Typography variant="h3" component="h3">
+            <Typography variant="h2" component="h2">
               Overview
             </Typography>
           </Box>
