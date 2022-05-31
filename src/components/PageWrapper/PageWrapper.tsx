@@ -13,6 +13,9 @@ const PageWrapper: React.FC = ({ children }) => {
       },
       innerContainer: {
         margin: "auto",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         maxWidth: MAX_PAGE_WIDTH,
       },
     };
