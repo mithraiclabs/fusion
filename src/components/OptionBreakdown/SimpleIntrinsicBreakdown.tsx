@@ -1,10 +1,8 @@
 import { OptionMarketWithKey } from "@mithraic-labs/psy-american";
-import { Box, Grid, SxProps, Theme, Typography } from "@mui/material";
+import { Grid, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
-import { TokenAccountWithKey, tokenPricesMap } from "../../recoil";
+import { TokenAccountWithKey } from "../../recoil";
 import { Project } from "../../types";
-import { costToExercise, tokensToReceive } from "../../lib/utils";
-import { useRecoilValue } from "recoil";
 import { DEFAULT_TEXT_COLOR } from "../../Theme";
 import { useOptionBreakdown } from "../../hooks/useOptionBreakdown";
 

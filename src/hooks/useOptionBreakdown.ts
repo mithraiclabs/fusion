@@ -3,9 +3,10 @@ import { useRecoilValue } from "recoil";
 import {
   costToExercise,
   displayExpirationDate,
+  mapNetworkTypes,
   tokensToReceive,
 } from "../lib/utils";
-import { TokenAccountWithKey, tokenPricesMap } from "../recoil";
+import { networkAtom, TokenAccountWithKey, tokenPricesMap } from "../recoil";
 import { Project } from "../types";
 
 // TODO: Add strike price in quote to here.
@@ -31,17 +32,18 @@ export const useOptionBreakdown = ({
   project: Project;
 }): OptionBreakdown => {
   const underlyingPrice = useRecoilValue(tokenPricesMap(project.mintAddress));
+  const network = useRecoilValue(networkAtom);
 
   // Tokens to receive is the underlying amount per contract * number of contracts held
   const amountToReceive = tokensToReceive(
     optionMeta,
     optionTokenAccount,
-    "mainnet"
+    mapNetworkTypes(network.key)
   );
   const exerciseInfo = costToExercise(
     optionMeta,
     optionTokenAccount,
-    "mainnet"
+    mapNetworkTypes(network.key)
   );
 
   // TODO: This assumes the quote asset is USD stable

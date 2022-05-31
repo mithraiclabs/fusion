@@ -4,11 +4,23 @@ import { MintInfoWithKey, ProjectOptions } from "../types";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { OptionMarket } from "@mithraic-labs/psy-american";
 import { Tokens } from "@mithraic-labs/psy-token-registry";
-import { TokenAccountWithKey } from "../recoil";
+import { NetworkKeys, TokenAccountWithKey } from "../recoil";
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 
 const dtf = Intl.DateTimeFormat(undefined, { timeZoneName: "short" });
 
-export type Network = "devnet" | "testnet" | "mainnet";
+type Network = "devnet" | "testnet" | "mainnet";
+
+export const mapNetworkTypes = (key: NetworkKeys): Network => {
+  switch (key) {
+    case WalletAdapterNetwork.Mainnet:
+      return "mainnet";
+    case WalletAdapterNetwork.Devnet:
+      return "devnet";
+    default:
+      return "mainnet";
+  }
+};
 /**
  *
  * A human readable number for the amount of tokens that will be received if all contracts are
@@ -87,16 +99,16 @@ export const loadMintInfo = async (
   resp.forEach((info, index) => {
     if (!info) return;
     const mintInfo = MintLayout.decode(info.data);
-    console.log('*** decoded mintInfo', mintInfo);
+    console.log("*** decoded mintInfo", mintInfo);
     const val: Mint = {
       address: new PublicKey(mintAddressArr[index]),
       mintAuthority: mintInfo.mintAuthority ? mintInfo.mintAuthority : null,
       supply: mintInfo.supply,
       decimals: mintInfo.decimals,
       isInitialized: mintInfo.isInitialized,
-      freezeAuthority: mintInfo.freezeAuthority
-    }
-    return val
+      freezeAuthority: mintInfo.freezeAuthority,
+    };
+    return val;
   });
 
   return mintInfos;
