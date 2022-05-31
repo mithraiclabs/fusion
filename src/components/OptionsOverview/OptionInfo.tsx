@@ -2,9 +2,14 @@ import React from "react";
 import { Button, Grid, SxProps, Theme, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import projectList from "../../content/projectList";
-import { displayExpirationDate, displayStrikePrice } from "../../lib/utils";
+import projectList from "../../projects/projectList";
 import {
+  displayExpirationDate,
+  displayStrikePrice,
+  mapNetworkTypes,
+} from "../../lib/utils";
+import {
+  networkAtom,
   optionMarketFamily,
   tokenAccountsMap,
   tokenPricesMap,
@@ -36,10 +41,11 @@ export const OptionInfo: React.VFC<{
   tokenAccountKey: string;
 }> = ({ projectKey, optionMetaKey, tokenAccountKey }) => {
   const navigate = useNavigate();
+  const network = useRecoilValue(networkAtom);
 
   const optionMeta = useRecoilValue(optionMarketFamily(optionMetaKey));
   const tokenAccount = useRecoilValue(tokenAccountsMap(tokenAccountKey));
-  const project = projectList[projectKey];
+  const project = projectList[mapNetworkTypes(network.key)][projectKey];
   const tokenPrice = useRecoilValue(tokenPricesMap(project.mintAddress));
   if (!optionMeta) {
     throw new Error(`Could not find OptionMarket with key ${optionMetaKey}`);

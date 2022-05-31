@@ -1,6 +1,6 @@
 import { OptionMarketWithKey } from "@mithraic-labs/psy-american";
 import { selector, selectorFamily } from "recoil";
-import projectList from "../../content/projectList";
+import projectList from "../../projects/projectList";
 import {
   OwnedProjectOptionKeys,
   tokenAccountsMap,
@@ -8,6 +8,8 @@ import {
 } from "../wallet";
 import { Project } from "../../types";
 import { optionMarketFamily, psyAmericanOptionKeys } from ".";
+import { mapNetworkTypes } from "../../lib/utils";
+import { networkAtom } from "../solana";
 
 /**
  * Retrieve all the OptionMarkets
@@ -27,9 +29,13 @@ export const selectOwnedProjectOptionKeys = selector<OwnedProjectOptionKeys>({
   key: "selectOwnedProjectOptions",
   get: ({ get }) => {
     const psyAmericanOptions = get(selectAllOptionMarkets);
+    const network = get(networkAtom);
     const ownedOptions = psyAmericanOptions.reduce((agg, optionMarket) => {
       // Filter out all the one's that are  not long calls for a known project
-      const project = projectList[optionMarket.underlyingAssetMint.toString()];
+      const project =
+        projectList[mapNetworkTypes(network.key)][
+          optionMarket.underlyingAssetMint.toString()
+        ];
       if (!project) return agg;
 
       // Check if the wallet contains the option
@@ -63,7 +69,10 @@ export const selectOwnedProjects = selector<Project[]>({
   key: "selectOwnedProjects",
   get: ({ get }) => {
     const ownedProjectOptions = get(selectOwnedProjectOptionKeys);
-    return Object.keys(ownedProjectOptions).map((key) => projectList[key]);
+    const network = get(networkAtom);
+    return Object.keys(ownedProjectOptions).map(
+      (key) => projectList[mapNetworkTypes(network.key)][key]
+    );
   },
 });
 

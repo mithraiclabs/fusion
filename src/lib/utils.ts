@@ -1,6 +1,6 @@
 import { BN } from "@project-serum/anchor";
 import { Mint, MintLayout } from "@solana/spl-token";
-import { MintInfoWithKey, ProjectOptions } from "../types";
+import { MintInfoWithKey, NetworkNames, ProjectOptions } from "../types";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { OptionMarket } from "@mithraic-labs/psy-american";
 import { Tokens } from "@mithraic-labs/psy-token-registry";
@@ -9,9 +9,7 @@ import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 
 const dtf = Intl.DateTimeFormat(undefined, { timeZoneName: "short" });
 
-type Network = "devnet" | "testnet" | "mainnet";
-
-export const mapNetworkTypes = (key: NetworkKeys): Network => {
+export const mapNetworkTypes = (key: NetworkKeys): NetworkNames => {
   switch (key) {
     case WalletAdapterNetwork.Mainnet:
       return "mainnet";
@@ -34,7 +32,7 @@ export const mapNetworkTypes = (key: NetworkKeys): Network => {
 export const tokensToReceive = (
   optionMeta: OptionMarket,
   tokenAccount: TokenAccountWithKey,
-  network: Network = "mainnet"
+  network: NetworkNames = "mainnet"
 ) => {
   const u64Amount = optionMeta.underlyingAmountPerContract.muln(
     Number(tokenAccount.amount)
@@ -57,7 +55,7 @@ export const tokensToReceive = (
 export const costToExercise = (
   optionMeta: OptionMarket,
   tokenAccount: TokenAccountWithKey,
-  network: Network = "mainnet"
+  network: NetworkNames = "mainnet"
 ) => {
   const u64Amount = optionMeta.quoteAmountPerContract.muln(
     Number(tokenAccount.amount)

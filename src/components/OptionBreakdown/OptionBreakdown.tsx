@@ -2,8 +2,13 @@ import { Box, Link, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
 import { useMatch } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import projectList from "../../content/projectList";
-import { optionMarketFamily, tokenAccountsMap } from "../../recoil";
+import { mapNetworkTypes } from "../../lib/utils";
+import projectList from "../../projects/projectList";
+import {
+  networkAtom,
+  optionMarketFamily,
+  tokenAccountsMap,
+} from "../../recoil";
 import { OptionCard } from "../OptionsOverview/OptionCard";
 import { DetailedBreakdown } from "./DetailedBreakdown";
 import { SimpleInstrinsicBreakdown } from "./SimpleIntrinsicBreakdown";
@@ -24,6 +29,7 @@ const styles: Record<string, SxProps<Theme>> = {
 
 export const OptionBreakdown: React.VFC = () => {
   const optionMarketKey = useMatch("/option/:key")?.params?.key || "";
+  const network = useRecoilValue(networkAtom);
   // Load the OptionMarket data from the option market key
   const optionMeta = useRecoilValue(optionMarketFamily(optionMarketKey));
   // Load the user's option token account with the data
@@ -35,7 +41,8 @@ export const OptionBreakdown: React.VFC = () => {
   }
   const underlyingTokenMint = optionMeta.underlyingAssetMint;
   // Load the project information from the token min
-  const project = projectList[underlyingTokenMint.toString()];
+  const project =
+    projectList[mapNetworkTypes(network.key)][underlyingTokenMint.toString()];
   if (!project) {
     throw new Error(`Could not find project with key ${underlyingTokenMint}`);
   }

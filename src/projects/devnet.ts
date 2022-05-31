@@ -1,6 +1,6 @@
 import { Project } from "../types";
 
-const projectList: Record<string, Project> = {
+export const devnetProjects: Record<string, Project> = {
   BzwRWwr1kCLJVUUM14fQthP6FJKrGpXjw3ZHTZ6PQsYa: {
     name: "PsyOptions",
     description: "Completely trustless American style options",
@@ -41,8 +41,6 @@ const projectList: Record<string, Project> = {
     discord: "https://discord.com/invite/2DWjx5NywE",
   },
 };
-
-export default projectList;
 
 // Solend test option Dec 30, 2022 $2 CALL
 // [
