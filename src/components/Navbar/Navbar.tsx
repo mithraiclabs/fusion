@@ -2,6 +2,7 @@ import { Box, Theme } from "@mui/material";
 import React from "react";
 import { ConnectWalletButton } from "../ConnectWalletButton";
 import { NavLogo } from "../Images/NavLogo";
+import NetworkMenu from "./NetworkMenu";
 
 const containerStyles = (theme: Theme) => ({
   display: "flex",
@@ -29,6 +30,9 @@ const leftContainerStyles = (theme: Theme) => ({
 });
 
 const rightContainerStyles = (theme: Theme) => ({
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
   paddingRight: "10px",
   [theme.breakpoints.up("md")]: {
     paddingRight: 0,
@@ -48,6 +52,7 @@ export const Navbar: React.FC = () => {
         </Box>
         <Box sx={rightContainerStyles}>
           <ConnectWalletButton sx={styles.connectBtn} />
+          <NetworkMenu />
         </Box>
       </Box>
     </Box>
