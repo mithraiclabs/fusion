@@ -14,10 +14,10 @@ export const networks: Record<string, Network> = {
     name: "Devnet",
     ws: "wss://psytrbhymqlkfrhudd.dev.genesysgo.net:8899",
   },
-  localnet: {
-    key: "localnet",
-    url: "http://localhost:8899",
-    name: "Localnet",
-    ws: "wss://psyoptions.genesysgo.net",
-  },
+  // localnet: {
+  //   key: "localnet",
+  //   url: "http://localhost:8899",
+  //   name: "Localnet",
+  //   ws: "wss://psyoptions.genesysgo.net",
+  // },
 };

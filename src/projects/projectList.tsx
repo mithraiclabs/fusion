@@ -1,6 +1,6 @@
 import { NetworkNames, Project } from "../types";
 import { devnetProjects } from "./devnet";
-import { mainnetProjects } from "./mainnetProjects";
+import { mainnetProjects } from "./mainnet";
 
 const projectList: Record<NetworkNames, Record<string, Project>> = {
   mainnet: mainnetProjects,
