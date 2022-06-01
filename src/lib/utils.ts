@@ -134,8 +134,11 @@ export const displayExpirationDate = (optionMarket: OptionMarket) => {
   return `${d.toLocaleDateString()} ${d.toLocaleTimeString()} ${timezoneAbbrev}`;
 };
 
-export function displayStrikePrice(optionMarket: OptionMarket): string {
-  const tokens = Tokens["mainnet"];
+export function displayStrikePrice(
+  optionMarket: OptionMarket,
+  network: NetworkNames
+): string {
+  const tokens = Tokens[network];
   const quoteToken = tokens[optionMarket.quoteAssetMint.toString()];
   const underlyingToken = tokens[optionMarket.underlyingAssetMint.toString()];
   const strike = calculateStrike(

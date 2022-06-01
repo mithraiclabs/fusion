@@ -3,7 +3,7 @@ import { Project } from "../types";
 export const mainnetProjects: Record<string, Project> = {
   BzwRWwr1kCLJVUUM14fQthP6FJKrGpXjw3ZHTZ6PQsYa: {
     name: "PsyOptions",
-    description: "Completely trustless American style options",
+    description: "A DO focused on the democratization of finance",
     logo: "https://user-images.githubusercontent.com/32071703/149460918-3694084f-2a37-4c95-93d3-b5aaf078d444.png",
     serumUsdMarket: "9WDPi1uZVxBwZY4NXy7A3nGfxAzxvNaS56iHk3cBhQ3U",
     serumProgramId: "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",

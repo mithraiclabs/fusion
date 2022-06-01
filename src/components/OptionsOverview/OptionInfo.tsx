@@ -53,7 +53,7 @@ export const OptionInfo: React.VFC<{
   let expirationDate = "",
     strike = "";
   if (optionMeta) {
-    strike = displayStrikePrice(optionMeta);
+    strike = displayStrikePrice(optionMeta, mapNetworkTypes(network.key));
     expirationDate = displayExpirationDate(optionMeta);
   }
   return (
