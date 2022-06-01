@@ -10,6 +10,7 @@ const PageWrapper: React.FC = ({ children }) => {
     return {
       container: {
         backgroundColor: theme.palette.background.default,
+        minHeight: "100vh",
       },
       innerContainer: {
         margin: "auto",
@@ -17,7 +18,7 @@ const PageWrapper: React.FC = ({ children }) => {
         flexDirection: "column",
         alignItems: "center",
         maxWidth: MAX_PAGE_WIDTH,
-        paddingBottom: "30vh",
+        paddingBottom: "150px",
       },
     };
   }, [theme]);
