@@ -302,36 +302,41 @@ export const createInitializeMarketTx = async ({
         dexProgramId
       );
       transaction.add(ooIx);
+
       // @ts-ignore
       const initOO = DexInstructions.initOpenOrders({
         market: market.address,
+        owner: payer.publicKey,
         openOrders: ooKey.publicKey,
         programId: dexProgramId,
       });
       transaction.add(initOO);
+      openOrdersAccount = ooKey.publicKey;
     }
 
     const placeBidIx = await market.makePlaceOrderInstruction(connection, {
       // @ts-ignore
-      owner: payer,
+      owner: payer.publicKey,
       payer: bidPayerAddress,
       side: "buy",
       price: 0.75,
       size: 1_000,
       orderType: "limit",
       programId: dexProgramId,
+      openOrdersAddressKey: openOrdersAccount,
     });
     transaction.add(placeBidIx);
 
     const placeAskIx = market.makePlaceOrderInstruction(connection, {
       // @ts-ignore
-      owner: payer,
+      owner: payer.publicKey,
       payer: askPayerAddress,
       side: "sell",
       price: 1.0,
       size: 1_000,
       orderType: "limit",
       programId: dexProgramId,
+      openOrdersAddressKey: openOrdersAccount,
     });
     transaction.add(placeAskIx);
 

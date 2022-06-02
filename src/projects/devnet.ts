@@ -5,7 +5,7 @@ export const devnetProjects: Record<string, Project> = {
     name: "PsyOptions",
     description: "A DO focused on the democratization of finance",
     logo: "https://user-images.githubusercontent.com/32071703/149460918-3694084f-2a37-4c95-93d3-b5aaf078d444.png",
-    serumUsdMarket: "9WDPi1uZVxBwZY4NXy7A3nGfxAzxvNaS56iHk3cBhQ3U",
+    serumUsdMarket: "4Kz8UGuHLnng9x2hL5XMbPtxkqo8ubGzXenbbGjNVwW8",
     serumProgramId: "DESVgJVGajEgKGXhb6XmqDHGz3VjdgP7rEVESBgxmroY",
     mintAddress: "BzwRWwr1kCLJVUUM14fQthP6FJKrGpXjw3ZHTZ6PQsYa",
     symbol: "PSY",
