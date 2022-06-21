@@ -17,7 +17,7 @@ export const mainnetProjects: Record<string, Project> = {
   SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp: {
     name: "Solend",
     description:
-      "The liquid farming and staking solution for Solana-based assets.",
+      "Solend is the autonomous interest rate machine for lending on Solana",
     logo: "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp/logo.png",
     serumUsdMarket: "F9y9NM83kBMzBmMvNT18mkcFuNAPhNRhx7pnz9EDWwfv",
     serumProgramId: "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",
@@ -41,6 +41,19 @@ export const mainnetProjects: Record<string, Project> = {
     website: "https://jungledefi.io/",
     twitter: "https://twitter.com/jungledefi",
     discord: "https://discord.com/invite/2DWjx5NywE",
+    suggestedActions: ["JupiterAg"],
+  },
+  "9tzZzEHsKnwFL1A3DyFJwj36KnZj3gZ7g4srWp9YTEoh": {
+    name: "Arb Protocol",
+    description: "ARB is a decentralized arbitrage protocol.",
+    mintAddress: "9tzZzEHsKnwFL1A3DyFJwj36KnZj3gZ7g4srWp9YTEoh",
+    symbol: "ARB",
+    serumUsdMarket: "Hc4YSWQMii3smLVRacH1JbPVH65ifBtoj4rGjVWKXmAs",
+    serumProgramId: "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",
+    logo: "https://raw.githubusercontent.com/ARBProtocol/arbprotocol/main/IMG_3600.png",
+    website: "https://arbsolana.gitbook.io/arb-protocol/",
+    twitter: "https://twitter.com/ArbProtocol",
+    discord: "https://discord.com/invite/M4F8RKqgce",
     suggestedActions: ["JupiterAg"],
   },
 };
