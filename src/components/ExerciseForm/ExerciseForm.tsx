@@ -1,19 +1,17 @@
-import {
-  Box,
-  Button,
-  Input,
-  SxProps,
-  TextField,
-  Theme,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Input, SxProps, Theme, Typography } from "@mui/material";
 import { BN } from "@project-serum/anchor";
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
-import projectList from "../../content/projectList";
+import projectList from "../../projects/projectList";
 import { useExerciseOptions } from "../../hooks/psyAmerican/useExerciseOptions";
-import { optionMarketFamily, tokenAccountsMap } from "../../recoil";
+import {
+  networkAtom,
+  optionMarketFamily,
+  tokenAccountsMap,
+} from "../../recoil";
 import { DEFAULT_TEXT_COLOR } from "../../Theme";
+import { mapNetworkTypes } from "../../lib/utils";
+import { Navigate } from "react-router-dom";
 
 const styles: Record<string, SxProps<Theme>> = {
   inputContainer: {
@@ -67,6 +65,7 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
   optionMarketKey,
 }) => {
   const [amountToExercise, setAmountToExercise] = useState(0);
+  const network = useRecoilValue(networkAtom);
   // Load the OptionMarket data from the option market key
   const optionMeta = useRecoilValue(optionMarketFamily(optionMarketKey));
   const exerciseOptions = useExerciseOptions(optionMeta);
@@ -75,7 +74,8 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
     tokenAccountsMap(optionMeta?.optionMint?.toString() ?? "")
   );
   if (!optionMeta) {
-    throw new Error(`Could not find OptionMarket with key ${optionMarketKey}`);
+    return <Navigate to={"/"} />;
+    // throw new Error(`Could not find OptionMarket with key ${optionMarketKey}`);
   }
   if (!optionTokenAccount) {
     throw new Error(
@@ -85,7 +85,8 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
 
   const underlyingTokenMint = optionMeta.underlyingAssetMint;
   // Load the project information from the token min
-  const project = projectList[underlyingTokenMint.toString()];
+  const project =
+    projectList[mapNetworkTypes(network.key)][underlyingTokenMint.toString()];
   if (!project) {
     throw new Error(`Could not find project with key ${underlyingTokenMint}`);
   }

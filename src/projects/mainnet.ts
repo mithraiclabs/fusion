@@ -1,9 +1,9 @@
 import { Project } from "../types";
 
-const projectList: Record<string, Project> = {
+export const mainnetProjects: Record<string, Project> = {
   BzwRWwr1kCLJVUUM14fQthP6FJKrGpXjw3ZHTZ6PQsYa: {
     name: "PsyOptions",
-    description: "Completely trustless American style options",
+    description: "A DO focused on the democratization of finance",
     logo: "https://user-images.githubusercontent.com/32071703/149460918-3694084f-2a37-4c95-93d3-b5aaf078d444.png",
     serumUsdMarket: "9WDPi1uZVxBwZY4NXy7A3nGfxAzxvNaS56iHk3cBhQ3U",
     serumProgramId: "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",
@@ -12,11 +12,12 @@ const projectList: Record<string, Project> = {
     website: "https://psyoptions.io/",
     twitter: "https://twitter.com/psyoptions",
     discord: "https://discord.gg/3ggjk2Rw",
+    suggestedActions: ["JupiterAg", "PsyFinance"],
   },
   SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp: {
     name: "Solend",
     description:
-      "The liquid farming and staking solution for Solana-based assets.",
+      "Solend is the autonomous interest rate machine for lending on Solana",
     logo: "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp/logo.png",
     serumUsdMarket: "F9y9NM83kBMzBmMvNT18mkcFuNAPhNRhx7pnz9EDWwfv",
     serumProgramId: "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",
@@ -26,6 +27,7 @@ const projectList: Record<string, Project> = {
     website: "https://solend.fi/",
     twitter: "https://twitter.com/solendprotocol",
     discord: "https://discord.com/invite/solend",
+    suggestedActions: ["Solend", "JupiterAg"],
   },
   GePFQaZKHcWE5vpxHfviQtH5jgxokSs51Y5Q4zgBiMDs: {
     name: "Jungle Finance",
@@ -39,10 +41,22 @@ const projectList: Record<string, Project> = {
     website: "https://jungledefi.io/",
     twitter: "https://twitter.com/jungledefi",
     discord: "https://discord.com/invite/2DWjx5NywE",
+    suggestedActions: ["JupiterAg"],
+  },
+  "9tzZzEHsKnwFL1A3DyFJwj36KnZj3gZ7g4srWp9YTEoh": {
+    name: "Arb Protocol",
+    description: "ARB is a decentralized arbitrage protocol.",
+    mintAddress: "9tzZzEHsKnwFL1A3DyFJwj36KnZj3gZ7g4srWp9YTEoh",
+    symbol: "ARB",
+    serumUsdMarket: "Hc4YSWQMii3smLVRacH1JbPVH65ifBtoj4rGjVWKXmAs",
+    serumProgramId: "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",
+    logo: "https://raw.githubusercontent.com/ARBProtocol/arbprotocol/main/IMG_3600.png",
+    website: "https://arbsolana.gitbook.io/arb-protocol/",
+    twitter: "https://twitter.com/ArbProtocol",
+    discord: "https://discord.com/invite/M4F8RKqgce",
+    suggestedActions: ["JupiterAg"],
   },
 };
-
-export default projectList;
 
 // Solend test option Dec 30, 2022 $2 CALL
 // [

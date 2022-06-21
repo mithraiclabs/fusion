@@ -1,11 +1,16 @@
 import { Box, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
-import projectList from "../../content/projectList";
+import { useRecoilValue } from "recoil";
+import { mapNetworkTypes } from "../../lib/utils";
+import projectList from "../../projects/projectList";
+import { networkAtom } from "../../recoil";
 import { DEFAULT_TEXT_COLOR, BORDER_COLOR } from "../../Theme";
 
 const pillStyles: Record<string, SxProps<Theme>> = {
   container: {
     border: `2px solid ${DEFAULT_TEXT_COLOR}`,
+    fontFamily: "Roboto",
+    fontWeight: 400,
     borderRadius: 50,
     py: 0.5,
     px: 1.25,
@@ -43,7 +48,8 @@ const styles: Record<string, SxProps<Theme>> = {
 export const OptionCard: React.FC<{
   projectKey: string;
 }> = ({ projectKey, children }) => {
-  const project = projectList[projectKey];
+  const network = useRecoilValue(networkAtom);
+  const project = projectList[mapNetworkTypes(network.key)][projectKey];
 
   return (
     <Box

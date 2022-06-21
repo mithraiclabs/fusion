@@ -1,14 +1,24 @@
 import { BN } from "@project-serum/anchor";
 import { Mint, MintLayout } from "@solana/spl-token";
-import { MintInfoWithKey, ProjectOptions } from "../types";
+import { MintInfoWithKey, NetworkNames, ProjectOptions } from "../types";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { OptionMarket } from "@mithraic-labs/psy-american";
 import { Tokens } from "@mithraic-labs/psy-token-registry";
-import { TokenAccountWithKey } from "../recoil";
+import { NetworkKeys, TokenAccountWithKey } from "../recoil";
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 
 const dtf = Intl.DateTimeFormat(undefined, { timeZoneName: "short" });
 
-export type Network = "devnet" | "testnet" | "mainnet";
+export const mapNetworkTypes = (key: NetworkKeys): NetworkNames => {
+  switch (key) {
+    case WalletAdapterNetwork.Mainnet:
+      return "mainnet";
+    case WalletAdapterNetwork.Devnet:
+      return "devnet";
+    default:
+      return "mainnet";
+  }
+};
 /**
  *
  * A human readable number for the amount of tokens that will be received if all contracts are
@@ -22,7 +32,7 @@ export type Network = "devnet" | "testnet" | "mainnet";
 export const tokensToReceive = (
   optionMeta: OptionMarket,
   tokenAccount: TokenAccountWithKey,
-  network: Network = "mainnet"
+  network: NetworkNames = "mainnet"
 ) => {
   const u64Amount = optionMeta.underlyingAmountPerContract.muln(
     Number(tokenAccount.amount)
@@ -45,7 +55,7 @@ export const tokensToReceive = (
 export const costToExercise = (
   optionMeta: OptionMarket,
   tokenAccount: TokenAccountWithKey,
-  network: Network = "mainnet"
+  network: NetworkNames = "mainnet"
 ) => {
   const u64Amount = optionMeta.quoteAmountPerContract.muln(
     Number(tokenAccount.amount)
@@ -87,16 +97,16 @@ export const loadMintInfo = async (
   resp.forEach((info, index) => {
     if (!info) return;
     const mintInfo = MintLayout.decode(info.data);
-    console.log('*** decoded mintInfo', mintInfo);
+    console.log("*** decoded mintInfo", mintInfo);
     const val: Mint = {
       address: new PublicKey(mintAddressArr[index]),
       mintAuthority: mintInfo.mintAuthority ? mintInfo.mintAuthority : null,
       supply: mintInfo.supply,
       decimals: mintInfo.decimals,
       isInitialized: mintInfo.isInitialized,
-      freezeAuthority: mintInfo.freezeAuthority
-    }
-    return val
+      freezeAuthority: mintInfo.freezeAuthority,
+    };
+    return val;
   });
 
   return mintInfos;
@@ -121,11 +131,16 @@ export const displayExpirationDate = (optionMarket: OptionMarket) => {
   const timezoneAbbrev = dtf
     .formatToParts(d)
     .find((part) => part.type == "timeZoneName")?.value;
-  return `${d.toLocaleDateString()} ${d.toLocaleTimeString()} ${timezoneAbbrev}`;
+  return `${d.toLocaleDateString()} ${d
+    .toLocaleTimeString()
+    .substring(0, 5)} ${timezoneAbbrev}`;
 };
 
-export function displayStrikePrice(optionMarket: OptionMarket): string {
-  const tokens = Tokens["mainnet"];
+export function displayStrikePrice(
+  optionMarket: OptionMarket,
+  network: NetworkNames
+): string {
+  const tokens = Tokens[network];
   const quoteToken = tokens[optionMarket.quoteAssetMint.toString()];
   const underlyingToken = tokens[optionMarket.underlyingAssetMint.toString()];
   const strike = calculateStrike(

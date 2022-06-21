@@ -1,9 +1,10 @@
 import { OptionMarketWithKey } from "@mithraic-labs/psy-american";
 import { Box, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
+import { useRecoilValue } from "recoil";
 import { useOptionBreakdown } from "../../hooks/useOptionBreakdown";
-import { displayStrikePrice } from "../../lib/utils";
-import { TokenAccountWithKey } from "../../recoil";
+import { displayStrikePrice, mapNetworkTypes } from "../../lib/utils";
+import { networkAtom, TokenAccountWithKey } from "../../recoil";
 import { DEFAULT_TEXT_COLOR } from "../../Theme";
 import { Project } from "../../types";
 import { Hr } from "../Hr";
@@ -35,6 +36,7 @@ export const DetailedBreakdown: React.VFC<{
   optionTokenAccount: TokenAccountWithKey;
   project: Project;
 }> = ({ optionMeta, optionTokenAccount, project }) => {
+  const network = useRecoilValue(networkAtom);
   const breakdown = useOptionBreakdown({
     optionMeta,
     optionTokenAccount,
@@ -57,7 +59,7 @@ export const DetailedBreakdown: React.VFC<{
       <Box sx={styles.lineItem}>
         <Typography>Strike Price</Typography>
         <Typography variant="h4" component="p">
-          {displayStrikePrice(optionMeta)}
+          {displayStrikePrice(optionMeta, mapNetworkTypes(network.key))}
         </Typography>
       </Box>
 

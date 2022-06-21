@@ -10,14 +10,14 @@ export const networks: Record<string, Network> = {
   },
   [WalletAdapterNetwork.Devnet]: {
     key: WalletAdapterNetwork.Devnet,
-    url: "https://psytrbhymqlkfrhudd.dev.genesysgo.net:8899",
+    url: "https://api.devnet.solana.com",
     name: "Devnet",
-    ws: "wss://psytrbhymqlkfrhudd.dev.genesysgo.net:8899",
+    ws: "wss://api.devnet.solana.com",
   },
-  localnet: {
-    key: "localnet",
-    url: "http://localhost:8899",
-    name: "Localnet",
-    ws: "wss://psyoptions.genesysgo.net",
-  },
+  // localnet: {
+  //   key: "localnet",
+  //   url: "http://localhost:8899",
+  //   name: "Localnet",
+  //   ws: "wss://psyoptions.genesysgo.net",
+  // },
 };

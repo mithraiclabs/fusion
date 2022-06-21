@@ -2,9 +2,14 @@ import React from "react";
 import { Button, Grid, SxProps, Theme, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import projectList from "../../content/projectList";
-import { displayExpirationDate, displayStrikePrice } from "../../lib/utils";
+import projectList from "../../projects/projectList";
 import {
+  displayExpirationDate,
+  displayStrikePrice,
+  mapNetworkTypes,
+} from "../../lib/utils";
+import {
+  networkAtom,
   optionMarketFamily,
   tokenAccountsMap,
   tokenPricesMap,
@@ -23,10 +28,11 @@ const styles: Record<string, SxProps<Theme>> = {
   },
   exerciseBtn: {
     height: 60,
-    width: 200,
+    width: "8em",
     fontSize: "1.3em",
     borderRadius: "6px",
     textTransform: "none",
+    zIndex: 2,
   },
 };
 
@@ -36,10 +42,11 @@ export const OptionInfo: React.VFC<{
   tokenAccountKey: string;
 }> = ({ projectKey, optionMetaKey, tokenAccountKey }) => {
   const navigate = useNavigate();
+  const network = useRecoilValue(networkAtom);
 
   const optionMeta = useRecoilValue(optionMarketFamily(optionMetaKey));
   const tokenAccount = useRecoilValue(tokenAccountsMap(tokenAccountKey));
-  const project = projectList[projectKey];
+  const project = projectList[mapNetworkTypes(network.key)][projectKey];
   const tokenPrice = useRecoilValue(tokenPricesMap(project.mintAddress));
   if (!optionMeta) {
     throw new Error(`Could not find OptionMarket with key ${optionMetaKey}`);
@@ -47,7 +54,7 @@ export const OptionInfo: React.VFC<{
   let expirationDate = "",
     strike = "";
   if (optionMeta) {
-    strike = displayStrikePrice(optionMeta);
+    strike = displayStrikePrice(optionMeta, mapNetworkTypes(network.key));
     expirationDate = displayExpirationDate(optionMeta);
   }
   return (
@@ -65,7 +72,7 @@ export const OptionInfo: React.VFC<{
           Amount
         </Typography>
         <Typography variant="body2" component="div">
-          {tokenAccount?.amount} @ {strike} strike
+          {Number(tokenAccount?.amount)} @ {strike} strike
         </Typography>
       </Grid>
       <Grid item md={3}>

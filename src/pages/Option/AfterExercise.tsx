@@ -2,8 +2,14 @@ import { Box, Link, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ExerciseSuccess } from "../../components/ExerciseSuccess";
-import projectList from "../../content/projectList";
-import { useResetExercisedOption } from "../../context/ExercisedOptionContext";
+import projectList from "../../projects/projectList";
+import {
+  useExercisedOption,
+  useResetExercisedOption,
+} from "../../context/ExercisedOptionContext";
+import { useRecoilValue } from "recoil";
+import { networkAtom } from "../../recoil";
+import { mapNetworkTypes } from "../../lib/utils";
 
 const styles: Record<string, SxProps<Theme>> = {
   container: {
@@ -26,8 +32,13 @@ const styles: Record<string, SxProps<Theme>> = {
 
 export const AfterExercise: React.VFC = () => {
   const navigate = useNavigate();
+  const network = useRecoilValue(networkAtom);
   const resetExercisedData = useResetExercisedOption();
-  const project = projectList["SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp"];
+  const exercisedInfo = useExercisedOption();
+  const project =
+    projectList[mapNetworkTypes(network.key)][
+      exercisedInfo.optionMarket?.underlyingAssetMint.toString() ?? ""
+    ];
   return (
     <Box sx={styles.container}>
       <ExerciseSuccess project={project} />

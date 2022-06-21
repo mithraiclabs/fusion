@@ -34,12 +34,12 @@ export const useExerciseOptions = (
   const walletQuoteTokenSourceAcct = useRecoilValue(
     tokenAccountsMap(optionMarket?.quoteAssetMint?.toString() ?? "")
   );
-  if (!optionMarket) {
-    throw new Error("optionMarket cannot be null");
-  }
 
   return useCallback(
     async ({ amount }: { amount: BN }) => {
+      if (!optionMarket) {
+        return;
+      }
       if (!publicKey) {
         throw new Error("Wallet must be connected");
       }
@@ -103,6 +103,10 @@ export const useExerciseOptions = (
       walletOptionTokenSourceAcct,
       walletUnderlyingTokenAccount,
       walletQuoteTokenSourceAcct,
+      publicKey,
+      sendAndConfirm,
+      setExercisedOptionParams,
+      showMessage,
     ]
   );
 };

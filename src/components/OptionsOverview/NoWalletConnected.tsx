@@ -11,9 +11,9 @@ const styles = {
   },
   walletButton: {
     mb: 5,
-    height: 78,
-    width: 358,
-    fontSize: 36,
+    height: "3em",
+    width: "12em",
+    fontSize: 14,
   },
   topText: {
     mb: 3,
