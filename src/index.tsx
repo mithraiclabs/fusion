@@ -1,18 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
-import "./styles/app.global.scss";
 import { PsyWalletProvider } from "./components/WalletProvider";
 import { Routes } from "./Routes";
 import { RecoilRoot } from "recoil";
 import Theme from "./Theme";
+import PageWrapper from "./components/PageWrapper/PageWrapper";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
       <Theme>
         <PsyWalletProvider>
-          <Routes />
+          <BrowserRouter>
+            <PageWrapper>
+              <Routes />
+            </PageWrapper>
+          </BrowserRouter>
         </PsyWalletProvider>
       </Theme>
     </RecoilRoot>

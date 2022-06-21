@@ -1,6 +1,6 @@
 import { Box, Link, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
-import { useMatch } from "react-router-dom";
+import { Navigate, useMatch } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { mapNetworkTypes } from "../../lib/utils";
 import projectList from "../../projects/projectList";
@@ -37,7 +37,7 @@ export const OptionBreakdown: React.VFC = () => {
     tokenAccountsMap(optionMeta?.optionMint?.toString() ?? "")
   );
   if (!optionMeta) {
-    throw new Error(`Could not find OptionMarket with key ${optionMarketKey}`);
+    return <Navigate to={"/"} />;
   }
   const underlyingTokenMint = optionMeta.underlyingAssetMint;
   // Load the project information from the token min

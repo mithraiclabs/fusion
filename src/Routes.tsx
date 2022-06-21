@@ -7,11 +7,10 @@ import { Option } from "./pages/Option";
 export const Routes: React.VFC = () => {
   useHydrateState();
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/option/:key" element={<Option />} />
-        <Route path="/" element={<Home />} />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route path="/option/:key" element={<Option />} />
+      <Route path="/" element={<Home />} />
+      <Route path="*" element={<Home />} />
+    </Switch>
   );
 };

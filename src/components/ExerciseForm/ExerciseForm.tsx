@@ -11,6 +11,7 @@ import {
 } from "../../recoil";
 import { DEFAULT_TEXT_COLOR } from "../../Theme";
 import { mapNetworkTypes } from "../../lib/utils";
+import { Navigate } from "react-router-dom";
 
 const styles: Record<string, SxProps<Theme>> = {
   inputContainer: {
@@ -73,7 +74,8 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
     tokenAccountsMap(optionMeta?.optionMint?.toString() ?? "")
   );
   if (!optionMeta) {
-    throw new Error(`Could not find OptionMarket with key ${optionMarketKey}`);
+    return <Navigate to={"/"} />;
+    // throw new Error(`Could not find OptionMarket with key ${optionMarketKey}`);
   }
   if (!optionTokenAccount) {
     throw new Error(

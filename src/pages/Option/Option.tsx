@@ -15,12 +15,10 @@ const innerContainerStyles = (theme: Theme): SystemProps<Theme> => ({
 
 export const Option: React.VFC = () => {
   return (
-    <PageWrapper>
-      <Box sx={innerContainerStyles}>
-        <ExercisedOptionProvider>
-          <ExerciseFlowRouter />
-        </ExercisedOptionProvider>
-      </Box>
-    </PageWrapper>
+    <Box sx={innerContainerStyles}>
+      <ExercisedOptionProvider>
+        <ExerciseFlowRouter />
+      </ExercisedOptionProvider>
+    </Box>
   );
 };

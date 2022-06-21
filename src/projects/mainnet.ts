@@ -12,6 +12,7 @@ export const mainnetProjects: Record<string, Project> = {
     website: "https://psyoptions.io/",
     twitter: "https://twitter.com/psyoptions",
     discord: "https://discord.gg/3ggjk2Rw",
+    suggestedActions: ["JupiterAg", "PsyFinance"],
   },
   SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp: {
     name: "Solend",
@@ -26,6 +27,7 @@ export const mainnetProjects: Record<string, Project> = {
     website: "https://solend.fi/",
     twitter: "https://twitter.com/solendprotocol",
     discord: "https://discord.com/invite/solend",
+    suggestedActions: ["Solend", "JupiterAg"],
   },
   GePFQaZKHcWE5vpxHfviQtH5jgxokSs51Y5Q4zgBiMDs: {
     name: "Jungle Finance",
@@ -39,6 +41,7 @@ export const mainnetProjects: Record<string, Project> = {
     website: "https://jungledefi.io/",
     twitter: "https://twitter.com/jungledefi",
     discord: "https://discord.com/invite/2DWjx5NywE",
+    suggestedActions: ["JupiterAg"],
   },
 };
 

@@ -28,10 +28,11 @@ const styles: Record<string, SxProps<Theme>> = {
   },
   exerciseBtn: {
     height: 60,
-    width: 200,
+    width: "8em",
     fontSize: "1.3em",
     borderRadius: "6px",
     textTransform: "none",
+    zIndex: 2,
   },
 };
 
@@ -71,7 +72,7 @@ export const OptionInfo: React.VFC<{
           Amount
         </Typography>
         <Typography variant="body2" component="div">
-          {tokenAccount?.amount} @ {strike} strike
+          {Number(tokenAccount?.amount)} @ {strike} strike
         </Typography>
       </Grid>
       <Grid item md={3}>

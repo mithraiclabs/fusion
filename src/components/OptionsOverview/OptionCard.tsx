@@ -9,6 +9,8 @@ import { DEFAULT_TEXT_COLOR, BORDER_COLOR } from "../../Theme";
 const pillStyles: Record<string, SxProps<Theme>> = {
   container: {
     border: `2px solid ${DEFAULT_TEXT_COLOR}`,
+    fontFamily: "Roboto",
+    fontWeight: 400,
     borderRadius: 50,
     py: 0.5,
     px: 1.25,

@@ -13,6 +13,7 @@ export const devnetProjects: Record<string, Project> = {
     website: "https://psyoptions.io/",
     twitter: "https://twitter.com/psyoptions",
     discord: "https://discord.gg/3ggjk2Rw",
+    suggestedActions: ["PsyFinance", "Solend", "JupiterAg"],
   },
 };
 

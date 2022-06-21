@@ -3,7 +3,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ExerciseSuccess } from "../../components/ExerciseSuccess";
 import projectList from "../../projects/projectList";
-import { useResetExercisedOption } from "../../context/ExercisedOptionContext";
+import {
+  useExercisedOption,
+  useResetExercisedOption,
+} from "../../context/ExercisedOptionContext";
 import { useRecoilValue } from "recoil";
 import { networkAtom } from "../../recoil";
 import { mapNetworkTypes } from "../../lib/utils";
@@ -31,9 +34,10 @@ export const AfterExercise: React.VFC = () => {
   const navigate = useNavigate();
   const network = useRecoilValue(networkAtom);
   const resetExercisedData = useResetExercisedOption();
+  const exercisedInfo = useExercisedOption();
   const project =
     projectList[mapNetworkTypes(network.key)][
-      "SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp"
+      exercisedInfo.optionMarket?.underlyingAssetMint.toString() ?? ""
     ];
   return (
     <Box sx={styles.container}>

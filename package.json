@@ -19,7 +19,6 @@
     "@solana/wallet-adapter-wallets": "0.15.4",
     "@solana/web3.js": "^1.30.0",
     "classnames": "2.3.1",
-    "node-sass": "^6.0.1",
     "postcss-normalize": "^10.0.1",
     "prop-types": "^15.8.1",
     "query-string": "^7.1.1",

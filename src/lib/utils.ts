@@ -131,7 +131,9 @@ export const displayExpirationDate = (optionMarket: OptionMarket) => {
   const timezoneAbbrev = dtf
     .formatToParts(d)
     .find((part) => part.type == "timeZoneName")?.value;
-  return `${d.toLocaleDateString()} ${d.toLocaleTimeString()} ${timezoneAbbrev}`;
+  return `${d.toLocaleDateString()} ${d
+    .toLocaleTimeString()
+    .substring(0, 5)} ${timezoneAbbrev}`;
 };
 
 export function displayStrikePrice(

@@ -2,39 +2,52 @@ import { Box, Link, Typography } from "@mui/material";
 import { Hr } from "../components/Hr";
 import { LinkOut } from "../components/Images/icons/LinkOut";
 import { OptionsOverview } from "../components/OptionsOverview";
-import PageWrapper from "../components/PageWrapper/PageWrapper";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 import { BORDER_COLOR } from "../Theme";
 
 const overviewStyles = {
   container: {
-    marginTop: 7.5,
+    marginTop: 3.25,
     background: "#FFFFFF",
     borderRadius: "10px",
     border: `1px solid ${BORDER_COLOR}`,
   },
   top: {
-    padding: "0 50px",
-    height: 100,
+    height: "4em",
     display: "flex",
     alignItems: "center",
+    paddingLeft: "50px",
   },
   bottom: {
     padding: "30px 50px",
   },
   body: {
-    marginBottom: 2.75,
+    // marginBottom: 2.75,
   },
 };
 
 const styles = {
   header: {
-    marginTop: 6.25,
+    marginTop: 3.25,
   },
 };
 
 const Home = () => {
+  const { width } = useWindowDimensions();
   return (
-    <PageWrapper>
+    <Box
+      sx={{
+        maxWidth: `${
+          width > 1300
+            ? (width * 2.8) / 5
+            : width < 950
+            ? width * 0.95
+            : (width * 2) / 3
+        }px`,
+        marginLeft: "auto",
+        marginRight: "auto",
+      }}
+    >
       <Box>
         <Typography sx={styles.header} variant="h1" component="h1">
           Claims
@@ -60,14 +73,16 @@ const Home = () => {
               click the link below.
             </Typography>
             <Link href="#" variant="body1" color="textPrimary">
-              Learn More <LinkOut size={19} />
+              Learn More <LinkOut size={1.05} />
             </Link>
           </Box>
         </Box>
 
-        <OptionsOverview />
+        <Box>
+          <OptionsOverview />
+        </Box>
       </Box>
-    </PageWrapper>
+    </Box>
   );
 };
 

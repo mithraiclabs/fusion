@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 
 export const MAX_PAGE_WIDTH = 1400;
-const HEADER_TEXT_COLOR = "#222222";
+export const HEADER_TEXT_COLOR = "#222222";
 export const DEFAULT_TEXT_COLOR = "#777777";
 export const BORDER_COLOR = "#E6E6E6";
 
@@ -13,6 +13,10 @@ const theme = createTheme({
     },
     background: {
       default: "#F2F4F6",
+    },
+    secondary: {
+      main: "#ECEDEE",
+      light: "#E6E6E6",
     },
   },
   typography: {

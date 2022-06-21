@@ -3,29 +3,29 @@ import React, { useMemo } from "react";
 import { MAX_PAGE_WIDTH } from "../../Theme";
 import { Navbar } from "../Navbar";
 import { SnackBarProvider } from "../../context/SnackBarContext";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 const PageWrapper: React.FC = ({ children }) => {
   const theme = useTheme();
+  const { height } = useWindowDimensions();
   const styles = useMemo(() => {
     return {
       container: {
         backgroundColor: theme.palette.background.default,
-        minHeight: "100vh",
+        minHeight: `${height}px`,
       },
       innerContainer: {
         margin: "auto",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        maxWidth: MAX_PAGE_WIDTH,
-        paddingBottom: "150px",
       },
     };
   }, [theme]);
   return (
     <Box sx={styles.container}>
       <SnackBarProvider>
-        <Navbar></Navbar>
+        <Navbar />
         <Box sx={styles.innerContainer}>{children}</Box>
       </SnackBarProvider>
     </Box>

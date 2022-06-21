@@ -30,7 +30,10 @@ export type Project = {
   discord: string;
   // The project's primary color. Used for accents and buttons.
   primaryColor?: string;
+  suggestedActions?: Widget[];
 };
+
+export type Widget = "JupiterAg" | "PsyFinance" | "Solend";
 
 export type OptionAccount = {
   optionMarket: OptionMarketWithKey;
