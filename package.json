@@ -7,7 +7,7 @@
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mithraic-labs/psy-american": "0.2.2",
-    "@mithraic-labs/psy-token-registry": "^0.0.12",
+    "@mithraic-labs/psy-token-registry": "^0.0.14",
     "@mui/material": "^5.7.0",
     "@project-serum/anchor": "^0.24.2",
     "@project-serum/serum": "^0.13.61",
