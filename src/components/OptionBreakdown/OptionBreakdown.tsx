@@ -56,8 +56,9 @@ export const OptionBreakdown: React.VFC = () => {
       <OptionCard projectKey={project.mintAddress}>
         <Box sx={styles.optionCardBody}>
           <Typography variant="body1" component="p">
-            SLND options rewards are American style. They can be exercised to
-            buy the underlying SLND token at the strike price until expiry
+            {project.symbol} options rewards are American style. They can be
+            exercised to buy the underlying {project.symbol} token at the strike
+            price until expiry
           </Typography>
           <Link href="#" sx={styles.learnMore}>
             <Typography variant="body1" component="p" sx={styles.learnMore}>
