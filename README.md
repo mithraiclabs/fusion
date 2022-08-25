@@ -1,14 +1,11 @@
 # Fusion
 
-## Add Project Data
+## Adding a new project
 
-Project data is stored in this open repo as JSON.
-
-Add content via pull-request here:
-
-```
-/src/projects/mainnet.ts
-```
+1. Add the token to the [psy-token-registry](https://github.com/mithraiclabs/psyoptions-ts/tree/master/packages/psy-token-registry)
+2. Deploy a new version of the registry to npm
+3. Update [package.json](./package.json) to use the latest version and install
+4. Add the project to [mainnet projects](./src/projects/mainnet.ts)
 
 ## Devnet Testing
 

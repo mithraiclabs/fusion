@@ -56,6 +56,20 @@ export const mainnetProjects: Record<string, Project> = {
     discord: "https://discord.com/invite/M4F8RKqgce",
     suggestedActions: ["JupiterAg"],
   },
+  cxxShYRVcepDudXhe7U62QHvw8uBJoKFifmzggGKVC2: {
+    name: "SolChicks",
+    description: "The Best Play to Earn Crypto Fantasy Game on Solana",
+    mintAddress: "cxxShYRVcepDudXhe7U62QHvw8uBJoKFifmzggGKVC2",
+    symbol: "CHICKS",
+    primaryColor: "#FAA046",
+    serumUsdMarket: "Eg8a9ZicLPSyak4CiXfiMeJK6jmHq57Xx5ag5GY6vcDj",
+    serumProgramId: "9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin",
+    logo: "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/cxxShYRVcepDudXhe7U62QHvw8uBJoKFifmzggGKVC2/logo.png",
+    website: "https://www.solchicks.io/",
+    twitter: "https://twitter.com/SolChicksNFT",
+    discord: "https://discord.com/invite/solchicks",
+    suggestedActions: ["JupiterAg"],
+  },
 };
 
 // Solend test option Dec 30, 2022 $2 CALL
