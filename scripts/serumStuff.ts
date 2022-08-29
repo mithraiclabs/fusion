@@ -14,7 +14,7 @@ import { TOKEN_PROGRAM_ID } from "@project-serum/anchor/dist/cjs/utils/token";
 import {
   createInitializeAccountInstruction,
   getAssociatedTokenAddress,
-} from "@solana/spl-token";
+} from "@solana/spl-token2";
 
 const connection = new Connection("https://api.devnet.solana.com");
 

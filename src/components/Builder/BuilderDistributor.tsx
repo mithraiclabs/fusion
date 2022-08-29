@@ -1,0 +1,73 @@
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { FusionButton } from "../FusionButton";
+import { FusionPaper } from "../FusionPaper";
+import { useCreateDistributor } from "../../hooks/useCreateDistributor";
+import {
+  airDropStage,
+  airDropTokenAmount,
+  distributorAddress,
+  projectInfo,
+} from "../../recoil/util";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { getCurrentMintBalance } from "../../recoil/wallet/selectors";
+import { useLoadSplTokens } from "../../hooks/wallet";
+
+export const BuilderDistributor: React.VFC = () => {
+  useLoadSplTokens();
+  const distribute = useCreateDistributor();
+  const setAirDropStage = useSetRecoilState(airDropStage);
+  const setDistributorAddress = useSetRecoilState(distributorAddress);
+  const _projectInfo = useRecoilValue(projectInfo);
+  const airdropTokenAmount =
+    useRecoilValue(airDropTokenAmount) /
+    (_projectInfo?.underlyingPerContract ?? 1);
+  const optionMintBalance = useRecoilValue(getCurrentMintBalance);
+
+  return (
+    <>
+      <FusionPaper
+        border={true}
+        divisor={true}
+        title={
+          "Options minted successfully, you can now distribute the airdrop!"
+        }
+      >
+        {!!optionMintBalance ? (
+          <>
+            <Typography
+              fontSize={"16px"}
+              fontWeight={400}
+              align="center"
+              marginBottom={"25px"}
+            >
+              {optionMintBalance} option tokens available to distribute;{" "}
+            </Typography>
+            <Typography
+              fontSize={"16px"}
+              fontWeight={400}
+              align="center"
+              marginBottom={"25px"}
+            >
+              Click below to create the option airdrop
+            </Typography>
+          </>
+        ) : (
+          <></>
+        )}
+      </FusionPaper>
+      <Box my={2}></Box>
+      <FusionButton
+        title="Send Transaction"
+        disabled={optionMintBalance < airdropTokenAmount}
+        onClick={async () => {
+          const newDistributorAddress = await distribute();
+          if (newDistributorAddress) {
+            setDistributorAddress(newDistributorAddress);
+            setAirDropStage((prev) => prev + 1);
+          }
+        }}
+      />
+    </>
+  );
+};

@@ -1,6 +1,5 @@
 import { Box, useTheme } from "@mui/material";
 import React, { useMemo } from "react";
-import { MAX_PAGE_WIDTH } from "../../Theme";
 import { Navbar } from "../Navbar";
 import { SnackBarProvider } from "../../context/SnackBarContext";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
@@ -21,7 +20,7 @@ const PageWrapper: React.FC = ({ children }) => {
         alignItems: "center",
       },
     };
-  }, [theme]);
+  }, [theme, height]);
   return (
     <Box sx={styles.container}>
       <SnackBarProvider>

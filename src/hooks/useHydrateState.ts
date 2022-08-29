@@ -1,12 +1,6 @@
-import { useEffect } from "react";
-import { useLoadAllTokenPrices } from "../recoil";
-import { useLoadSplTokens } from "./wallet";
+import { useTokenPrice } from "./wallet/useTokenPrice";
 
 export const useHydrateState = () => {
-  useLoadSplTokens();
-  const loadPrices = useLoadAllTokenPrices();
-  useEffect(() => {
-    loadPrices();
-  }, [loadPrices]);
+  useTokenPrice();
   return;
 };

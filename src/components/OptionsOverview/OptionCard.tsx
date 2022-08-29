@@ -61,7 +61,11 @@ export const OptionCard: React.FC<{
       <Box sx={styles.top}>
         <Box sx={styles.logoNameContainer}>
           <Box sx={styles.logo}>
-            <img src={project.logo} loading="lazy" />
+            <img
+              src={project.logo}
+              loading="lazy"
+              alt={`${project.name} logo`}
+            />
           </Box>
           <Typography variant="h3" component="h3">
             {project.name}

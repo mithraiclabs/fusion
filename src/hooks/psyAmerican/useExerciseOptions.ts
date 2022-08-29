@@ -3,7 +3,7 @@ import { BN, web3 } from "@project-serum/anchor";
 import {
   createAssociatedTokenAccountInstruction,
   getAssociatedTokenAddress,
-} from "@solana/spl-token";
+} from "@solana/spl-token2";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";

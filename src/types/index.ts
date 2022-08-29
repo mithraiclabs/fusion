@@ -1,5 +1,5 @@
 import { OptionMarketWithKey } from "@mithraic-labs/psy-american";
-import { Mint, RawAccount } from "@solana/spl-token";
+import { Mint, RawAccount } from "@solana/spl-token2";
 import { PublicKey } from "@solana/web3.js";
 
 export type NetworkNames = "devnet" | "testnet" | "mainnet";

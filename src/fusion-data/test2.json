@@ -1,0 +1,13 @@
+{
+  "name": "test2",
+  "recipientList": [
+    {
+      "recipient": "8X2AE8AnFXcCvRdKycjR72bjRwDs45EpNm7cRMZ2Eovs",
+      "amount": "1"
+    },
+    {
+      "recipient": "7qKNeG7bjXEHcboaFiEA8GKVrPQYbUGf5dzrwsPMCs9S",
+      "amount": "1"
+    }
+  ]
+}

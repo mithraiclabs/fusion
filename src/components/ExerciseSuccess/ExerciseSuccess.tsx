@@ -1,6 +1,7 @@
 import { Box, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
 import { useExercisedOption } from "../../context/ExercisedOptionContext";
+import { useLoadSplTokens } from "../../hooks/wallet";
 import { DEFAULT_TEXT_COLOR } from "../../Theme";
 import { Project } from "../../types";
 import { Hr } from "../Hr";
@@ -38,6 +39,7 @@ const styles: Record<string, SxProps<Theme>> = {
 export const ExerciseSuccess: React.VFC<{ project: Project }> = ({
   project,
 }) => {
+  useLoadSplTokens();
   const exercisedInfo = useExercisedOption();
   if (!project) return <h4>Success</h4>;
   return (

@@ -1,11 +1,18 @@
 import { BN } from "@project-serum/anchor";
-import { Mint, MintLayout } from "@solana/spl-token";
+import { Mint, MintLayout } from "@solana/spl-token2";
 import { MintInfoWithKey, NetworkNames, ProjectOptions } from "../types";
-import { Connection, PublicKey } from "@solana/web3.js";
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  SystemProgram,
+  Transaction,
+} from "@solana/web3.js";
 import { OptionMarket } from "@mithraic-labs/psy-american";
 import { Tokens } from "@mithraic-labs/psy-token-registry";
 import { NetworkKeys, TokenAccountWithKey } from "../recoil";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { AccountLayout, Token, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 
 const dtf = Intl.DateTimeFormat(undefined, { timeZoneName: "short" });
 
@@ -130,7 +137,7 @@ export const displayExpirationDate = (optionMarket: OptionMarket) => {
   const d = new Date(optionMarket.expirationUnixTimestamp.toNumber() * 1_000);
   const timezoneAbbrev = dtf
     .formatToParts(d)
-    .find((part) => part.type == "timeZoneName")?.value;
+    .find((part) => part.type === "timeZoneName")?.value;
   return `${d.toLocaleDateString()} ${d
     .toLocaleTimeString()
     .substring(0, 5)} ${timezoneAbbrev}`;
@@ -171,4 +178,58 @@ export function calculateStrike(
         .toNumber() / underlyingAmount.toNumber();
   }
   return strike;
+}
+
+export const PSY_PROGRAM_ID = new PublicKey(
+  "R2y9ip6mxmWUj4pt54jP2hz2dgvMozy9VTSwMWE7evs"
+);
+
+export const WRAPPED_SOL_ADDRESS =
+  "So11111111111111111111111111111111111111112";
+
+export async function initializeTokenAccountTx({
+  connection,
+  extraLamports = 0,
+  payerKey,
+  mintPublicKey,
+  owner,
+  rentBalance,
+}: {
+  connection: Connection;
+  extraLamports?: number;
+  payerKey: PublicKey;
+  mintPublicKey: PublicKey;
+  owner: PublicKey;
+  rentBalance: number;
+}): Promise<{ transaction: Transaction; newTokenAccount: Keypair }> {
+  const newAccount = new Keypair();
+  const transaction = new Transaction();
+
+  let _rentBalance = rentBalance;
+  if (!rentBalance) {
+    _rentBalance = await connection.getMinimumBalanceForRentExemption(
+      AccountLayout.span
+    );
+  }
+
+  transaction.add(
+    SystemProgram.createAccount({
+      fromPubkey: payerKey,
+      newAccountPubkey: newAccount.publicKey,
+      lamports: _rentBalance + extraLamports,
+      space: AccountLayout.span,
+      programId: TOKEN_PROGRAM_ID,
+    })
+  );
+
+  transaction.add(
+    Token.createInitAccountInstruction(
+      TOKEN_PROGRAM_ID,
+      mintPublicKey,
+      newAccount.publicKey,
+      owner
+    )
+  );
+
+  return { transaction, newTokenAccount: newAccount };
 }

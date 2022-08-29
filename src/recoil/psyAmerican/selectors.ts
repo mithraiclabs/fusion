@@ -42,7 +42,7 @@ export const selectOwnedProjectOptionKeys = selector<OwnedProjectOptionKeys>({
       const tokenAccount = get(
         tokenAccountsMap(optionMarket.optionMint.toString())
       );
-      if (!tokenAccount) return agg;
+      if (!tokenAccount || !tokenAccount.amount) return agg;
       if (agg[project.mintAddress] && Array.isArray(agg[project.mintAddress])) {
         agg[project.mintAddress].push({
           optionMarketKey: optionMarket.key.toString(),
