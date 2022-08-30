@@ -90,7 +90,7 @@ export const useCreateDistributor = () => {
           publicKey,
           Number(totalOptions.toFixed(0)), // tokens have 6 decimals of precision so your amount needs to have the same
           [],
-          TOKEN_PROGRAM_ID // imported from '@solana/spl-token'
+          TOKEN_PROGRAM_ID // imported from '@solana/spl-token2'
         )
       );
       const latestBlockHash = await connection.getLatestBlockhash();

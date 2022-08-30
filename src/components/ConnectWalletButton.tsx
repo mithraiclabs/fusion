@@ -28,3 +28,23 @@ export const ConnectWalletButton: React.VFC<{
     </WalletMultiButton>
   );
 };
+
+export const FusionWalletButton: React.VFC = () => {
+  return (
+    <WalletMultiButton
+      sx={{
+        background: (theme) => theme.palette.secondary.dark,
+        borderRadius: "8px",
+        width: "100%",
+        height: "53px",
+        color: "white",
+        marginTop: "25px",
+        "&:hover": {
+          background: (theme) => `${theme.palette.secondary.dark}d3`,
+        },
+      }}
+    >
+      Please Connect Wallet
+    </WalletMultiButton>
+  );
+};

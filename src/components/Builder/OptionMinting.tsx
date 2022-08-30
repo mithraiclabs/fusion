@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { WalletMultiButton } from "@solana/wallet-adapter-material-ui";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -12,6 +11,7 @@ import {
   projectInfo,
 } from "../../recoil/util";
 import { getCurrentMintBalance } from "../../recoil/wallet/selectors";
+import { ConnectWalletButton } from "../ConnectWalletButton";
 import { FusionButton } from "../FusionButton";
 import { FusionPaper } from "../FusionPaper";
 
@@ -45,21 +45,7 @@ export const OptionMinting: React.VFC = () => {
             the createdistributor Transaction.
           </Typography>
         </FusionPaper>
-        <WalletMultiButton
-          sx={{
-            background: (theme) => theme.palette.secondary.dark,
-            borderRadius: "8px",
-            width: "100%",
-            height: "53px",
-            color: "white",
-            marginTop: "25px",
-            "&:hover": {
-              background: (theme) => `${theme.palette.secondary.dark}d3`,
-            },
-          }}
-        >
-          Connect Wallet
-        </WalletMultiButton>
+        <ConnectWalletButton />
       </>
     );
   }
@@ -101,13 +87,13 @@ export const OptionMinting: React.VFC = () => {
               }, 3000);
 
               setTimeout(() => {
-                setAirDropStage((prev) => prev + 1);
+                setAirDropStage(6);
               }, 4000);
             } else {
               setMinting(false);
             }
           } else {
-            setAirDropStage((prev) => prev + 1);
+            setAirDropStage(6);
           }
         }}
       />

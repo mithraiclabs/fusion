@@ -61,3 +61,13 @@ export const airdropAddress = atom<string | null>({
   key: "airdropAddress",
   default: null,
 });
+
+export const airdropBalance = atom<number>({
+  key: "airdropBalance",
+  default: 0,
+});
+
+export const jsonURL = atom<string | null>({
+  key: "jsonURL",
+  default: null,
+});

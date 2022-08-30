@@ -82,7 +82,7 @@ export const ContractQuantity: React.VFC = () => {
         title="Confirm Token Amount"
         disabled={!actualContracts}
         onClick={() => {
-          setAirDropStage((prev) => prev + 1);
+          setAirDropStage(5);
           setAirDropTokenAmount(Number(actualContracts));
         }}
       />

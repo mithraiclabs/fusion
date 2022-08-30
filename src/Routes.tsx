@@ -12,6 +12,7 @@ export const Routes: React.VFC = () => {
     <Switch>
       <Route path="/option/:key" element={<Option />} />
       <Route path="/airdrop" element={<BuilderContainer />} />
+      <Route path="/claim/:jsonLink/:airdropId" element={<ClaimContainer />} />
       <Route path="/claim" element={<ClaimContainer />} />
       <Route path="/" element={<Home />} />
       <Route path="*" element={<Home />} />

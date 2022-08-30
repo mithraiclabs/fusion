@@ -20,7 +20,7 @@ export const BuilderLanding: React.VFC = () => {
       <FusionButton
         title="next"
         onClick={() => {
-          setAirDropStage((prev) => prev + 1);
+          setAirDropStage(2);
         }}
       />
     </FusionPaper>

@@ -1,22 +1,17 @@
-import { createStyles } from "@mui/material";
+import { SxProps } from "@mui/material";
 
-export const listStyle = createStyles((theme: any) => ({
-  "& .MuiListItemButton-root": {
-    borderRadius: "8px",
-  },
-  // selected and (selected + hover) states
-  "&& .Mui-selected, && .Mui-selected:hover": {
-    bgcolor: `${theme.palette.primary.main}cc`,
-    "&, & .MuiListItemIcon-root": {
-      color: "white",
-    },
-  },
-  // hover states
-  "& .MuiListItemButton-root:hover": {
-    bgcolor: `${theme.palette.primary.main}50`,
-
-    "&, & .MuiListItemIcon-root": {
-      color: "white",
-    },
-  },
-}));
+export const modalStyle = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 575,
+  border: "none",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  height: "338px",
+  background: "white",
+  borderRadius: "8px",
+  zIndex: 800,
+} as SxProps;

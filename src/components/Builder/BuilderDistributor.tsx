@@ -19,9 +19,12 @@ export const BuilderDistributor: React.VFC = () => {
   const setAirDropStage = useSetRecoilState(airDropStage);
   const setDistributorAddress = useSetRecoilState(distributorAddress);
   const _projectInfo = useRecoilValue(projectInfo);
-  const airdropTokenAmount =
-    useRecoilValue(airDropTokenAmount) /
-    (_projectInfo?.underlyingPerContract ?? 1);
+  const airdropTokenAmount = Number(
+    (
+      useRecoilValue(airDropTokenAmount) /
+      (_projectInfo?.underlyingPerContract ?? 1)
+    ).toFixed(2)
+  );
   const optionMintBalance = useRecoilValue(getCurrentMintBalance);
 
   return (
@@ -64,7 +67,7 @@ export const BuilderDistributor: React.VFC = () => {
           const newDistributorAddress = await distribute();
           if (newDistributorAddress) {
             setDistributorAddress(newDistributorAddress);
-            setAirDropStage((prev) => prev + 1);
+            setAirDropStage(7);
           }
         }}
       />

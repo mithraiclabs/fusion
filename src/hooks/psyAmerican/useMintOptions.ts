@@ -75,9 +75,6 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
             mintDetails.underlyingPerContract *
               Math.pow(10, underlyingToken.decimals)
           );
-          const underlyingAmountPerContractOld = new BN(
-            mintDetails.underlyingPerContract
-          ).mul(new BN(10).pow(new BN(underlyingToken.decimals)));
 
           const quoteAmountPerContract = new BN(
             mintDetails.quotePerContract * Math.pow(10, quoteToken.decimals)
@@ -90,7 +87,6 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
             exp: mintDetails.expiration,
             qPerC: quoteAmountPerContract.toNumber(),
             undPerC: underlyingAmountPerContract.toNumber(),
-            oldUndpC: underlyingAmountPerContractOld.toNumber(),
           });
 
           const expirationUnixTimestamp = new BN(mintDetails.expiration / 1000);
