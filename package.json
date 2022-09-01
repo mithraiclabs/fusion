@@ -1,5 +1,5 @@
 {
-  "name": "psyoptions-management",
+  "name": "psydo-fusion",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,6 +23,7 @@
     "@solana/wallet-adapter-react": "^0.15.4",
     "@solana/wallet-adapter-wallets": "0.15.4",
     "@solana/web3.js": "^1.46.0",
+    "caniuse-lite": "^1.0.30001387",
     "classnames": "2.3.1",
     "jsbi": "^4.3.0",
     "postcss-normalize": "^10.0.1",
@@ -40,9 +41,9 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "PORT=1414 craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "start": "PORT=1414 node --max-old-space-size=6144 ./node_modules/@craco/craco/bin/craco.js start",
+    "build": "node --max-old-space-size=6144 ./node_modules/@craco/craco/bin/craco.js  build",
+    "test": "node --max-old-space-size=6144 ./node_modules/@craco/craco/bin/craco.js  test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
