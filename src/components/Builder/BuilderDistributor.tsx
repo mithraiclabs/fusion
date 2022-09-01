@@ -12,6 +12,7 @@ import {
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { getCurrentMintBalance } from "../../recoil/wallet/selectors";
 import { useLoadSplTokens } from "../../hooks/wallet";
+import { decDiv } from "../../lib/utils";
 
 export const BuilderDistributor: React.VFC = () => {
   useLoadSplTokens();
@@ -19,11 +20,10 @@ export const BuilderDistributor: React.VFC = () => {
   const setAirDropStage = useSetRecoilState(airDropStage);
   const setDistributorAddress = useSetRecoilState(distributorAddress);
   const _projectInfo = useRecoilValue(projectInfo);
-  const airdropTokenAmount = Number(
-    (
-      useRecoilValue(airDropTokenAmount) /
-      (_projectInfo?.underlyingPerContract ?? 1)
-    ).toFixed(2)
+  const airdropTokenAmount = useRecoilValue(airDropTokenAmount);
+  const airdropOptionAmount = decDiv(
+    airdropTokenAmount,
+    _projectInfo?.underlyingPerContract ?? 1
   );
   const optionMintBalance = useRecoilValue(getCurrentMintBalance);
 
@@ -62,7 +62,7 @@ export const BuilderDistributor: React.VFC = () => {
       <Box my={2}></Box>
       <FusionButton
         title="Send Transaction"
-        disabled={optionMintBalance < airdropTokenAmount}
+        disabled={optionMintBalance < airdropOptionAmount}
         onClick={async () => {
           const newDistributorAddress = await distribute();
           if (newDistributorAddress) {

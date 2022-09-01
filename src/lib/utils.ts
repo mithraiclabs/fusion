@@ -13,6 +13,7 @@ import { Tokens } from "@mithraic-labs/psy-token-registry";
 import { NetworkKeys, TokenAccountWithKey } from "../recoil";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { AccountLayout, Token, TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { Decimal } from "decimal.js";
 
 const dtf = Intl.DateTimeFormat(undefined, { timeZoneName: "short" });
 
@@ -254,3 +255,19 @@ export function encodeLink(url: string) {
 export function decodeLink(encodedUrlString: string) {
   return decodeURIComponent(encodedUrlString);
 }
+
+export const decMultiply = (a: number, b: number) => {
+  return new Decimal(a).mul(new Decimal(b)).toNumber();
+};
+
+export const decDiv = (a: number, b: number) => {
+  return new Decimal(a).div(new Decimal(b)).toNumber();
+};
+
+export const decSub = (a: number, b: number) => {
+  return new Decimal(a).sub(new Decimal(b)).toNumber();
+};
+
+export const decAdd = (a: number, b: number) => {
+  return new Decimal(a).add(new Decimal(b)).toNumber();
+};

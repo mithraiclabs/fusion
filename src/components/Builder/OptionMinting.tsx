@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useMintOptions } from "../../hooks/psyAmerican/useMintOptions";
 import { useNetworkTokens } from "../../hooks/useNetworkTokens";
+import { decDiv, decMultiply, decSub } from "../../lib/utils";
 import {
   airDropStage,
   airDropTokenAmount,
@@ -27,12 +28,20 @@ export const OptionMinting: React.VFC = () => {
   const airdropTokenAmount = useRecoilValue(airDropTokenAmount);
   const optionMintBalance = useRecoilValue(getCurrentMintBalance);
   const [minting, setMinting] = useState(false);
-  const underlyingNeeded =
-    airdropTokenAmount -
-    optionMintBalance * (_projectInfo?.underlyingPerContract ?? 0);
-  const optionsToMintQty =
-    airdropTokenAmount / (_projectInfo?.underlyingPerContract ?? 1) -
-    optionMintBalance;
+  const underlyingUsedForAlreadyMintedOptions = decMultiply(
+    optionMintBalance,
+    _projectInfo?.underlyingPerContract ?? 0
+  );
+  const contractQty = decSub(
+    decDiv(airdropTokenAmount, _projectInfo?.underlyingPerContract ?? 1),
+    optionMintBalance
+  );
+
+  const underlyingNeeded = decSub(
+    airdropTokenAmount,
+    underlyingUsedForAlreadyMintedOptions
+  );
+
   if (!optionKey) throw new Error("Option Market Key not found");
 
   if (!wallet) {
@@ -52,35 +61,42 @@ export const OptionMinting: React.VFC = () => {
   return (
     <>
       <FusionPaper border={true}>
-        <Typography fontSize={"24px"} fontWeight={500} align="center">
-          Congratulations, Wallet connection completed.
-        </Typography>
-        <Typography
-          fontSize={"16px"}
-          fontWeight={400}
-          align="center"
-          marginBottom={"25px"}
-        >
-          Click below to mint{" "}
-          {airdropTokenAmount / (_projectInfo?.underlyingPerContract ?? 1) -
-            optionMintBalance}{" "}
-          {underlyingToken.name} option contracts [
-          {_projectInfo?.underlyingPerContract} {underlyingToken.symbol} for{" "}
-          {_projectInfo?.quotePerContract} {quoteToken.symbol} @{" "}
-          {new Date(_projectInfo?.expiration ?? 0).toUTCString()}]
-        </Typography>
-        <Typography>
-          Wallet balance needed: {underlyingNeeded} {underlyingToken.symbol}
-        </Typography>
+        {contractQty ? (
+          <>
+            <Typography
+              fontSize={"16px"}
+              fontWeight={400}
+              align="center"
+              marginBottom={"25px"}
+            >
+              Click below to mint {contractQty} {underlyingToken.name} option
+              contract{contractQty !== 1 ? "s" : ""}
+            </Typography>
+            <Typography align="center" marginBottom={"25px"}>
+              {contractQty}x[{_projectInfo?.underlyingPerContract}{" "}
+              {underlyingToken.symbol} for {_projectInfo?.quotePerContract}{" "}
+              {quoteToken.symbol} @{" "}
+              {new Date(_projectInfo?.expiration ?? 0).toUTCString()}]
+            </Typography>
+            <Typography align="center">
+              Wallet balance needed: {underlyingNeeded} {underlyingToken.symbol}
+            </Typography>
+          </>
+        ) : (
+          <Typography>
+            You already have suffiecient option tokens for this airdrop in your
+            wallet
+          </Typography>
+        )}
       </FusionPaper>
       <Box my={2}></Box>
       <FusionButton
-        title={"Mint Options"}
+        title={underlyingNeeded ? "Mint Options" : "continue"}
         loading={minting}
         onClick={async () => {
           if (underlyingNeeded) {
             setMinting(true);
-            const mintingDone = await mint(optionsToMintQty);
+            const mintingDone = await mint(contractQty);
             if (airdropTokenAmount >= optionMintBalance && mintingDone) {
               setTimeout(() => {
                 setMinting(false);

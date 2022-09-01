@@ -2,6 +2,7 @@ import { Avatar, Typography } from "@mui/material";
 import { useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { useNetworkTokens } from "../../hooks/useNetworkTokens";
+import { decMultiply } from "../../lib/utils";
 import {
   airDropStage,
   airDropTokenAmount,
@@ -16,7 +17,7 @@ import { NumberInput } from "../NumberInput";
 export const ContractQuantity: React.VFC = () => {
   const [_airDropTokenAmount, setAirDropTokenAmount] =
     useRecoilState(airDropTokenAmount);
-  const [actualContracts, setActualContracts] = useState(
+  const [underlyingToUse, setUnderlyingToUse] = useState(
     _airDropTokenAmount.toString()
   );
   const tokens = Object.values(useNetworkTokens());
@@ -29,7 +30,11 @@ export const ContractQuantity: React.VFC = () => {
   const totalContracts = jsonData?.recipientList.reduce(function (acc, obj) {
     return acc + Number(obj.amount);
   }, 0) as number;
-  const totalTokens = airDropInfo?.underlyingPerContract! * totalContracts;
+  const fullAirdropUnderlyingQty = decMultiply(
+    airDropInfo?.underlyingPerContract!,
+    totalContracts
+  );
+
   const { name, symbol, logoURI } = underlyingToken!;
   return (
     <>
@@ -59,19 +64,19 @@ export const ContractQuantity: React.VFC = () => {
           fontWeight={600}
           align="center"
         >
-          {totalTokens} {symbol}
+          {fullAirdropUnderlyingQty} {symbol}
         </Typography>
       </FusionPaper>
       <NumberInput
-        number={actualContracts}
+        number={underlyingToUse}
         setMax={() => {
-          setActualContracts(totalTokens.toString());
+          setUnderlyingToUse(fullAirdropUnderlyingQty.toString());
         }}
         setNumber={(e: any) => {
-          setActualContracts(e);
+          setUnderlyingToUse(e);
         }}
         currency={symbol}
-        max={totalTokens}
+        max={fullAirdropUnderlyingQty}
         sx={{
           marginY: 2,
           border: (theme) => `2px solid ${theme.palette.secondary.dark}}`,
@@ -80,10 +85,10 @@ export const ContractQuantity: React.VFC = () => {
       />
       <FusionButton
         title="Confirm Token Amount"
-        disabled={!actualContracts}
+        disabled={!underlyingToUse}
         onClick={() => {
           setAirDropStage(5);
-          setAirDropTokenAmount(Number(actualContracts));
+          setAirDropTokenAmount(Number(underlyingToUse));
         }}
       />
     </>
