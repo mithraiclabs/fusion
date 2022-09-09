@@ -39,7 +39,7 @@ export const DetailedBreakdown: React.VFC<{
   const network = useRecoilValue(networkAtom);
   const breakdown = useOptionBreakdown({
     optionMeta,
-    optionTokenAccount,
+    tokenAccount: optionTokenAccount,
     project,
   });
   return (

@@ -6,6 +6,7 @@ import { ConnectWalletButton } from "../ConnectWalletButton";
 import { NavLogo } from "../Images/NavLogo";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import GetAppIcon from "@mui/icons-material/GetApp";
+import EventRepeatIcon from "@mui/icons-material/EventRepeat";
 import NetworkMenu from "./NetworkMenu";
 
 const containerStyles = (theme: Theme) => ({
@@ -87,6 +88,18 @@ export const Navbar: React.FC = () => {
             }}
           >
             <GetAppIcon sx={navIconStyle} />
+          </Button>
+        </Tooltip>
+      </Box>
+      <Box sx={innerContainerStyles}>
+        <Tooltip title="Recover Underlying/Rent for Expired Options">
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/recover");
+            }}
+          >
+            <EventRepeatIcon sx={navIconStyle} />
           </Button>
         </Tooltip>
       </Box>

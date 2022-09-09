@@ -25,11 +25,11 @@ type OptionBreakdown = {
 
 export const useOptionBreakdown = ({
   optionMeta,
-  optionTokenAccount,
+  tokenAccount,
   project,
 }: {
   optionMeta: OptionMarketWithKey;
-  optionTokenAccount: TokenAccountWithKey;
+  tokenAccount: TokenAccountWithKey;
   project: Project;
 }): OptionBreakdown => {
   const prices = useTokenPrice();
@@ -39,12 +39,12 @@ export const useOptionBreakdown = ({
   // Tokens to receive is the underlying amount per contract * number of contracts held
   const amountToReceive = tokensToReceive(
     optionMeta,
-    optionTokenAccount,
+    tokenAccount,
     mapNetworkTypes(network.key)
   );
   const exerciseInfo = costToExercise(
     optionMeta,
-    optionTokenAccount,
+    tokenAccount,
     mapNetworkTypes(network.key)
   );
 

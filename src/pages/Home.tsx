@@ -14,7 +14,13 @@ const Home = () => {
           well as the current price of the token. To learn more, click the link
           below.
         </Typography>
-        <Link href="#" variant="body1" color="textPrimary">
+        <Link
+          href="https://docs.psyoptions.io/fusion"
+          rel="noopener"
+          target="_blank"
+          variant="body1"
+          color="textPrimary"
+        >
           Learn More <LinkOut size={1.05} />
         </Link>
       </FusionPaper>

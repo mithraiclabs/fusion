@@ -30,7 +30,8 @@ export const FusionPaper: React.FC<{
   divisor?: boolean;
   header?: string;
   border?: boolean;
-}> = ({ children, title, divisor, header, border }) => {
+  borderColor?: string;
+}> = ({ children, title, divisor, header, border, borderColor }) => {
   const { width } = useWindowDimensions();
   return (
     <Box
@@ -60,7 +61,9 @@ export const FusionPaper: React.FC<{
         sx={{
           ...overviewStyles.container,
           border: (theme) =>
-            border ? `2px solid ${theme.palette.secondary.dark}}` : "none",
+            border
+              ? `2px solid ${borderColor ?? theme.palette.secondary.dark}}`
+              : "none",
         }}
       >
         <Box sx={overviewStyles.top}>

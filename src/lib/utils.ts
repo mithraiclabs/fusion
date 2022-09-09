@@ -134,14 +134,29 @@ export const bnToFloat = (
   );
 };
 
+export const contractsToAmount = (
+  amountPerContract: BN,
+  contractQty: number,
+  decimals: number
+) => {
+  return (
+    (amountPerContract.muln(Number(contractQty)) ?? new BN(0)).toNumber() /
+    Math.pow(10, decimals)
+  );
+};
+
 export const displayExpirationDate = (optionMarket: OptionMarket) => {
   const d = new Date(optionMarket.expirationUnixTimestamp.toNumber() * 1_000);
+  const half = d.getHours() > 12 ? "PM" : "AM";
   const timezoneAbbrev = dtf
     .formatToParts(d)
     .find((part) => part.type === "timeZoneName")?.value;
   return `${d.toLocaleDateString()} ${d
     .toLocaleTimeString()
-    .substring(0, 5)} ${timezoneAbbrev}`;
+    .substring(
+      0,
+      d.toLocaleTimeString().charAt(5) === ":" ? 5 : 4
+    )} ${half} ${timezoneAbbrev}`;
 };
 
 export function displayStrikePrice(

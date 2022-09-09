@@ -6,20 +6,21 @@ export const FusionButton: React.FC<{
   title: string;
   disabled?: boolean;
   loading?: boolean;
-}> = ({ onClick, title, disabled = false, loading = false }) => {
+  color?: string;
+}> = ({ onClick, title, disabled = false, loading = false, color }) => {
   return (
     <Button
       sx={{
         background: (theme) =>
           disabled
             ? `${theme.palette.primary.main}55`
-            : theme.palette.secondary.dark,
+            : color ?? theme.palette.secondary.dark,
         borderRadius: "8px",
         width: "100%",
         height: "53px",
         color: "white",
         "&:hover": {
-          background: (theme) => `${theme.palette.secondary.dark}d3`,
+          background: (theme) => `${color ?? theme.palette.secondary.dark}d3`,
         },
       }}
       onClick={onClick}

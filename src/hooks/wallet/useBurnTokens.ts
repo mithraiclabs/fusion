@@ -51,9 +51,11 @@ export const useBurnTokens = (mint?: PublicKey) => {
             transaction.serialize()
           );
           showMessage("Expired option account closed & rent claimed", txId);
+          return true;
         }
       } catch (error) {
         showMessage(String(error));
+        return false;
       }
     },
     [connection, mint, showMessage, wallet]

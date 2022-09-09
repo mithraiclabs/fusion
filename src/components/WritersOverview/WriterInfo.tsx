@@ -36,7 +36,7 @@ const styles: Record<string, SxProps<Theme>> = {
   },
 };
 
-export const OptionInfo: React.VFC<{
+export const WriterInfo: React.VFC<{
   projectKey: string;
   optionMetaKey: string;
   tokenAccountKey: string;
@@ -107,14 +107,10 @@ export const OptionInfo: React.VFC<{
             },
           }}
           onClick={() => {
-            navigate(`/option/${optionMeta.key.toString()}`);
+            navigate(`/writer/${optionMeta.key.toString()}`);
           }}
         >
-          {optionMeta.expired
-            ? Number(tokenAccount?.amount)
-              ? "Collect rent"
-              : "Recover underlying"
-            : "Exercise"}
+          Recover
         </Button>
       </Grid>
     </Grid>
