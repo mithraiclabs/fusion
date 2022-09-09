@@ -23,10 +23,12 @@ const useInsertPsyAmericanOptions = () =>
         set(psyAmericanOptionKeys, keys);
 
         psyAmericanOptionMarkets.forEach((optionMarketWithKey) => {
-          set(
-            optionMarketFamily(optionMarketWithKey.key.toString()),
-            optionMarketWithKey
-          );
+          set(optionMarketFamily(optionMarketWithKey.key.toString()), {
+            ...optionMarketWithKey,
+            expired:
+              optionMarketWithKey.expirationUnixTimestamp.toNumber() <
+              Date.now() / 1000,
+          });
         });
       },
     []

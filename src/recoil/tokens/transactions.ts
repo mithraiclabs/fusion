@@ -29,6 +29,10 @@ export const useInsertTokenSerumOrderbook = () =>
     []
   );
 
+/**
+ *
+ *        !!!  UNUSED  !!!
+ */
 export const useLoadAllTokenPrices = () => {
   const provider = useProvider();
   const ownedProjects = useRecoilValue(selectOwnedProjects);

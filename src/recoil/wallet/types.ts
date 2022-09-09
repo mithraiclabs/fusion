@@ -1,5 +1,5 @@
 import { web3 } from "@project-serum/anchor";
-import { RawAccount } from "@solana/spl-token";
+import { RawAccount } from "@solana/spl-token2";
 
 export interface TokenAccountWithKey extends RawAccount {
   key: web3.PublicKey;

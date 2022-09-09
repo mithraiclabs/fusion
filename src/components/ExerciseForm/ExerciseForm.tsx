@@ -11,7 +11,8 @@ import {
 } from "../../recoil";
 import { DEFAULT_TEXT_COLOR } from "../../Theme";
 import { mapNetworkTypes } from "../../lib/utils";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useBurnTokens } from "../../hooks/wallet/useBurnTokens";
 
 const styles: Record<string, SxProps<Theme>> = {
   inputContainer: {
@@ -58,6 +59,10 @@ const styles: Record<string, SxProps<Theme>> = {
     background: DEFAULT_TEXT_COLOR,
     color: "white",
     textTransform: "none",
+    "&:hover": {
+      color: "gray",
+      backgroundColor: "lightblue",
+    },
   },
 };
 
@@ -69,11 +74,17 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
   // Load the OptionMarket data from the option market key
   const optionMeta = useRecoilValue(optionMarketFamily(optionMarketKey));
   const exerciseOptions = useExerciseOptions(optionMeta);
+  const navigate = useNavigate();
   // Load the user's option token account with the data
+
   const optionTokenAccount = useRecoilValue(
     tokenAccountsMap(optionMeta?.optionMint?.toString() ?? "")
   );
+
+  const burn = useBurnTokens(optionMeta?.optionMint);
   if (!optionMeta) {
+    console.log("no option meta");
+
     return <Navigate to={"/"} />;
     // throw new Error(`Could not find OptionMarket with key ${optionMarketKey}`);
   }
@@ -89,6 +100,46 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
     projectList[mapNetworkTypes(network.key)][underlyingTokenMint.toString()];
   if (!project) {
     throw new Error(`Could not find project with key ${underlyingTokenMint}`);
+  }
+  const optionTokens = Number(optionTokenAccount?.amount ?? 0);
+
+  if (optionMeta.expired) {
+    return (
+      <Box>
+        <Box
+          sx={{
+            ...styles.inputContainer,
+            ...{ borderColor: project.primaryColor || DEFAULT_TEXT_COLOR },
+          }}
+        >
+          <Typography
+            sx={{
+              fontSize: 25,
+              fontWeight: 500,
+            }}
+          >
+            Option Expired
+          </Typography>
+
+          {!!optionTokens && (
+            // case where you hold only option tokens [expired]
+            <Button
+              sx={{
+                ...styles.exerciseButton,
+                ...{
+                  backgroundColor: project.primaryColor || DEFAULT_TEXT_COLOR,
+                },
+              }}
+              onClick={async () => {
+                if (await burn(optionTokens)) navigate("/");
+              }}
+            >
+              Collect Rent
+            </Button>
+          )}
+        </Box>
+      </Box>
+    );
   }
   return (
     <Box>
@@ -116,7 +167,9 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
       <Button
         sx={{
           ...styles.exerciseButton,
-          ...{ backgroundColor: project.primaryColor || DEFAULT_TEXT_COLOR },
+          ...{
+            backgroundColor: project.primaryColor || DEFAULT_TEXT_COLOR,
+          },
         }}
         onClick={() => {
           exerciseOptions({ amount: new BN(amountToExercise) });

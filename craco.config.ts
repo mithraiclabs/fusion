@@ -10,7 +10,10 @@ const cracoConfig = {
           stream: false,
         },
       };
-      return config;
+      return {
+        ...config,
+        ignoreWarnings: [/Failed to parse source map/],
+      };
     },
   },
 };

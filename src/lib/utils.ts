@@ -1,11 +1,19 @@
 import { BN } from "@project-serum/anchor";
-import { Mint, MintLayout } from "@solana/spl-token";
+import { Mint, MintLayout } from "@solana/spl-token2";
 import { MintInfoWithKey, NetworkNames, ProjectOptions } from "../types";
-import { Connection, PublicKey } from "@solana/web3.js";
+import {
+  Connection,
+  Keypair,
+  PublicKey,
+  SystemProgram,
+  Transaction,
+} from "@solana/web3.js";
 import { OptionMarket } from "@mithraic-labs/psy-american";
 import { Tokens } from "@mithraic-labs/psy-token-registry";
 import { NetworkKeys, TokenAccountWithKey } from "../recoil";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { AccountLayout, Token, TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { Decimal } from "decimal.js";
 
 const dtf = Intl.DateTimeFormat(undefined, { timeZoneName: "short" });
 
@@ -126,14 +134,29 @@ export const bnToFloat = (
   );
 };
 
+export const contractsToAmount = (
+  amountPerContract: BN,
+  contractQty: number,
+  decimals: number
+) => {
+  return (
+    (amountPerContract.muln(Number(contractQty)) ?? new BN(0)).toNumber() /
+    Math.pow(10, decimals)
+  );
+};
+
 export const displayExpirationDate = (optionMarket: OptionMarket) => {
   const d = new Date(optionMarket.expirationUnixTimestamp.toNumber() * 1_000);
+  const half = d.getHours() > 12 ? "PM" : "AM";
   const timezoneAbbrev = dtf
     .formatToParts(d)
-    .find((part) => part.type == "timeZoneName")?.value;
+    .find((part) => part.type === "timeZoneName")?.value;
   return `${d.toLocaleDateString()} ${d
     .toLocaleTimeString()
-    .substring(0, 5)} ${timezoneAbbrev}`;
+    .substring(
+      0,
+      d.toLocaleTimeString().charAt(5) === ":" ? 5 : 4
+    )} ${half} ${timezoneAbbrev}`;
 };
 
 export function displayStrikePrice(
@@ -172,3 +195,94 @@ export function calculateStrike(
   }
   return strike;
 }
+
+export const PSY_PROGRAM_ID = new PublicKey(
+  "R2y9ip6mxmWUj4pt54jP2hz2dgvMozy9VTSwMWE7evs"
+);
+
+export const WRAPPED_SOL_ADDRESS =
+  "So11111111111111111111111111111111111111112";
+
+export async function initializeTokenAccountTx({
+  connection,
+  extraLamports = 0,
+  payerKey,
+  mintPublicKey,
+  owner,
+  rentBalance,
+}: {
+  connection: Connection;
+  extraLamports?: number;
+  payerKey: PublicKey;
+  mintPublicKey: PublicKey;
+  owner: PublicKey;
+  rentBalance: number;
+}): Promise<{ transaction: Transaction; newTokenAccount: Keypair }> {
+  const newAccount = new Keypair();
+  const transaction = new Transaction();
+
+  let _rentBalance = rentBalance;
+  if (!rentBalance) {
+    _rentBalance = await connection.getMinimumBalanceForRentExemption(
+      AccountLayout.span
+    );
+  }
+
+  transaction.add(
+    SystemProgram.createAccount({
+      fromPubkey: payerKey,
+      newAccountPubkey: newAccount.publicKey,
+      lamports: _rentBalance + extraLamports,
+      space: AccountLayout.span,
+      programId: TOKEN_PROGRAM_ID,
+    })
+  );
+
+  transaction.add(
+    Token.createInitAccountInstruction(
+      TOKEN_PROGRAM_ID,
+      mintPublicKey,
+      newAccount.publicKey,
+      owner
+    )
+  );
+
+  return { transaction, newTokenAccount: newAccount };
+}
+
+export function validURL(str: string) {
+  var pattern = new RegExp(
+    "^(https?:\\/\\/)?" + // protocol
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
+    "i"
+  ); // fragment locator
+  return !!pattern.test(str);
+}
+
+export function encodeLink(url: string) {
+  return encodeURIComponent(url);
+}
+
+export function decodeLink(encodedUrlString: string) {
+  return decodeURIComponent(encodedUrlString);
+}
+
+export const decMultiply = (a: number, b: number) => {
+  return new Decimal(a).mul(new Decimal(b)).toNumber();
+};
+
+export const decDiv = (a: number, b: number) => {
+  return new Decimal(a).div(new Decimal(b)).toNumber();
+};
+
+export const decSub = (a: number, b: number) => {
+  return new Decimal(a).sub(new Decimal(b)).toNumber();
+};
+
+export const decAdd = (a: number, b: number) => {
+  return new Decimal(a).add(new Decimal(b)).toNumber();
+};

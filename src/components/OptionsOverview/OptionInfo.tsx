@@ -12,9 +12,9 @@ import {
   networkAtom,
   optionMarketFamily,
   tokenAccountsMap,
-  tokenPricesMap,
 } from "../../recoil";
 import { DEFAULT_TEXT_COLOR } from "../../Theme";
+import { useTokenPrice } from "../../hooks/wallet/useTokenPrice";
 
 const styles: Record<string, SxProps<Theme>> = {
   bottom: {
@@ -47,10 +47,13 @@ export const OptionInfo: React.VFC<{
   const optionMeta = useRecoilValue(optionMarketFamily(optionMetaKey));
   const tokenAccount = useRecoilValue(tokenAccountsMap(tokenAccountKey));
   const project = projectList[mapNetworkTypes(network.key)][projectKey];
-  const tokenPrice = useRecoilValue(tokenPricesMap(project.mintAddress));
+  const prices = useTokenPrice();
+
+  const tokenPrice = prices[project.symbol]?.price ?? 0;
   if (!optionMeta) {
     throw new Error(`Could not find OptionMarket with key ${optionMetaKey}`);
   }
+
   let expirationDate = "",
     strike = "";
   if (optionMeta) {
@@ -63,7 +66,17 @@ export const OptionInfo: React.VFC<{
         <Typography variant="body1" component="div">
           Expires
         </Typography>
-        <Typography variant="body2" component="div">
+        <Typography
+          variant="body2"
+          component="div"
+          sx={
+            optionMeta.expired
+              ? {
+                  color: "red",
+                }
+              : {}
+          }
+        >
           {expirationDate}
         </Typography>
       </Grid>
@@ -97,7 +110,11 @@ export const OptionInfo: React.VFC<{
             navigate(`/option/${optionMeta.key.toString()}`);
           }}
         >
-          Exercise
+          {optionMeta.expired
+            ? Number(tokenAccount?.amount)
+              ? "Collect rent"
+              : "Recover underlying"
+            : "Exercise"}
         </Button>
       </Grid>
     </Grid>

@@ -1,9 +1,12 @@
 import { instructions, OptionMarketWithKey } from "@mithraic-labs/psy-american";
 import { BN, web3 } from "@project-serum/anchor";
+import { WRAPPED_SOL_MINT } from "@project-serum/serum/lib/token-instructions";
 import {
   createAssociatedTokenAccountInstruction,
+  createCloseAccountInstruction,
   getAssociatedTokenAddress,
-} from "@solana/spl-token";
+  TOKEN_PROGRAM_ID,
+} from "@solana/spl-token2";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
@@ -83,6 +86,18 @@ export const useExerciseOptions = (
         walletQuoteTokenAddress
       );
       tx.add(ix);
+      // if options are wrapped sol, add instruction to close account
+      if (optionMarket.underlyingAssetMint.equals(WRAPPED_SOL_MINT)) {
+        tx.add(
+          await createCloseAccountInstruction(
+            walletUnderlyingTokenAddress,
+            publicKey,
+            publicKey,
+            undefined,
+            TOKEN_PROGRAM_ID
+          )
+        );
+      }
       const txId = await sendAndConfirm(tx, []);
       if (txId) {
         showMessage(

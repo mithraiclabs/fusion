@@ -54,6 +54,6 @@ export const useResetExercisedOption = () => {
       setExercisedOptionParams({
         show: false,
       }),
-    []
+    [setExercisedOptionParams]
   );
 };

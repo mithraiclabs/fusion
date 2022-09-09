@@ -7,6 +7,8 @@ import { RecoilRoot } from "recoil";
 import Theme from "./Theme";
 import PageWrapper from "./components/PageWrapper/PageWrapper";
 import { BrowserRouter } from "react-router-dom";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,9 +16,11 @@ ReactDOM.render(
       <Theme>
         <PsyWalletProvider>
           <BrowserRouter>
-            <PageWrapper>
-              <Routes />
-            </PageWrapper>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <PageWrapper>
+                <Routes />
+              </PageWrapper>
+            </LocalizationProvider>
           </BrowserRouter>
         </PsyWalletProvider>
       </Theme>

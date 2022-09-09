@@ -5,13 +5,13 @@ import { DiscordIcon } from "./Images/icons/discord-icon";
 import { TwitterIcon } from "./Images/icons/twitter-3-logo-svg-vector";
 import { InternetIcon } from "./Images/icons/internet-icon";
 import classNames from "classnames";
-import { useRecoilValue } from "recoil";
-import { tokenPricesMap } from "../recoil";
+import { useTokenPrice } from "../hooks/wallet/useTokenPrice";
 
 const PortfolioSnippet: React.FC<{
   project: Project;
 }> = ({ project }) => {
-  const tokenPrice = useRecoilValue(tokenPricesMap(project.mintAddress));
+  const prices = useTokenPrice();
+  const tokenPrice = prices[project.symbol]?.price ?? 0;
 
   return (
     <div className="portfolio-card">

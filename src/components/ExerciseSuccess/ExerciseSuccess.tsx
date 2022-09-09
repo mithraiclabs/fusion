@@ -1,6 +1,9 @@
 import { Box, SxProps, Theme, Typography } from "@mui/material";
+import { BN } from "@project-serum/anchor";
 import React from "react";
 import { useExercisedOption } from "../../context/ExercisedOptionContext";
+import { useNetworkTokens } from "../../hooks/useNetworkTokens";
+import { useLoadSplTokens } from "../../hooks/wallet";
 import { DEFAULT_TEXT_COLOR } from "../../Theme";
 import { Project } from "../../types";
 import { Hr } from "../Hr";
@@ -38,7 +41,16 @@ const styles: Record<string, SxProps<Theme>> = {
 export const ExerciseSuccess: React.VFC<{ project: Project }> = ({
   project,
 }) => {
+  useLoadSplTokens();
   const exercisedInfo = useExercisedOption();
+  const tokens = useNetworkTokens();
+  const underlyingToken =
+    tokens[exercisedInfo.optionMarket?.underlyingAssetMint.toString() ?? ""];
+  const u64Amount =
+    exercisedInfo.optionMarket?.underlyingAmountPerContract.muln(
+      Number(exercisedInfo?.amount)
+    ) ?? new BN(0);
+  const amount = u64Amount.toNumber() / Math.pow(10, underlyingToken.decimals);
   if (!project) return <h4>Success</h4>;
   return (
     <>
@@ -67,7 +79,7 @@ export const ExerciseSuccess: React.VFC<{ project: Project }> = ({
             Congrats, you exercised your tokens <br /> and received:
           </Typography>
           <Typography variant="h3" component="h3" color="textPrimary">
-            {exercisedInfo.amount?.toFixed(2)} {project.symbol}
+            {amount} {project.symbol}
           </Typography>
         </Box>
       </Box>

@@ -30,6 +30,6 @@ export const useSendAndConfirm = () => {
       }
       return txId;
     },
-    [provider]
+    [provider, showMessage]
   );
 };

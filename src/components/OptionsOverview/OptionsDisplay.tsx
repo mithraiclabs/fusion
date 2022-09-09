@@ -1,6 +1,7 @@
 import { Box, CircularProgress, SxProps, Theme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
+import { useLoadSplTokens } from "../../hooks/wallet";
 import {
   selectOwnedProjectOptionKeys,
   useLoadPsyAmericanOptions,
@@ -17,6 +18,7 @@ export const OptionsDisplay: React.VFC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const ownedProjectOptions = useRecoilValue(selectOwnedProjectOptionKeys);
   const load = useLoadPsyAmericanOptions();
+  useLoadSplTokens();
 
   useEffect(() => {
     (async () => {

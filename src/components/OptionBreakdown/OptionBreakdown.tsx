@@ -67,18 +67,23 @@ export const OptionBreakdown: React.VFC = () => {
           </Link>
         </Box>
       </OptionCard>
+      {optionMeta.expired ? (
+        <></>
+      ) : (
+        <>
+          <SimpleInstrinsicBreakdown
+            optionMeta={optionMeta}
+            optionTokenAccount={optionTokenAccount}
+            project={project}
+          />
 
-      <SimpleInstrinsicBreakdown
-        optionMeta={optionMeta}
-        optionTokenAccount={optionTokenAccount}
-        project={project}
-      />
-
-      <DetailedBreakdown
-        optionMeta={optionMeta}
-        optionTokenAccount={optionTokenAccount}
-        project={project}
-      />
+          <DetailedBreakdown
+            optionMeta={optionMeta}
+            optionTokenAccount={optionTokenAccount}
+            project={project}
+          />
+        </>
+      )}
     </Box>
   );
 };

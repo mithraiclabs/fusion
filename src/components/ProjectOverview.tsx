@@ -6,14 +6,14 @@ import { TwitterIcon } from "./Images/icons/twitter-3-logo-svg-vector";
 import { InternetIcon } from "./Images/icons/internet-icon";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { tokenPricesMap } from "../recoil";
+import { useTokenPrice } from "../hooks/wallet/useTokenPrice";
 
 const ProjectOverview: React.FC<{
   project: Project;
 }> = ({ project }) => {
   const navigate = useNavigate();
-  const tokenPrice = useRecoilValue(tokenPricesMap(project.mintAddress));
+  const prices = useTokenPrice();
+  const tokenPrice = prices[project.symbol]?.price ?? 0;
   return (
     <div className="project-card">
       <button

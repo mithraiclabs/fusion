@@ -6,8 +6,9 @@ import {
   mapNetworkTypes,
   tokensToReceive,
 } from "../lib/utils";
-import { networkAtom, TokenAccountWithKey, tokenPricesMap } from "../recoil";
+import { networkAtom, TokenAccountWithKey } from "../recoil";
 import { Project } from "../types";
+import { useTokenPrice } from "./wallet/useTokenPrice";
 
 // TODO: Add strike price in quote to here.
 
@@ -24,25 +25,26 @@ type OptionBreakdown = {
 
 export const useOptionBreakdown = ({
   optionMeta,
-  optionTokenAccount,
+  tokenAccount,
   project,
 }: {
   optionMeta: OptionMarketWithKey;
-  optionTokenAccount: TokenAccountWithKey;
+  tokenAccount: TokenAccountWithKey;
   project: Project;
 }): OptionBreakdown => {
-  const underlyingPrice = useRecoilValue(tokenPricesMap(project.mintAddress));
+  const prices = useTokenPrice();
+  const underlyingPrice = prices[project.symbol]?.price ?? 0;
   const network = useRecoilValue(networkAtom);
 
   // Tokens to receive is the underlying amount per contract * number of contracts held
   const amountToReceive = tokensToReceive(
     optionMeta,
-    optionTokenAccount,
+    tokenAccount,
     mapNetworkTypes(network.key)
   );
   const exerciseInfo = costToExercise(
     optionMeta,
-    optionTokenAccount,
+    tokenAccount,
     mapNetworkTypes(network.key)
   );
 

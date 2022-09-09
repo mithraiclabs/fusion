@@ -32,7 +32,7 @@ export const SimpleInstrinsicBreakdown: React.VFC<{
 }> = ({ optionMeta, optionTokenAccount, project }) => {
   const breakdown = useOptionBreakdown({
     optionMeta,
-    optionTokenAccount,
+    tokenAccount: optionTokenAccount,
     project,
   });
 
