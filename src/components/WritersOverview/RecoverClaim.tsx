@@ -38,12 +38,14 @@ export const RecoverClaim: React.FC<{
   amountToReceive: number;
   setAmountToBurn: React.Dispatch<React.SetStateAction<string>>;
   onClick: React.ReactEventHandler<Element>;
+  quoteSymbol?: string;
 }> = ({
   type,
   project,
   max,
   amountToBurn,
   amountToReceive,
+  quoteSymbol,
   setAmountToBurn,
   onClick,
 }) => {
@@ -72,7 +74,9 @@ export const RecoverClaim: React.FC<{
         color={project.primaryColor}
         onClick={onClick}
         disabled={!amountToBurn}
-        title={`+${amountToReceive} ${project.symbol}`}
+        title={`+${amountToReceive} ${
+          type === "BurnForQuote" ? quoteSymbol : project.symbol
+        }`}
       />
     </FusionPaper>
   );
