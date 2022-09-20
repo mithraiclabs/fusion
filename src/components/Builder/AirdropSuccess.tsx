@@ -13,7 +13,7 @@ export const AirdropSuccess: React.FC = () => {
   const _distributorAddress = useRecoilValue(distributorAddress);
   const recipientJSON = useRecoilValue(recipientJson);
   const jsonUrl = useRecoilValue(jsonURL);
-  const link = `https://staging.projectfusion.io/claim/${jsonUrl}/${_distributorAddress}`;
+  const link = `https://app.projectfusion.io/claim/${jsonUrl}/${_distributorAddress}`;
   if (!_distributorAddress || !recipientJSON)
     throw new Error("Distributor Address not found");
   return (

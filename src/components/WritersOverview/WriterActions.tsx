@@ -196,6 +196,7 @@ export const WriterActions: React.FC<{
           amountToBurn={contractsToQuote}
           amountToReceive={amountToReceiveFromQuoteClaim}
           setAmountToBurn={setContractsToQuote}
+          quoteSymbol={quoteToken.symbol}
           onClick={async () => {
             if (await exchangeForQuote(new BN(contractsToQuote))) {
               setWriterAmount((prev) => prev - Number(contractsToQuote));
