@@ -64,9 +64,9 @@ export const BuilderDistributor: React.VFC = () => {
         title="Send Transaction"
         disabled={optionMintBalance < airdropOptionAmount}
         onClick={async () => {
-          const newDistributorAddress = await distribute();
-          if (newDistributorAddress) {
-            setDistributorAddress(newDistributorAddress);
+          const { distributorAddress } = await distribute();
+          if (distributorAddress) {
+            setDistributorAddress(distributorAddress);
             setAirDropStage(7);
           }
         }}

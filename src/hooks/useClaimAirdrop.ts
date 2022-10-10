@@ -9,6 +9,7 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
+import { handleClaim } from "../api";
 import { useShowSnackBar } from "../context/SnackBarContext";
 import { airdropAddress, recipientJson } from "../recoil/util";
 import { usePsyAmericanProgram } from "./usePsyAmericanProgram";
@@ -26,6 +27,9 @@ export const useClaimAirdrop = () => {
   return useCallback(async () => {
     if (!publicKey) {
       throw new Error("Wallet must be connected");
+    }
+    if (!distributorAddress) {
+      throw new Error("No distributor address provided");
     }
 
     try {
@@ -65,7 +69,11 @@ export const useClaimAirdrop = () => {
           proof: claim.proof,
         });
         const txId = await tx.send();
-
+        await handleClaim({
+          wallet: publicKey.toString(),
+          distributorAddress,
+          claimedQty: Number(claim.amount),
+        });
         showMessage("Successfully claimed airdrop", txId.signature);
         return true;
       }

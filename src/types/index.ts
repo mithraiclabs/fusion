@@ -46,3 +46,11 @@ export type ProjectOptions = {
 };
 
 export type MintInfoWithKey = Mint;
+
+// This is for builder workflow proof of concept
+export type recipientJsonType = {
+  recipientList: {
+    recipient: string;
+    amount: string;
+  }[];
+} | null;

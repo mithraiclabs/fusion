@@ -10,6 +10,7 @@ import {
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
+import { handleExercise } from "../../api";
 import { useSetExercisedOption } from "../../context/ExercisedOptionContext";
 import { useShowSnackBar } from "../../context/SnackBarContext";
 import { tokenAccountsMap } from "../../recoil";
@@ -59,7 +60,7 @@ export const useExerciseOptions = (
           "The connected wallet does not have any Quote assets required to exercise"
         );
       }
-
+      const optionMarketKey = optionMarket.key.toString();
       const tx = new web3.Transaction();
       let walletUnderlyingTokenAddress = walletUnderlyingTokenAccount?.key;
       if (!walletUnderlyingTokenAddress) {
@@ -104,6 +105,11 @@ export const useExerciseOptions = (
           `Successfully exercised ${amount.toString()} options`,
           txId
         );
+        await handleExercise({
+          wallet: publicKey.toString(),
+          optionMarketKey,
+          exercisedQty: Number(amount),
+        });
         // Update exercised option context
         setExercisedOptionParams({
           show: true,

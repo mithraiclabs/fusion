@@ -5,7 +5,6 @@ import { HEADER_TEXT_COLOR } from "../../Theme";
 import { ConnectWalletButton } from "../ConnectWalletButton";
 import { NavLogo } from "../Images/NavLogo";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import GetAppIcon from "@mui/icons-material/GetApp";
 import EventRepeatIcon from "@mui/icons-material/EventRepeat";
 import NetworkMenu from "./NetworkMenu";
 
@@ -13,11 +12,10 @@ const containerStyles = (theme: Theme) => ({
   display: "flex",
   maxHeight: "76px",
   minHeight: "76px",
-  background: theme.palette.secondary.main,
+  background: theme.palette.background.default,
   justifyContent: "center",
   color: "#3E3E3E",
   position: "sticky",
-  border: `2px solid ${theme.palette.secondary.light}`,
   top: 0,
   zIndex: 100,
 });
@@ -76,18 +74,6 @@ export const Navbar: React.FC = () => {
             }}
           >
             <AddCircleOutlineIcon sx={navIconStyle} />
-          </Button>
-        </Tooltip>
-      </Box>
-      <Box sx={innerContainerStyles}>
-        <Tooltip title="Claim Airdrop">
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("/claim");
-            }}
-          >
-            <GetAppIcon sx={navIconStyle} />
           </Button>
         </Tooltip>
       </Box>
