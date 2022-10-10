@@ -1,12 +1,18 @@
-import { Box, Link, Typography } from "@mui/material";
-import { FusionPaper } from "../components/FusionPaper";
-import { LinkOut } from "../components/Images/icons/LinkOut";
-import { OptionsOverview } from "../components/OptionsOverview";
+import { Box, Typography } from "@mui/material";
+import { useWallet } from "@solana/wallet-adapter-react";
+import NoWalletConnected from "../components/OptionsOverview/NoWalletConnected";
+import { OptionsDisplay } from "../components/OptionsOverview/OptionsDisplay";
+import { AvailableClaims } from "./AvailableClaims";
 
 const Home = () => {
+  const { publicKey } = useWallet();
   return (
-    <Box>
-      <FusionPaper header="Claims" title="Overview" divisor={true}>
+    <Box
+      sx={{
+        minWidth: "50%",
+      }}
+    >
+      {/* <FusionPaper header="Claims" title="Overview" divisor={true}>
         <Typography variant="body1" component="p" color="textPrimary">
           Option airdrops are a new form of airdrops. Below you’ll find a list
           of airdrops you qualify for; you’ll see when they expire, the number
@@ -23,8 +29,17 @@ const Home = () => {
         >
           Learn More <LinkOut size={1.05} />
         </Link>
-      </FusionPaper>
-      <OptionsOverview />
+      </FusionPaper> */}
+
+      <Typography variant="h3">Rewards</Typography>
+      {publicKey ? (
+        <>
+          <AvailableClaims />
+          <OptionsDisplay />
+        </>
+      ) : (
+        <NoWalletConnected />
+      )}
     </Box>
   );
 };

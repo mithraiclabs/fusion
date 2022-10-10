@@ -54,7 +54,17 @@ export const ProjectInfoForm: React.FC = () => {
   const [quotePerOption, setQuotePerOption] = useState<string>(
     _projectInfo?.quotePerContract.toString() ?? ""
   );
+  const [description, setDescription] = useState<string>(
+    _projectInfo?.description?.toString() ?? ""
+  );
   const [validated, setValidated] = useState<boolean>(false);
+
+  const handleDescriptionChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDescription(event.target.value);
+  };
+
   const handleExpirationChange = (newValue: Date | null) => {
     setExpiration(newValue);
   };
@@ -101,12 +111,23 @@ export const ProjectInfoForm: React.FC = () => {
     <>
       <FusionPaper
         title={`PROJECT INFORMATION${
-          recipientJSON ? ` FOR ${recipientJSON?.name} AIRDROP` : ""
+          recipientJSON
+            ? ` FOR ${!!description ? description : "untitled"} AIRDROP`
+            : ""
         }`}
       >
         <FusionButton title="Check Recipient List" onClick={handleModalOpen} />
         <RecipientModal open={modalOpen} handleClose={handleModalClose} />
         <Box my={2} />
+        <TextField
+          fullWidth
+          label="Name / Description"
+          id="description"
+          type={"text"}
+          value={description}
+          onChange={handleDescriptionChange}
+          sx={FORM_MARGIN}
+        />
         <FormControl fullWidth required>
           <InputLabel id="und-asset-mint">
             Select or add the underlying asset
@@ -216,6 +237,7 @@ export const ProjectInfoForm: React.FC = () => {
               expiration: Number(expiration),
               underlyingPerContract: Number(underlyingPerOption),
               quotePerContract: Number(quotePerOption),
+              description,
             });
             // option meta key
             const [optionKey] = await deriveOptionKeyFromParams({

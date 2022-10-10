@@ -1,4 +1,10 @@
-import { Box, CircularProgress, SxProps, Theme } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  SxProps,
+  Theme,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useLoadSplTokens } from "../../hooks/wallet";
@@ -28,13 +34,6 @@ export const OptionsDisplay: React.VFC = () => {
     })();
   }, [load]);
 
-  if (isLoading) {
-    return (
-      <Box sx={loadingContainerStyles}>
-        <CircularProgress />
-      </Box>
-    );
-  }
   // Display the individual options
   const optionCards = Object.keys(ownedProjectOptions)
     .map((projectKey) => {
@@ -53,5 +52,18 @@ export const OptionsDisplay: React.VFC = () => {
       ));
     })
     .flat();
-  return <Box>{optionCards}</Box>;
+  return (
+    <Box>
+      {isLoading ? (
+        <Box sx={loadingContainerStyles}>
+          <CircularProgress />
+        </Box>
+      ) : (
+        <>
+          <Typography variant="h4">Exercisable</Typography>
+          {optionCards}
+        </>
+      )}
+    </Box>
+  );
 };
