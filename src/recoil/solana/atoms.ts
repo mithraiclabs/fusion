@@ -6,22 +6,22 @@ import { Network } from "./types";
 
 export const networkAtom = atom<Network>({
   key: "network",
-  default: networks[WalletAdapterNetwork.Mainnet],
+  default: networks[WalletAdapterNetwork.MainnetSrm],
   effects: [
     ({ setSelf }) => {
       const { cluster } = queryString.parse(window.location.search);
-      switch(cluster) {
-        case 'mainnet':
+      switch (cluster) {
+        case "mainnet":
           setSelf(networks[WalletAdapterNetwork.Mainnet]);
           break;
-        case 'devnet':
+        case "devnet":
           setSelf(networks[WalletAdapterNetwork.Devnet]);
           break;
         default:
           break;
       }
-    }
-  ]
+    },
+  ],
 });
 
 export const customNetworkAtom = atom<Network>({
