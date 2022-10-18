@@ -3,7 +3,6 @@ import { availableDistributors, DistributorInfo } from "./atoms";
 import { useCallback } from "react";
 import { Network } from "../solana/types";
 import { getAvailableDistributors } from "../../api";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { PublicKey } from "@solana/web3.js";
 
 export const useInsertAvailableDistributors = () =>
@@ -23,7 +22,8 @@ export const useCheckAvailbleDistributors = () => {
       if (publicKey) {
         const list = await getAvailableDistributors({
           wallet: publicKey.toString(),
-          isMainnet: network.key === WalletAdapterNetwork.Mainnet,
+          isMainnet:
+            network.key === "mainnet-srm" || network.key === "mainnet-beta",
         });
         updateState(list);
       }

@@ -48,7 +48,7 @@ const navIconStyle = {
 } as SxProps;
 
 const styles = {
-  connectBtn: { height: 55, width: 200, fontSize: 18 },
+  connectBtn: { height: 55, width: 200, fontSize: 18, marginLeft: 3 },
 };
 
 export const Navbar: React.FC = () => {
@@ -90,8 +90,8 @@ export const Navbar: React.FC = () => {
         </Tooltip>
       </Box>
       <Box sx={rightContainerStyles}>
-        <ConnectWalletButton sx={styles.connectBtn} />
         <NetworkMenu />
+        <ConnectWalletButton sx={styles.connectBtn} />
       </Box>
     </Box>
   );

@@ -10,7 +10,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { distributorAddress } from "../../recoil/util";
 import { FusionPaper } from "../FusionPaper";
 
-const fusionClaimUrl = "https://app.projectfusion.io/claim";
+const fusionClaimUrl = "https://staging.projectfusion.io/";
 export const AirdropSuccess: React.FC = () => {
   const _distributorAddress = useRecoilValue(distributorAddress);
   if (!_distributorAddress) throw new Error("Distributor Address not found");
