@@ -8,11 +8,11 @@ export const networks: Record<string, Network> = {
     name: "Mainnet-beta",
     ws: "wss://api.mainnet-beta.solana.com",
   },
-  [WalletAdapterNetwork.MainnetSrm]: {
+  "mainnet-srm": {
     key: "mainnet-srm",
     url: "https://solana-api.projectserum.com/",
     name: "Mainnet",
-    ws: "wss://solana-api.projectserum.com/",
+    ws: "wss://api.mainnet-beta.solana.com",
   },
   [WalletAdapterNetwork.Devnet]: {
     key: WalletAdapterNetwork.Devnet,
