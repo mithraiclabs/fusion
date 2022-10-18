@@ -60,7 +60,9 @@ export const OptionsDisplay: React.VFC = () => {
         </Box>
       ) : (
         <>
-          <Typography variant="h4">Exercisable</Typography>
+          {optionCards.length ? (
+            <Typography variant="h4">Exercisable</Typography>
+          ) : null}
           {optionCards}
         </>
       )}
