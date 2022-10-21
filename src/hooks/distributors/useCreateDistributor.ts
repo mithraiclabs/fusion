@@ -10,14 +10,19 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { Transaction } from "@solana/web3.js";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { useShowSnackBar } from "../context/SnackBarContext";
+import { useShowSnackBar } from "../../context/SnackBarContext";
 import {
   airDropTokenAmount,
   builderOptionMintKey,
+  optionMarketKeyForMinting,
   projectInfo,
   recipientJson,
-} from "../recoil/util";
-import { usePsyAmericanProgram } from "./usePsyAmericanProgram";
+} from "../../recoil/util";
+import { usePsyAmericanProgram } from "../usePsyAmericanProgram";
+import { pushDistributorInfo } from "../../api";
+import { networkAtom } from "../../recoil";
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { decDiv } from "../../lib/utils";
 
 export const useCreateDistributor = () => {
   const program = usePsyAmericanProgram();
@@ -28,18 +33,43 @@ export const useCreateDistributor = () => {
   const sdk = MerkleDistributorSDK.load({ provider: newProvider });
   const _projectInfo = useRecoilValue(projectInfo);
   const selectedJson = useRecoilValue(recipientJson);
+  const network = useRecoilValue(networkAtom);
+  const optionMarketKey = useRecoilValue(optionMarketKeyForMinting);
   const totalOptions =
     useRecoilValue(airDropTokenAmount) /
     (_projectInfo?.underlyingPerContract ?? 1);
   const optionTokenMint = useRecoilValue(builderOptionMintKey);
   const { connection } = useConnection();
+
   return useCallback(async () => {
     if (!publicKey || !signTransaction) {
       throw new Error("Wallet must be connected");
     }
-    if (!optionTokenMint) {
+    if (!optionTokenMint || !_projectInfo) {
       throw new Error("option token mint not found");
     }
+    const {
+      underlyingAssetMint,
+      quoteAssetMint,
+      expiration,
+      underlyingPerContract,
+      quotePerContract,
+      description,
+      name: optionName,
+    } = _projectInfo;
+    if (
+      !underlyingAssetMint ||
+      !quoteAssetMint ||
+      !expiration ||
+      !underlyingPerContract ||
+      !quotePerContract ||
+      !description ||
+      !optionMarketKey ||
+      !optionName
+    ) {
+      throw new Error("Missing option market data");
+    }
+    const strikePrice = decDiv(quotePerContract, underlyingPerContract);
     const balanceMap: { [authority: string]: BN } = {};
     selectedJson?.recipientList.forEach(
       ({ recipient, amount }: { recipient: string; amount: string }) => {
@@ -101,11 +131,33 @@ export const useCreateDistributor = () => {
       // send the signed transaction
       const signature = await connection.sendRawTransaction(signed.serialize());
       showMessage("Success: distributor created", signature);
-      return distributorInfo.distributor; // distributor address
+      const serverUpdated = await pushDistributorInfo({
+        distributorAddress: distributorInfo.distributor.toString(),
+        creatorWallet: publicKey.toString(),
+        optionMarket: {
+          optionMarketKey: optionMarketKey?.toString(),
+          underlyingAssetMint,
+          quoteAssetMint,
+          expiration,
+          strikePrice,
+          optionName,
+        },
+        optionTokenQty: totalOptions,
+        description: _projectInfo?.description ?? "no description",
+        isMainnet: network.key === WalletAdapterNetwork.Mainnet,
+        recipients: selectedJson?.recipientList ?? [],
+      });
+      return {
+        distributorAddress: distributorInfo.distributor,
+        serverUpdated,
+      };
     } catch (error: any) {
       console.log({ error, st: error.stack });
       showMessage("something went wrong, please try again");
-      return;
+      return {
+        distributorAddress: null,
+        serverUpdated: false,
+      };
     }
   }, [
     publicKey,
@@ -114,6 +166,9 @@ export const useCreateDistributor = () => {
     optionTokenMint,
     sdk,
     selectedJson,
+    _projectInfo,
+    network.key,
+    optionMarketKey,
     signTransaction,
     showMessage,
   ]);

@@ -7,15 +7,13 @@ import {
 } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { distributorAddress, jsonURL, recipientJson } from "../../recoil/util";
+import { distributorAddress } from "../../recoil/util";
 import { FusionPaper } from "../FusionPaper";
+
+const fusionClaimUrl = "https://staging.projectfusion.io/";
 export const AirdropSuccess: React.FC = () => {
   const _distributorAddress = useRecoilValue(distributorAddress);
-  const recipientJSON = useRecoilValue(recipientJson);
-  const jsonUrl = useRecoilValue(jsonURL);
-  const link = `https://app.projectfusion.io/claim/${jsonUrl}/${_distributorAddress}`;
-  if (!_distributorAddress || !recipientJSON)
-    throw new Error("Distributor Address not found");
+  if (!_distributorAddress) throw new Error("Distributor Address not found");
   return (
     <>
       <FusionPaper border={true} header="Success">
@@ -32,10 +30,12 @@ export const AirdropSuccess: React.FC = () => {
         </Typography>
         <FormControl sx={{ m: 1, width: "100%" }} variant="filled">
           <FilledInput
-            value={link}
+            value={fusionClaimUrl}
             endAdornment={
               <InputAdornment position="end">
-                <Button onClick={() => navigator.clipboard.writeText(link)}>
+                <Button
+                  onClick={() => navigator.clipboard.writeText(fusionClaimUrl)}
+                >
                   <ContentCopyIcon />
                 </Button>
               </InputAdornment>

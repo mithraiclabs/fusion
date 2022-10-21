@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { FusionButton } from "../FusionButton";
 import { FusionPaper } from "../FusionPaper";
-import { useCreateDistributor } from "../../hooks/useCreateDistributor";
+import { useCreateDistributor } from "../../hooks/distributors/useCreateDistributor";
 import {
   airDropStage,
   airDropTokenAmount,
@@ -52,7 +52,8 @@ export const BuilderDistributor: React.VFC = () => {
               align="center"
               marginBottom={"25px"}
             >
-              Click below to create the option airdrop
+              Click below to create the option airdrop and send it the minted
+              options (2 transactions)
             </Typography>
           </>
         ) : (
@@ -61,12 +62,12 @@ export const BuilderDistributor: React.VFC = () => {
       </FusionPaper>
       <Box my={2}></Box>
       <FusionButton
-        title="Send Transaction"
+        title="Create airdrop and fund it with minted options"
         disabled={optionMintBalance < airdropOptionAmount}
         onClick={async () => {
-          const newDistributorAddress = await distribute();
-          if (newDistributorAddress) {
-            setDistributorAddress(newDistributorAddress);
+          const { distributorAddress } = await distribute();
+          if (distributorAddress) {
+            setDistributorAddress(distributorAddress);
             setAirDropStage(7);
           }
         }}

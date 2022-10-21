@@ -5,7 +5,6 @@ import { HEADER_TEXT_COLOR } from "../../Theme";
 import { ConnectWalletButton } from "../ConnectWalletButton";
 import { NavLogo } from "../Images/NavLogo";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import GetAppIcon from "@mui/icons-material/GetApp";
 import EventRepeatIcon from "@mui/icons-material/EventRepeat";
 import NetworkMenu from "./NetworkMenu";
 
@@ -13,11 +12,10 @@ const containerStyles = (theme: Theme) => ({
   display: "flex",
   maxHeight: "76px",
   minHeight: "76px",
-  background: theme.palette.secondary.main,
+  background: theme.palette.background.default,
   justifyContent: "center",
   color: "#3E3E3E",
   position: "sticky",
-  border: `2px solid ${theme.palette.secondary.light}`,
   top: 0,
   zIndex: 100,
 });
@@ -50,7 +48,7 @@ const navIconStyle = {
 } as SxProps;
 
 const styles = {
-  connectBtn: { height: 55, width: 200, fontSize: 18 },
+  connectBtn: { height: 55, width: 200, fontSize: 18, marginLeft: 3 },
 };
 
 export const Navbar: React.FC = () => {
@@ -80,18 +78,6 @@ export const Navbar: React.FC = () => {
         </Tooltip>
       </Box>
       <Box sx={innerContainerStyles}>
-        <Tooltip title="Claim Airdrop">
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("/claim");
-            }}
-          >
-            <GetAppIcon sx={navIconStyle} />
-          </Button>
-        </Tooltip>
-      </Box>
-      <Box sx={innerContainerStyles}>
         <Tooltip title="Recover Underlying/Rent for Expired Options">
           <Button
             onClick={(e) => {
@@ -104,8 +90,8 @@ export const Navbar: React.FC = () => {
         </Tooltip>
       </Box>
       <Box sx={rightContainerStyles}>
-        <ConnectWalletButton sx={styles.connectBtn} />
         <NetworkMenu />
+        <ConnectWalletButton sx={styles.connectBtn} />
       </Box>
     </Box>
   );

@@ -1,5 +1,6 @@
 import { PublicKey } from "@solana/web3.js";
 import { atom } from "recoil";
+import { recipientJsonType } from "../../types";
 
 export interface ProjectAirdropInfo {
   underlyingAssetMint: string;
@@ -7,6 +8,8 @@ export interface ProjectAirdropInfo {
   expiration: number;
   underlyingPerContract: number;
   quotePerContract: number;
+  description?: string;
+  name: string;
 }
 
 export const projectInfo = atom<ProjectAirdropInfo | null>({
@@ -30,13 +33,7 @@ export const airDropTokenAmount = atom<number>({
 });
 
 // This is for builder workflow proof of concept
-export const recipientJson = atom<{
-  recipientList: {
-    recipient: string;
-    amount: string;
-  }[];
-  name: string;
-} | null>({
+export const recipientJson = atom<recipientJsonType>({
   key: "recipientJson",
   default: null,
 });
@@ -67,7 +64,24 @@ export const airdropBalance = atom<number>({
   default: 0,
 });
 
-export const jsonURL = atom<string | null>({
-  key: "jsonURL",
+export const availableDistributors = atom<DistributorInfo[]>({
+  key: "availableDistributors",
+  default: [],
+});
+
+export const selectedClaim = atom<DistributorInfo | null>({
+  key: "selectedClaim",
   default: null,
 });
+
+export type DistributorInfo = {
+  creatorWallet: string;
+  description: string;
+  distributorAddress: string;
+  isMainnet: boolean;
+  optionMarketKey: string;
+  optionTokenQty: number;
+  underlyingAssetMint: string;
+  quoteAssetMint: string;
+  optionName: string;
+};

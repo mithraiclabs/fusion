@@ -12,12 +12,12 @@ const theme = createTheme({
       primary: DEFAULT_TEXT_COLOR,
     },
     background: {
-      default: "#F2F4F6",
+      default: "#F6FAFD",
     },
     secondary: {
-      main: "#ECEDEE",
+      main: "#3CC88D",
       light: "#E6E6E6",
-      dark: "#E79940",
+      dark: "#70E4D6",
     },
   },
   typography: {

@@ -61,7 +61,7 @@ export const OptionMinting: React.VFC = () => {
   return (
     <>
       <FusionPaper border={true}>
-        {contractQty ? (
+        {contractQty > 0 ? (
           <>
             <Typography
               fontSize={"16px"}
@@ -91,10 +91,10 @@ export const OptionMinting: React.VFC = () => {
       </FusionPaper>
       <Box my={2}></Box>
       <FusionButton
-        title={underlyingNeeded ? "Mint Options" : "continue"}
+        title={underlyingNeeded > 0 ? "Mint Options" : "continue"}
         loading={minting}
         onClick={async () => {
-          if (underlyingNeeded) {
+          if (underlyingNeeded > 0) {
             setMinting(true);
             const mintingDone = await mint(contractQty);
             if (airdropTokenAmount >= optionMintBalance && mintingDone) {
