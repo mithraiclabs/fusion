@@ -29,7 +29,11 @@ export const ClaimableAirdropRow: React.FC<{
   const setSelectedClaim = useSetRecoilState(selectedClaim);
   const { connection } = useConnection();
   const setAirdropBalance = useSetRecoilState(airdropBalance);
-  const { distributorAddress: address, description } = distributorInfo;
+  const {
+    distributorAddress: address,
+    description,
+    optionName,
+  } = distributorInfo;
   return (
     <Box
       my={2}
@@ -45,7 +49,7 @@ export const ClaimableAirdropRow: React.FC<{
           <Avatar src={underlyingToken.logoURI} />
         </Box>
         <Box mx={"auto"} my={"auto"}>
-          <Typography>{description}</Typography>
+          <Typography>{optionName}</Typography>
         </Box>
         <Box mx={"auto"}>
           <Button
