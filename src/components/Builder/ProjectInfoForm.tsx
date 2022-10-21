@@ -57,12 +57,19 @@ export const ProjectInfoForm: React.FC = () => {
   const [description, setDescription] = useState<string>(
     _projectInfo?.description?.toString() ?? ""
   );
+  const [name, setName] = useState<string>(
+    _projectInfo?.name?.toString() ?? ""
+  );
   const [validated, setValidated] = useState<boolean>(false);
 
   const handleDescriptionChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setDescription(event.target.value);
+  };
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
   };
 
   const handleExpirationChange = (newValue: Date | null) => {
@@ -111,9 +118,7 @@ export const ProjectInfoForm: React.FC = () => {
     <>
       <FusionPaper
         title={`PROJECT INFORMATION${
-          recipientJSON
-            ? ` FOR ${!!description ? description : "untitled"} AIRDROP`
-            : ""
+          recipientJSON ? ` FOR ${!!name ? name : "untitled"} AIRDROP` : ""
         }`}
       >
         <FusionButton title="Check Recipient List" onClick={handleModalOpen} />
@@ -121,7 +126,16 @@ export const ProjectInfoForm: React.FC = () => {
         <Box my={2} />
         <TextField
           fullWidth
-          label="Name / Description"
+          label="Name"
+          id="name"
+          type={"text"}
+          value={name}
+          onChange={handleNameChange}
+          sx={FORM_MARGIN}
+        />
+        <TextField
+          fullWidth
+          label="Description"
           id="description"
           type={"text"}
           value={description}
@@ -172,7 +186,11 @@ export const ProjectInfoForm: React.FC = () => {
             style={FORM_MARGIN}
           >
             {Object.values(tokens)
-              .filter((t) => QUOTE_ASSET_WHITELIST.includes(t.symbol))
+              .filter(
+                (t) =>
+                  QUOTE_ASSET_WHITELIST.includes(t.symbol) &&
+                  t.address !== undAssetMint
+              )
               .map((token) => (
                 <MenuItem key={token.address} value={token.address}>
                   <Stack direction={"row"}>
@@ -238,6 +256,7 @@ export const ProjectInfoForm: React.FC = () => {
               underlyingPerContract: Number(underlyingPerOption),
               quotePerContract: Number(quotePerOption),
               description,
+              name,
             });
             // option meta key
             const [optionKey] = await deriveOptionKeyFromParams({

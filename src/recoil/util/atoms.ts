@@ -9,6 +9,7 @@ export interface ProjectAirdropInfo {
   underlyingPerContract: number;
   quotePerContract: number;
   description?: string;
+  name: string;
 }
 
 export const projectInfo = atom<ProjectAirdropInfo | null>({
@@ -68,6 +69,11 @@ export const availableDistributors = atom<DistributorInfo[]>({
   default: [],
 });
 
+export const selectedClaim = atom<DistributorInfo | null>({
+  key: "selectedClaim",
+  default: null,
+});
+
 export type DistributorInfo = {
   creatorWallet: string;
   description: string;
@@ -75,4 +81,7 @@ export type DistributorInfo = {
   isMainnet: boolean;
   optionMarketKey: string;
   optionTokenQty: number;
+  underlyingAssetMint: string;
+  quoteAssetMint: string;
+  optionName: string;
 };

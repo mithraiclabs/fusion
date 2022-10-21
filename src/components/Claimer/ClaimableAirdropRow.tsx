@@ -1,4 +1,5 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Token } from "@mithraic-labs/psy-token-registry";
+import { Avatar, Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { useConnection } from "@solana/wallet-adapter-react";
@@ -11,24 +12,24 @@ import {
   airdropAddress,
   airdropBalance,
   claimStage,
+  DistributorInfo,
   recipientJson,
+  selectedClaim,
 } from "../../recoil/util";
 
 export const ClaimableAirdropRow: React.FC<{
-  optionMarketKey: string;
-  distributorAddress: string;
-  description: string;
-  claimableQty: number;
-}> = ({ description, distributorAddress: address }) => {
+  distributorInfo: DistributorInfo;
+  underlyingToken: Token;
+  quoteToken: Token;
+}> = ({ distributorInfo, underlyingToken, quoteToken }) => {
   const navigate = useNavigate();
   const setClaimAddress = useSetRecoilState(airdropAddress);
   const setClaimStage = useSetRecoilState(claimStage);
   const setRecipientJSON = useSetRecoilState(recipientJson);
+  const setSelectedClaim = useSetRecoilState(selectedClaim);
   const { connection } = useConnection();
   const setAirdropBalance = useSetRecoilState(airdropBalance);
-
-  // load option data from option market key
-
+  const { distributorAddress: address, description } = distributorInfo;
   return (
     <Box
       my={2}
@@ -39,7 +40,10 @@ export const ClaimableAirdropRow: React.FC<{
         borderRadius: "8px",
       }}
     >
-      <Stack direction={"row"} justifyContent={"space-between"} my={"1em"}>
+      <Stack direction={"row"} justifyContent={"space-evenly"} my={"1em"}>
+        <Box mx={"auto"} my={"auto"}>
+          <Avatar src={underlyingToken.logoURI} />
+        </Box>
         <Box mx={"auto"} my={"auto"}>
           <Typography>{description}</Typography>
         </Box>
@@ -93,6 +97,7 @@ export const ClaimableAirdropRow: React.FC<{
                 const account = deserializeSplTokenAccount(accounts[0]);
                 const balance = Number(account.amount);
                 setAirdropBalance(balance);
+                setSelectedClaim(distributorInfo);
                 setClaimStage(2);
                 e.preventDefault();
                 navigate("/claim");

@@ -10,18 +10,19 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { Transaction } from "@solana/web3.js";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
-import { useShowSnackBar } from "../context/SnackBarContext";
+import { useShowSnackBar } from "../../context/SnackBarContext";
 import {
   airDropTokenAmount,
   builderOptionMintKey,
   optionMarketKeyForMinting,
   projectInfo,
   recipientJson,
-} from "../recoil/util";
-import { usePsyAmericanProgram } from "./usePsyAmericanProgram";
-import { pushDistributorInfo } from "../api";
-import { networkAtom } from "../recoil";
+} from "../../recoil/util";
+import { usePsyAmericanProgram } from "../usePsyAmericanProgram";
+import { pushDistributorInfo } from "../../api";
+import { networkAtom } from "../../recoil";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { decDiv } from "../../lib/utils";
 
 export const useCreateDistributor = () => {
   const program = usePsyAmericanProgram();
@@ -39,13 +40,36 @@ export const useCreateDistributor = () => {
     (_projectInfo?.underlyingPerContract ?? 1);
   const optionTokenMint = useRecoilValue(builderOptionMintKey);
   const { connection } = useConnection();
+
   return useCallback(async () => {
     if (!publicKey || !signTransaction) {
       throw new Error("Wallet must be connected");
     }
-    if (!optionTokenMint) {
+    if (!optionTokenMint || !_projectInfo) {
       throw new Error("option token mint not found");
     }
+    const {
+      underlyingAssetMint,
+      quoteAssetMint,
+      expiration,
+      underlyingPerContract,
+      quotePerContract,
+      description,
+      name: optionName,
+    } = _projectInfo;
+    if (
+      !underlyingAssetMint ||
+      !quoteAssetMint ||
+      !expiration ||
+      !underlyingPerContract ||
+      !quotePerContract ||
+      !description ||
+      !optionMarketKey ||
+      !optionName
+    ) {
+      throw new Error("Missing option market data");
+    }
+    const strikePrice = decDiv(quotePerContract, underlyingPerContract);
     const balanceMap: { [authority: string]: BN } = {};
     selectedJson?.recipientList.forEach(
       ({ recipient, amount }: { recipient: string; amount: string }) => {
@@ -110,7 +134,14 @@ export const useCreateDistributor = () => {
       const serverUpdated = await pushDistributorInfo({
         distributorAddress: distributorInfo.distributor.toString(),
         creatorWallet: publicKey.toString(),
-        optionMarketKey: optionMarketKey?.toString() ?? "",
+        optionMarket: {
+          optionMarketKey: optionMarketKey?.toString(),
+          underlyingAssetMint,
+          quoteAssetMint,
+          expiration,
+          strikePrice,
+          optionName,
+        },
         optionTokenQty: totalOptions,
         description: _projectInfo?.description ?? "no description",
         isMainnet: network.key === WalletAdapterNetwork.Mainnet,
@@ -135,7 +166,7 @@ export const useCreateDistributor = () => {
     optionTokenMint,
     sdk,
     selectedJson,
-    _projectInfo?.description,
+    _projectInfo,
     network.key,
     optionMarketKey,
     signTransaction,

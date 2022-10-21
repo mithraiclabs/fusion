@@ -4,7 +4,7 @@ const API_URL = `https://fusion-b.herokuapp.com/api`;
 export const pushDistributorInfo = async ({
   distributorAddress,
   creatorWallet,
-  optionMarketKey,
+  optionMarket,
   optionTokenQty,
   description,
   isMainnet,
@@ -12,7 +12,14 @@ export const pushDistributorInfo = async ({
 }: {
   distributorAddress: string;
   creatorWallet: string;
-  optionMarketKey: string;
+  optionMarket: {
+    optionMarketKey: string;
+    underlyingAssetMint: string;
+    quoteAssetMint: string;
+    strikePrice: number;
+    expiration: number;
+    optionName: string;
+  };
   optionTokenQty: number;
   description: string;
   isMainnet: boolean;
@@ -22,7 +29,7 @@ export const pushDistributorInfo = async ({
     await axios.post(API_URL + "/distributors", {
       distributorAddress,
       creatorWallet,
-      optionMarketKey,
+      optionMarket,
       optionTokenQty,
       description,
       isMainnet,
@@ -48,7 +55,6 @@ export const getAvailableDistributors = async ({
     const { data } = await axios.get(
       API_URL + `/distributors/${wallet}/${isMainnet ? 1 : 0}`
     );
-    console.log({ data });
     return Promise.resolve(data?.rows ?? []);
   } catch (error) {
     console.log({ error });
@@ -65,7 +71,6 @@ export const getRecipientsForDistributor = async ({
     const { data } = await axios.get(
       API_URL + `/recipients/${distributorAddress}`
     );
-    console.log({ data });
     return Promise.resolve(data?.rows ?? []);
   } catch (error) {
     console.log({ error });

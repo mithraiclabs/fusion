@@ -234,10 +234,8 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
         if (signers.length) {
           transaction.partialSign(...signers);
         }
-        await wallet.signTransaction!(transaction);
-
         const txId = await program.provider.connection.sendRawTransaction(
-          transaction.serialize()
+          (await wallet.signTransaction!(transaction)).serialize()
         );
         showMessage(`Successfully minted ${size} options`, txId);
         return true;
