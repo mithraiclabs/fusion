@@ -19,9 +19,10 @@ export const AvailableClaims: React.FC = () => {
   const availableList = useRecoilValue(availableDistributors);
   return (
     <Box>
+      <Typography variant="h4">Rewards</Typography>
       {availableList.length ? (
         <Box my={2}>
-          <Typography variant="h4">Avaliable</Typography>
+          <Typography variant="h5">Available</Typography>
           {availableList.map((distributorInfo) => (
             <ClaimableAirdropRow
               key={distributorInfo.distributorAddress}

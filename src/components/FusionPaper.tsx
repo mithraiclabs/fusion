@@ -1,13 +1,12 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import useWindowDimensions from "../hooks/useWindowDimensions";
 import { Hr } from "./Hr";
-import { BORDER_COLOR } from "../Theme";
+import { BORDER_COLOR, PAPER_COLOR } from "../Theme";
 
 export const overviewStyles = {
   container: {
     marginTop: 3.25,
-    background: "#FFFFFF",
+    background: PAPER_COLOR,
     borderRadius: "10px",
     border: `1px solid ${BORDER_COLOR}`,
   },
@@ -22,6 +21,7 @@ export const overviewStyles = {
   },
   header: {
     marginTop: 3.25,
+    textAlign: "center",
   },
 };
 
@@ -32,29 +32,15 @@ export const FusionPaper: React.FC<{
   border?: boolean;
   borderColor?: string;
 }> = ({ children, title, divisor, header, border, borderColor }) => {
-  const { width } = useWindowDimensions();
   return (
     <Box
       sx={{
-        maxWidth: `${
-          width > 1300
-            ? (width * 2.8) / 6
-            : width < 950
-            ? width * 0.95
-            : (width * 2) / 3
-        }px`,
-        minWidth: `${
-          width > 1300
-            ? (width * 2.8) / 6
-            : width < 950
-            ? width * 0.95
-            : (width * 2) / 3
-        }px`,
+        width: "664px",
         marginLeft: "auto",
         marginRight: "auto",
       }}
     >
-      <Typography sx={overviewStyles.header} variant="h1" component="h1">
+      <Typography sx={overviewStyles.header} variant="h4" component="h4">
         {header}
       </Typography>
       <Box

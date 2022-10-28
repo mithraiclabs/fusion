@@ -7,9 +7,10 @@ import {
   useExercisedOption,
   useResetExercisedOption,
 } from "../../context/ExercisedOptionContext";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { networkAtom } from "../../recoil";
 import { mapNetworkTypes } from "../../lib/utils";
+import { selectedWindowAtom } from "../../recoil/util";
 
 const styles: Record<string, SxProps<Theme>> = {
   container: {
@@ -17,8 +18,8 @@ const styles: Record<string, SxProps<Theme>> = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    my: 10,
-    borderRadius: "10px",
+    my: 4,
+    borderRadius: "6px",
     marginRight: "auto",
     marginLeft: "auto",
   },
@@ -34,6 +35,7 @@ export const AfterExercise: React.VFC = () => {
   const navigate = useNavigate();
   const network = useRecoilValue(networkAtom);
   const resetExercisedData = useResetExercisedOption();
+  const setWindow = useSetRecoilState(selectedWindowAtom);
   const exercisedInfo = useExercisedOption();
   const project =
     projectList[mapNetworkTypes(network.key)][
@@ -47,6 +49,7 @@ export const AfterExercise: React.VFC = () => {
         sx={styles.backToDashboard}
         onClick={() => {
           resetExercisedData();
+          setWindow("Home");
           navigate("/");
         }}
       >

@@ -1,23 +1,34 @@
 import { OptionMarketWithKey } from "@mithraic-labs/psy-american";
-import { Box, SxProps, Theme, Typography } from "@mui/material";
+import {
+  Box,
+  SxProps,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  Theme,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { useOptionBreakdown } from "../../hooks/useOptionBreakdown";
 import { displayStrikePrice, mapNetworkTypes } from "../../lib/utils";
 import { networkAtom, TokenAccountWithKey } from "../../recoil";
-import { DEFAULT_TEXT_COLOR } from "../../Theme";
+import { DEFAULT_TEXT_COLOR, PAPER_COLOR } from "../../Theme";
 import { Project } from "../../types";
-import { Hr } from "../Hr";
+import { ExerciseForm } from "../ExerciseForm";
 
 const styles: Record<string, SxProps<Theme>> = {
   container: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "#FBFBFB",
-    border: "1px solid",
-    borderRadius: "10px",
+    alignItems: "flex-start",
+    gap: "24px",
+    width: "664px",
+    backgroundColor: PAPER_COLOR,
+    borderRadius: "6px",
     my: 3,
-    py: 3,
+    paddingTop: "5px",
   },
   lineItem: {
     display: "flex",
@@ -49,58 +60,91 @@ export const DetailedBreakdown: React.VFC<{
         ...{ borderColor: project.primaryColor || DEFAULT_TEXT_COLOR },
       }}
     >
-      <Box sx={styles.lineItem}>
-        <Typography>{breakdown.underlyingSymbol} current price</Typography>
-        <Typography variant="h4" component="p">
-          ${breakdown.underlyingPrice?.toFixed(2)}
-        </Typography>
-      </Box>
-
-      <Box sx={styles.lineItem}>
-        <Typography>Strike Price</Typography>
-        <Typography variant="h4" component="p">
-          {displayStrikePrice(optionMeta, mapNetworkTypes(network.key))}
-        </Typography>
-      </Box>
-
-      <Box sx={styles.lineItem}>
-        <Typography>Expiry Date</Typography>
-        <Typography variant="h4" component="p">
-          {breakdown.expirationDate}
-        </Typography>
-      </Box>
-
-      <Hr sx={styles.divider} />
-
-      <Box sx={styles.lineItem}>
-        <Typography>
-          Value of underlying {breakdown.underlyingSymbol}
-        </Typography>
-        <Typography variant="h4" component="p">
-          ${breakdown.underlyingValue?.toFixed(2)}
-        </Typography>
-      </Box>
-
-      <Box sx={styles.lineItem}>
-        <Typography>Total cost to exercise</Typography>
-        <Typography variant="h4" component="p">
-          ${breakdown.quoteToExercise?.toFixed(2)}
-        </Typography>
-      </Box>
-
-      <Hr sx={styles.divider} />
-
-      <Box sx={styles.lineItem}>
-        <Typography>Net Value</Typography>
-        <Typography variant="h4" component="p">
-          {breakdown.netValue && (
-            <>
-              {Math.sign(breakdown.netValue) === -1 ? "-" : ""}$
-              {Math.abs(breakdown.netValue).toFixed(2)} {breakdown.quoteSymbol}
-            </>
-          )}
-        </Typography>
-      </Box>
+      <Table
+        size="small"
+        sx={{
+          "& td": {
+            borderBottom: "none",
+          },
+          "& td:nth-child(even)": {
+            textAlign: "right",
+          },
+        }}
+      >
+        <TableBody>
+          <TableRow>
+            <TableCell>
+              <Typography variant="body1">
+                {breakdown.underlyingSymbol} current price
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="body2">
+                ${breakdown.underlyingPrice?.toFixed(2)}
+              </Typography>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Typography variant="body1">Strike Price</Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="body2">
+                {displayStrikePrice(optionMeta, mapNetworkTypes(network.key))}
+              </Typography>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Typography variant="body1">Expiry Date</Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="body2">
+                {breakdown.expirationDate}
+              </Typography>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Typography variant="body1">
+                Value of underlying {breakdown.underlyingSymbol}
+              </Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="body2">
+                ${breakdown.underlyingValue?.toFixed(2)}
+              </Typography>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Typography variant="body1">Total cost to exercise</Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="body2">
+                ${breakdown.quoteToExercise?.toFixed(2)}
+              </Typography>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Typography variant="body1">Net Value</Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="body2">
+                {breakdown.netValue && (
+                  <>
+                    {Math.sign(breakdown.netValue) === -1 ? "-" : ""}$
+                    {Math.abs(breakdown.netValue).toFixed(2)}{" "}
+                    {breakdown.quoteSymbol}
+                  </>
+                )}
+              </Typography>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+      <ExerciseForm optionMarketKey={optionMeta.key.toString()} />
     </Box>
   );
 };

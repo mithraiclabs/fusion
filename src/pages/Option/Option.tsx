@@ -1,8 +1,8 @@
 import { Box, Theme } from "@mui/material";
 import { SystemProps } from "@mui/system";
 import React from "react";
+import { OptionBreakdown } from "../../components/OptionBreakdown";
 import { ExercisedOptionProvider } from "../../context/ExercisedOptionContext";
-import { ExerciseFlowRouter } from "./ExerciseFlowRouter";
 
 const innerContainerStyles = (theme: Theme): SystemProps<Theme> => ({
   maxWidth: "1000px",
@@ -16,7 +16,7 @@ export const Option: React.VFC = () => {
   return (
     <Box sx={innerContainerStyles}>
       <ExercisedOptionProvider>
-        <ExerciseFlowRouter />
+        <OptionBreakdown />
       </ExercisedOptionProvider>
     </Box>
   );

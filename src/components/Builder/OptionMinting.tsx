@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -14,7 +14,6 @@ import {
 import { getCurrentMintBalance } from "../../recoil/wallet/selectors";
 import { ConnectWalletButton } from "../ConnectWalletButton";
 import { FusionButton } from "../FusionButton";
-import { FusionPaper } from "../FusionPaper";
 
 export const OptionMinting: React.VFC = () => {
   const setAirDropStage = useSetRecoilState(airDropStage);
@@ -46,50 +45,67 @@ export const OptionMinting: React.VFC = () => {
 
   if (!wallet) {
     return (
-      <>
-        <FusionPaper border={true} title={"Connect wallet"} divisor={true}>
-          <Typography fontSize={"14px"} fontWeight={400} align="center">
-            One last step before starting your Fusion airdrop. Please connect
-            your wallet in the top right hand corner in order to sign and send
-            the createdistributor Transaction.
-          </Typography>
-        </FusionPaper>
+      <Box>
+        <Typography fontSize={"14px"} fontWeight={400} align="center">
+          One last step before starting your Fusion airdrop. Please connect your
+          wallet in the top right hand corner in order to sign and send the
+          createdistributor Transaction.
+        </Typography>
         <ConnectWalletButton />
-      </>
+      </Box>
     );
   }
   return (
-    <>
-      <FusionPaper border={true}>
-        {contractQty > 0 ? (
-          <>
-            <Typography
-              fontSize={"16px"}
-              fontWeight={400}
-              align="center"
-              marginBottom={"25px"}
-            >
-              Click below to mint {contractQty} {underlyingToken.name} option
-              contract{contractQty !== 1 ? "s" : ""}
-            </Typography>
-            <Typography align="center" marginBottom={"25px"}>
-              {contractQty}x[{_projectInfo?.underlyingPerContract}{" "}
-              {underlyingToken.symbol} for {_projectInfo?.quotePerContract}{" "}
-              {quoteToken.symbol} @{" "}
-              {new Date(_projectInfo?.expiration ?? 0).toUTCString()}]
-            </Typography>
-            <Typography align="center">
-              Wallet balance needed: {underlyingNeeded} {underlyingToken.symbol}
-            </Typography>
-          </>
-        ) : (
-          <Typography>
-            You already have suffiecient option tokens for this airdrop in your
-            wallet
+    <Box marginRight={"24px"}>
+      <Typography marginBottom={"16px"}>
+        Time to mint your options! Confirm the details below one last time to
+        start minting your options. Note: If this option has never been minted
+        before you'll need to approve <b>2</b> transactions (1 for creating the
+        option market and 1 for minting the options)
+      </Typography>
+      <Typography variant="h4" my={"8px"}>
+        Summary
+      </Typography>
+      {contractQty > 0 ? (
+        <Box>
+          <Stack direction={"row"} justifyContent={"space-between"}>
+            <Box>
+              <Typography color={"black"}>Minting option contract</Typography>
+              <Typography color={"black"}>Contract qty. & pricing</Typography>
+              <Typography color={"black"}>
+                Contract expiration (GMT +8)
+              </Typography>
+            </Box>
+            <Box textAlign={"right"} gap={"6px"}>
+              <Typography variant="body2">
+                {contractQty} {underlyingToken.name} option contract
+                {contractQty > 1 && "s"}
+              </Typography>
+              <Typography variant="body2">
+                {contractQty}x[{_projectInfo?.underlyingPerContract}{" "}
+                {underlyingToken?.symbol ?? ""} for{" "}
+                {_projectInfo?.quotePerContract} {quoteToken?.symbol ?? ""}]
+              </Typography>
+              <Typography variant="body2">
+                {" "}
+                {new Date(_projectInfo?.expiration ?? 0).toUTCString()}
+              </Typography>
+            </Box>
+          </Stack>
+
+          <Typography align="right" variant="h5" marginTop={2}>
+            amount you need to provide from your wallet
           </Typography>
-        )}
-      </FusionPaper>
-      <Box my={2}></Box>
+          <Typography align="right" variant="h3">
+            {underlyingNeeded} {underlyingToken.symbol}
+          </Typography>
+        </Box>
+      ) : (
+        <Typography>
+          You already have suffiecient option tokens for this airdrop in your
+          wallet
+        </Typography>
+      )}
       <FusionButton
         title={underlyingNeeded > 0 ? "Mint Options" : "continue"}
         loading={minting}
@@ -113,6 +129,6 @@ export const OptionMinting: React.VFC = () => {
           }
         }}
       />
-    </>
+    </Box>
   );
 };

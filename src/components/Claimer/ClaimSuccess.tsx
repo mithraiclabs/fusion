@@ -1,24 +1,37 @@
-import { useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import { useSetRecoilState } from "recoil";
 import { useLoadSplTokens } from "../../hooks/wallet";
-import { claimStage } from "../../recoil/util";
+import { claimStage, selectedWindowAtom } from "../../recoil/util";
+import { PAPER_COLOR } from "../../Theme";
 import { FusionButton } from "../FusionButton";
-import { FusionPaper } from "../FusionPaper";
 
 export const ClaimSuccess: React.FC = () => {
   useLoadSplTokens();
   const setClaimStage = useSetRecoilState(claimStage);
-  const navigate = useNavigate();
+  const setSelectedWindow = useSetRecoilState(selectedWindowAtom);
 
   return (
-    <FusionPaper header="Success" title="Airdrop Claimed">
+    <Box
+      sx={{
+        background: PAPER_COLOR,
+        borderRadius: "6px",
+        padding: "24px 16px",
+      }}
+    >
+      <Typography fontSize={65} align={"center"}>
+        🎉
+      </Typography>
+      <Typography align={"center"} marginBottom={"24px"}>
+        Airdrop successfully claimed
+      </Typography>
       <FusionButton
-        title="Go Home"
+        title="return to dashboard"
         onClick={() => {
           setClaimStage(1);
-          navigate("/");
+          setSelectedWindow("Home");
         }}
       />
-    </FusionPaper>
+    </Box>
   );
 };

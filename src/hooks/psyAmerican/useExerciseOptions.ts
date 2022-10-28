@@ -42,7 +42,7 @@ export const useExerciseOptions = (
   return useCallback(
     async ({ amount }: { amount: BN }) => {
       if (!optionMarket) {
-        return;
+        return false;
       }
       if (!publicKey) {
         throw new Error("Wallet must be connected");
@@ -116,6 +116,9 @@ export const useExerciseOptions = (
           optionMarket,
           amount: amount.toNumber(),
         });
+        return true;
+      } else {
+        return false;
       }
     },
     [

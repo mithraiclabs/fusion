@@ -63,6 +63,6 @@ export const useOptionBreakdown = ({
     quoteToExercise: exerciseInfo.amount,
     netValue,
     underlyingValue,
-    expirationDate: displayExpirationDate(optionMeta),
+    expirationDate: displayExpirationDate(optionMeta)[0],
   };
 };

@@ -4,9 +4,8 @@ import React from "react";
 import { useExercisedOption } from "../../context/ExercisedOptionContext";
 import { useNetworkTokens } from "../../hooks/useNetworkTokens";
 import { useLoadSplTokens } from "../../hooks/wallet";
-import { DEFAULT_TEXT_COLOR } from "../../Theme";
+import { PAPER_COLOR, SUCCESS_GREEN } from "../../Theme";
 import { Project } from "../../types";
-import { Hr } from "../Hr";
 import { JupiterWidget, PsyFinanceWidget, SolendWidget } from "./Widgets";
 
 const styles: Record<string, SxProps<Theme>> = {
@@ -15,10 +14,10 @@ const styles: Record<string, SxProps<Theme>> = {
     flexDirection: "column",
     justifyContent: "center",
     textAlign: "center",
-    backgroundColor: "#FBFBFB",
+    backgroundColor: PAPER_COLOR,
     border: "1px solid",
-    borderRadius: "10px",
-    my: 1,
+    borderRadius: "6px",
+    marginBottom: 1,
     py: 3,
     width: "100%",
     height: "100%",
@@ -57,23 +56,12 @@ export const ExerciseSuccess: React.VFC<{ project: Project }> = ({
       <Box
         sx={{
           ...styles.container,
-          ...{ borderColor: project.primaryColor || DEFAULT_TEXT_COLOR },
+          ...{ borderColor: SUCCESS_GREEN },
         }}
       >
         <Box sx={styles.topContainer}>
-          <Box sx={styles.logo}>
-            <img
-              src={project.logo}
-              loading="lazy"
-              alt={`Logo of ${project.name}`}
-              style={{ maxWidth: "100%" }}
-            />
-          </Box>
-          <Typography variant="h3" component="h3">
-            {project.name}
-          </Typography>
+          <Typography fontSize={65}>🎉</Typography>
         </Box>
-        <Hr sx={styles.divider} />
         <Box>
           <Typography>
             Congrats, you exercised your tokens <br /> and received:

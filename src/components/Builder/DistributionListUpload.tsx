@@ -3,13 +3,11 @@ import {
   FilledInput,
   FormControl,
   Input,
-  Tab,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-  Tabs,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -18,13 +16,14 @@ import { Dispatch, useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { airDropStage, recipientJson } from "../../recoil/util";
 import { FusionButton } from "../FusionButton";
-import { FusionPaper } from "../FusionPaper";
 import { isJson, validDistributorJSON, validURL } from "../../lib/utils";
 import { recipientJsonType } from "../../types";
-import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Box } from "@mui/system";
 import { NumberInput } from "../NumberInput";
+import { FusionTab, FusionTabs } from "../FusionTabs";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { PAPER_COLOR } from "../../Theme";
 
 enum recipientStyle {
   Manual = 0,
@@ -70,9 +69,7 @@ export const DistributionListUpload: React.VFC = () => {
 
   useEffect(() => {
     try {
-      console.log({ string });
       if (isJson(string)) {
-        console.log("string is json");
         setParsedJsonString(JSON.parse(string));
       } else {
         setParsedJsonString(null);
@@ -83,16 +80,16 @@ export const DistributionListUpload: React.VFC = () => {
   }, [string]);
 
   return (
-    <FusionPaper
-      header="Distribution list (beta)"
-      title="Input the recipient list json URL / string"
-      divisor={true}
-    >
-      <Tabs value={uploadType} onChange={handleUploadTypeChange} centered>
-        <Tab label="Manual" />
-        <Tab label="JSON URL" />
-        <Tab label="JSON string" />
-      </Tabs>
+    <Box marginRight={"24px"}>
+      <Typography marginBottom={"24px"}>
+        Select any <b>one</b> of the following methods to set up your
+        distribution list:
+      </Typography>
+      <FusionTabs value={uploadType} onChange={handleUploadTypeChange}>
+        <FusionTab label="Manual" />
+        <FusionTab label="JSON URL" />
+        <FusionTab label="JSON string" />
+      </FusionTabs>
       {uploadType === recipientStyle.Link ? (
         <FormControl sx={{ width: "100%", my: 2 }} variant="filled">
           <FilledInput
@@ -139,16 +136,13 @@ export const DistributionListUpload: React.VFC = () => {
       )}
 
       <FusionButton
-        title="next"
+        title="next: airdrop details"
         disabled={
           !(
             (url && validURL(url)) ||
             validDistributorJSON(parsedJsonString) ||
-            !!manualRecipients.filter((r) => {
-              console.log({ r });
-
-              return r.amount > 0 && r.recipient.length;
-            }).length
+            !!manualRecipients.filter((r) => r.amount > 0 && r.recipient.length)
+              .length
           )
         }
         onClick={async () => {
@@ -213,7 +207,7 @@ export const DistributionListUpload: React.VFC = () => {
           }
         }}
       />
-    </FusionPaper>
+    </Box>
   );
 };
 
@@ -223,39 +217,47 @@ const ManualRecipientInput: React.FC<{
 }> = ({ list, setList }) => {
   return (
     <Box>
-      <Table>
+      <Table size="small">
         <TableHead>
-          <TableCell>Wallet</TableCell>
-          <TableCell>Amount</TableCell>
-          <TableCell></TableCell>
+          <TableRow>
+            <TableCell>
+              <Typography variant="h5">Wallet Address</Typography>
+            </TableCell>
+            <TableCell>
+              <Typography variant="h5">Amount</Typography>
+            </TableCell>
+            <TableCell></TableCell>
+          </TableRow>
         </TableHead>
         <TableBody>
           {list.map(({ recipient, amount }, index) => (
-            <TableRow>
-              <TableCell width={"85%"}>
+            <TableRow key={index}>
+              <TableCell>
                 <Input
+                  disableUnderline
+                  placeholder="Enter wallet address"
                   sx={{
-                    minWidth: "100%",
+                    backgroundColor: PAPER_COLOR,
+                    border: "1px solid #AFAFAF",
+                    outline: "none",
+                    padding: "10px 16px",
+                    borderRadius: "4px",
+                    height: "40px",
+                    width: "440px",
                   }}
                   value={recipient}
                   onChange={(event) => {
                     setList(
-                      list.map((r, i) => {
-                        console.log({ i, index, va: event.target.value });
-                        const toret = {
-                          ...r,
-                          recipient:
-                            i === index ? event.target.value : r.recipient,
-                        };
-                        console.log({ toret });
-
-                        return toret;
-                      }) as ManualRecipient[]
+                      list.map((r, i) => ({
+                        ...r,
+                        recipient:
+                          i === index ? event.target.value : r.recipient,
+                      })) as ManualRecipient[]
                     );
                   }}
                 />
               </TableCell>
-              <TableCell width={"10%"}>
+              <TableCell width={"6%"}>
                 <NumberInput
                   number={amount.toString()}
                   setNumber={(e: any) => {
@@ -269,14 +271,19 @@ const ManualRecipientInput: React.FC<{
                     );
                   }}
                   sx={{
-                    border: (theme) =>
-                      `1px solid ${theme.palette.secondary.dark}}`,
-                    borderRadius: "10px",
+                    root: {
+                      border: (theme) =>
+                        `1px solid ${theme.palette.background.paper}}`,
+                      borderRadius: "4px",
+                      maxHeight: "40px",
+                      width: "52px",
+                    },
                   }}
                 />
               </TableCell>
-              <TableCell width={"5%"}>
+              <TableCell width={"3%"}>
                 <Button
+                  sx={{ padding: "0px 0px 0px 0px" }}
                   disableRipple
                   onClick={() => {
                     setList(
@@ -286,20 +293,28 @@ const ManualRecipientInput: React.FC<{
                     );
                   }}
                 >
-                  <RemoveCircleOutlineIcon />
+                  <RemoveCircleOutlineIcon sx={{ color: "black" }} />
                 </Button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <Button
-        onClick={() => {
-          setList([...list, { recipient: "", amount: 0 }]);
+      <Box
+        sx={{
+          float: "right",
         }}
       >
-        <AddBoxOutlinedIcon />
-      </Button>
+        <FusionButton
+          icon={<AddCircleIcon />}
+          title="ADD WALLET"
+          type="light"
+          onClick={() => {
+            setList([...list, { recipient: "", amount: 0 }]);
+          }}
+        />
+      </Box>
+      <Box my={3} />
     </Box>
   );
 };

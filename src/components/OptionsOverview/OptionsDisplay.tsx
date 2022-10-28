@@ -12,8 +12,7 @@ import {
   selectOwnedProjectOptionKeys,
   useLoadPsyAmericanOptions,
 } from "../../recoil";
-import { OptionCard } from "./OptionCard";
-import { OptionInfo } from "./OptionInfo";
+import { OptionCardWithAction } from "./OptionCard";
 
 const loadingContainerStyles: SxProps<Theme> = {
   display: "flex",
@@ -39,16 +38,13 @@ export const OptionsDisplay: React.VFC = () => {
     .map((projectKey) => {
       const ownedOptionKeys = ownedProjectOptions[projectKey];
       return ownedOptionKeys.map((ownedOptionKey) => (
-        <OptionCard
+        <OptionCardWithAction
           key={ownedOptionKey.optionMarketKey}
           projectKey={projectKey}
-        >
-          <OptionInfo
-            projectKey={projectKey}
-            optionMetaKey={ownedOptionKey.optionMarketKey}
-            tokenAccountKey={ownedOptionKey.tokenAccountKey}
-          />
-        </OptionCard>
+          optionMetaKey={ownedOptionKey.optionMarketKey}
+          tokenAccountKey={ownedOptionKey.tokenAccountKey}
+          type={"Exercise"}
+        />
       ));
     })
     .flat();

@@ -15,8 +15,6 @@ import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { AccountLayout, Token, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { Decimal } from "decimal.js";
 
-const dtf = Intl.DateTimeFormat(undefined, { timeZoneName: "short" });
-
 export const mapNetworkTypes = (key: NetworkKeys): NetworkNames => {
   switch (key) {
     case WalletAdapterNetwork.Mainnet:
@@ -105,7 +103,6 @@ export const loadMintInfo = async (
   resp.forEach((info, index) => {
     if (!info) return;
     const mintInfo = MintLayout.decode(info.data);
-    console.log("*** decoded mintInfo", mintInfo);
     const val: Mint = {
       address: new PublicKey(mintAddressArr[index]),
       mintAuthority: mintInfo.mintAuthority ? mintInfo.mintAuthority : null,
@@ -148,15 +145,13 @@ export const contractsToAmount = (
 export const displayExpirationDate = (optionMarket: OptionMarket) => {
   const d = new Date(optionMarket.expirationUnixTimestamp.toNumber() * 1_000);
   const half = d.getHours() > 12 ? "PM" : "AM";
-  const timezoneAbbrev = dtf
-    .formatToParts(d)
-    .find((part) => part.type === "timeZoneName")?.value;
-  return `${d.toLocaleDateString()} ${d
-    .toLocaleTimeString()
-    .substring(
-      0,
-      d.toLocaleTimeString().charAt(5) === ":" ? 5 : 4
-    )} ${half} ${timezoneAbbrev}`;
+  const timezoneOffset = d.getTimezoneOffset() / -60;
+  return [
+    `${d.toLocaleDateString()} ${d
+      .toLocaleTimeString()
+      .substring(0, d.toLocaleTimeString().charAt(5) === ":" ? 5 : 4)} ${half}`,
+    `GMT ${timezoneOffset > 0 ? "+" : ""}${timezoneOffset.toString()}`,
+  ];
 };
 
 export function displayStrikePrice(

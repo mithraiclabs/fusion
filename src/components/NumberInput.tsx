@@ -6,6 +6,7 @@ import {
   Theme,
   OutlinedInputProps,
   FormControl,
+  Typography,
 } from "@mui/material";
 import { SystemStyleObject } from "@mui/system";
 
@@ -53,11 +54,12 @@ export const NumberInput: React.VFC<PsyNumberInputProps> = ({
     <FormControl
       fullWidth
       sx={{
-        borderRadius: "6px",
+        borderRadius: "4px",
       }}
     >
       {/* <InputLabel id="outlined-adornment-amount">{placeholder}</InputLabel> */}
       <OutlinedInput
+        size="small"
         startAdornment={
           currency ? (
             <InputAdornment
@@ -72,9 +74,28 @@ export const NumberInput: React.VFC<PsyNumberInputProps> = ({
         }
         label-id="outlined-adornment-amount"
         endAdornment={
-          setMax ? <Button onClick={setMax}>MAX</Button> : undefined
+          setMax ? (
+            <Button
+              onClick={setMax}
+              sx={{
+                background: "#E2E2DE",
+                borderRadius: "4px",
+                textTransform: "none",
+                marginRight: "8px",
+              }}
+            >
+              <Typography variant="body2">Max</Typography>
+            </Button>
+          ) : undefined
         }
-        sx={[!!sx && sx]}
+        sx={[
+          !!sx && sx,
+          {
+            padding: "0px 0px 0px 0px",
+            width: "100%",
+            maxHeight: "44px",
+          },
+        ]}
         placeholder={placeholder}
         disabled={disabled}
         value={number}

@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { FusionButton } from "../FusionButton";
-import { FusionPaper } from "../FusionPaper";
 import { useCreateDistributor } from "../../hooks/distributors/useCreateDistributor";
 import {
   airDropStage,
@@ -28,39 +27,26 @@ export const BuilderDistributor: React.VFC = () => {
   const optionMintBalance = useRecoilValue(getCurrentMintBalance);
 
   return (
-    <>
-      <FusionPaper
-        border={true}
-        divisor={true}
-        title={
-          "Options minted successfully, you can now distribute the airdrop!"
-        }
-      >
-        {!!optionMintBalance ? (
-          <>
-            <Typography
-              fontSize={"16px"}
-              fontWeight={400}
-              align="center"
-              marginBottom={"25px"}
-            >
-              {optionMintBalance} option tokens available to distribute;{" "}
-            </Typography>
-            <Typography
-              fontSize={"16px"}
-              fontWeight={400}
-              align="center"
-              marginBottom={"25px"}
-            >
-              Click below to create the option airdrop and send it the minted
-              options (2 transactions)
-            </Typography>
-          </>
-        ) : (
-          <></>
-        )}
-      </FusionPaper>
-      <Box my={2}></Box>
+    <Box>
+      <Typography marginBottom={"24px"}>
+        {" "}
+        Options minted successfully, you can now distribute the airdrop!
+      </Typography>
+      {!!optionMintBalance ? (
+        <>
+          <Typography fontSize={"16px"} variant={"body2"}>
+            {optionMintBalance} option tokens available to distribute;{" "}
+          </Typography>
+          <Typography fontSize={"16px"} marginY={"24px"}>
+            Click below to create the option airdrop and send it the minted
+            options <br />
+            (2 transactions)
+          </Typography>
+        </>
+      ) : (
+        <></>
+      )}
+
       <FusionButton
         title="Create airdrop and fund it with minted options"
         disabled={optionMintBalance < airdropOptionAmount}
@@ -72,6 +58,6 @@ export const BuilderDistributor: React.VFC = () => {
           }
         }}
       />
-    </>
+    </Box>
   );
 };

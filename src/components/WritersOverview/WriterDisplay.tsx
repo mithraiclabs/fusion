@@ -6,8 +6,7 @@ import {
   selectOwnedProjectWriterKeys,
   useLoadPsyAmericanOptions,
 } from "../../recoil";
-import { OptionCard } from "../OptionsOverview/OptionCard";
-import { WriterInfo } from "./WriterInfo";
+import { OptionCardWithAction } from "../OptionsOverview/OptionCard";
 
 const loadingContainerStyles: SxProps<Theme> = {
   display: "flex",
@@ -40,16 +39,13 @@ export const WriterDisplay: React.VFC = () => {
     .map((projectKey) => {
       const ownedWriterKeys = ownedProjectWriters[projectKey];
       return ownedWriterKeys.map((ownedWriterKey) => (
-        <OptionCard
+        <OptionCardWithAction
           key={ownedWriterKey.optionMarketKey}
           projectKey={projectKey}
-        >
-          <WriterInfo
-            projectKey={projectKey}
-            optionMetaKey={ownedWriterKey.optionMarketKey}
-            tokenAccountKey={ownedWriterKey.tokenAccountKey}
-          />
-        </OptionCard>
+          optionMetaKey={ownedWriterKey.optionMarketKey}
+          tokenAccountKey={ownedWriterKey.tokenAccountKey}
+          type={"Recover"}
+        />
       ));
     })
     .flat();

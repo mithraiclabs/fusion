@@ -1,10 +1,9 @@
 import { Token } from "@mithraic-labs/psy-token-registry";
-import { Avatar, Button, Stack, Typography } from "@mui/material";
+import { Avatar, Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { useConnection } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
-import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { getRecipientsForDistributor } from "../../api";
 import { deserializeSplTokenAccount } from "../../lib/deserializeSplTokenAccount";
@@ -15,18 +14,35 @@ import {
   DistributorInfo,
   recipientJson,
   selectedClaim,
+  selectedWindowAtom,
 } from "../../recoil/util";
+
+const btnStyle = {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "4px 16px",
+  gap: "8px",
+  alignSelf: "flex-end",
+  height: "32px",
+  background: "#454545",
+  borderRadius: "20px",
+  flex: "none",
+  order: 3,
+  flexGrow: 0,
+};
 
 export const ClaimableAirdropRow: React.FC<{
   distributorInfo: DistributorInfo;
   underlyingToken: Token;
   quoteToken: Token;
-}> = ({ distributorInfo, underlyingToken, quoteToken }) => {
-  const navigate = useNavigate();
+}> = ({ distributorInfo, underlyingToken }) => {
   const setClaimAddress = useSetRecoilState(airdropAddress);
   const setClaimStage = useSetRecoilState(claimStage);
   const setRecipientJSON = useSetRecoilState(recipientJson);
   const setSelectedClaim = useSetRecoilState(selectedClaim);
+  const setSelectedWindow = useSetRecoilState(selectedWindowAtom);
   const { connection } = useConnection();
   const setAirdropBalance = useSetRecoilState(airdropBalance);
   const {
@@ -38,27 +54,73 @@ export const ClaimableAirdropRow: React.FC<{
     <Box
       my={2}
       sx={{
-        border: `#DEE7EF 1px solid`,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        gap: "8px",
+        width: "664px",
+        height: "72px",
         background: "#ffffff",
-        minHeight: "4em",
         borderRadius: "8px",
+        flex: "none",
+        order: 1,
+        alignSelf: "stretch",
+        flexGrow: 0,
       }}
     >
-      <Stack direction={"row"} justifyContent={"space-evenly"} my={"1em"}>
-        <Box mx={"auto"} my={"auto"}>
+      <Box
+        sx={{
+          padding: "16px",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          gap: "12px",
+          flex: "none",
+          order: 1,
+          alignSelf: "stretch",
+          flexGrow: 0,
+        }}
+      >
+        <Box>
           <Avatar src={underlyingToken.logoURI} />
         </Box>
-        <Box mx={"auto"} my={"auto"}>
-          <Typography>{optionName}</Typography>
+        <Box
+          my={"auto"}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            padding: "0px",
+            width: "482px",
+            height: "40px",
+            flex: "none",
+            order: 1,
+            flexGrow: 1,
+          }}
+        >
+          <Typography variant="body2">{optionName}</Typography>
+          <Typography variant="body1">
+            {description.length > 62
+              ? `${description.substring(0, 59)}...`
+              : description}
+          </Typography>
         </Box>
-        <Box mx={"auto"}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            padding: "0px",
+            flex: "none",
+            order: 2,
+            flexGrow: 2,
+            my: "auto",
+          }}
+        >
           <Button
-            sx={{
-              width: "100%",
-              color: "#3CC88D",
-              border: "#3CC88D 1px solid",
-              borderRadius: "8px",
-            }}
+            sx={btnStyle}
+            variant="contained"
             onClick={async (e) => {
               setClaimAddress(address);
               const recipients = await getRecipientsForDistributor({
@@ -95,7 +157,6 @@ export const ClaimableAirdropRow: React.FC<{
                   }
                 )
               ).value.map((v) => v.account);
-              console.log({ accounts });
 
               if (accounts[0]) {
                 const account = deserializeSplTokenAccount(accounts[0]);
@@ -104,7 +165,7 @@ export const ClaimableAirdropRow: React.FC<{
                 setSelectedClaim(distributorInfo);
                 setClaimStage(2);
                 e.preventDefault();
-                navigate("/claim");
+                setSelectedWindow("Claim");
               }
             }}
             key={address}
@@ -112,7 +173,7 @@ export const ClaimableAirdropRow: React.FC<{
             Claim
           </Button>
         </Box>
-      </Stack>
+      </Box>
     </Box>
   );
 };
