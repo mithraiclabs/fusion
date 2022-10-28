@@ -1,4 +1,4 @@
-import { Box, Button, Input, SxProps, Theme, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { BN } from "@project-serum/anchor";
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
@@ -9,67 +9,16 @@ import {
   optionMarketFamily,
   tokenAccountsMap,
 } from "../../recoil";
-import { DEFAULT_TEXT_COLOR } from "../../Theme";
 import { mapNetworkTypes } from "../../lib/utils";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useBurnTokens } from "../../hooks/wallet/useBurnTokens";
-
-const styles: Record<string, SxProps<Theme>> = {
-  inputContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: "#FBFBFB",
-    border: "1px solid",
-    borderRadius: "10px",
-    my: 3,
-    px: 3,
-    py: 2,
-  },
-  input: {
-    fontSize: "1.3em",
-    border: "none",
-    outline: "none",
-    width: "100%",
-    "&::before": {
-      border: "none !important",
-      transition: "none !important",
-    },
-    "&::after": {
-      border: "none !important",
-      transition: "none !important",
-    },
-  },
-  maxButton: {
-    p: 2,
-    background: DEFAULT_TEXT_COLOR,
-    color: "white",
-    borderRadius: 50,
-    fontWeight: "bold",
-    width: "113px",
-    height: "45px",
-    "&:hover": {
-      color: DEFAULT_TEXT_COLOR,
-    },
-  },
-  exerciseButton: {
-    py: 2,
-    mb: 5,
-    width: "100%",
-    background: DEFAULT_TEXT_COLOR,
-    color: "white",
-    textTransform: "none",
-    "&:hover": {
-      color: "gray",
-      backgroundColor: "lightblue",
-    },
-  },
-};
+import { FusionButton } from "../FusionButton";
+import { NumberInput } from "../NumberInput";
 
 export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
   optionMarketKey,
 }) => {
-  const [amountToExercise, setAmountToExercise] = useState(0);
+  const [loading, setLoading] = useState(false);
   const network = useRecoilValue(networkAtom);
   // Load the OptionMarket data from the option market key
   const optionMeta = useRecoilValue(optionMarketFamily(optionMarketKey));
@@ -79,6 +28,9 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
 
   const optionTokenAccount = useRecoilValue(
     tokenAccountsMap(optionMeta?.optionMint?.toString() ?? "")
+  );
+  const [amountToExercise, setAmountToExercise] = useState(
+    Number(optionTokenAccount?.amount ?? 0)
   );
 
   const burn = useBurnTokens(optionMeta?.optionMint);
@@ -102,16 +54,10 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
     throw new Error(`Could not find project with key ${underlyingTokenMint}`);
   }
   const optionTokens = Number(optionTokenAccount?.amount ?? 0);
-
   if (optionMeta.expired) {
     return (
       <Box>
-        <Box
-          sx={{
-            ...styles.inputContainer,
-            ...{ borderColor: project.primaryColor || DEFAULT_TEXT_COLOR },
-          }}
-        >
+        <Box>
           <Typography
             sx={{
               fontSize: 25,
@@ -122,63 +68,48 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
           </Typography>
 
           {!!optionTokens && (
-            // case where you hold only option tokens [expired]
-            <Button
-              sx={{
-                ...styles.exerciseButton,
-                ...{
-                  backgroundColor: project.primaryColor || DEFAULT_TEXT_COLOR,
-                },
-              }}
+            <FusionButton
               onClick={async () => {
-                if (await burn(optionTokens)) navigate("/");
+                setLoading(true);
+                if (await burn(optionTokens)) {
+                  setLoading(false);
+                  navigate("/");
+                }
+                setLoading(false);
               }}
-            >
-              Collect Rent
-            </Button>
+              title="Collect Rent"
+              loading={loading}
+            />
           )}
         </Box>
       </Box>
     );
   }
   return (
-    <Box>
-      <Box
+    <Box mx={"auto"} width={"632px"} marginBottom={2}>
+      <NumberInput
+        number={amountToExercise.toString()}
+        setNumber={(e: any) => {
+          setAmountToExercise(Number(e));
+        }}
+        max={Number(optionTokenAccount.amount)}
+        setMax={() => setAmountToExercise(Number(optionTokenAccount.amount))}
         sx={{
-          ...styles.inputContainer,
-          ...{ borderColor: project.primaryColor || DEFAULT_TEXT_COLOR },
+          width: "100%",
+          marginBottom: 2,
         }}
-      >
-        <Input
-          sx={styles.input}
-          id="exercise-amount"
-          type="number"
-          inputProps={{ min: 0, max: optionTokenAccount.amount, step: 1 }}
-          onChange={(e) => setAmountToExercise(parseInt(e.target.value))}
-          value={amountToExercise}
-        />
-        <Button
-          sx={styles.maxButton}
-          onClick={() => setAmountToExercise(Number(optionTokenAccount.amount))}
-        >
-          MAX
-        </Button>
-      </Box>
-      <Button
-        sx={{
-          ...styles.exerciseButton,
-          ...{
-            backgroundColor: project.primaryColor || DEFAULT_TEXT_COLOR,
-          },
+      />
+      <FusionButton
+        onClick={async () => {
+          setLoading(true);
+          if (await exerciseOptions({ amount: new BN(amountToExercise) })) {
+            setLoading(false);
+          }
+          setLoading(false);
         }}
-        onClick={() => {
-          exerciseOptions({ amount: new BN(amountToExercise) });
-        }}
-      >
-        <Typography variant="h4" color="white">
-          Exercise
-        </Typography>
-      </Button>
+        title="Exercise"
+        loading={loading}
+      />
     </Box>
   );
 };

@@ -1,88 +1,103 @@
-import { Avatar, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useState } from "react";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useNetworkTokens } from "../../hooks/useNetworkTokens";
-import { decMultiply } from "../../lib/utils";
+import { decDiv, decSub } from "../../lib/utils";
 import {
   airDropStage,
   airDropTokenAmount,
   projectInfo,
-  recipientJson,
 } from "../../recoil/util";
+import {
+  getCurrentMintBalance,
+  getUnderlyingNeededForWholeAirdrop,
+} from "../../recoil/wallet/selectors";
 import { FusionButton } from "../FusionButton";
-import { FusionPaper } from "../FusionPaper";
-import { Hr } from "../Hr";
 import { NumberInput } from "../NumberInput";
 
 export const ContractQuantity: React.VFC = () => {
-  const [_airDropTokenAmount, setAirDropTokenAmount] =
-    useRecoilState(airDropTokenAmount);
-  const [underlyingToUse, setUnderlyingToUse] = useState(
-    _airDropTokenAmount.toString()
-  );
-  const tokens = Object.values(useNetworkTokens());
   const setAirDropStage = useSetRecoilState(airDropStage);
   const airDropInfo = useRecoilValue(projectInfo);
+  const fullAirdropUnderlyingQty = useRecoilValue(
+    getUnderlyingNeededForWholeAirdrop
+  );
+  const setAirDropTokenAmount = useSetRecoilState(airDropTokenAmount);
+  const [underlyingToUse, setUnderlyingToUse] = useState(
+    fullAirdropUnderlyingQty.toString()
+  );
+
+  const optionMintBalance = useRecoilValue(getCurrentMintBalance);
+  const _projectInfo = useRecoilValue(projectInfo);
+  const tokens = Object.values(useNetworkTokens());
   const underlyingToken = tokens.find(
     (t) => t.address === airDropInfo?.underlyingAssetMint
   );
-  const jsonData = useRecoilValue(recipientJson);
-  const totalContracts = jsonData?.recipientList.reduce(function (acc, obj) {
-    return acc + Number(obj.amount);
-  }, 0) as number;
-  const fullAirdropUnderlyingQty = decMultiply(
-    airDropInfo?.underlyingPerContract!,
-    totalContracts
+  const quoteToken = tokens.find(
+    (t) => t.address === airDropInfo?.quoteAssetMint
   );
-
-  const { name, symbol, logoURI } = underlyingToken!;
+  const contractQty = decSub(
+    decDiv(Number(underlyingToUse), _projectInfo?.underlyingPerContract ?? 1),
+    optionMintBalance
+  );
   return (
     <>
-      <FusionPaper border={true}>
-        <Avatar
-          src={logoURI}
-          sx={{
-            width: "100px",
-            height: "100px",
-            alignContent: "center",
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginBottom: "25px",
-          }}
-        />
-        <Typography fontSize={"32px"} fontWeight={500} align="center">
-          {name} Options airdrop
+      <Box marginRight={"24px"}>
+        <Typography marginBottom={"16px"}>
+          Confirm the details below once you’ve confirmed the amount of
+          underlying you would like to distribute.
         </Typography>
-        <Hr />
+        <Typography variant="h4" my={"8px"}>
+          Summary
+        </Typography>
+        <Stack direction={"row"} justifyContent={"space-between"}>
+          <Box>
+            <Typography color={"black"}>Contract qty. & pricing</Typography>
+            <Typography color={"black"}>
+              Contract expiration (GMT +8)
+            </Typography>
+          </Box>
+          <Box textAlign={"right"}>
+            <Typography variant="body2">
+              {contractQty}x[{_projectInfo?.underlyingPerContract}{" "}
+              {underlyingToken?.symbol ?? ""} for{" "}
+              {_projectInfo?.quotePerContract} {quoteToken?.symbol ?? ""}]
+            </Typography>
+            <Typography variant="body2">
+              {" "}
+              {new Date(_projectInfo?.expiration ?? 0).toUTCString()}
+            </Typography>
+          </Box>
+        </Stack>
         <Typography fontSize={"16px"} fontWeight={400} align="center" my={3}>
           Total number of underlying tokens need to distribute to all
           recipients:
         </Typography>
         <Typography
           color={"#777777"}
-          fontSize={"34px"}
+          fontSize={"24px"}
           fontWeight={600}
           align="center"
         >
-          {fullAirdropUnderlyingQty} {symbol}
+          {fullAirdropUnderlyingQty} {underlyingToken?.symbol ?? ""}
         </Typography>
-      </FusionPaper>
-      <NumberInput
-        number={underlyingToUse}
-        setMax={() => {
-          setUnderlyingToUse(fullAirdropUnderlyingQty.toString());
-        }}
-        setNumber={(e: any) => {
-          setUnderlyingToUse(e);
-        }}
-        currency={symbol}
-        max={fullAirdropUnderlyingQty}
-        sx={{
-          marginY: 2,
-          border: (theme) => `2px solid ${theme.palette.secondary.dark}}`,
-          borderRadius: "6px",
-        }}
-      />
+      </Box>
+      <Box marginRight={"24px"} my={"24px"}>
+        <NumberInput
+          number={underlyingToUse}
+          setMax={() => {
+            setUnderlyingToUse(fullAirdropUnderlyingQty.toString());
+          }}
+          setNumber={(e: any) => {
+            setUnderlyingToUse(e);
+          }}
+          currency={underlyingToken?.symbol ?? ""}
+          max={fullAirdropUnderlyingQty}
+          sx={{
+            border: (theme) => `2px solid ${theme.palette.secondary.dark}}`,
+            borderRadius: "6px",
+          }}
+        />
+      </Box>
       <FusionButton
         title="Confirm Token Amount"
         disabled={!underlyingToUse}

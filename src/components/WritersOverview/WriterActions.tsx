@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { FusionButton } from "../../components/FusionButton";
 import { FusionPaper } from "../../components/FusionPaper";
-import { OptionCard } from "../../components/OptionsOverview/OptionCard";
 import { useClosePosition } from "../../hooks/psyAmerican/useClosePosition";
 import { useCloseWrittenOptionPostExpiration } from "../../hooks/psyAmerican/useCloseWrittenOptionPostExpiration";
 import { useExchangeWriterTokenForQuote } from "../../hooks/psyAmerican/useExchangeWriterForQuote";
@@ -16,6 +15,8 @@ import { contractsToAmount, mapNetworkTypes } from "../../lib/utils";
 import projectList from "../../projects/projectList";
 import { networkAtom, TokenAccountWithKey } from "../../recoil";
 import { RecoverClaim } from "../../components/WritersOverview/RecoverClaim";
+import { ProjectCard } from "../OptionsOverview/OptionCard";
+import { PAPER_COLOR } from "../../Theme";
 
 export const WriterActions: React.FC<{
   optionMeta: OptionMarketWithKey;
@@ -139,11 +140,13 @@ export const WriterActions: React.FC<{
 
   return (
     <Box marginBottom={4}>
-      <OptionCard projectKey={project.mintAddress}>
+      <ProjectCard projectKey={project.mintAddress} fixedHeight={false}>
         <Box
           sx={{
             px: 3,
             py: 2,
+            background: PAPER_COLOR,
+            borderRadius: "0px 0px 6px 6px",
           }}
         >
           <Typography variant="body1" component="p">
@@ -156,7 +159,7 @@ export const WriterActions: React.FC<{
             <Typography>Option Tokens Remaining: {optionAmount}</Typography>
           )}
         </Box>
-      </OptionCard>
+      </ProjectCard>
       {ableToClose && (
         <RecoverClaim
           type={"ClosePosition"}

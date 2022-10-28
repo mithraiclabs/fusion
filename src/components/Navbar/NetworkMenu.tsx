@@ -10,6 +10,7 @@ import TextField from "@mui/material/TextField";
 import _debounce from "lodash/debounce";
 import { useRecoilState } from "recoil";
 import { customNetworkAtom, networkAtom, networks } from "../../recoil";
+import { Typography } from "@mui/material";
 
 const NetworkMenu = () => {
   const [network, setNetwork] = useRecoilState(networkAtom);
@@ -55,9 +56,17 @@ const NetworkMenu = () => {
         onClick={() => setOpen((_open) => !_open)}
         ref={anchorRef}
         variant="outlined"
-        sx={{ minWidth: 120 }}
+        sx={{
+          minWidth: 120,
+          minHeight: 40,
+          border: "2px solid #454545",
+          borderRadius: "21px",
+          gap: "8px",
+          padding: "8px 16px",
+          color: "#454545",
+        }}
       >
-        {network.name}
+        <Typography variant="h2">{network.name}</Typography>
       </Button>
       <Popper
         anchorEl={anchorRef.current}

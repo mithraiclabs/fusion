@@ -1,18 +1,15 @@
 import { Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useRecoilState } from "recoil";
-import Home from "../../pages/Home";
-import { claimStage } from "../../recoil/util";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { claimStage, selectedWindowAtom } from "../../recoil/util";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { ClaimSuccess } from "./ClaimSuccess";
 import { AirDropBalance } from "./AirDropBalance";
-import { useNavigate } from "react-router-dom";
 
 export const ClaimContainer: React.VFC = () => {
   const [_claimStage, setClaimStage] = useRecoilState(claimStage);
-  const navigate = useNavigate();
+  const setSelectedWindow = useSetRecoilState(selectedWindowAtom);
 
-  if (_claimStage === 1) return <Home />;
   return (
     <Box>
       <Stack direction={"row"} marginTop={2}>
@@ -22,7 +19,7 @@ export const ClaimContainer: React.VFC = () => {
               if (_claimStage > 2) {
                 setClaimStage((prev) => prev - 1);
               } else {
-                navigate("/");
+                setSelectedWindow("Home");
               }
             }}
             sx={{

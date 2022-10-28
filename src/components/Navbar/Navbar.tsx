@@ -1,11 +1,10 @@
-import { Box, Button, SxProps, Theme, Tooltip } from "@mui/material";
+import { Box, Button, Theme } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { HEADER_TEXT_COLOR } from "../../Theme";
+import { useSetRecoilState } from "recoil";
+import { selectedWindowAtom } from "../../recoil/util";
 import { ConnectWalletButton } from "../ConnectWalletButton";
 import { NavLogo } from "../Images/NavLogo";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import EventRepeatIcon from "@mui/icons-material/EventRepeat";
 import NetworkMenu from "./NetworkMenu";
 
 const containerStyles = (theme: Theme) => ({
@@ -22,8 +21,8 @@ const containerStyles = (theme: Theme) => ({
 
 const innerContainerStyles = (theme: Theme) => ({
   display: "flex",
-  alignItems: "center",
-  justifyContent: "space-around",
+  alignItems: "left",
+  marginLeft: "5em",
   width: "100%",
   [theme.breakpoints.up("md")]: {
     width: "65%",
@@ -41,18 +40,20 @@ const rightContainerStyles = (theme: Theme) => ({
   },
 });
 
-const navIconStyle = {
-  fontWeight: 500,
-  fontSize: 30,
-  color: HEADER_TEXT_COLOR,
-} as SxProps;
-
 const styles = {
-  connectBtn: { height: 55, width: 200, fontSize: 18, marginLeft: 3 },
+  connectBtn: {
+    height: 40,
+    width: 220,
+    fontSize: 18,
+    marginLeft: 3,
+    padding: "2px 8px",
+    borderRadius: "21px",
+  },
 };
 
 export const Navbar: React.FC = () => {
   const navigate = useNavigate();
+  const setSelectedWindow = useSetRecoilState(selectedWindowAtom);
   return (
     <Box sx={containerStyles}>
       <Box sx={innerContainerStyles}>
@@ -60,38 +61,15 @@ export const Navbar: React.FC = () => {
           onClick={(e) => {
             e.preventDefault();
             navigate("/");
+            setSelectedWindow("Home");
           }}
         >
           <NavLogo />
         </Button>
       </Box>
-      <Box sx={innerContainerStyles}>
-        <Tooltip title="Create Airdrop">
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("/airdrop");
-            }}
-          >
-            <AddCircleOutlineIcon sx={navIconStyle} />
-          </Button>
-        </Tooltip>
-      </Box>
-      <Box sx={innerContainerStyles}>
-        <Tooltip title="Recover Underlying/Rent for Expired Options">
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("/recover");
-            }}
-          >
-            <EventRepeatIcon sx={navIconStyle} />
-          </Button>
-        </Tooltip>
-      </Box>
       <Box sx={rightContainerStyles}>
-        <NetworkMenu />
         <ConnectWalletButton sx={styles.connectBtn} />
+        <NetworkMenu />
       </Box>
     </Box>
   );
