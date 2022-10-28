@@ -74,6 +74,11 @@ export const selectedClaim = atom<DistributorInfo | null>({
   default: null,
 });
 
+export const selectedWindowAtom = atom<WindowType>({
+  key: "selectedWindow",
+  default: "Home",
+});
+
 export type DistributorInfo = {
   creatorWallet: string;
   description: string;
@@ -85,3 +90,11 @@ export type DistributorInfo = {
   quoteAssetMint: string;
   optionName: string;
 };
+
+export type WindowType =
+  | "Home"
+  | "Create"
+  | "Recover"
+  | "Exercise"
+  | "WriterBurn"
+  | "Claim";

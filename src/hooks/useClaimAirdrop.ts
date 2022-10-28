@@ -60,7 +60,6 @@ export const useClaimAirdrop = () => {
           sdk,
           new PublicKey(distributorAddress ?? "")
         );
-        console.log({ wrapper, claims });
         const claim = claims[publicKey.toString()];
         const tx = await wrapper.claim({
           claimant: publicKey,
