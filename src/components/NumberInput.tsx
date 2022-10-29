@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { SystemStyleObject } from "@mui/system";
+import { DEFAULT_BG } from "../Theme";
 
 interface PsyNumberInputProps extends OutlinedInputProps {
   disabled?: boolean;
@@ -78,7 +79,7 @@ export const NumberInput: React.VFC<PsyNumberInputProps> = ({
             <Button
               onClick={setMax}
               sx={{
-                background: "#E2E2DE",
+                background: DEFAULT_BG,
                 borderRadius: "4px",
                 textTransform: "none",
                 marginRight: "8px",
