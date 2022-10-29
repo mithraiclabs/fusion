@@ -6,6 +6,7 @@ export const DEFAULT_TEXT_COLOR = "#777777";
 export const BORDER_COLOR = "#E6E6E6";
 export const SUCCESS_GREEN = "#3AB67A";
 export const PAPER_COLOR = "#EDEDED";
+export const DEFAULT_BG = "#E2E2DE";
 
 const theme = createTheme({
   spacing: 8,
@@ -15,7 +16,7 @@ const theme = createTheme({
       secondary: "#454545",
     },
     background: {
-      default: "#E2E2DE",
+      default: DEFAULT_BG,
       paper: PAPER_COLOR,
     },
     secondary: {

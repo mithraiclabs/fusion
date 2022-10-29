@@ -16,7 +16,7 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { selectedWindowAtom, WindowType } from "../recoil/util";
 import { useRecoilState } from "recoil";
-import { PAPER_COLOR } from "../Theme";
+import { DEFAULT_BG, PAPER_COLOR } from "../Theme";
 import { ClaimContainer } from "../components/Claimer/ClaimContainer";
 import { WriterOverview } from "../components/WritersOverview";
 import { DiscordIcon } from "../components/Images/icons/discord-icon";
@@ -26,18 +26,15 @@ const SocialsFooter: React.FC = () => {
     <Box
       sx={{
         position: "fixed",
-        left: 10,
         bottom: 0,
         width: "100%",
-        textAlign: "right",
-        marginRight: "16px",
+        textAlign: "left",
         paddingBottom: "16px",
       }}
-      mx={-6}
     >
-      <Typography variant="body1">
+      <Typography variant="body1" fontSize={"12px"}>
         Connect with us on our socials to stay up-to-date in the latest
-        PsyOptions alpha{" "}
+        PsyOptions alpha <br />
         <Link
           rel="noopener"
           target="_blank"
@@ -111,15 +108,12 @@ const Home = () => {
 
   if (!publicKey)
     return (
-      <>
-        <Dashboard
-          navigationHandler={handleNavigate}
-          selectedWindow={selectedWindow}
-          walletConnected={false}
-          width={width / 1.5}
-        />
-        <SocialsFooter />
-      </>
+      <Dashboard
+        navigationHandler={handleNavigate}
+        selectedWindow={selectedWindow}
+        walletConnected={false}
+        width={width / 1.5}
+      />
     );
 
   return (
@@ -134,24 +128,30 @@ const Home = () => {
               width={width / 3}
             />
           </Box>
-          <Box sx={{ width: "664px" }} marginLeft="auto" marginRight={"auto"}>
+          <Box
+            sx={{ width: "664px" }}
+            marginLeft="auto"
+            marginRight={"auto"}
+            marginBottom={"32px"}
+          >
             {windowContent()}
           </Box>
         </Stack>
       ) : (
-        <Box>
-          <Dashboard
-            navigationHandler={handleNavigate}
-            selectedWindow={selectedWindow}
-            walletConnected={true}
-            width={664}
-          />
+        <Stack>
+          <Box height={"450px"} sx={{ background: DEFAULT_BG, zIndex: 10 }}>
+            <Dashboard
+              navigationHandler={handleNavigate}
+              selectedWindow={selectedWindow}
+              walletConnected={true}
+              width={664}
+            />
+          </Box>
           <Box sx={{ width: "664px" }} marginLeft="auto" marginRight={"auto"}>
             {windowContent()}
           </Box>
-        </Box>
+        </Stack>
       )}
-      <SocialsFooter />
     </>
   );
 };
@@ -285,6 +285,7 @@ const Dashboard: React.FC<{
         </Typography>
       </Link>
       {!walletConnected && <NoWalletConnected />}
+      <SocialsFooter />
     </Box>
   );
 };
