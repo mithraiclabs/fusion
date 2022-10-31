@@ -1,11 +1,16 @@
-import { Box, Button, Theme } from "@mui/material";
-import React from "react";
+import { Box, Button, Stack, SwipeableDrawer, Theme } from "@mui/material";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { selectedWindowAtom } from "../../recoil/util";
+import { useRecoilState } from "recoil";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { selectedWindowAtom, WindowType } from "../../recoil/util";
 import { ConnectWalletButton } from "../ConnectWalletButton";
 import { NavLogo } from "../Images/NavLogo";
 import NetworkMenu from "./NetworkMenu";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Dashboard } from "../../pages/Home";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { SMALL_SCREEN_WIDTH } from "../../Theme";
 
 const containerStyles = (theme: Theme) => ({
   display: "flex",
@@ -53,7 +58,70 @@ const styles = {
 
 export const Navbar: React.FC = () => {
   const navigate = useNavigate();
-  const setSelectedWindow = useSetRecoilState(selectedWindowAtom);
+  const [selectedWindow, setSelectedWindow] =
+    useRecoilState(selectedWindowAtom);
+  const handleNavigate = (type: WindowType) => {
+    setSelectedWindow(type);
+    if (type === "Home") {
+      navigate("/");
+    }
+  };
+  const { publicKey } = useWallet();
+  const { width } = useWindowDimensions();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  if (width < SMALL_SCREEN_WIDTH) {
+    return (
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        paddingTop={"6px"}
+      >
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/");
+            setSelectedWindow("Home");
+          }}
+        >
+          <NavLogo height="28px" />
+        </Button>
+        <SwipeableDrawer
+          anchor={"left"}
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+          onOpen={() => setDrawerOpen(true)}
+        >
+          <Box
+            sx={{
+              width: "85vw",
+              padding: "10px",
+              marginLeft: "auto",
+              marginRight: "auto",
+              textAlign: "center",
+              overflowY: "scroll",
+              height: "100vh",
+            }}
+          >
+            <NetworkMenu />
+            <Dashboard
+              navigationHandler={handleNavigate}
+              selectedWindow={selectedWindow}
+              walletConnected={!!publicKey}
+              width={width * 0.85}
+            />
+          </Box>
+        </SwipeableDrawer>
+        <Button
+          onClick={() => setDrawerOpen(true)}
+          sx={{
+            color: "black",
+          }}
+        >
+          <MenuIcon />
+        </Button>
+      </Stack>
+    );
+  }
   return (
     <Box sx={containerStyles}>
       <Box sx={innerContainerStyles}>

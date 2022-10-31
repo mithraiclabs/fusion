@@ -1,6 +1,8 @@
+import { Theme } from "@emotion/react";
 import { Box, Link, Typography } from "@mui/material";
 import React from "react";
 import { ConnectWalletButton } from "../ConnectWalletButton";
+import { SystemStyleObject } from "@mui/system";
 
 const styles = {
   container: {
@@ -20,9 +22,11 @@ const styles = {
   },
 };
 
-const NoWalletConnected: React.VFC = () => {
+const NoWalletConnected: React.VFC<{ sx?: SystemStyleObject<Theme> }> = ({
+  sx,
+}) => {
   return (
-    <Box sx={styles.container}>
+    <Box sx={[styles.container, !!sx && sx]}>
       <ConnectWalletButton sx={styles.walletButton} />
       <Typography
         variant="body1"

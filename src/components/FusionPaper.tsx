@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { Hr } from "./Hr";
-import { BORDER_COLOR, PAPER_COLOR } from "../Theme";
+import { BORDER_COLOR, DESKTOP_PAPER_WIDTH, PAPER_COLOR } from "../Theme";
 
 export const overviewStyles = {
   container: {
@@ -35,7 +35,7 @@ export const FusionPaper: React.FC<{
   return (
     <Box
       sx={{
-        width: "664px",
+        width: DESKTOP_PAPER_WIDTH,
         marginLeft: "auto",
         marginRight: "auto",
       }}

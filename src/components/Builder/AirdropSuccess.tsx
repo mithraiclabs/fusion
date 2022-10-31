@@ -9,6 +9,7 @@ import {
 import { useRecoilValue } from "recoil";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { distributorAddress } from "../../recoil/util";
+import { DESKTOP_PAPER_WIDTH } from "../../Theme";
 
 const fusionClaimUrl = "https://app.projectfusion.io/";
 export const AirdropSuccess: React.FC = () => {
@@ -22,7 +23,7 @@ export const AirdropSuccess: React.FC = () => {
       <Typography fontSize={"16px"} fontWeight={400} marginY={"25px"}>
         Claimants should use the following link
       </Typography>
-      <FormControl sx={{ width: "664px" }} variant="filled">
+      <FormControl sx={{ width: DESKTOP_PAPER_WIDTH }} variant="filled">
         <FilledInput
           value={fusionClaimUrl}
           endAdornment={

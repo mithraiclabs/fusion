@@ -1,4 +1,5 @@
 import { Avatar, Box, Button, SxProps, Theme, Typography } from "@mui/material";
+import { SystemStyleObject } from "@mui/system";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -9,7 +10,11 @@ import {
   optionMarketFamily,
   tokenAccountsMap,
 } from "../../recoil";
-import { PAPER_COLOR } from "../../Theme";
+import {
+  DESKTOP_PAPER_WIDTH,
+  MOBILE_PAPER_WIDTH,
+  PAPER_COLOR,
+} from "../../Theme";
 import { OptionInfo } from "./OptionInfo";
 
 const pillStyles: Record<string, SxProps<Theme>> = {
@@ -36,13 +41,13 @@ const Pill: React.FC = ({ children }) => {
   );
 };
 
-const styles: Record<string, SxProps<Theme>> = {
+const styles: Record<string, SystemStyleObject<Theme>> = {
   container: {
     border: "1px solid #AFAFAF",
     borderRadius: "6px",
     padding: "0px",
     flex: "none",
-    width: "664px",
+    width: DESKTOP_PAPER_WIDTH,
     order: 0,
     alignSelf: "stretch",
     flexGrow: 0,
@@ -52,7 +57,7 @@ const styles: Record<string, SxProps<Theme>> = {
   top: {
     backgroundColor: "#FFFFFF",
     borderRadius: "6px 6px 0px 0px",
-    width: "664px",
+    width: DESKTOP_PAPER_WIDTH,
     height: "91px",
     display: "flex",
     flexDirection: "column",
@@ -132,6 +137,9 @@ const styles: Record<string, SxProps<Theme>> = {
     display: "flex",
     flexDirection: "column",
   },
+  mobileWidth: {
+    width: MOBILE_PAPER_WIDTH,
+  },
 };
 
 type CardType = "Exercise" | "Recover";
@@ -141,7 +149,8 @@ export const OptionCardWithAction: React.FC<{
   optionMetaKey: string;
   tokenAccountKey: string;
   type: CardType;
-}> = ({ projectKey, optionMetaKey, tokenAccountKey, type }) => {
+  isMobile?: boolean;
+}> = ({ projectKey, optionMetaKey, tokenAccountKey, type, isMobile }) => {
   const navigate = useNavigate();
   const optionMeta = useRecoilValue(optionMarketFamily(optionMetaKey));
   const tokenAccount = useRecoilValue(tokenAccountsMap(tokenAccountKey));
@@ -176,11 +185,13 @@ export const OptionCardWithAction: React.FC<{
       projectKey={projectKey}
       fixedHeight={true}
       actionButton={actionButton()}
+      isMobile={isMobile}
     >
       <OptionInfo
         projectKey={projectKey}
         optionMetaKey={optionMetaKey}
         tokenAccountKey={tokenAccountKey}
+        isMobile={isMobile}
       />
     </ProjectCard>
   );
@@ -190,7 +201,8 @@ export const ProjectCard: React.FC<{
   projectKey: string;
   fixedHeight?: boolean;
   actionButton?: JSX.Element;
-}> = ({ projectKey, fixedHeight, children, actionButton }) => {
+  isMobile?: boolean;
+}> = ({ projectKey, fixedHeight, children, actionButton, isMobile }) => {
   const network = useRecoilValue(networkAtom);
   const project = projectList[mapNetworkTypes(network.key)][projectKey];
   return (
@@ -200,9 +212,10 @@ export const ProjectCard: React.FC<{
         ...(fixedHeight && {
           height: "161px",
         }),
+        ...(!!isMobile && styles.mobileWidth),
       }}
     >
-      <Box sx={styles.top}>
+      <Box sx={[styles.top, !!isMobile && styles.mobileWidth]}>
         <Box sx={styles.logoNameContainer}>
           <Box sx={styles.leftLogoBox}>
             <Box sx={styles.logo}>
@@ -214,7 +227,7 @@ export const ProjectCard: React.FC<{
                 {project.name}
               </Typography>
             </Box>
-            <Box sx={styles.btnBox}>{actionButton}</Box>
+            <Box sx={{ ...(!isMobile && styles.btnBox) }}>{actionButton}</Box>
           </Box>
         </Box>
       </Box>

@@ -1,6 +1,9 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 
 export const MAX_PAGE_WIDTH = 1400;
+export const SMALL_SCREEN_WIDTH = 1040;
+export const DESKTOP_PAPER_WIDTH = "664px";
+export const MOBILE_PAPER_WIDTH = "85vw";
 export const HEADER_TEXT_COLOR = "#000000";
 export const DEFAULT_TEXT_COLOR = "#777777";
 export const BORDER_COLOR = "#E6E6E6";

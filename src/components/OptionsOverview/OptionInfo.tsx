@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, SxProps, Theme, Typography } from "@mui/material";
+import { Grid, Theme, Typography } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import projectList from "../../projects/projectList";
 import {
@@ -13,9 +13,14 @@ import {
   tokenAccountsMap,
 } from "../../recoil";
 import { useTokenPrice } from "../../hooks/wallet/useTokenPrice";
-import { PAPER_COLOR } from "../../Theme";
+import {
+  DESKTOP_PAPER_WIDTH,
+  MOBILE_PAPER_WIDTH,
+  PAPER_COLOR,
+} from "../../Theme";
+import { SystemStyleObject } from "@mui/system";
 
-const styles: Record<string, SxProps<Theme>> = {
+const styles: Record<string, SystemStyleObject<Theme>> = {
   bottom: {
     boxSizing: "border-box",
     display: "flex",
@@ -23,7 +28,7 @@ const styles: Record<string, SxProps<Theme>> = {
     justifyContent: "center",
     alignItems: "center",
     padding: "0px",
-    width: "664px",
+    width: DESKTOP_PAPER_WIDTH,
     maxHeight: "69px",
     background: PAPER_COLOR,
     borderTop: "1px solid #AFAFAF",
@@ -56,13 +61,20 @@ const styles: Record<string, SxProps<Theme>> = {
     order: 0,
     flexGrow: 1,
   },
+  mobileBottom: {
+    width: MOBILE_PAPER_WIDTH,
+  },
+  mobileBottomSection: {
+    width: "100px",
+  },
 };
 
 export const OptionInfo: React.VFC<{
   projectKey: string;
   optionMetaKey: string;
   tokenAccountKey: string;
-}> = ({ projectKey, optionMetaKey, tokenAccountKey }) => {
+  isMobile?: boolean;
+}> = ({ projectKey, optionMetaKey, tokenAccountKey, isMobile }) => {
   const network = useRecoilValue(networkAtom);
 
   const optionMeta = useRecoilValue(optionMarketFamily(optionMetaKey));
@@ -83,7 +95,7 @@ export const OptionInfo: React.VFC<{
     [expirationDate, timeZone] = displayExpirationDate(optionMeta);
   }
   return (
-    <Grid container sx={styles.bottom}>
+    <Grid container sx={[styles.bottom, !!isMobile && styles.mobileBottom]}>
       <Grid
         item
         md={4}

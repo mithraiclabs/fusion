@@ -16,7 +16,7 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { selectedWindowAtom, WindowType } from "../recoil/util";
 import { useRecoilState } from "recoil";
-import { DEFAULT_BG, PAPER_COLOR } from "../Theme";
+import { DESKTOP_PAPER_WIDTH, PAPER_COLOR, SMALL_SCREEN_WIDTH } from "../Theme";
 import { ClaimContainer } from "../components/Claimer/ClaimContainer";
 import { WriterOverview } from "../components/WritersOverview";
 import { DiscordIcon } from "../components/Images/icons/discord-icon";
@@ -64,7 +64,7 @@ const Home = () => {
   const recoverOptionMarketKey = useMatch("/writer/:key")?.params?.key || "";
   const { publicKey } = useWallet();
   const { width } = useWindowDimensions();
-  const smallScreen = width < 1240;
+  const smallScreen = width < SMALL_SCREEN_WIDTH;
   const [selectedWindow, setSelectedWindow] =
     useRecoilState(selectedWindowAtom);
   const navigate = useNavigate();
@@ -106,16 +106,6 @@ const Home = () => {
     }
   };
 
-  if (!publicKey)
-    return (
-      <Dashboard
-        navigationHandler={handleNavigate}
-        selectedWindow={selectedWindow}
-        walletConnected={false}
-        width={width / 1.5}
-      />
-    );
-
   return (
     <>
       {!smallScreen ? (
@@ -124,45 +114,46 @@ const Home = () => {
             <Dashboard
               navigationHandler={handleNavigate}
               selectedWindow={selectedWindow}
-              walletConnected={true}
+              walletConnected={!!publicKey}
               width={width / 3}
             />
           </Box>
-          <Box
-            sx={{ width: "664px" }}
-            marginLeft="auto"
-            marginRight={"auto"}
-            marginBottom={"32px"}
-          >
-            {windowContent()}
-          </Box>
+          {publicKey && (
+            <Box
+              sx={{ width: DESKTOP_PAPER_WIDTH }}
+              marginLeft="auto"
+              marginRight={"auto"}
+              marginBottom={"32px"}
+            >
+              {windowContent()}
+            </Box>
+          )}
         </Stack>
       ) : (
         <Stack>
-          <Box height={"450px"} sx={{ background: DEFAULT_BG, zIndex: 10 }}>
-            <Dashboard
-              navigationHandler={handleNavigate}
-              selectedWindow={selectedWindow}
-              walletConnected={true}
-              width={664}
-            />
-          </Box>
-          <Box sx={{ width: "664px" }} marginLeft="auto" marginRight={"auto"}>
-            {windowContent()}
-          </Box>
+          {publicKey && (
+            <Box
+              sx={{ width: `${width * 0.85}px` }}
+              marginLeft="auto"
+              marginRight={"auto"}
+            >
+              {windowContent()}
+            </Box>
+          )}
         </Stack>
       )}
     </>
   );
 };
 
-const Dashboard: React.FC<{
+export const Dashboard: React.FC<{
   navigationHandler: (type: WindowType) => void;
   selectedWindow: WindowType;
   walletConnected: boolean;
-  width?: number;
+  width: number;
 }> = ({ navigationHandler, selectedWindow, walletConnected, width }) => {
   const [hoveredTab, setHoveredTab] = useState<0 | 1 | 2>(0);
+  const isMobile = width < 360;
   const title = () => {
     switch (selectedWindow) {
       case "Home":
@@ -195,7 +186,7 @@ const Dashboard: React.FC<{
     <Box
       sx={{
         ...(!!width && { maxWidth: `${width}px` }),
-        position: "fixed",
+        position: !isMobile ? "fixed" : "relative",
       }}
     >
       <Box
@@ -205,21 +196,23 @@ const Dashboard: React.FC<{
           );
         }}
       >
-        <Typography variant="h3">
-          {selectedWindow !== "Home" ? (
-            <>
-              <ArrowBackIcon fontSize="medium" />
-              &nbsp;
-            </>
-          ) : null}
-          Dashboard
-        </Typography>
+        {!isMobile && (
+          <Typography variant="h3">
+            {selectedWindow !== "Home" ? (
+              <>
+                <ArrowBackIcon fontSize="medium" />
+                &nbsp;
+              </>
+            ) : null}
+            Dashboard
+          </Typography>
+        )}
       </Box>
       <Box
         my={2}
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: !isMobile ? "row" : "column",
           justifyContent: "center",
           alignItems: "center",
           padding: "0px",
@@ -234,6 +227,9 @@ const Dashboard: React.FC<{
             order: 0,
             ...(hoveredTab === 1 && hoveredStyle),
             ...(selectedWindow === "Create" && selectedBtnStyle),
+            ...(isMobile && {
+              alignSelf: "center",
+            }),
           }}
           onClick={() => navigationHandler("Create")}
           onMouseEnter={() => setHoveredTab(1)}
@@ -255,6 +251,9 @@ const Dashboard: React.FC<{
             ...((selectedWindow === "Recover" ||
               selectedWindow === "WriterBurn") &&
               selectedBtnStyle),
+            ...(isMobile && {
+              alignSelf: "center",
+            }),
           }}
           onClick={() => navigationHandler("Recover")}
           onMouseEnter={() => setHoveredTab(2)}
@@ -284,8 +283,18 @@ const Dashboard: React.FC<{
           Learn More <LinkOut size={1.05} color={"black"} />
         </Typography>
       </Link>
-      {!walletConnected && <NoWalletConnected />}
-      <SocialsFooter />
+      {(!walletConnected || isMobile) && (
+        <NoWalletConnected
+          sx={
+            isMobile
+              ? {
+                  pt: 4,
+                }
+              : {}
+          }
+        />
+      )}
+      {!isMobile ? <SocialsFooter /> : null}
     </Box>
   );
 };
