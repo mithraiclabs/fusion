@@ -1,5 +1,5 @@
 import { Token } from "@mithraic-labs/psy-token-registry";
-import { Avatar, Button, Typography } from "@mui/material";
+import { Avatar, Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { useConnection } from "@solana/wallet-adapter-react";
@@ -16,6 +16,7 @@ import {
   selectedClaim,
   selectedWindowAtom,
 } from "../../recoil/util";
+import { DESKTOP_PAPER_WIDTH } from "../../Theme";
 
 const btnStyle = {
   display: "flex",
@@ -37,7 +38,8 @@ export const ClaimableAirdropRow: React.FC<{
   distributorInfo: DistributorInfo;
   underlyingToken: Token;
   quoteToken: Token;
-}> = ({ distributorInfo, underlyingToken }) => {
+  isMobile?: boolean;
+}> = ({ distributorInfo, underlyingToken, isMobile }) => {
   const setClaimAddress = useSetRecoilState(airdropAddress);
   const setClaimStage = useSetRecoilState(claimStage);
   const setRecipientJSON = useSetRecoilState(recipientJson);
@@ -50,6 +52,71 @@ export const ClaimableAirdropRow: React.FC<{
     description,
     optionName,
   } = distributorInfo;
+  const claimButton = (
+    <Button
+      sx={btnStyle}
+      variant="contained"
+      onClick={async (e) => {
+        setClaimAddress(address);
+        const recipients = await getRecipientsForDistributor({
+          distributorAddress: address,
+        });
+        const safeRecList = recipients.map((r: any) => {
+          if (
+            !r.amount ||
+            !r.recipient ||
+            typeof r.recipient !== "string" ||
+            typeof r.amount !== "string"
+          ) {
+            throw new Error("Improperly formatted json");
+          }
+          return {
+            amount: r.amount,
+            recipient: r.recipient,
+          };
+        }) as {
+          amount: string;
+          recipient: string;
+        }[];
+        const safeJson = {
+          name: description,
+          recipientList: safeRecList,
+        };
+        setRecipientJSON(safeJson);
+        const airdropAccountAddress = new PublicKey(address);
+        const accounts = (
+          await connection.getTokenAccountsByOwner(airdropAccountAddress, {
+            programId: TOKEN_PROGRAM_ID,
+          })
+        ).value.map((v) => v.account);
+
+        if (accounts[0]) {
+          const account = deserializeSplTokenAccount(accounts[0]);
+          const balance = Number(account.amount);
+          setAirdropBalance(balance);
+          setSelectedClaim(distributorInfo);
+          setClaimStage(2);
+          e.preventDefault();
+          setSelectedWindow("Claim");
+        }
+      }}
+      key={address}
+    >
+      Claim
+    </Button>
+  );
+  if (isMobile)
+    return (
+      <Box>
+        <Stack direction={"row"} justifyContent={"space-between"}>
+          <Box>
+            <Avatar src={underlyingToken.logoURI} />
+          </Box>
+          <Typography variant="body2">{optionName}</Typography>
+          {claimButton}
+        </Stack>
+      </Box>
+    );
   return (
     <Box
       my={2}
@@ -59,7 +126,7 @@ export const ClaimableAirdropRow: React.FC<{
         justifyContent: "center",
         alignItems: "flex-start",
         gap: "8px",
-        width: "664px",
+        width: DESKTOP_PAPER_WIDTH,
         height: "72px",
         background: "#ffffff",
         borderRadius: "8px",
@@ -118,60 +185,7 @@ export const ClaimableAirdropRow: React.FC<{
             my: "auto",
           }}
         >
-          <Button
-            sx={btnStyle}
-            variant="contained"
-            onClick={async (e) => {
-              setClaimAddress(address);
-              const recipients = await getRecipientsForDistributor({
-                distributorAddress: address,
-              });
-              const safeRecList = recipients.map((r: any) => {
-                if (
-                  !r.amount ||
-                  !r.recipient ||
-                  typeof r.recipient !== "string" ||
-                  typeof r.amount !== "string"
-                ) {
-                  throw new Error("Improperly formatted json");
-                }
-                return {
-                  amount: r.amount,
-                  recipient: r.recipient,
-                };
-              }) as {
-                amount: string;
-                recipient: string;
-              }[];
-              const safeJson = {
-                name: description,
-                recipientList: safeRecList,
-              };
-              setRecipientJSON(safeJson);
-              const airdropAccountAddress = new PublicKey(address);
-              const accounts = (
-                await connection.getTokenAccountsByOwner(
-                  airdropAccountAddress,
-                  {
-                    programId: TOKEN_PROGRAM_ID,
-                  }
-                )
-              ).value.map((v) => v.account);
-
-              if (accounts[0]) {
-                const account = deserializeSplTokenAccount(accounts[0]);
-                const balance = Number(account.amount);
-                setAirdropBalance(balance);
-                setSelectedClaim(distributorInfo);
-                setClaimStage(2);
-                e.preventDefault();
-                setSelectedWindow("Claim");
-              }
-            }}
-            key={address}
-          >
-            Claim
-          </Button>
+          {claimButton}
         </Box>
       </Box>
     </Box>

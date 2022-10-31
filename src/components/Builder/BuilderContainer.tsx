@@ -12,7 +12,7 @@ import { OptionMinting } from "./OptionMinting";
 import { AirdropSuccess } from "./AirdropSuccess";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { PAPER_COLOR } from "../../Theme";
+import { DESKTOP_PAPER_WIDTH, PAPER_COLOR } from "../../Theme";
 
 export const Stage: React.FC<{
   title: string;
@@ -29,7 +29,7 @@ export const Stage: React.FC<{
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
-        width: "664px",
+        width: DESKTOP_PAPER_WIDTH,
         cursor: "default",
         background: PAPER_COLOR,
         marginBottom: isCurrent ? "0px" : "16px",

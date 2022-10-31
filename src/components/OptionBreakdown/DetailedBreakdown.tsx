@@ -14,7 +14,11 @@ import { useRecoilValue } from "recoil";
 import { useOptionBreakdown } from "../../hooks/useOptionBreakdown";
 import { displayStrikePrice, mapNetworkTypes } from "../../lib/utils";
 import { networkAtom, TokenAccountWithKey } from "../../recoil";
-import { DEFAULT_TEXT_COLOR, PAPER_COLOR } from "../../Theme";
+import {
+  DEFAULT_TEXT_COLOR,
+  DESKTOP_PAPER_WIDTH,
+  PAPER_COLOR,
+} from "../../Theme";
 import { Project } from "../../types";
 import { ExerciseForm } from "../ExerciseForm";
 
@@ -24,7 +28,7 @@ const styles: Record<string, SxProps<Theme>> = {
     flexDirection: "column",
     alignItems: "flex-start",
     gap: "24px",
-    width: "664px",
+    width: DESKTOP_PAPER_WIDTH,
     backgroundColor: PAPER_COLOR,
     borderRadius: "6px",
     my: 3,

@@ -7,11 +7,13 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { useLoadSplTokens } from "../../hooks/wallet";
 import {
   selectOwnedProjectOptionKeys,
   useLoadPsyAmericanOptions,
 } from "../../recoil";
+import { SMALL_SCREEN_WIDTH } from "../../Theme";
 import { OptionCardWithAction } from "./OptionCard";
 
 const loadingContainerStyles: SxProps<Theme> = {
@@ -23,6 +25,7 @@ export const OptionsDisplay: React.VFC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const ownedProjectOptions = useRecoilValue(selectOwnedProjectOptionKeys);
   const load = useLoadPsyAmericanOptions();
+  const { width } = useWindowDimensions();
   useLoadSplTokens();
 
   useEffect(() => {
@@ -44,6 +47,7 @@ export const OptionsDisplay: React.VFC = () => {
           optionMetaKey={ownedOptionKey.optionMarketKey}
           tokenAccountKey={ownedOptionKey.tokenAccountKey}
           type={"Exercise"}
+          isMobile={width < SMALL_SCREEN_WIDTH}
         />
       ));
     })

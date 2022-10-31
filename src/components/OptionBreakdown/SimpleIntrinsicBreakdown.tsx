@@ -5,7 +5,7 @@ import { TokenAccountWithKey } from "../../recoil";
 import { Project } from "../../types";
 import { useOptionBreakdown } from "../../hooks/useOptionBreakdown";
 import { Box } from "@mui/system";
-import { PAPER_COLOR } from "../../Theme";
+import { DESKTOP_PAPER_WIDTH, PAPER_COLOR } from "../../Theme";
 
 export const StatBox: React.FC<{ title: string; value: string }> = ({
   title,
@@ -56,7 +56,7 @@ export const SimpleInstrinsicBreakdown: React.VFC<{
       direction={"row"}
       justifyContent={"space-between"}
       alignItems={"stretch"}
-      width={"664px"}
+      width={DESKTOP_PAPER_WIDTH}
     >
       <StatBox
         title="Tokens to receive"
