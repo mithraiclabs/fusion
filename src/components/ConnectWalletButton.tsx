@@ -2,11 +2,11 @@ import React, { useMemo } from "react";
 import { WalletMultiButton } from "@solana/wallet-adapter-material-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Box } from "@mui/system";
+import { BORDER_RADIUS_1 } from "../Theme";
 
 const styles: Record<string, React.CSSProperties> = {
   baseButton: {
-    borderRadius: "21px !important",
-    // @ts-ignore
+    borderRadius: BORDER_RADIUS_1,
     textTransform: "uppercase",
     display: "flex",
     flexDirection: "row",
@@ -67,7 +67,6 @@ export const FusionWalletButton: React.VFC = () => {
     <WalletMultiButton
       sx={{
         background: (theme) => theme.palette.secondary.dark,
-        borderRadius: "8px",
         width: "100%",
         height: "53px",
         color: "white",

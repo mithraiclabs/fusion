@@ -14,6 +14,8 @@ import {
 } from "../../recoil";
 import { useTokenPrice } from "../../hooks/wallet/useTokenPrice";
 import {
+  BORDER_RADIUS_2,
+  bottomBorderBox,
   DESKTOP_PAPER_WIDTH,
   MOBILE_PAPER_WIDTH,
   PAPER_COLOR,
@@ -32,7 +34,7 @@ const styles: Record<string, SystemStyleObject<Theme>> = {
     maxHeight: "69px",
     background: PAPER_COLOR,
     borderTop: "1px solid #AFAFAF",
-    borderRadius: "0px 0px 6px 6px",
+    ...bottomBorderBox,
     alignSelf: "stretch",
     flexGrow: 0,
   },
@@ -101,7 +103,7 @@ export const OptionInfo: React.VFC<{
         md={4}
         sx={{
           ...styles.bottomSection,
-          borderRadius: "0px 0px 0px 6px",
+          borderBottomLeftRadius: BORDER_RADIUS_2,
         }}
       >
         <Typography
@@ -148,7 +150,7 @@ export const OptionInfo: React.VFC<{
         md={4}
         sx={{
           ...styles.bottomSection,
-          borderRadius: "0px 0px 6px 0px",
+          borderBottomRightRadius: BORDER_RADIUS_2,
         }}
       >
         <Typography

@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { FusionButton } from "../../components/FusionButton";
-import { FusionPaper } from "../../components/FusionPaper";
 import { useClosePosition } from "../../hooks/psyAmerican/useClosePosition";
 import { useCloseWrittenOptionPostExpiration } from "../../hooks/psyAmerican/useCloseWrittenOptionPostExpiration";
 import { useExchangeWriterTokenForQuote } from "../../hooks/psyAmerican/useExchangeWriterForQuote";
@@ -16,7 +15,7 @@ import projectList from "../../projects/projectList";
 import { networkAtom, TokenAccountWithKey } from "../../recoil";
 import { RecoverClaim } from "../../components/WritersOverview/RecoverClaim";
 import { ProjectCard } from "../OptionsOverview/OptionCard";
-import { PAPER_COLOR } from "../../Theme";
+import { bottomBorderBox, PAPER_COLOR, topBorderBox } from "../../Theme";
 
 export const WriterActions: React.FC<{
   optionMeta: OptionMarketWithKey;
@@ -119,14 +118,21 @@ export const WriterActions: React.FC<{
     (!ableToBurnForUnderlying && !ableToBurnForQuote && !ableToClose)
   ) {
     return (
-      <FusionPaper
-        title={
-          !writerAmount
-            ? "No more writer tokens for this option market"
-            : "No claimable assets"
-        }
-        header={!writerAmount ? "Success" : undefined}
+      <Box
+        sx={{
+          px: 3,
+          py: 2,
+          background: PAPER_COLOR,
+          ...bottomBorderBox,
+          ...topBorderBox,
+        }}
       >
+        <Typography sx={{ marginBottom: "24px" }}>
+          {!writerAmount
+            ? "No more writer tokens for this option market"
+            : "No claimable assets"}
+        </Typography>
+
         <FusionButton
           color={project.primaryColor}
           title="Return to Token Recovery Page"
@@ -134,7 +140,7 @@ export const WriterActions: React.FC<{
             navigate("/recover");
           }}
         />
-      </FusionPaper>
+      </Box>
     );
   }
 
@@ -146,7 +152,7 @@ export const WriterActions: React.FC<{
             px: 3,
             py: 2,
             background: PAPER_COLOR,
-            borderRadius: "0px 0px 6px 6px",
+            ...bottomBorderBox,
           }}
         >
           <Typography variant="body1" component="p">

@@ -14,6 +14,7 @@ import {
   DESKTOP_PAPER_WIDTH,
   MOBILE_PAPER_WIDTH,
   PAPER_COLOR,
+  topBorderBox,
 } from "../../Theme";
 import { OptionInfo } from "./OptionInfo";
 
@@ -56,7 +57,7 @@ const styles: Record<string, SystemStyleObject<Theme>> = {
   },
   top: {
     backgroundColor: "#FFFFFF",
-    borderRadius: "6px 6px 0px 0px",
+    ...topBorderBox,
     width: DESKTOP_PAPER_WIDTH,
     height: "91px",
     display: "flex",

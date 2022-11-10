@@ -10,6 +10,8 @@ export const BORDER_COLOR = "#E6E6E6";
 export const SUCCESS_GREEN = "#3AB67A";
 export const PAPER_COLOR = "#EDEDED";
 export const DEFAULT_BG = "#E2E2DE";
+export const BORDER_RADIUS_1 = "20px";
+export const BORDER_RADIUS_2 = "6px";
 
 const theme = createTheme({
   spacing: 8,
@@ -85,7 +87,33 @@ const theme = createTheme({
       fontStyle: "normal",
     },
   },
+  components: {
+    MuiButtonBase: {
+      defaultProps: {
+        sx: {
+          borderRadius: BORDER_RADIUS_1,
+          textTransform: "uppercase",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          padding: "4px 16px",
+          alignItems: "center",
+        },
+      },
+    },
+  },
 });
+
+export const bottomBorderBox = {
+  borderBottomLeftRadius: BORDER_RADIUS_2,
+  borderBottomRightRadius: BORDER_RADIUS_2,
+};
+
+export const topBorderBox = {
+  borderTopLeftRadius: BORDER_RADIUS_2,
+  borderTopRightRadius: BORDER_RADIUS_2,
+};
+
 interface IThemeProps {
   children: any;
 }

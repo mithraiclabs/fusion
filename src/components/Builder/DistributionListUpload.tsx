@@ -243,7 +243,7 @@ const ManualRecipientInput: React.FC<{
                     padding: "10px 16px",
                     borderRadius: "4px",
                     height: "40px",
-                    width: "440px",
+                    width: "430px",
                   }}
                   value={recipient}
                   onChange={(event) => {
@@ -257,7 +257,7 @@ const ManualRecipientInput: React.FC<{
                   }}
                 />
               </TableCell>
-              <TableCell width={"6%"}>
+              <TableCell width={"5%"}>
                 <NumberInput
                   number={amount.toString()}
                   setNumber={(e: any) => {
@@ -283,7 +283,6 @@ const ManualRecipientInput: React.FC<{
               </TableCell>
               <TableCell width={"3%"}>
                 <Button
-                  sx={{ padding: "0px 0px 0px 0px" }}
                   disableRipple
                   onClick={() => {
                     setList(
@@ -319,7 +318,7 @@ const ManualRecipientInput: React.FC<{
   );
 };
 
-declare type ManualRecipient = {
+export declare type ManualRecipient = {
   recipient: string;
   amount: number;
 };

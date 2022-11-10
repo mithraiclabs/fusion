@@ -1,8 +1,9 @@
 import { FusionButton } from "../FusionButton";
-import { FusionPaper } from "../FusionPaper";
 import { NumberInput } from "../NumberInput";
-
 import { Project } from "../../types";
+import { BORDER_RADIUS_2 } from "../../Theme";
+import { Box, Typography } from "@mui/material";
+import { boxStyle } from "../Builder";
 
 type RecoveryType = "BurnForQuote" | "BurnForUnderlying" | "ClosePosition";
 
@@ -50,13 +51,9 @@ export const RecoverClaim: React.FC<{
   onClick,
 }) => {
   return (
-    <FusionPaper
-      divisor={true}
-      border={true}
-      header={header(type)}
-      title={title(type)}
-      borderColor={project.primaryColor}
-    >
+    <Box sx={boxStyle}>
+      <Typography variant="h4">{header(type)}</Typography>
+      <Typography variant="body2">{title(type)}</Typography>
       <NumberInput
         number={String(amountToBurn)}
         setMax={() => setAmountToBurn(max.toString())}
@@ -66,8 +63,7 @@ export const RecoverClaim: React.FC<{
         max={max}
         sx={{
           marginY: 2,
-          border: `2px solid ${project.primaryColor}`,
-          borderRadius: "6px",
+          borderRadius: BORDER_RADIUS_2,
         }}
       />
       <FusionButton
@@ -78,6 +74,6 @@ export const RecoverClaim: React.FC<{
           type === "BurnForQuote" ? quoteSymbol : project.symbol
         }`}
       />
-    </FusionPaper>
+    </Box>
   );
 };

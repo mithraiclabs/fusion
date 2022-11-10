@@ -92,7 +92,6 @@ export const NumberInput: React.VFC<PsyNumberInputProps> = ({
         sx={[
           !!sx && sx,
           {
-            padding: "0px 0px 0px 0px",
             width: "100%",
             maxHeight: "44px",
           },
