@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = `https://fusion-b.herokuapp.com/api`;
+const API_URL = `https://fusion-api-0.herokuapp.com/api`;
 
 export const pushDistributorInfo = async ({
   distributorAddress,
