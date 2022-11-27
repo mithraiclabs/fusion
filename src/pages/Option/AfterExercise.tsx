@@ -11,6 +11,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { networkAtom } from "../../recoil";
 import { mapNetworkTypes } from "../../lib/utils";
 import { selectedWindowAtom } from "../../recoil/util";
+import { BORDER_RADIUS_2 } from "../../Theme";
 
 const styles: Record<string, SxProps<Theme>> = {
   container: {
@@ -19,7 +20,7 @@ const styles: Record<string, SxProps<Theme>> = {
     flexDirection: "column",
     alignItems: "center",
     my: 4,
-    borderRadius: "6px",
+    borderRadius: BORDER_RADIUS_2,
     marginRight: "auto",
     marginLeft: "auto",
   },

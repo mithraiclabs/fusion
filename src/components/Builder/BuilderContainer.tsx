@@ -12,7 +12,12 @@ import { OptionMinting } from "./OptionMinting";
 import { AirdropSuccess } from "./AirdropSuccess";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { DESKTOP_PAPER_WIDTH, PAPER_COLOR } from "../../Theme";
+import {
+  BORDER_RADIUS_2,
+  bottomBorderBox,
+  DESKTOP_PAPER_WIDTH,
+  PAPER_COLOR,
+} from "../../Theme";
 
 export const Stage: React.FC<{
   title: string;
@@ -34,7 +39,7 @@ export const Stage: React.FC<{
         background: PAPER_COLOR,
         marginBottom: isCurrent ? "0px" : "16px",
         height: "66px",
-        borderRadius: "6px",
+        borderRadius: BORDER_RADIUS_2,
         paddingBottom: "none",
         "&:hover": {
           background: completed && !isCurrent ? "#F4F4F4" : undefined,
@@ -46,8 +51,7 @@ export const Stage: React.FC<{
         sx={{
           color: completed ? "#3AB67A" : "#AFAFAF",
           textAlign: "center",
-          paddingLeft: "24px",
-          paddingTop: "24px",
+          padding: "24px",
           letterSpacing: "0.25px",
           ...(isCurrent && {
             color: "black",
@@ -169,11 +173,10 @@ export const BuilderContainer: React.VFC = () => {
   );
 };
 
-const boxStyle = {
+export const boxStyle = {
   background: PAPER_COLOR,
-  marginTop: "0px",
+  marginTop: "-24px",
   marginBottom: "24px",
-  paddingLeft: "24px",
-  paddingBottom: "24px",
-  borderRadius: "0px 0px 6px 6px",
+  padding: "24px",
+  ...bottomBorderBox,
 };

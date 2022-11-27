@@ -16,7 +16,12 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { selectedWindowAtom, WindowType } from "../recoil/util";
 import { useRecoilState } from "recoil";
-import { DESKTOP_PAPER_WIDTH, PAPER_COLOR, SMALL_SCREEN_WIDTH } from "../Theme";
+import {
+  BORDER_RADIUS_2,
+  DESKTOP_PAPER_WIDTH,
+  PAPER_COLOR,
+  SMALL_SCREEN_WIDTH,
+} from "../Theme";
 import { ClaimContainer } from "../components/Claimer/ClaimContainer";
 import { WriterOverview } from "../components/WritersOverview";
 import { DiscordIcon } from "../components/Images/icons/discord-icon";
@@ -304,7 +309,7 @@ const dashboardBtnStyle = {
   order: 1,
   alignSelf: "stretch",
   background: PAPER_COLOR,
-  borderRadius: "6px",
+  borderRadius: BORDER_RADIUS_2,
   padding: "8px 16px",
   height: "92px",
   width: "198px",

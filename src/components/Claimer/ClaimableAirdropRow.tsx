@@ -16,19 +16,18 @@ import {
   selectedClaim,
   selectedWindowAtom,
 } from "../../recoil/util";
-import { DESKTOP_PAPER_WIDTH } from "../../Theme";
+import {
+  BORDER_RADIUS_1,
+  BORDER_RADIUS_2,
+  DESKTOP_PAPER_WIDTH,
+} from "../../Theme";
 
 const btnStyle = {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: "4px 16px",
   gap: "8px",
   alignSelf: "flex-end",
   height: "32px",
   background: "#454545",
-  borderRadius: "20px",
+  borderRadius: BORDER_RADIUS_1,
   flex: "none",
   order: 3,
   flexGrow: 0,
@@ -129,7 +128,7 @@ export const ClaimableAirdropRow: React.FC<{
         width: DESKTOP_PAPER_WIDTH,
         height: "72px",
         background: "#ffffff",
-        borderRadius: "8px",
+        borderRadius: BORDER_RADIUS_2,
         flex: "none",
         order: 1,
         alignSelf: "stretch",
