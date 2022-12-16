@@ -6,7 +6,7 @@ import { Network } from "./types";
 
 export const networkAtom = atom<Network>({
   key: "network",
-  default: networks["mainnet-srm"],
+  default: networks[WalletAdapterNetwork.Mainnet],
   effects: [
     ({ setSelf }) => {
       const { cluster } = queryString.parse(window.location.search);
