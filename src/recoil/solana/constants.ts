@@ -4,9 +4,9 @@ import { Network } from "./types";
 export const networks: Record<string, Network> = {
   [WalletAdapterNetwork.Mainnet]: {
     key: WalletAdapterNetwork.Mainnet,
-    url: "https://cold-spring-firefly.solana-mainnet.quiknode.pro/fb2f6bf2e85873369a41f4ae277376aa8ea4bb9f",
+    url: "https://cold-spring-firefly.solana-mainnet.quiknode.pro/0c365be8d2d5f50be883ea0afcfb2fb31452e755",
     name: "Mainnet-beta",
-    ws: "wss://cold-spring-firefly.solana-mainnet.quiknode.pro/fb2f6bf2e85873369a41f4ae277376aa8ea4bb9f",
+    ws: "wss://cold-spring-firefly.solana-mainnet.quiknode.pro/0c365be8d2d5f50be883ea0afcfb2fb31452e755",
   },
   "mainnet-srm": {
     key: "mainnet-srm",
