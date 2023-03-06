@@ -11,3 +11,11 @@ export type OwnedOptionKeys = {
 };
 
 export type OwnedProjectOptionKeys = Record<string, OwnedOptionKeys[]>;
+
+export type PriceData = {
+  [symbol: string]: {
+    price: number;
+    change: number;
+    lastChanged: number;
+  };
+};

@@ -4,9 +4,16 @@ import { Network } from "./types";
 export const networks: Record<string, Network> = {
   [WalletAdapterNetwork.Mainnet]: {
     key: WalletAdapterNetwork.Mainnet,
-    url: "https://cold-spring-firefly.solana-mainnet.quiknode.pro/0c365be8d2d5f50be883ea0afcfb2fb31452e755",
+    url:
+      process.env.NODE_ENV === "development"
+        ? // Use different endpoint on dev env due to domain restrictions.
+          "https://neat-holy-pallet.solana-mainnet.discover.quiknode.pro/b7f3b928fe2c19c5037fa6e85c560e01239535be/"
+        : "https://rpc1.psyfi.io/3acfe7e84a926c3353c55532307cf2ecd7bf9f5e/",
     name: "Mainnet-beta",
-    ws: "wss://cold-spring-firefly.solana-mainnet.quiknode.pro/0c365be8d2d5f50be883ea0afcfb2fb31452e755",
+    ws:
+      process.env.NODE_ENV === "development" // Use different endpoint on dev env due to domain restrictions.
+        ? "wss://neat-holy-pallet.solana-mainnet.discover.quiknode.pro/b7f3b928fe2c19c5037fa6e85c560e01239535be/"
+        : "wss://rpc1.psyfi.io/3acfe7e84a926c3353c55532307cf2ecd7bf9f5e/",
   },
   "mainnet-srm": {
     key: "mainnet-srm",

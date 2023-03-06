@@ -12,7 +12,6 @@ import {
   optionMarketFamily,
   tokenAccountsMap,
 } from "../../recoil";
-import { useTokenPrice } from "../../hooks/wallet/useTokenPrice";
 import {
   BORDER_RADIUS_2,
   bottomBorderBox,
@@ -21,6 +20,7 @@ import {
   PAPER_COLOR,
 } from "../../Theme";
 import { SystemStyleObject } from "@mui/system";
+import { spotPriceMap } from "../../recoil/util";
 
 const styles: Record<string, SystemStyleObject<Theme>> = {
   bottom: {
@@ -82,8 +82,7 @@ export const OptionInfo: React.VFC<{
   const optionMeta = useRecoilValue(optionMarketFamily(optionMetaKey));
   const tokenAccount = useRecoilValue(tokenAccountsMap(tokenAccountKey));
   const project = projectList[mapNetworkTypes(network.key)][projectKey];
-  const prices = useTokenPrice();
-
+  const prices = useRecoilValue(spotPriceMap);
   const tokenPrice = prices[project.symbol]?.price ?? 0;
   if (!optionMeta) {
     throw new Error(`Could not find OptionMarket with key ${optionMetaKey}`);
