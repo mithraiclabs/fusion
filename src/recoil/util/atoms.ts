@@ -1,6 +1,7 @@
 import { PublicKey } from "@solana/web3.js";
 import { atom } from "recoil";
 import { recipientJsonType } from "../../types";
+import { PriceData } from "../wallet";
 
 export interface ProjectAirdropInfo {
   underlyingAssetMint: string;
@@ -77,6 +78,11 @@ export const selectedClaim = atom<DistributorInfo | null>({
 export const selectedWindowAtom = atom<WindowType>({
   key: "selectedWindow",
   default: "Home",
+});
+
+export const spotPriceMap = atom<PriceData>({
+  key: "spotPriceMap",
+  default: {},
 });
 
 export type DistributorInfo = {

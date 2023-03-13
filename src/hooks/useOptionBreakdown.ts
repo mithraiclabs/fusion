@@ -7,8 +7,8 @@ import {
   tokensToReceive,
 } from "../lib/utils";
 import { networkAtom, TokenAccountWithKey } from "../recoil";
+import { spotPriceMap } from "../recoil/util";
 import { Project } from "../types";
-import { useTokenPrice } from "./wallet/useTokenPrice";
 
 // TODO: Add strike price in quote to here.
 
@@ -32,7 +32,7 @@ export const useOptionBreakdown = ({
   tokenAccount: TokenAccountWithKey;
   project: Project;
 }): OptionBreakdown => {
-  const prices = useTokenPrice();
+  const prices = useRecoilValue(spotPriceMap);
   const underlyingPrice = prices[project.symbol]?.price ?? 0;
   const network = useRecoilValue(networkAtom);
 
