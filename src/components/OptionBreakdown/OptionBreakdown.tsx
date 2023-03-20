@@ -3,6 +3,7 @@ import React from "react";
 import { Navigate, useMatch } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { useExercisedOption } from "../../context/ExercisedOptionContext";
+import { useNetworkTokens } from "../../hooks/useNetworkTokens";
 import { mapNetworkTypes } from "../../lib/utils";
 import { AfterExercise } from "../../pages/Option/AfterExercise";
 import projectList from "../../projects/projectList";
@@ -19,6 +20,7 @@ import { SimpleInstrinsicBreakdown } from "./SimpleIntrinsicBreakdown";
 export const OptionBreakdown: React.VFC = () => {
   const optionMarketKey = useMatch("/option/:key")?.params?.key || "";
   const network = useRecoilValue(networkAtom);
+  const tokens = useNetworkTokens();
   const exercisedOptionParams = useExercisedOption();
   // Load the OptionMarket data from the option market key
   const optionMeta = useRecoilValue(optionMarketFamily(optionMarketKey));
@@ -33,7 +35,8 @@ export const OptionBreakdown: React.VFC = () => {
   // Load the project information from the token min
   const project =
     projectList[mapNetworkTypes(network.key)][underlyingTokenMint.toString()];
-  if (!project) {
+  const token = tokens[underlyingTokenMint.toString()];
+  if (!project && !token) {
     throw new Error(`Could not find project with key ${underlyingTokenMint}`);
   }
   if (!optionTokenAccount) {
@@ -54,23 +57,24 @@ export const OptionBreakdown: React.VFC = () => {
         }}
       >
         <Avatar
-          src={project.logo}
+          src={project?.logo ?? token?.logoURI}
           sx={{
             height: "32px",
             width: "32px",
           }}
         />
-        <Typography variant="h4">{project.name}</Typography>
+        <Typography variant="h4">{project?.name ?? token?.name}</Typography>
       </Box>
       <Typography variant="body1" marginBottom={3}>
-        {project.symbol} options rewards are American style. They can be
-        exercised to buy the underlying {project.symbol} token at the strike
-        price until expiry
+        {project?.symbol ?? token?.symbol} options rewards are American style.
+        They can be exercised to buy the underlying{" "}
+        {project?.symbol ?? token?.symbol} token at the strike price until
+        expiry
       </Typography>
-      {!!project.website && (
+      {!!project?.website && (
         <Box marginBottom={3}>
           <Link
-            href={project.website}
+            href={project?.website}
             rel="noopener"
             target="_blank"
             variant="body1"
@@ -94,13 +98,13 @@ export const OptionBreakdown: React.VFC = () => {
               <SimpleInstrinsicBreakdown
                 optionMeta={optionMeta}
                 optionTokenAccount={optionTokenAccount}
-                project={project}
+                project={project ?? token}
               />
 
               <DetailedBreakdown
                 optionMeta={optionMeta}
                 optionTokenAccount={optionTokenAccount}
-                project={project}
+                project={project ?? token}
               />
             </>
           )}

@@ -1,6 +1,5 @@
 import { FusionButton } from "../FusionButton";
 import { NumberInput } from "../NumberInput";
-import { Project } from "../../types";
 import { BORDER_RADIUS_2 } from "../../Theme";
 import { Box, Typography } from "@mui/material";
 import { boxStyle } from "../Builder";
@@ -33,7 +32,7 @@ const title = (type: RecoveryType) => {
 
 export const RecoverClaim: React.FC<{
   type: RecoveryType;
-  project: Project;
+  projectSymbol: string;
   max: number;
   amountToBurn: string;
   amountToReceive: number;
@@ -42,7 +41,7 @@ export const RecoverClaim: React.FC<{
   quoteSymbol?: string;
 }> = ({
   type,
-  project,
+  projectSymbol,
   max,
   amountToBurn,
   amountToReceive,
@@ -67,11 +66,10 @@ export const RecoverClaim: React.FC<{
         }}
       />
       <FusionButton
-        color={project.primaryColor}
         onClick={onClick}
         disabled={!amountToBurn}
         title={`+${amountToReceive} ${
-          type === "BurnForQuote" ? quoteSymbol : project.symbol
+          type === "BurnForQuote" ? quoteSymbol : projectSymbol
         }`}
       />
     </Box>

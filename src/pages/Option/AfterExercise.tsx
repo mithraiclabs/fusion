@@ -12,6 +12,7 @@ import { networkAtom } from "../../recoil";
 import { mapNetworkTypes } from "../../lib/utils";
 import { selectedWindowAtom } from "../../recoil/util";
 import { BORDER_RADIUS_2 } from "../../Theme";
+import { useNetworkTokens } from "../../hooks/useNetworkTokens";
 
 const styles: Record<string, SxProps<Theme>> = {
   container: {
@@ -37,11 +38,13 @@ export const AfterExercise: React.VFC = () => {
   const network = useRecoilValue(networkAtom);
   const resetExercisedData = useResetExercisedOption();
   const setWindow = useSetRecoilState(selectedWindowAtom);
+  const tokens = useNetworkTokens();
   const exercisedInfo = useExercisedOption();
   const project =
     projectList[mapNetworkTypes(network.key)][
       exercisedInfo.optionMarket?.underlyingAssetMint.toString() ?? ""
-    ];
+    ] ??
+    tokens[exercisedInfo.optionMarket?.underlyingAssetMint.toString() ?? ""];
   return (
     <Box sx={styles.container}>
       <ExerciseSuccess project={project} />

@@ -37,9 +37,8 @@ export const OptionsDisplay: React.VFC = () => {
   }, [load]);
 
   // Display the individual options
-  const optionCards = Object.keys(ownedProjectOptions)
-    .map((projectKey) => {
-      const ownedOptionKeys = ownedProjectOptions[projectKey];
+  const optionCards = Object.entries(ownedProjectOptions)
+    .map(([projectKey, ownedOptionKeys]) => {
       return ownedOptionKeys.map((ownedOptionKey) => (
         <OptionCardWithAction
           key={ownedOptionKey.optionMarketKey}

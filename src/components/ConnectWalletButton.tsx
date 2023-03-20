@@ -40,7 +40,8 @@ export const ConnectWalletButton: React.VFC<{
       return (
         <>
           {WalletIcon}
-          <Box mx={0.4}></Box>Connect Wallet
+          <Box mx={0.4}></Box>
+          <p>Connect Wallet</p>
         </>
       );
     return base58.slice(0, 4) + ".." + base58.slice(-4);
@@ -55,6 +56,7 @@ export const ConnectWalletButton: React.VFC<{
           color: "secondary.dark",
           backgroundColor: "#000000 !important",
         }),
+        fontSize: 13,
       }}
     >
       {content}

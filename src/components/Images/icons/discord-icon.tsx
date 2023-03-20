@@ -29,9 +29,8 @@ export const DiscordIcon: React.VFC<{ size: number; color?: string }> = ({
           width="123.615"
           height="118"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood result="BackgroundImageFix" />
           <feGaussianBlur in="BackgroundImageFix" stdDeviation="25" />
           <feComposite
             in2="SourceAlpha"

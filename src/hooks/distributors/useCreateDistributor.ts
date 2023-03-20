@@ -57,18 +57,27 @@ export const useCreateDistributor = () => {
       description,
       name: optionName,
     } = _projectInfo;
-    if (
-      !underlyingAssetMint ||
-      !quoteAssetMint ||
-      !expiration ||
-      !underlyingPerContract ||
-      !quotePerContract ||
-      !description ||
-      !optionMarketKey ||
-      !optionName
-    ) {
-      throw new Error("Missing option market data");
+    if (!underlyingAssetMint || !quoteAssetMint) {
+      showMessage("Underlying and/or quote asset not selected");
+      throw new Error("Missing underlying/quote mint");
     }
+    if (!expiration) {
+      showMessage("Expiration not set");
+      throw new Error("Missing expiration");
+    }
+    if (!underlyingPerContract || !quotePerContract) {
+      showMessage("Strike price data not set (underlying/quote per contract)");
+      throw new Error("Missing underlying/quote per contract");
+    }
+    if (!description || !optionName) {
+      showMessage("Airdrop description/name cannot be empty");
+      throw new Error("Missing name/description");
+    }
+    if (!optionMarketKey) {
+      showMessage("Something went wrong, please try again");
+      throw new Error("Missing optionMarketKey");
+    }
+
     const strikePrice = decDiv(quotePerContract, underlyingPerContract);
     const balanceMap: { [authority: string]: BN } = {};
     selectedJson?.recipientList.forEach(
@@ -144,7 +153,9 @@ export const useCreateDistributor = () => {
         },
         optionTokenQty: totalOptions,
         description: _projectInfo?.description ?? "no description",
-        isMainnet: network.key === WalletAdapterNetwork.Mainnet,
+        isMainnet:
+          network.key === WalletAdapterNetwork.Mainnet ||
+          network.name.toLowerCase().includes("mainnet"),
         recipients: selectedJson?.recipientList ?? [],
       });
       return {
@@ -161,15 +172,16 @@ export const useCreateDistributor = () => {
     }
   }, [
     publicKey,
-    connection,
-    totalOptions,
-    optionTokenMint,
-    sdk,
-    selectedJson,
-    _projectInfo,
-    network.key,
-    optionMarketKey,
     signTransaction,
+    optionTokenMint,
+    _projectInfo,
+    optionMarketKey,
+    selectedJson?.recipientList,
     showMessage,
+    sdk,
+    totalOptions,
+    connection,
+    network.key,
+    network.name,
   ]);
 };

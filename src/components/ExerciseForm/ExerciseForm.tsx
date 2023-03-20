@@ -14,12 +14,14 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useBurnTokens } from "../../hooks/wallet/useBurnTokens";
 import { FusionButton } from "../FusionButton";
 import { NumberInput } from "../NumberInput";
+import { useNetworkTokens } from "../../hooks/useNetworkTokens";
 
 export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
   optionMarketKey,
 }) => {
   const [loading, setLoading] = useState(false);
   const network = useRecoilValue(networkAtom);
+  const tokens = useNetworkTokens();
   // Load the OptionMarket data from the option market key
   const optionMeta = useRecoilValue(optionMarketFamily(optionMarketKey));
   const exerciseOptions = useExerciseOptions(optionMeta);
@@ -49,7 +51,8 @@ export const ExerciseForm: React.VFC<{ optionMarketKey: string }> = ({
   const underlyingTokenMint = optionMeta.underlyingAssetMint;
   // Load the project information from the token min
   const project =
-    projectList[mapNetworkTypes(network.key)][underlyingTokenMint.toString()];
+    projectList[mapNetworkTypes(network.key)][underlyingTokenMint.toString()] ??
+    tokens[underlyingTokenMint.toString()];
   if (!project) {
     throw new Error(`Could not find project with key ${underlyingTokenMint}`);
   }

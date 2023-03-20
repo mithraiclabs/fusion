@@ -49,7 +49,8 @@ export const WriterActions: React.FC<{
   const underlyingToken = tokens[underlyingAssetMint.toString()];
   const project =
     projectList[mapNetworkTypes(network.key)][underlyingToken.address];
-
+  const projectSymbol =
+    project?.symbol ?? tokens[underlyingAssetMint.toString()].symbol;
   const quoteVaultContractQty = quoteVaultAmount
     .div(quoteAmountPerContract)
     .toNumber();
@@ -112,7 +113,7 @@ export const WriterActions: React.FC<{
   const ableToBurnForUnderlying = expired && !!Number(underlyingVaultAmount);
   // IF quoteVaultAmount > 0 you can claim quote
   const ableToBurnForQuote = !!Number(quoteVaultAmount);
-
+  const token = tokens[underlyingAssetMint.toString()];
   if (
     !writerAmount ||
     (!ableToBurnForUnderlying && !ableToBurnForQuote && !ableToClose)
@@ -134,7 +135,7 @@ export const WriterActions: React.FC<{
         </Typography>
 
         <FusionButton
-          color={project.primaryColor}
+          color={project?.primaryColor ?? undefined}
           title="Return to Token Recovery Page"
           onClick={() => {
             navigate("/recover");
@@ -146,7 +147,10 @@ export const WriterActions: React.FC<{
 
   return (
     <Box marginBottom={4}>
-      <ProjectCard projectKey={project.mintAddress} fixedHeight={false}>
+      <ProjectCard
+        projectKey={underlyingAssetMint.toString()}
+        fixedHeight={false}
+      >
         <Box
           sx={{
             px: 3,
@@ -156,8 +160,8 @@ export const WriterActions: React.FC<{
           }}
         >
           <Typography variant="body1" component="p">
-            {project.symbol} options rewards are American style. They can be
-            exercised to buy the underlying {project.symbol} token at the strike
+            {projectSymbol} options rewards are American style. They can be
+            exercised to buy the underlying {projectSymbol} token at the strike
             price until expiry
           </Typography>
           <Typography>Writer Tokens Remaining: {writerAmount}</Typography>
@@ -169,7 +173,7 @@ export const WriterActions: React.FC<{
       {ableToClose && (
         <RecoverClaim
           type={"ClosePosition"}
-          project={project}
+          projectSymbol={project ? project.symbol : token.symbol}
           max={contractsClosable}
           amountToBurn={contractsToClose}
           amountToReceive={amountToReceiveFromClosing}
@@ -185,7 +189,7 @@ export const WriterActions: React.FC<{
       {ableToBurnForUnderlying && (
         <RecoverClaim
           type={"BurnForUnderlying"}
-          project={project}
+          projectSymbol={project ? project.symbol : token.symbol}
           max={contractsCovertableToUnderlying}
           amountToBurn={contractsToUnderlying}
           amountToReceive={amountToReceiveFromUnderlyingClaim}
@@ -200,7 +204,7 @@ export const WriterActions: React.FC<{
       {ableToBurnForQuote && (
         <RecoverClaim
           type={"BurnForQuote"}
-          project={project}
+          projectSymbol={project ? project.symbol : token.symbol}
           max={contractsCovertableToQuote}
           amountToBurn={contractsToQuote}
           amountToReceive={amountToReceiveFromQuoteClaim}
