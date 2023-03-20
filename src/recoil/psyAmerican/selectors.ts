@@ -87,17 +87,18 @@ export const selectOwnedProjectWriterKeys = selector<OwnedProjectOptionKeys>({
       const writerTokenAccount = get(
         tokenAccountsMap(optionMarket.writerTokenMint.toString())
       );
-      const optionTokenAccount = get(
-        tokenAccountsMap(optionMarket.optionMint.toString())
-      );
+      // const optionTokenAccount = get(
+      //   tokenAccountsMap(optionMarket.optionMint.toString())
+      // );
 
-      const optionMeta = get(optionMarketFamily(optionMarket.key.toString()));
+      // const optionMeta = get(optionMarketFamily(optionMarket.key.toString()));
 
       if (
         writerTokenAccount &&
-        writerTokenAccount.amount &&
-        ((optionTokenAccount && optionTokenAccount.amount) ||
-          optionMeta?.expired)
+        writerTokenAccount.amount
+        // &&
+        // ((optionTokenAccount && optionTokenAccount.amount) ||
+        //   optionMeta?.expired)
       ) {
         const underlyingMint = optionMarket.underlyingAssetMint.toString();
         if (agg[underlyingMint] && Array.isArray(agg[underlyingMint])) {
