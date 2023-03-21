@@ -167,7 +167,7 @@ export function displayStrikePrice(
     quoteToken.decimals,
     underlyingToken.decimals
   );
-  return `${strike.toFixed(2)} ${quoteToken.symbol}`;
+  return `${formatTokenPrice(strike)} ${quoteToken.symbol}`;
 }
 
 export function calculateStrike(
@@ -300,4 +300,13 @@ export const validDistributorJSON = (json: any) => {
   if (!json) return false;
   if (json.recipientList && Array.isArray(json.recipientList)) return true;
   return false;
+};
+
+// ensures small price values (< 0.01) will display at least 2 significant decimals
+export const formatTokenPrice = (price: number) => {
+  const significantDecimalPlaces = Math.max(
+    2,
+    (price.toString().split(".")[1] || "").search(/[^0]/) + 2
+  );
+  return price.toFixed(significantDecimalPlaces);
 };

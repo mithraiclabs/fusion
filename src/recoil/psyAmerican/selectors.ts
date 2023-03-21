@@ -29,23 +29,12 @@ export const selectOwnedProjectOptionKeys = selector<OwnedProjectOptionKeys>({
   key: "selectOwnedProjectOptions",
   get: ({ get }) => {
     const psyAmericanOptions = get(selectAllOptionMarkets);
-    // const network = get(networkAtom);
     const ownedOptions = psyAmericanOptions.reduce((agg, optionMarket) => {
-      // // Filter out all the one's that are  not long calls for a known project
-      // const project =
-      //   projectList[mapNetworkTypes(network.key)][
-      //     optionMarket.underlyingAssetMint.toString()
-      //   ];
-      // if (!project) return agg;
-
-      // Check if the wallet contains the option
+      // Check if the wallet contains the option token
       const tokenAccount = get(
         tokenAccountsMap(optionMarket.optionMint.toString())
       );
-      const writerTokenAccount = get(
-        tokenAccountsMap(optionMarket.writerTokenMint.toString())
-      );
-      if (!tokenAccount && !writerTokenAccount) return agg;
+      if (!tokenAccount) return agg;
       if (tokenAccount && tokenAccount.amount) {
         const underlyingMint = optionMarket.underlyingAssetMint.toString();
         if (agg[underlyingMint] && Array.isArray(agg[underlyingMint])) {
@@ -75,31 +64,12 @@ export const selectOwnedProjectWriterKeys = selector<OwnedProjectOptionKeys>({
   key: "selectOwnedProjectWriterKeys",
   get: ({ get }) => {
     const psyAmericanOptions = get(selectAllOptionMarkets);
-    // const network = get(networkAtom);
     const ownedOptions = psyAmericanOptions.reduce((agg, optionMarket) => {
-      // // Filter out all the one's that are  not long calls for a known project
-      // const project =
-      //   projectList[mapNetworkTypes(network.key)][
-      //     optionMarket.underlyingAssetMint.toString()
-      //   ];
-
       // Check if the wallet contains the writer token
       const writerTokenAccount = get(
         tokenAccountsMap(optionMarket.writerTokenMint.toString())
       );
-      // const optionTokenAccount = get(
-      //   tokenAccountsMap(optionMarket.optionMint.toString())
-      // );
-
-      // const optionMeta = get(optionMarketFamily(optionMarket.key.toString()));
-
-      if (
-        writerTokenAccount &&
-        writerTokenAccount.amount
-        // &&
-        // ((optionTokenAccount && optionTokenAccount.amount) ||
-        //   optionMeta?.expired)
-      ) {
+      if (writerTokenAccount && writerTokenAccount.amount) {
         const underlyingMint = optionMarket.underlyingAssetMint.toString();
         if (agg[underlyingMint] && Array.isArray(agg[underlyingMint])) {
           agg[underlyingMint].push({

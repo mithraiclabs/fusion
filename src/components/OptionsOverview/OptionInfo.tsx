@@ -3,8 +3,10 @@ import { Grid, Theme, Typography } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import projectList from "../../projects/projectList";
 import {
+  contractsToAmount,
   displayExpirationDate,
   displayStrikePrice,
+  formatTokenPrice,
   mapNetworkTypes,
 } from "../../lib/utils";
 import {
@@ -120,7 +122,12 @@ export const OptionInfo: React.VFC<{
           Amount / strike
         </Typography>
         <Typography variant="body2" component="p">
-          {Number(tokenAccount?.amount)} @ {strike}
+          {contractsToAmount(
+            optionMeta.underlyingAmountPerContract,
+            Number(tokenAccount?.amount ?? 0),
+            tokens[projectKey].decimals
+          )}
+          @ {strike}
         </Typography>
       </Grid>
       <Grid
@@ -145,7 +152,7 @@ export const OptionInfo: React.VFC<{
         </Typography>
         {/* TODO: Make precision token/project specific? How to handle coins with many decimals and low value? */}
         <Typography variant="body2" component="p">
-          1 {projectSymbol} = ${tokenPrice?.toFixed(2)}
+          1 {projectSymbol} = ${formatTokenPrice(tokenPrice)}
         </Typography>
       </Grid>
       <Grid

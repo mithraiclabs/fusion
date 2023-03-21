@@ -7,7 +7,7 @@ import {
 } from "@solana/spl-token2";
 import { utils, MerkleDistributorSDK } from "@saberhq/merkle-distributor";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { Transaction } from "@solana/web3.js";
+import { Keypair, Transaction } from "@solana/web3.js";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { useShowSnackBar } from "../../context/SnackBarContext";
@@ -26,7 +26,7 @@ import { decDiv } from "../../lib/utils";
 
 export const useCreateDistributor = () => {
   const program = usePsyAmericanProgram();
-  const { publicKey, signTransaction } = useWallet();
+  const { publicKey, signTransaction, sendTransaction } = useWallet();
   const showMessage = useShowSnackBar();
   const provider = program.provider as AnchorProvider;
   const newProvider = makeSaberProvider(provider);
@@ -99,22 +99,28 @@ export const useCreateDistributor = () => {
     );
 
     try {
+      const newKP = new Keypair();
       const pendingDistributor = await sdk.createDistributor({
         root: merkleRoot,
         maxTotalClaim: new BN(totalOptions),
         maxNumNodes: new BN(Object.keys(claims).length),
         tokenMint: optionTokenMint,
+        base: newKP,
       });
       const { tx, ...distributorInfo } = pendingDistributor;
-      const pendingTx = await tx.send();
-      const receipt = await pendingTx.wait();
-      await pendingTx.confirm({});
-      receipt.printLogs();
+      console.log({ distributorInfo });
+      const built = tx.build(publicKey);
       console.log({
-        bump: distributorInfo.bump,
-        distributor: distributorInfo.distributor.toString(),
-        distribtuorATA: distributorInfo.distributorATA.toString(),
+        signers: tx.signers.map((s) => s.publicKey.toString()),
+        signatures: built.signatures,
+        distBase: distributorInfo.base.toString(),
       });
+      const recentBlockhash = await connection.getLatestBlockhash();
+      built.recentBlockhash = recentBlockhash.blockhash;
+      built.partialSign(newKP);
+      const tx1 = await sendTransaction(built, connection);
+      console.log({ tx1 });
+
       const toTokenAccount = distributorInfo.distributorATA;
 
       let optionTokenAccount = await getAssociatedTokenAddress(
@@ -136,10 +142,12 @@ export const useCreateDistributor = () => {
       sendTokenToDistributorTransaction.feePayer = publicKey;
       sendTokenToDistributorTransaction.recentBlockhash =
         latestBlockHash.blockhash;
-      const signed = await signTransaction(sendTokenToDistributorTransaction);
+      const tx2 = await sendTransaction(
+        sendTokenToDistributorTransaction,
+        connection
+      );
       // send the signed transaction
-      const signature = await connection.sendRawTransaction(signed.serialize());
-      showMessage("Success: distributor created", signature);
+      showMessage("Success: distributor created", tx2);
       const serverUpdated = await pushDistributorInfo({
         distributorAddress: distributorInfo.distributor.toString(),
         creatorWallet: publicKey.toString(),
@@ -181,6 +189,7 @@ export const useCreateDistributor = () => {
     sdk,
     totalOptions,
     connection,
+    sendTransaction,
     network.key,
     network.name,
   ]);

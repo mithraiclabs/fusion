@@ -16,6 +16,7 @@ const pythlessTokens = {
   "dust-protocol": "DUST",
   bonk: "BONK",
   psyoptions: "PSY",
+  solend: "SLND",
 } as any;
 
 export const useTokenPrice = () => {
