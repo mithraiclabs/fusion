@@ -46,7 +46,7 @@ export const useCloseWrittenOptionPostExpiration = (
       try {
         const transaction = new Transaction();
         const signers: Signer[] = [];
-        const { publicKey, signTransaction } = wallet;
+        const { publicKey } = wallet;
 
         let _underlyingAssetDestKey = await getAssociatedTokenAddress(
           market.underlyingAssetMint,

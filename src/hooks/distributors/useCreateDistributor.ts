@@ -163,7 +163,8 @@ export const useCreateDistributor = () => {
         description: _projectInfo?.description ?? "no description",
         isMainnet:
           network.key === WalletAdapterNetwork.Mainnet ||
-          network.name.toLowerCase().includes("mainnet"),
+          network.name.toLowerCase().includes("mainnet") ||
+          !network.url.includes("devnet"),
         recipients: selectedJson?.recipientList ?? [],
       });
       return {
@@ -192,5 +193,6 @@ export const useCreateDistributor = () => {
     sendTransaction,
     network.key,
     network.name,
+    network.url,
   ]);
 };
