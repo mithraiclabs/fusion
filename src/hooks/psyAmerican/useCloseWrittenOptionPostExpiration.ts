@@ -114,11 +114,7 @@ export const useCloseWrittenOptionPostExpiration = (
         for (let s of signers) {
           await transaction.partialSign(s);
         }
-        await signTransaction(transaction);
-
-        const txId = await connection.sendRawTransaction(
-          transaction.serialize()
-        );
+        const txId = await wallet.sendTransaction(transaction, connection);
         return txId ? true : false;
       } catch (err) {
         showMessage(String(err));

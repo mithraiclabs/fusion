@@ -3,8 +3,10 @@ import { Grid, Theme, Typography } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import projectList from "../../projects/projectList";
 import {
+  contractsToAmount,
   displayExpirationDate,
   displayStrikePrice,
+  formatTokenPrice,
   mapNetworkTypes,
 } from "../../lib/utils";
 import {
@@ -21,6 +23,7 @@ import {
 } from "../../Theme";
 import { SystemStyleObject } from "@mui/system";
 import { spotPriceMap } from "../../recoil/util";
+import { useNetworkTokens } from "../../hooks/useNetworkTokens";
 
 const styles: Record<string, SystemStyleObject<Theme>> = {
   bottom: {
@@ -78,12 +81,15 @@ export const OptionInfo: React.VFC<{
   isMobile?: boolean;
 }> = ({ projectKey, optionMetaKey, tokenAccountKey, isMobile }) => {
   const network = useRecoilValue(networkAtom);
-
+  const tokens = useNetworkTokens();
   const optionMeta = useRecoilValue(optionMarketFamily(optionMetaKey));
   const tokenAccount = useRecoilValue(tokenAccountsMap(tokenAccountKey));
   const project = projectList[mapNetworkTypes(network.key)][projectKey];
+  const projectSymbol = project
+    ? project.symbol
+    : tokens[projectKey]?.symbol ?? projectKey;
   const prices = useRecoilValue(spotPriceMap);
-  const tokenPrice = prices[project.symbol]?.price ?? 0;
+  const tokenPrice = prices[projectSymbol]?.price ?? 0;
   if (!optionMeta) {
     throw new Error(`Could not find OptionMarket with key ${optionMetaKey}`);
   }
@@ -116,7 +122,12 @@ export const OptionInfo: React.VFC<{
           Amount / strike
         </Typography>
         <Typography variant="body2" component="p">
-          {Number(tokenAccount?.amount)} @ {strike}
+          {contractsToAmount(
+            optionMeta.underlyingAmountPerContract,
+            Number(tokenAccount?.amount ?? 0),
+            tokens[projectKey].decimals
+          )}
+          @ {strike}
         </Typography>
       </Grid>
       <Grid
@@ -141,7 +152,7 @@ export const OptionInfo: React.VFC<{
         </Typography>
         {/* TODO: Make precision token/project specific? How to handle coins with many decimals and low value? */}
         <Typography variant="body2" component="p">
-          1 {project.symbol} = ${tokenPrice?.toFixed(2)}
+          1 {projectSymbol} = ${formatTokenPrice(tokenPrice)}
         </Typography>
       </Grid>
       <Grid

@@ -57,16 +57,18 @@ const NetworkMenu = () => {
         ref={anchorRef}
         variant="outlined"
         sx={{
-          minWidth: 120,
+          minWidth: 150,
           minHeight: 40,
           border: "2px solid #454545",
           borderRadius: "21px",
           gap: "8px",
-          padding: "8px 16px",
+          padding: "4px 10px",
           color: "#454545",
         }}
       >
-        <Typography variant="h2">{network.name}</Typography>
+        <Typography variant="body1" fontSize={12}>
+          {network.name}
+        </Typography>
       </Button>
       <Popper
         anchorEl={anchorRef.current}

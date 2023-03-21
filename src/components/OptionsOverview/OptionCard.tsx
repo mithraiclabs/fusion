@@ -3,6 +3,7 @@ import { SystemStyleObject } from "@mui/system";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
+import { useNetworkTokens } from "../../hooks/useNetworkTokens";
 import { mapNetworkTypes } from "../../lib/utils";
 import projectList from "../../projects/projectList";
 import {
@@ -206,6 +207,12 @@ export const ProjectCard: React.FC<{
 }> = ({ projectKey, fixedHeight, children, actionButton, isMobile }) => {
   const network = useRecoilValue(networkAtom);
   const project = projectList[mapNetworkTypes(network.key)][projectKey];
+  const tokens = useNetworkTokens();
+  const logo = project ? project.logo : tokens[projectKey]?.logoURI ?? "";
+  const projectName = project
+    ? project.name
+    : tokens[projectKey]?.name ?? projectKey;
+
   return (
     <Box
       sx={{
@@ -220,12 +227,12 @@ export const ProjectCard: React.FC<{
         <Box sx={styles.logoNameContainer}>
           <Box sx={styles.leftLogoBox}>
             <Box sx={styles.logo}>
-              <Avatar src={project.logo} alt={`${project.name} logo`} />
+              <Avatar src={logo} alt={`${projectName} logo`} />
             </Box>
             <Box sx={styles.pillAssetBox}>
               <Pill />
               <Typography variant="h4" component="h4">
-                {project.name}
+                {projectName}
               </Typography>
             </Box>
             <Box sx={{ ...(!isMobile && styles.btnBox) }}>{actionButton}</Box>

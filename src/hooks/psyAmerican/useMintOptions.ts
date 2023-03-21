@@ -28,7 +28,7 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
   const program = usePsyAmericanProgram();
   const tokens = useNetworkTokens();
   const splTokenAccountRentBalance = 0;
-  const wallet = useWallet();
+  const { publicKey, sendTransaction } = useWallet();
   const mintDetails = useRecoilValue(projectInfo);
   const optionMarketKey = useRecoilValue(optionMarketKeyForMinting);
   const optionMintKey = useRecoilValue(builderOptionMintKey);
@@ -37,7 +37,7 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
   return useCallback(
     async (size) => {
       console.log({
-        wallet,
+        publicKey,
         program,
         splTokenAccountRentBalance,
         optionMarketKey,
@@ -46,7 +46,7 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
       });
 
       if (
-        !wallet?.publicKey ||
+        !publicKey ||
         !program ||
         (splTokenAccountRentBalance === null &&
           mintDetails?.underlyingAssetMint === WRAPPED_SOL_ADDRESS) ||
@@ -124,9 +124,9 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
           const { transaction: wrapSolTx, newTokenAccount: wrappedSolAccount } =
             await initializeTokenAccountTx({
               connection: program.provider.connection,
-              payerKey: wallet.publicKey,
+              payerKey: publicKey,
               mintPublicKey: WRAPPED_SOL_MINT,
-              owner: wallet.publicKey,
+              owner: publicKey,
               rentBalance: splTokenAccountRentBalance!,
               extraLamports: lamports.toNumber(),
             });
@@ -141,13 +141,13 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
               ASSOCIATED_TOKEN_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
               option.optionMint,
-              wallet.publicKey
+              publicKey
             ),
             Token.getAssociatedTokenAddress(
               ASSOCIATED_TOKEN_PROGRAM_ID,
               TOKEN_PROGRAM_ID,
               option.writerTokenMint,
-              wallet.publicKey
+              publicKey
             ),
             ...(option.underlyingAssetMint.toString() === WRAPPED_SOL_ADDRESS
               ? []
@@ -156,7 +156,7 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
                     ASSOCIATED_TOKEN_PROGRAM_ID,
                     TOKEN_PROGRAM_ID,
                     option.underlyingAssetMint,
-                    wallet.publicKey
+                    publicKey
                   ),
                 ]),
           ]);
@@ -184,8 +184,8 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
             TOKEN_PROGRAM_ID,
             option.optionMint,
             optionTokenDest,
-            wallet.publicKey,
-            wallet.publicKey
+            publicKey,
+            publicKey
           );
           transaction.add(ix);
         }
@@ -198,8 +198,8 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
             TOKEN_PROGRAM_ID,
             option.writerTokenMint,
             writerTokenDest,
-            wallet.publicKey,
-            wallet.publicKey
+            publicKey,
+            publicKey
           );
           transaction.add(ix);
         }
@@ -219,14 +219,14 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
           const closeWSolIx = Token.createCloseAccountInstruction(
             TOKEN_PROGRAM_ID,
             _underlyingAssetSourceKey as PublicKey,
-            wallet.publicKey, // Send any remaining SOL to the owner
-            wallet.publicKey,
+            publicKey, // Send any remaining SOL to the owner
+            publicKey,
             []
           );
           transaction.add(closeWSolIx);
         }
 
-        transaction.feePayer = wallet.publicKey;
+        transaction.feePayer = publicKey;
         const { blockhash } =
           await program.provider.connection.getRecentBlockhash();
         transaction.recentBlockhash = blockhash;
@@ -234,8 +234,9 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
         if (signers.length) {
           transaction.partialSign(...signers);
         }
-        const txId = await program.provider.connection.sendRawTransaction(
-          (await wallet.signTransaction!(transaction)).serialize()
+        const txId = await sendTransaction(
+          transaction,
+          program.provider.connection
         );
         showMessage(`Successfully minted ${size} options`, txId);
         return true;
@@ -245,13 +246,13 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
       }
     },
     [
+      publicKey,
       program,
-      splTokenAccountRentBalance,
-      wallet,
-      mintDetails,
       optionMarketKey,
+      mintDetails,
       optionMintKey,
       tokens,
+      sendTransaction,
       showMessage,
     ]
   );

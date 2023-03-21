@@ -35,9 +35,8 @@ export const WriterDisplay: React.VFC = () => {
     );
   }
   // Display the individual options
-  const writerCards = Object.keys(ownedProjectWriters)
-    .map((projectKey) => {
-      const ownedWriterKeys = ownedProjectWriters[projectKey];
+  const writerCards = Object.entries(ownedProjectWriters)
+    .map(([projectKey, ownedWriterKeys]) => {
       return ownedWriterKeys.map((ownedWriterKey) => (
         <OptionCardWithAction
           key={ownedWriterKey.optionMarketKey}

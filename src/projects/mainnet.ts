@@ -70,6 +70,20 @@ export const mainnetProjects: Record<string, Project> = {
     discord: "https://discord.com/invite/solchicks",
     suggestedActions: ["JupiterAg"],
   },
+  So11111111111111111111111111111111111111112: {
+    name: "Solana",
+    description: "Solana",
+    mintAddress: "So11111111111111111111111111111111111111112",
+    symbol: "SOL",
+    serumUsdMarket: "A8YFbxQYFVqKZaoYJLLUVcQiWP7G2MeEgW5wsAQgMvFw",
+    serumProgramId: "DESVgJVGajEgKGXhb6XmqDHGz3VjdgP7rEVESBgxmroY",
+    primaryColor: "#9411c5",
+    website: "https://bitcoin.org/en/",
+    twitter: "https://bitcoin.org/en/",
+    discord: "https://bitcoin.org/en/",
+    logo: "https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111111111111111111111111111111111112/logo.png",
+    suggestedActions: ["PsyFinance"],
+  },
 };
 
 // Solend test option Dec 30, 2022 $2 CALL

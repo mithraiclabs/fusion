@@ -12,9 +12,11 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { getCurrentMintBalance } from "../../recoil/wallet/selectors";
 import { useLoadSplTokens } from "../../hooks/wallet";
 import { decDiv } from "../../lib/utils";
+import { useState } from "react";
 
 export const BuilderDistributor: React.VFC = () => {
   useLoadSplTokens();
+  const [load, setLoad] = useState(false);
   const distribute = useCreateDistributor();
   const setAirDropStage = useSetRecoilState(airDropStage);
   const setDistributorAddress = useSetRecoilState(distributorAddress);
@@ -32,6 +34,8 @@ export const BuilderDistributor: React.VFC = () => {
         {" "}
         Options minted successfully, you can now distribute the airdrop!
       </Typography>
+
+      {load && <SplTokenReloader />}
       {!!optionMintBalance ? (
         <>
           <Typography fontSize={"16px"} variant={"body2"}>
@@ -46,7 +50,17 @@ export const BuilderDistributor: React.VFC = () => {
       ) : (
         <></>
       )}
-
+      {optionMintBalance < airdropOptionAmount && (
+        <FusionButton
+          title="Reload Balance"
+          onClick={() => {
+            setLoad(true);
+            setTimeout(() => {
+              setLoad(false);
+            }, 3000);
+          }}
+        />
+      )}
       <FusionButton
         title="Create airdrop and fund it with minted options"
         disabled={optionMintBalance < airdropOptionAmount}
@@ -60,4 +74,9 @@ export const BuilderDistributor: React.VFC = () => {
       />
     </Box>
   );
+};
+
+export const SplTokenReloader: React.VFC = () => {
+  useLoadSplTokens();
+  return null;
 };

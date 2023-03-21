@@ -16,7 +16,7 @@ import { usePsyAmericanProgram } from "./usePsyAmericanProgram";
 
 export const useClaimAirdrop = () => {
   const program = usePsyAmericanProgram();
-  const { publicKey } = useWallet();
+  const { publicKey, sendTransaction } = useWallet();
   const showMessage = useShowSnackBar();
   const provider = program.provider as AnchorProvider;
   const newProvider = makeSaberProvider(provider);
@@ -67,13 +67,16 @@ export const useClaimAirdrop = () => {
           index: new BN(claim.index),
           proof: claim.proof,
         });
-        const txId = await tx.send();
+        const built = tx.build(publicKey);
+        const recentBlockhash = await provider.connection.getLatestBlockhash();
+        built.recentBlockhash = recentBlockhash.blockhash;
+        const txId = await sendTransaction(built, provider.connection);
         await handleClaim({
           wallet: publicKey.toString(),
           distributorAddress,
           claimedQty: Number(claim.amount),
         });
-        showMessage("Successfully claimed airdrop", txId.signature);
+        showMessage("Successfully claimed airdrop", txId);
         return true;
       }
       return false;
@@ -82,5 +85,13 @@ export const useClaimAirdrop = () => {
       showMessage("Something went wrong, please try again");
       return false;
     }
-  }, [publicKey, sdk, selectedJson, distributorAddress, showMessage]);
+  }, [
+    publicKey,
+    distributorAddress,
+    selectedJson?.recipientList,
+    sdk,
+    provider.connection,
+    sendTransaction,
+    showMessage,
+  ]);
 };
