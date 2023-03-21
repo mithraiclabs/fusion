@@ -105,10 +105,7 @@ export const useExchangeWriterTokenForQuote = (
         for (let s of signers) {
           await transaction.partialSign(s);
         }
-        wallet.signTransaction && (await wallet.signTransaction(transaction));
-        const txId = await connection.sendRawTransaction(
-          (await wallet.signTransaction!(transaction)).serialize()
-        );
+        const txId = await wallet.sendTransaction(transaction, connection);
         showMessage(
           "Successfully exchanged writer tokens for quote assets",
           txId

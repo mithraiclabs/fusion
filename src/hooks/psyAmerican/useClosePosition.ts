@@ -103,10 +103,7 @@ export const useClosePosition = (
         for (let s of signers) {
           await tx.partialSign(s);
         }
-        wallet.signTransaction && (await wallet.signTransaction(tx));
-        const txId = await connection.sendRawTransaction(
-          (await wallet.signTransaction!(tx)).serialize()
-        );
+        const txId = await wallet.sendTransaction(tx, connection);
         showMessage("Successfully closed position", txId);
         return true;
       } catch (err) {

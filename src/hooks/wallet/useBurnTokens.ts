@@ -45,11 +45,8 @@ export const useBurnTokens = (mint?: PublicKey) => {
           const { blockhash } = await connection.getRecentBlockhash();
           transaction.recentBlockhash = blockhash;
           transaction.feePayer = publicKey;
-          await signTransaction(transaction);
 
-          const txId = await connection.sendRawTransaction(
-            (await wallet.signTransaction!(transaction)).serialize()
-          );
+          const txId = await wallet.sendTransaction(transaction, connection);
           showMessage("Expired option account closed & rent claimed", txId);
           return true;
         }
