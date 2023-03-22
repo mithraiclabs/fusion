@@ -6,7 +6,7 @@ export const networks: Record<string, Network> = {
     key: WalletAdapterNetwork.Mainnet,
     url: "https://rpc-w2sb6smb3a-uc.a.run.app/",
     name: "Mainnet",
-    ws: "wss://rpc-w2sb6smb3a-uc.a.run.app/",
+    ws: "wss://autumn-weathered-meme.solana-mainnet.quiknode.pro/4376a4a4f036359db54b1cec4b47558ff710ab8b/",
   },
   "mainnet-srm": {
     key: "mainnet-srm",

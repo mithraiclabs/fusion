@@ -13,7 +13,10 @@ export const useConnection = () => {
     () =>
       new anchor.web3.Connection(network.url, {
         commitment: "processed",
+        wsEndpoint: network.ws,
+        disableRetryOnRateLimit: true,
+        confirmTransactionInitialTimeout: 10000,
       }),
-    [network.url]
+    [network]
   );
 };
