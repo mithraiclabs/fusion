@@ -132,12 +132,13 @@ export const ProjectInfoForm: React.FC = () => {
               <Avatar
                 src={token.logoURI}
                 sx={{
-                  width: "20px",
-                  height: "20px",
+                  width: "19px",
+                  height: "19px",
                 }}
               />
-              &nbsp;
-              {token.symbol}
+              <Typography fontSize={13}>
+                &nbsp;{token.symbol} - {token.name}
+              </Typography>
             </Stack>
           </MenuItem>
         ))}

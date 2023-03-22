@@ -2501,10 +2501,10 @@
     "@solana/spl-token" "^0.1.8"
     "@solana/web3.js" "^1.28.0"
 
-"@mithraic-labs/psy-token-registry@^0.0.17":
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/@mithraic-labs/psy-token-registry/-/psy-token-registry-0.0.17.tgz#97e3afe2fc54a4f6aa329ae99b20eaeeddb65eca"
-  integrity sha512-ez8KfXq316q7GuiikvOGdDP7XJViUS+jbHV/GipYZ4ITGKQ/sJnd1M2tpnjLig2rtlHLaw+N1OUGNs0QhIe37A==
+"@mithraic-labs/psy-token-registry@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@mithraic-labs/psy-token-registry/-/psy-token-registry-0.0.19.tgz#34d2b2fc4d4abc92707ef3a726cf1e4b6f8d4fd8"
+  integrity sha512-NA0GsK9zdnk4xCsGeBewsOXJ98gNPe3JxTkpuw4xiaSu7AgI/IWKyYQd9u/8WM9apJqGbPDpzi757O0vKFNDwA==
 
 "@mithraic-labs/psyoptions@^0.7.2":
   version "0.7.2"
