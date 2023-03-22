@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import { Network } from "../solana/types";
 import { getAvailableDistributors } from "../../api";
 import { PublicKey } from "@solana/web3.js";
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 
 export const useInsertAvailableDistributors = () =>
   useRecoilTransaction_UNSTABLE<[DistributorInfo[]]>(
@@ -23,7 +24,9 @@ export const useCheckAvailbleDistributors = () => {
         const list = await getAvailableDistributors({
           wallet: publicKey.toString(),
           isMainnet:
-            network.key === "mainnet-srm" || network.key === "mainnet-beta",
+            network.name.toLowerCase().includes("mainnet") ||
+            !network.name.includes("devnet") ||
+            network.key === WalletAdapterNetwork.Mainnet,
         });
         updateState(list);
       }
