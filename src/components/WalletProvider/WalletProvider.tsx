@@ -37,7 +37,14 @@ export const PsyWalletProvider: React.FC = ({ children }) => {
   );
 
   return (
-    <ConnectionProvider endpoint={network.url}>
+    <ConnectionProvider
+      endpoint={network.url}
+      config={{
+        wsEndpoint: network.ws,
+        disableRetryOnRateLimit: true,
+        confirmTransactionInitialTimeout: 10000,
+      }}
+    >
       <WalletProvider wallets={wallets} autoConnect>
         <WalletDialogProvider>{children}</WalletDialogProvider>
       </WalletProvider>

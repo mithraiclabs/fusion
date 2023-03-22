@@ -134,7 +134,7 @@ const NetworkMenu = () => {
                     setCustomNetwork((_prevVal) => ({
                       ..._prevVal,
                       host: e.target.value,
-                      url: `https://${e.target.value}`,
+                      url: `${e.target.value}`,
                       ws: `wss://${e.target.value}`,
                     }));
                     setUpdateToCustom(true);
