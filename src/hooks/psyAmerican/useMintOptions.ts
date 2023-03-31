@@ -205,7 +205,7 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
         }
 
         const { ix, signers: _signers } =
-          await instructions.mintOptionInstruction(
+          await instructions.mintOptionV2Instruction(
             program,
             optionTokenDest,
             writerTokenDest,
