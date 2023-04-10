@@ -68,12 +68,15 @@ const Home = () => {
   const exerciseOptionMarketKey = useMatch("/option/:key")?.params?.key || "";
   const recoverOptionMarketKey = useMatch("/writer/:key")?.params?.key || "";
   const { publicKey } = useWallet();
+  const isRecover = useMatch("recover");
   const { width } = useWindowDimensions();
   const smallScreen = width < SMALL_SCREEN_WIDTH;
   const [selectedWindow, setSelectedWindow] =
     useRecoilState(selectedWindowAtom);
   const navigate = useNavigate();
   const handleNavigate = (type: WindowType) => {
+    console.log({ type, selectedWindow });
+
     setSelectedWindow(type);
     if (type === "Home") {
       navigate("/");
@@ -85,9 +88,16 @@ const Home = () => {
         ? "Exercise"
         : recoverOptionMarketKey
         ? "WriterBurn"
+        : isRecover
+        ? "Recover"
         : "Home"
     );
-  }, [exerciseOptionMarketKey, recoverOptionMarketKey, setSelectedWindow]);
+  }, [
+    exerciseOptionMarketKey,
+    isRecover,
+    recoverOptionMarketKey,
+    setSelectedWindow,
+  ]);
 
   const windowContent = () => {
     switch (selectedWindow) {
@@ -196,8 +206,12 @@ export const Dashboard: React.FC<{
     >
       <Box
         onClick={() => {
+          console.log({ selectedWindow });
+
           navigationHandler(
-            selectedWindow === "WriterBurn" ? "Recover" : "Home"
+            selectedWindow === "WriterBurn" || selectedWindow === "Recover"
+              ? "Recover"
+              : "Home"
           );
         }}
       >
