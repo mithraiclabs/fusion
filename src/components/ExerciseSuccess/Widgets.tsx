@@ -68,20 +68,18 @@ const GenericWidget: React.VFC<{
             marginRight: "24px",
           }}
         >
-          <Link
-            href={link}
-            rel="noopener"
-            target="_blank"
+          <Typography
             sx={{
               fontFamily: "Inter",
               fontWeight: 600,
               fontSize: "16px",
               color: HEADER_TEXT_COLOR,
+              textDecoration: "underline",
             }}
             color="textPrimary"
           >
             {linkType} <LinkOut size={1.05} color={HEADER_TEXT_COLOR} />
-          </Link>
+          </Typography>
         </Box>
       </Stack>
     </Link>
