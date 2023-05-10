@@ -7,7 +7,7 @@ import {
 } from "@solana/spl-token2";
 import { utils, MerkleDistributorSDK } from "@saberhq/merkle-distributor";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { Keypair, Transaction } from "@solana/web3.js";
+import { Keypair } from "@solana/web3.js";
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { useShowSnackBar } from "../../context/SnackBarContext";
@@ -115,11 +115,6 @@ export const useCreateDistributor = () => {
         signatures: built.signatures,
         distBase: distributorInfo.base.toString(),
       });
-      const recentBlockhash = await connection.getLatestBlockhash();
-      built.recentBlockhash = recentBlockhash.blockhash;
-      built.partialSign(newKP);
-      const tx1 = await sendTransaction(built, connection);
-      console.log({ tx1 });
 
       const toTokenAccount = distributorInfo.distributorATA;
 
@@ -128,7 +123,7 @@ export const useCreateDistributor = () => {
         publicKey
       );
 
-      const sendTokenToDistributorTransaction = new Transaction().add(
+      const sendTokenToDistributorTransaction = built.add(
         createTransferInstruction(
           optionTokenAccount,
           toTokenAccount,
@@ -138,16 +133,16 @@ export const useCreateDistributor = () => {
           TOKEN_PROGRAM_ID // imported from '@solana/spl-token2'
         )
       );
-      const latestBlockHash = await connection.getLatestBlockhash();
-      sendTokenToDistributorTransaction.feePayer = publicKey;
-      sendTokenToDistributorTransaction.recentBlockhash =
-        latestBlockHash.blockhash;
-      const tx2 = await sendTransaction(
+
+      const signature = await sendTransaction(
         sendTokenToDistributorTransaction,
-        connection
+        connection,
+        {
+          signers: [newKP],
+        }
       );
       // send the signed transaction
-      showMessage("Success: distributor created", tx2);
+      showMessage("Success: distributor created", signature);
       const serverUpdated = await pushDistributorInfo({
         distributorAddress: distributorInfo.distributor.toString(),
         creatorWallet: publicKey.toString(),
