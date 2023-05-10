@@ -78,7 +78,7 @@ export const OptionMinting: React.VFC = () => {
             </Box>
             <Box textAlign={"right"} gap={"6px"}>
               <Typography variant="body2">
-                {contractQty} {underlyingToken.name} option contract
+                {contractQty} {underlyingToken.symbol} option contract
                 {contractQty > 1 && "s"}
               </Typography>
               <Typography variant="body2">
@@ -102,7 +102,7 @@ export const OptionMinting: React.VFC = () => {
         </Box>
       ) : (
         <Typography>
-          You already have suffiecient option tokens for this airdrop in your
+          You already have sufficient option tokens for this airdrop in your
           wallet
         </Typography>
       )}
