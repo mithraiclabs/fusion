@@ -104,6 +104,7 @@ export const useMintOptions = (): ((size: number) => Promise<boolean>) => {
             console.log({ createdMktKey: createdMktKey.toString(), stx });
           } catch (error) {
             console.log({ error });
+            return false;
           }
         }
         let optionMarketAccountData = await program.account.optionMarket.fetch(

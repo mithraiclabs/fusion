@@ -25,7 +25,7 @@ export const useCheckAvailbleDistributors = () => {
           wallet: publicKey.toString(),
           isMainnet:
             network.name.toLowerCase().includes("mainnet") ||
-            !network.name.includes("devnet") ||
+            !network.name.toLowerCase().includes("devnet") ||
             network.key === WalletAdapterNetwork.Mainnet,
         });
         updateState(list);

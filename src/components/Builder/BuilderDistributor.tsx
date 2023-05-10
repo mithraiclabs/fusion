@@ -44,7 +44,6 @@ export const BuilderDistributor: React.VFC = () => {
           <Typography fontSize={"16px"} marginY={"24px"}>
             Click below to create the option airdrop and send it the minted
             options <br />
-            (2 transactions)
           </Typography>
         </>
       ) : (

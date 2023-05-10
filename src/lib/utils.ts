@@ -306,7 +306,7 @@ export const validDistributorJSON = (json: any) => {
 export const formatTokenPrice = (price: number) => {
   const significantDecimalPlaces = Math.max(
     2,
-    (price.toString().split(".")[1] || "").search(/[^0]/) + 2
+    (price.toFixed(14).split(".")[1] || "").search(/[^0]/) + 2
   );
   return price.toFixed(significantDecimalPlaces);
 };
