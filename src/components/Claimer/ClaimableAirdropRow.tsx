@@ -10,7 +10,7 @@ import { deserializeSplTokenAccount } from "../../lib/deserializeSplTokenAccount
 import {
   airdropAddress,
   airdropBalance,
-  claimStage,
+  claimStageAtom,
   DistributorInfo,
   recipientJson,
   selectedClaim,
@@ -40,7 +40,7 @@ export const ClaimableAirdropRow: React.FC<{
   isMobile?: boolean;
 }> = ({ distributorInfo, underlyingToken, isMobile }) => {
   const setClaimAddress = useSetRecoilState(airdropAddress);
-  const setClaimStage = useSetRecoilState(claimStage);
+  const setClaimStage = useSetRecoilState(claimStageAtom);
   const setRecipientJSON = useSetRecoilState(recipientJson);
   const setSelectedClaim = useSetRecoilState(selectedClaim);
   const setSelectedWindow = useSetRecoilState(selectedWindowAtom);

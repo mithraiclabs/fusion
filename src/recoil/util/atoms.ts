@@ -23,8 +23,8 @@ export const airDropStage = atom<number>({
   default: 1,
 });
 
-export const claimStage = atom<number>({
-  key: "claimStage",
+export const claimStageAtom = atom<number>({
+  key: "claimStageAtom",
   default: 1,
 });
 

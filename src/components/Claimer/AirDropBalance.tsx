@@ -6,7 +6,7 @@ import { useClaimAirdrop } from "../../hooks/useClaimAirdrop";
 import { useNetworkTokens } from "../../hooks/useNetworkTokens";
 import {
   airdropBalance,
-  claimStage,
+  claimStageAtom,
   recipientJson,
   selectedClaim,
 } from "../../recoil/util";
@@ -19,7 +19,7 @@ export const AirDropBalance: React.FC = () => {
   const balance = useRecoilValue(airdropBalance);
   const navigate = useNavigate();
   const tokens = useNetworkTokens();
-  const setClaimStage = useSetRecoilState(claimStage);
+  const setClaimStage = useSetRecoilState(claimStageAtom);
   const selectedJSON = useRecoilValue(recipientJson);
   const _selectedClaim = useRecoilValue(selectedClaim);
   const { publicKey } = useWallet();

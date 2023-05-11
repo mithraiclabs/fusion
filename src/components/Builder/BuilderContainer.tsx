@@ -136,7 +136,7 @@ export const BuilderContainer: React.VFC = () => {
           )}
 
           <Stage
-            title="step 4 - token confirmation"
+            title="step 4 - total token distribution amount"
             lastCompleted={lastCompleted}
             order={4}
           />

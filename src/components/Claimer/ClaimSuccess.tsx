@@ -2,13 +2,13 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useSetRecoilState } from "recoil";
 import { useLoadSplTokens } from "../../hooks/wallet";
-import { claimStage, selectedWindowAtom } from "../../recoil/util";
+import { claimStageAtom, selectedWindowAtom } from "../../recoil/util";
 import { PAPER_COLOR } from "../../Theme";
 import { FusionButton } from "../FusionButton";
 
 export const ClaimSuccess: React.FC = () => {
   useLoadSplTokens();
-  const setClaimStage = useSetRecoilState(claimStage);
+  const setClaimStage = useSetRecoilState(claimStageAtom);
   const setSelectedWindow = useSetRecoilState(selectedWindowAtom);
 
   return (

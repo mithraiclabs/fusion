@@ -1,13 +1,13 @@
 import { Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { claimStage, selectedWindowAtom } from "../../recoil/util";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { claimStageAtom, selectedWindowAtom } from "../../recoil/util";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { ClaimSuccess } from "./ClaimSuccess";
 import { AirDropBalance } from "./AirDropBalance";
 
 export const ClaimContainer: React.VFC = () => {
-  const [_claimStage, setClaimStage] = useRecoilState(claimStage);
+  const claimStage = useRecoilValue(claimStageAtom);
   const setSelectedWindow = useSetRecoilState(selectedWindowAtom);
 
   return (
@@ -16,11 +16,7 @@ export const ClaimContainer: React.VFC = () => {
         {
           <Button
             onClick={() => {
-              if (_claimStage > 2) {
-                setClaimStage((prev) => prev - 1);
-              } else {
-                setSelectedWindow("Home");
-              }
+              setSelectedWindow("Home");
             }}
             sx={{
               color: "#000000DE",
@@ -34,8 +30,8 @@ export const ClaimContainer: React.VFC = () => {
           </Button>
         }
       </Stack>
-      {_claimStage === 2 && <AirDropBalance />}
-      {_claimStage === 3 && <ClaimSuccess />}
+      {claimStage === 2 && <AirDropBalance />}
+      {claimStage === 3 && <ClaimSuccess />}
     </Box>
   );
 };

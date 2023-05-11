@@ -43,8 +43,11 @@ export const ContractQuantity: React.VFC = () => {
     <>
       <Box marginRight={"24px"}>
         <Typography marginBottom={"16px"}>
-          Confirm the details below once you’ve confirmed the amount of
-          underlying you would like to distribute.
+          Confirm your option details and select the total number of options
+          you'd like to mint. You have the flexibility to mint a lower quantity
+          than the maximum displayed. If you opt for fewer options, they will be
+          redeemed by your recipients on a first-come, first-served basis until
+          the chosen quantity is fully redeemed.
         </Typography>
         <Typography variant="h4" my={"8px"}>
           Summary
